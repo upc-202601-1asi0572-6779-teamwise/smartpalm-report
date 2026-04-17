@@ -193,18 +193,20 @@ del ABET – EAC - Student Outcome 5.
 
 **Técnica 5Ws y 2Hs**
 
-### Técnica 5Ws y 2Hs
+### Técnica 5Ws y 5Hs: Sistema de Monitoreo para Palma Aceitera en Tiempo Real
 
-| Elemento      | Pregunta                                                                 | Descripción                                                                                                                                                                                |
-|---------------|--------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **What?**     | ¿Cuál es el problema?                                                    |  |
-| **When?**     | ¿Cuándo se manifiesta el problema?                                       |                   |
-| **Where?**    | ¿Dónde ocurre el problema?                                               |                             |
-| **Who?**      | ¿A quién afecta el problema?                                             |             |
-| **Why?**      | ¿Por qué sucede el problema?                                             |             |
-| **How?**      | ¿Cómo se diferencia del estado óptimo?                                   |  |
-| **How much?** | ¿Cuánto impacto genera el problema?                                      |    |
-
+| Elemento | Pregunta | Descripción del Proyecto |
+| :--- | :--- | :--- |
+| **What?** | **¿Cuál es el problema?** | Baja eficiencia en la producción y salud de la palma debido a una gestión de recursos (riego, abono, poda) basada en suposiciones y no en datos en tiempo real. |
+| **When?** | **¿Cuándo se manifiesta?** | Durante las etapas críticas de crecimiento y producción, especialmente ante estrés hídrico no detectado o deficiencias minerales silenciosas. |
+| **Where?** | **¿Dónde ocurre el problema?** | En las hectáreas de cultivo de palma aceitera donde la extensión física impide una supervisión manual detallada planta por planta. |
+| **Who?** | **¿A quién afecta?** | Al **Dueño** (pérdida de rentabilidad y control) y al **Ingeniero Agrónomo** (falta de datos precisos para la toma de decisiones preventivas). |
+| **Why?** | **¿Por qué sucede el problema?** | Por la ausencia de tecnología IoT que permita capturar datos biológicos y ambientales de forma constante y masiva en el campo. |
+| **How?** | **¿Cómo se diferencia del estado óptimo?** | El estado óptimo es un cultivo con nutrición y riego de precisión; actualmente se diferencia por respuestas tardías ante plagas o sequías que reducen el rendimiento. |
+| **How much?** | **¿Cuánto impacto genera el problema?** | Pérdida significativa del potencial de cosecha anual y desperdicio de insumos (agua/fertilizante) aplicados de forma ineficiente. |
+| **How to solve?** | **¿Cómo se soluciona?** | Implementando nodos de sensores IoT (humedad, luz, minerales) e integración de IA para generar alertas, analíticas y sugerencias de toma de decisiones. |
+| **How many?** | **¿Cuántos recursos se requieren?** | Una red estratégica de sensores por hectárea, soporte técnico 24/7 y una plataforma digital centralizada para la visualización de datos relevantes. |
+| **How long?** | **¿Cuánto tiempo dura el ciclo?** | El monitoreo es continuo (24/7) durante todo el ciclo de vida del cultivo, con reportes de tendencias mensuales para comparación histórica. |
 
 ### 1.2.2 Lean UX Process
 
