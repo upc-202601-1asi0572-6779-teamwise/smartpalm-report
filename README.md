@@ -155,14 +155,20 @@ del ABET – EAC - Student Outcome 5.
 # Chapter 1
 
 ## 1.1 Startup Profile
-
 ### 1.1.1 Descripción de la Startup
+SmartPalm IoT es una startup agrotecnológica especializada en el diseño e implementación de un ecosistema integral de monitoreo en tiempo real, desarrollado exclusivamente para potenciar el sector de la palma aceitera. La empresa nace para erradicar una ineficiencia estructural en la agroindustria: la "ceguera de datos" en campo. Tradicionalmente, la falta de información exacta sobre las condiciones microclimáticas y edafológicas ha forzado un manejo empírico de los cultivos, provocando el uso ineficiente de insumos críticos (agua y fertilizantes), reacciones tardías ante condiciones adversas y una notable disminución en el rendimiento de la cosecha.
 
+Para superar este desafío y resolver la intermitencia de conectividad típica de las zonas rurales, SmartPalm IoT emplea una arquitectura tecnológica robusta distribuida en tres capas: Edge, Fog y Cloud Computing.
 
+- En la base (Edge), desplegamos nodos de sensores IoT de bajo consumo directamente en las plantas para medir humedad, temperatura, incidencia lumínica y minerales, filtrando la información desde su origen.
 
-**Misión**: 
+- Estos datos viajan hacia concentradores locales instalados en la finca (Fog), los cuales procesan la información de manera inmediata para detectar anomalías y garantizar la operatividad continua del sistema, incluso frente a cortes de internet.
 
-**Visión**: 
+- Finalmente, la información se sincroniza de forma segura en la nube (Cloud), alimentando una plataforma de software web y móvil que traduce los datos en analítica avanzada y paneles de control intuitivos.
+
+**Misión**: Transformar la gestión agroindustrial de la palma aceitera mediante un ecosistema tecnológico resiliente, accesible y de alta precisión. Empoderamos a los tomadores de decisiones tanto a nivel financiero como operativo, dotándolos de datos continuos y confiables para optimizar el uso de sus recursos, mitigar riesgos en campo y asegurar la máxima rentabilidad y sostenibilidad de cada hectárea cultivada.
+
+**Visión**: Consolidarnos como la solución agrotecnológica estándar y líder en la región para la digitalización del cultivo de palma aceitera, impulsando la evolución de la agricultura tradicional latinoamericana hacia una industria hiperconectada, sustentable y guiada por datos exactos para alcanzar su máximo potencial productivo.
 
 ### 1.1.2 Perfiles de integrantes del equipo
 
