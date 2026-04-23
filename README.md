@@ -168,14 +168,85 @@ De esta manera, TempWise se posiciona como una iniciativa innovadora con potenci
 
 ### 1.1.2 Perfiles de integrantes del equipo
 
-| Integrante      | Información | Foto |
-| :-------------- | :---------- | :--- |
-| **[COMPLETAR]** |             |      |
-| **[COMPLETAR]** |             |      |
-| **[COMPLETAR]** |             |      |
-| **[COMPLETAR]** |             |      |
-| **[COMPLETAR]** |             |      |
-| **[COMPLETAR]** |             |      |
+<table>
+  <tr>
+    <th>Integrante</th>
+    <th>Información</th>
+    <th>Foto</th>
+  </tr>
+  <tr>
+    <td><strong>[COMPLETAR NOMBRE]</strong></td>
+    <td>
+      <strong>Código de estudiante:</strong> [COMPLETAR]<br><br>
+      <strong>Carrera:</strong> [COMPLETAR]<br><br>
+      [COMPLETAR DESCRIPCIÓN DEL INTEGRANTE]<br><br>
+      [COMPLETAR CONOCIMIENTOS Y APORTE AL EQUIPO]
+    </td>
+    <td align="center">
+      [COMPLETAR FOTO]
+    </td>
+  </tr>
+  <tr>
+    <td><strong>[COMPLETAR NOMBRE]</strong></td>
+    <td>
+      <strong>Código de estudiante:</strong> [COMPLETAR]<br><br>
+      <strong>Carrera:</strong> [COMPLETAR]<br><br>
+      [COMPLETAR DESCRIPCIÓN DEL INTEGRANTE]<br><br>
+      [COMPLETAR CONOCIMIENTOS Y APORTE AL EQUIPO]
+    </td>
+    <td align="center">
+      [COMPLETAR FOTO]
+    </td>
+  </tr>
+    <tr>
+    <td><strong>Javier Oswaldo Tello Murga</strong></td>
+    <td>
+      <strong>Código de estudiante:</strong> U202218387<br><br>
+      <strong>Carrera:</strong> Ingeniería de Software, Universidad Peruana de Ciencias Aplicadas (UPC)<br><br>
+      Soy estudiante de Ingeniería de Software en la Universidad Peruana de Ciencias Aplicadas. Me caracterizo por ser una persona responsable, con disposición para aprender continuamente y fortalecer mis conocimientos en temas relacionados con mi formación profesional. Dentro del equipo, aporto compromiso, interés por el trabajo colaborativo y motivación para contribuir activamente en el desarrollo del proyecto.<br><br>
+      Cuento con conocimientos en WordPress básico, HTML, CSS y JavaScript, Python a nivel básico, fundamentos de base de datos y bases de programación en C++<. Estas competencias me permiten apoyar en tareas de documentación, desarrollo web y comprensión de las tecnologías que forman parte de la solución.
+    </td>
+    <td align="center">
+      <img src="./assets/img/team/integrante-javiertello.jpg" alt="Foto de Javier Oswaldo Tello Murga" width="160">
+    </td>
+  </tr>
+  <tr>
+    <td><strong>[COMPLETAR NOMBRE]</strong></td>
+    <td>
+      <strong>Código de estudiante:</strong> [COMPLETAR]<br><br>
+      <strong>Carrera:</strong> [COMPLETAR]<br><br>
+      [COMPLETAR DESCRIPCIÓN DEL INTEGRANTE]<br><br>
+      [COMPLETAR CONOCIMIENTOS Y APORTE AL EQUIPO]
+    </td>
+    <td align="center">
+      [COMPLETAR FOTO]
+    </td>
+  </tr>
+  <tr>
+    <td><strong>[COMPLETAR NOMBRE]</strong></td>
+    <td>
+      <strong>Código de estudiante:</strong> [COMPLETAR]<br><br>
+      <strong>Carrera:</strong> [COMPLETAR]<br><br>
+      [COMPLETAR DESCRIPCIÓN DEL INTEGRANTE]<br><br>
+      [COMPLETAR CONOCIMIENTOS Y APORTE AL EQUIPO]
+    </td>
+    <td align="center">
+      [COMPLETAR FOTO]
+    </td>
+  </tr>
+  <tr>
+    <td><strong>[COMPLETAR NOMBRE]</strong></td>
+    <td>
+      <strong>Código de estudiante:</strong> [COMPLETAR]<br><br>
+      <strong>Carrera:</strong> [COMPLETAR]<br><br>
+      [COMPLETAR DESCRIPCIÓN DEL INTEGRANTE]<br><br>
+      [COMPLETAR CONOCIMIENTOS Y APORTE AL EQUIPO]
+    </td>
+    <td align="center">
+      [COMPLETAR FOTO]
+    </td>
+  </tr>
+</table>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       | [COMPLETAR]                                                                                                   |
 
 ## 1.2 Solution Profile
 
