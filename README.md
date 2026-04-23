@@ -292,7 +292,11 @@ Creemos que, si la solución presenta información clara, útil y accesible para
 
 #### 1.2.2.4 Lean UX Canvas
 
+El Lean UX Canvas resume el problema de negocio, los segmentos objetivo, los resultados esperados, la propuesta de solución, las hipótesis, los riesgos y los experimentos iniciales para validar la propuesta de valor de SmartPalm.
 
+![Lean UX Canvas - SmartPalm](./assets/img/leanUx/lean-ux-canvas.png)
+
+Permitió organizar de forma integral los principales elementos del problema y de la solución propuesta, facilitando la alineación entre las necesidades de los usuarios, los objetivos del negocio y las decisiones iniciales de diseño de la propuesta.
 
 ## 1.3 Segmento Objetivo
 
