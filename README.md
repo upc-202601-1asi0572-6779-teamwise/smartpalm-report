@@ -2,6 +2,7 @@
 
 ![Logo Upc](https://www.upc.edu.pe/static/img/logo_upc_red.png "Logo upc")
 <br>
+
 <h3>Universidad Peruana de Ciencias Aplicadas</h3> <br>
 <center>Carrera: Ingenieria de Software</center><br>  
 <center>Ciclo: 2026-10</center><br>
@@ -13,9 +14,10 @@
 
 </center>
 
-
 ### <center>Startup: TempWise</center>
+
 ### <center>Producto: [COMPLETAR]</center>
+
 ### Integrantes:
 
 <table >
@@ -51,24 +53,21 @@
 
 <center> Julio, 2025</center>
 
-
 **Registro de Versiones del Informe:**
 
 En esta sección se resumen todas las modificaciones relevantes que sean realizadas sobre el informe durante el ciclo de vida del proyecto.
 
-| Versión | Fecha       | Autor                                   | Descripción de modificación                                                                                   |
-|---------|-------------|------------------------------------------|---------------------------------------------------------------------------------------------------------------|
-| V0.1    | 
+| Versión | Fecha | Autor | Descripción de modificación |
+| ------- | ----- | ----- | --------------------------- |
+| V0.1    |
 
 # Project Report Collaboration Insights
+
 Link de Repositorio: https://github.com/TempWise-DesarrolloIoT-202610/upc-Desarrollo-IoT-Report
 
 TB1: En esta etapa, el equipo se reunió para definir el alcance y los objetivos, asignando tareas específicas a cada miembro. Comenzamos recopilando datos y revisando información relevante, con cada miembro contribuyendo con investigaciones individuales que luego compartimos y discutimos en reuniones periódicas. En GitHub, establecimos un flujo de trabajo para colaborar en la redacción del informe, creando un repositorio dedicado con secciones divididas en archivos Markdown para facilitar la colaboración y revisión
 
 ![Capturas-TB1]()
-
-
-
 
 # Contenido
 
@@ -135,7 +134,7 @@ TB1: En esta etapa, el equipo se reunió para definir el alcance y los objetivos
 # Student Outcome
 
 **El curso contribuye al cumplimiento del Student Outcome ABET:**
-**ABET – EAC - Student Outcome** 
+**ABET – EAC - Student Outcome**
 
 Criterio: La capacidad de funcionar efectivamente en un equipo cuyos miembros
 juntos proporcionan liderazgo, crean un entorno de colaboración e inclusivo,
@@ -144,139 +143,114 @@ En el siguiente cuadro se describe las acciones realizadas y enunciados de
 conclusiones por parte del grupo, que permiten sustentar el haber alcanzado el logro
 del ABET – EAC - Student Outcome 5.
 
-| Criterio específico  | Acciones realizadas  | Conclusiones          |
-|----------------------|---------------------|-----------------------|
-| Trabaja en equipo para proporcionar liderazgo en forma conjunta |  |  |
-| Crea un entorno colaborativo e inclusivo, establece metas, planifica tareas y cumple objetivos | |  |
-
-
-
+| Criterio específico                                                                            | Acciones realizadas | Conclusiones |
+| ---------------------------------------------------------------------------------------------- | ------------------- | ------------ |
+| Trabaja en equipo para proporcionar liderazgo en forma conjunta                                |                     |              |
+| Crea un entorno colaborativo e inclusivo, establece metas, planifica tareas y cumple objetivos |                     |              |
 
 # Chapter 1
 
 ## 1.1 Startup Profile
+
 ### 1.1.1 Descripción de la Startup
-SmartPalm IoT es una startup agrotecnológica especializada en el diseño e implementación de un ecosistema integral de monitoreo en tiempo real, desarrollado exclusivamente para potenciar el sector de la palma aceitera. La empresa nace para erradicar una ineficiencia estructural en la agroindustria: la "ceguera de datos" en campo. Tradicionalmente, la falta de información exacta sobre las condiciones microclimáticas y edafológicas ha forzado un manejo empírico de los cultivos, provocando el uso ineficiente de insumos críticos (agua y fertilizantes), reacciones tardías ante condiciones adversas y una notable disminución en el rendimiento de la cosecha.
 
-Para superar este desafío y resolver la intermitencia de conectividad típica de las zonas rurales, SmartPalm IoT emplea una arquitectura tecnológica robusta distribuida en tres capas: Edge, Fog y Cloud Computing.
+TempWise es una startup agrotecnológica orientada al desarrollo de soluciones digitales e IoT para optimizar la gestión de cultivos de palma aceitera. Surge ante la necesidad de reducir la falta de visibilidad sobre el estado real del cultivo en campo, una problemática que todavía ocasiona decisiones tardías o poco precisas en actividades clave como el riego, el abonado, la poda y la prevención de riesgos que afectan la productividad.
 
-- En la base (Edge), desplegamos nodos de sensores IoT de bajo consumo directamente en las plantas para medir humedad, temperatura, incidencia lumínica y minerales, filtrando la información desde su origen.
+Como propuesta principal, la startup desarrolla SmartPalm IoT, un producto enfocado en el monitoreo inteligente y en tiempo real de cultivos de palma aceitera. Este producto integra nodos IoT multisensor distribuidos en microzonas del cultivo y una plataforma digital de visualización y análisis, con el fin de brindar información útil, alertas y recomendaciones que apoyen la toma de decisiones de los actores del sector agrícola.
 
-- Estos datos viajan hacia concentradores locales instalados en la finca (Fog), los cuales procesan la información de manera inmediata para detectar anomalías y garantizar la operatividad continua del sistema, incluso frente a cortes de internet.
+TempWise busca generar valor para dos segmentos clave: los dueños de cultivos y los ingenieros agrónomos. Para ello, propone una solución que facilita la supervisión continua de variables relevantes del cultivo, mejora el control operativo y promueve una gestión agrícola más eficiente, sostenible y basada en datos.
 
-- Finalmente, la información se sincroniza de forma segura en la nube (Cloud), alimentando una plataforma de software web y móvil que traduce los datos en analítica avanzada y paneles de control intuitivos.
+De esta manera, TempWise se posiciona como una iniciativa innovadora con potencial de transformar el manejo tradicional de la palma aceitera mediante el uso de tecnologías IoT, analítica y herramientas digitales accesibles, contribuyendo a una agricultura más moderna y con mayor capacidad de respuesta frente a las condiciones del entorno.
 
-**Misión**: Transformar la gestión agroindustrial de la palma aceitera mediante un ecosistema tecnológico resiliente, accesible y de alta precisión. Empoderamos a los tomadores de decisiones tanto a nivel financiero como operativo, dotándolos de datos continuos y confiables para optimizar el uso de sus recursos, mitigar riesgos en campo y asegurar la máxima rentabilidad y sostenibilidad de cada hectárea cultivada.
+**Misión**: Transformar la gestión del cultivo de palma aceitera mediante soluciones tecnológicas basadas en IoT y análisis de datos, proporcionando información confiable y oportuna que permita optimizar recursos, mejorar la productividad y promover una gestión agrícola sostenible.
 
-**Visión**: Consolidarnos como la solución agrotecnológica estándar y líder en la región para la digitalización del cultivo de palma aceitera, impulsando la evolución de la agricultura tradicional latinoamericana hacia una industria hiperconectada, sustentable y guiada por datos exactos para alcanzar su máximo potencial productivo.
+**Visión**: Consolidarse como una startup referente en innovación agrotecnológica para el monitoreo inteligente de cultivos de palma aceitera en Latinoamérica, impulsando la transición hacia una agricultura moderna, conectada y guiada por datos.
 
 ### 1.1.2 Perfiles de integrantes del equipo
 
-| Integrante                               | Información                                                                                                                                                                                              | Foto                                                                  |
-| :--------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :-------------------------------------------------------------------- |
-| **[COMPLETAR]** |  |     |
-| **[COMPLETAR]** |  |  |
-| **[COMPLETAR]** |                                   |     |
-| **[COMPLETAR]** |                                                     |     |
-| **[COMPLETAR]** |                     |     |
-| **[COMPLETAR]**|                                                |   |
+| Integrante      | Información | Foto |
+| :-------------- | :---------- | :--- |
+| **[COMPLETAR]** |             |      |
+| **[COMPLETAR]** |             |      |
+| **[COMPLETAR]** |             |      |
+| **[COMPLETAR]** |             |      |
+| **[COMPLETAR]** |             |      |
+| **[COMPLETAR]** |             |      |
 
 ## 1.2 Solution Profile
+
 ### 1.2.1 Antecedentes y problemática
-
-
 
 **Objetivo Principal**:
 
-
 **Objetivos Específicos**:
 
-
-
 **Restricciones**:
-
-
 
 **Técnica 5Ws y 2Hs**
 
 ### Técnica 5Ws y 2Hs
 
-| Elemento      | Pregunta                                                                 | Descripción                                                                                                                                                                                |
-|---------------|--------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **What?**     | ¿Cuál es el problema?                                                    |  |
-| **When?**     | ¿Cuándo se manifiesta el problema?                                       |                   |
-| **Where?**    | ¿Dónde ocurre el problema?                                               |                             |
-| **Who?**      | ¿A quién afecta el problema?                                             |             |
-| **Why?**      | ¿Por qué sucede el problema?                                             |             |
-| **How?**      | ¿Cómo se diferencia del estado óptimo?                                   |  |
-| **How much?** | ¿Cuánto impacto genera el problema?                                      |    |
-
+| Elemento      | Pregunta                               | Descripción |
+| ------------- | -------------------------------------- | ----------- |
+| **What?**     | ¿Cuál es el problema?                  |             |
+| **When?**     | ¿Cuándo se manifiesta el problema?     |             |
+| **Where?**    | ¿Dónde ocurre el problema?             |             |
+| **Who?**      | ¿A quién afecta el problema?           |             |
+| **Why?**      | ¿Por qué sucede el problema?           |             |
+| **How?**      | ¿Cómo se diferencia del estado óptimo? |             |
+| **How much?** | ¿Cuánto impacto genera el problema?    |             |
 
 ### 1.2.2 Lean UX Process
 
 #### 1.2.2.1 Lean UX Problem Statements
 
-
-
 #### 1.2.2.2 Lean UX Assumptions
 
 1. Bussiness Assumptions
-  
+
 2. Outcome Assumptions
-  
+
 3. User Assumptions
-  
+
 4. Feature Assumptions
- 
+
 5. User Outcome Assumptions
-  
 
 #### 1.2.2.3 Lean UX Hypothesis Statements
 
-
-
 #### 1.2.2.4 Lean UX Canvas
 
-
-
 ## 1.3 Segmento Objetivo
-
-
-
-
 
 # Chapter 2: Requirements Elicitation & Analysis
 
 ## 2.1 Competidores
 
-
 ### 2.1.1 Análisis competitivo
-
 
 ### 2.1.2 Estrategias y tácticas frente a competidores
 
-
 **1. Diferenciación de Producto:**<br>
-**Estrategia:**  <br>
+**Estrategia:** <br>
 **Tácticas:** <br><br>
 **2. Mejora Continua y Adaptación:**<br>
-**Estrategia:**  <br>
-**Tácticas:**  <br><br>
-**3. Penetración de Mercado:**<br>
-**Estrategia:**  <br>
-**Tácticas:**  <br><br>
-**4. Colaboración y Alianzas Estratégicas:**<br>
-**Estrategia:**  <br>
+**Estrategia:** <br>
 **Tácticas:** <br><br>
-**5. Optimización de Costos y Valor Percibido:**<br> 
-**Estrategia:**  <br>
-**Tácticas:**  <br><br>
+**3. Penetración de Mercado:**<br>
+**Estrategia:** <br>
+**Tácticas:** <br><br>
+**4. Colaboración y Alianzas Estratégicas:**<br>
+**Estrategia:** <br>
+**Tácticas:** <br><br>
+**5. Optimización de Costos y Valor Percibido:**<br>
+**Estrategia:** <br>
+**Tácticas:** <br><br>
 **6. Desarrollo de Nuevas Funcionalidades y Servicios:** <br>
-**Estrategia:**  <br>
-**Tácticas:** 
+**Estrategia:** <br>
+**Tácticas:**
 
 ## 2.2 Entrevistas
-
 
 ### 2.2.1 Diseño de entrevistas
 
@@ -284,120 +258,116 @@ Para superar este desafío y resolver la intermitencia de conectividad típica d
 
 **Segmento 2:**
 
-
 ### 2.2.2 Registro de entrevistas
+
 **Segmento 1:**<br>
 **Entrevista N°1:**<br>
 
-
 **Entrevista N°2:**<br>
 
-
 **Entrevista N°3:**<br>
-
 
 **Segmento 2:**<br>
 **Entrevista N°1:**<br>
 
 **Entrevista N°2:**<br>
 
-
 **Entrevista N°3:**<br>
 
-
 ### 2.2.3 Análisis de entrevistas
-**Segmento 1:** 
+
+**Segmento 1:**
 <br>
 
-**SEgmento 2:** 
+**SEgmento 2:**
 
 ## 2.3 Needfinding
 
-
 ### 2.3.1 User Personas
-
-
-
 
 ### 2.3.2 User Task Matrix
 
-
-
-
 ### 2.3.3 User Journey Mapping
-
-
 
 ### 2.3.4 Empathy Mapping
 
-
-
 ### 2.3.5 As-is Scenario Mapping
 
-
 ## 2.4 Ubiquitous Language
+
 Ubiquitous Language (o Lenguaje Ubicuo) es un conjunto de términos compartidos y consistentes que se utilizan en todo un equipo de desarrollo (diseñadores, programadores, analistas, stakeholders, etc.) para describir el dominio del problema. Es muy común en metodologías como Domain-Driven Design (DDD).
 
 | Término | Definición |
-| --- | --- |
-|  |  |
-|  | |
-|  |  |
-|  |  |
-|  |  |
-|  |  |
-|  |  |
-|  |  |
-
+| ------- | ---------- |
+|         |            |
+|         |            |
+|         |            |
+|         |            |
+|         |            |
+|         |            |
+|         |            |
+|         |            |
 
 # Capítulo 3: Requirements Specification
+
 ## 3.1 To-Be Scenario Mapping
-
-
 
 ## 3.2 User Stories
 
-USER STORIES 
-
-
-
-
-
+USER STORIES
 
 ## 3.3 Impact Mapping
 
-
 ## 3.4 Product Backlog
-
-
-
-
 
 Product Backlog Trello:
 
 # Chapter 04: Solution Software Design
+
 ## 4.1 Strategic-Level Domain-Driven Design
+
 ### 4.1.1 EventStorming
+
 #### 4.1.1.1 Candidate Context Discovery
-#### 4.1.1.2 Domain Message Flows Modeling. 
-#### 4.1.1.3 Bounded Context Canvases.  
-### 4.1.2. Context Mapping. 
-### 4.1.3. Software Architecture. 
-#### 4.1.3.1. Software Architecture System Landscape Diagram. 
-#### 4.1.3.2. Software Architecture Context Level Diagrams. 
-#### 4.1.3.3. Software Architecture Container Level Diagrams. 
-#### 4.1.3.4. Software Architecture Deployment Diagrams. 
-## 4.2. Tactical-Level Domain-Driven Design 
-### 4.2.X. Bounded Context: (Bounded Context Name) 
-#### 4.2.X.1. Domain Layer. 
-#### 4.2.X.2. Interface Layer. 
-#### 4.2.X.3. Application Layer. 
-#### 4.2.X.4. Infrastructure Layer. 
-#### 4.2.X.5. Bounded Context Software Architecture Component Level Diagrams. 
-#### 4.2.X.6. Bounded Context Software Architecture Code Level Diagrams. 
-#### 4.2.X.6.1. Bounded Context Domain Layer Class Diagrams. 
+
+#### 4.1.1.2 Domain Message Flows Modeling.
+
+#### 4.1.1.3 Bounded Context Canvases.
+
+### 4.1.2. Context Mapping.
+
+### 4.1.3. Software Architecture.
+
+#### 4.1.3.1. Software Architecture System Landscape Diagram.
+
+#### 4.1.3.2. Software Architecture Context Level Diagrams.
+
+#### 4.1.3.3. Software Architecture Container Level Diagrams.
+
+#### 4.1.3.4. Software Architecture Deployment Diagrams.
+
+## 4.2. Tactical-Level Domain-Driven Design
+
+### 4.2.X. Bounded Context: (Bounded Context Name)
+
+#### 4.2.X.1. Domain Layer.
+
+#### 4.2.X.2. Interface Layer.
+
+#### 4.2.X.3. Application Layer.
+
+#### 4.2.X.4. Infrastructure Layer.
+
+#### 4.2.X.5. Bounded Context Software Architecture Component Level Diagrams.
+
+#### 4.2.X.6. Bounded Context Software Architecture Code Level Diagrams.
+
+#### 4.2.X.6.1. Bounded Context Domain Layer Class Diagrams.
+
 #### 4.2.X.6.2. Bounded Context Database Design Diagram.
 
-# Conclusiones 
-# Conclusiones y recomendaciones. 
+# Conclusiones
+
+# Conclusiones y recomendaciones.
+
 # Video About-the-Team.
