@@ -204,22 +204,17 @@ Desarrollar una solución IoT para el monitoreo en tiempo real de cultivos de pa
 - La solución debe responder a las necesidades de dos segmentos objetivo distintos: el dueño del cultivo y el ingeniero agrónomo.
 - El sistema debe integrarse con una plataforma digital que permita visualizar datos, alertas y recomendaciones de manera clara, accesible y útil para ambos segmentos.
 
-**Técnica 5Ws y 2Hs**
+#### Técnica 5Ws y 2Hs
 
-### Técnica 5Ws y 5Hs: Sistema de Monitoreo para Palma Aceitera en Tiempo Real
-
-| Elemento | Pregunta | Descripción del Proyecto |
-| :--- | :--- | :--- |
-| **What?** | **¿Cuál es el problema?** | Baja eficiencia en la producción y salud de la palma debido a una gestión de recursos (riego, abono, poda) basada en suposiciones y no en datos en tiempo real. |
-| **When?** | **¿Cuándo se manifiesta?** | Durante las etapas críticas de crecimiento y producción, especialmente ante estrés hídrico no detectado o deficiencias minerales silenciosas. |
-| **Where?** | **¿Dónde ocurre el problema?** | En las hectáreas de cultivo de palma aceitera donde la extensión física impide una supervisión manual detallada planta por planta. |
-| **Who?** | **¿A quién afecta?** | Al **Dueño** (pérdida de rentabilidad y control) y al **Ingeniero Agrónomo** (falta de datos precisos para la toma de decisiones preventivas). |
-| **Why?** | **¿Por qué sucede el problema?** | Por la ausencia de tecnología IoT que permita capturar datos biológicos y ambientales de forma constante y masiva en el campo. |
-| **How?** | **¿Cómo se diferencia del estado óptimo?** | El estado óptimo es un cultivo con nutrición y riego de precisión; actualmente se diferencia por respuestas tardías ante plagas o sequías que reducen el rendimiento. |
-| **How much?** | **¿Cuánto impacto genera el problema?** | Pérdida significativa del potencial de cosecha anual y desperdicio de insumos (agua/fertilizante) aplicados de forma ineficiente. |
-| **How to solve?** | **¿Cómo se soluciona?** | Implementando nodos de sensores IoT (humedad, luz, minerales) e integración de IA para generar alertas, analíticas y sugerencias de toma de decisiones. |
-| **How many?** | **¿Cuántos recursos se requieren?** | Una red estratégica de sensores por hectárea, soporte técnico 24/7 y una plataforma digital centralizada para la visualización de datos relevantes. |
-| **How long?** | **¿Cuánto tiempo dura el ciclo?** | El monitoreo es continuo (24/7) durante todo el ciclo de vida del cultivo, con reportes de tendencias mensuales para comparación histórica. |
+| Elemento | Pregunta | Descripción del problema |
+|---|---|---|
+| **What?** | ¿Cuál es el problema? | En el cultivo de palma aceitera, muchas decisiones relacionadas con el riego, el abonado, la poda y la atención de riesgos todavía se realizan de forma manual, periódica o empírica, lo que limita el acceso a información continua y confiable sobre el estado real del cultivo. |
+| **When?** | ¿Cuándo se manifiesta el problema? | El problema se manifiesta durante las etapas de crecimiento, desarrollo y producción del cultivo, especialmente cuando ocurren cambios en variables como humedad, temperatura, luz, condiciones del suelo o factores asociados a posibles plagas que no son detectados oportunamente. |
+| **Where?** | ¿Dónde ocurre el problema? | Ocurre en los cultivos de palma aceitera, particularmente en extensiones agrícolas donde el monitoreo manual y constante de todas las plantas resulta difícil, costoso y poco eficiente. |
+| **Who?** | ¿A quién afecta? | Afecta principalmente al dueño del cultivo, quien necesita mantener la productividad, el control y la rentabilidad de la plantación, y al ingeniero agrónomo, quien requiere información técnica confiable para supervisar el cultivo, evaluar su condición y recomendar acciones de manejo. |
+| **Why?** | ¿Por qué sucede el problema? | Sucede por la falta de monitoreo continuo y preciso en campo, así como por la ausencia de una solución tecnológica que permita recolectar, visualizar y analizar datos relevantes del cultivo en tiempo real para apoyar la toma de decisiones. |
+| **How?** | ¿Cómo se evidencia el problema? | Se evidencia en decisiones tardías o poco precisas, uso ineficiente de recursos como agua y fertilizantes, dificultad para detectar anomalías en el cultivo y menor capacidad de respuesta frente a condiciones que afectan la salud y el rendimiento de la palma aceitera. |
+| **How much?** | ¿Cuánto impacto genera el problema? | El problema genera un impacto importante en la eficiencia operativa y en la productividad del cultivo, ya que puede ocasionar desperdicio de recursos, incremento de costos de manejo, menor control sobre la plantación y posibles pérdidas en rendimiento y rentabilidad. |
 
 ### 1.2.2 Lean UX Process
 
