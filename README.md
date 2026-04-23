@@ -178,18 +178,31 @@ del ABET – EAC - Student Outcome 5.
 ## 1.2 Solution Profile
 ### 1.2.1 Antecedentes y problemática
 
+El cultivo de palma aceitera requiere un seguimiento constante de las condiciones ambientales y del suelo para mantener un adecuado desarrollo de las plantas y asegurar un rendimiento productivo sostenible. Sin embargo, en muchos contextos agrícolas este monitoreo todavía se realiza de manera manual, periódica o a partir de la experiencia empírica de los responsables del cultivo, lo que limita la disponibilidad de información precisa y oportuna sobre el estado real de las plantaciones.
 
+Esta situación dificulta la toma de decisiones en actividades clave como el riego, el abonado, la poda y la prevención de riesgos asociados a deficiencias nutricionales, cambios ambientales o posibles afectaciones por plagas. Como consecuencia, se produce un uso ineficiente de recursos, una capacidad de respuesta tardía ante problemas en campo y una posible disminución en la productividad y rentabilidad del cultivo.
 
-**Objetivo Principal**:
+Frente a esta problemática, se plantea una solución basada en nodos IoT multisensor distribuidos en microzonas del cultivo, capaces de monitorear variables relevantes y transformar los datos recolectados en alertas, analíticas y recomendaciones útiles para la toma de decisiones. De esta manera, tanto el dueño del cultivo como el ingeniero agrónomo podrán contar con información más clara, continua y confiable para realizar una gestión más eficiente del cultivo de palma aceitera.
 
+**Objetivo principal**:
 
-**Objetivos Específicos**:
+Desarrollar una solución IoT para el monitoreo en tiempo real de cultivos de palma aceitera, que permita supervisar variables críticas del cultivo y apoyar la toma de decisiones oportunas para mejorar la productividad, el control y la sostenibilidad de la plantación.
 
+**Objetivos específicos**:
 
+- Monitorear variables relevantes del cultivo, como humedad, temperatura, luz, indicadores de minerales y condiciones asociadas a la presencia de plagas.
+- Generar alertas y notificaciones oportunas sobre cambios o anomalías en el estado del cultivo.
+- Facilitar la visualización de información mediante reportes, paneles de control y analíticas de tendencias.
+- Apoyar la toma de decisiones del dueño del cultivo y del ingeniero agrónomo mediante recomendaciones basadas en datos.
+- Promover una gestión más eficiente de recursos como agua, fertilizantes y tiempo de supervisión en campo.
 
 **Restricciones**:
 
-
+- La solución debe adaptarse a contextos de conectividad limitada o intermitente en zonas agrícolas.
+- El prototipo debe ser viable dentro del alcance académico, técnico y temporal del curso.
+- El monitoreo se realizará mediante nodos IoT multisensor distribuidos en microzonas representativas del cultivo, y no necesariamente a nivel individual para cada planta.
+- La solución debe responder a las necesidades de dos segmentos objetivo distintos: el dueño del cultivo y el ingeniero agrónomo.
+- El sistema debe integrarse con una plataforma digital que permita visualizar datos, alertas y recomendaciones de manera clara, accesible y útil para ambos segmentos.
 
 **Técnica 5Ws y 2Hs**
 
