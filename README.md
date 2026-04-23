@@ -232,15 +232,45 @@ Como estrategia inicial, la solución se enfocará primero en atender a los due�
 
 #### 1.2.2.2 Lean UX Assumptions
 
-1. Bussiness Assumptions
-  
-2. Outcome Assumptions
-  
-3. User Assumptions
-  
-4. Feature Assumptions
- 
-5. User Outcome Assumptions
+**1. Business Assumptions**:
+
+- Se asume que los cultivos de palma aceitera necesitan una solución tecnológica que permita mejorar el monitoreo del cultivo y optimizar la toma de decisiones agrícolas.
+
+- Se asume que una solución basada en IoT puede aportar valor al negocio al reducir la incertidumbre en el manejo del cultivo y promover un uso más eficiente de recursos como agua, fertilizantes y tiempo de supervisión.
+
+- Se asume que el acceso a información en tiempo real puede contribuir a mejorar la productividad, el control y la sostenibilidad de la plantación.
+
+**2. Outcome Assumptions**:
+
+- Se asume que la implementación de la solución permitirá un mayor control sobre el estado del cultivo.
+
+- Se asume que la solución ayudará a detectar cambios o anomalías de forma más oportuna.
+
+- Se asume que el uso de datos y analíticas favorecerá decisiones más precisas y una gestión más eficiente del cultivo.
+
+**3. User Assumptions**:
+
+- Se asume que los dueños de cultivos necesitan información clara, accesible y actualizada para supervisar la plantación y proteger su rentabilidad.
+
+- Se asume que los ingenieros agrónomos requieren datos continuos y confiables para evaluar la condición del cultivo y formular recomendaciones técnicas.
+
+- Se asume que ambos segmentos tienen dificultades para monitorear el cultivo únicamente mediante observación manual o registros dispersos.
+
+**4. Feature Assumptions**:
+
+- Se asume que el monitoreo de variables como humedad, temperatura, luz, indicadores de minerales y condiciones asociadas a la presencia de plagas será relevante para evaluar la condición del cultivo.
+
+- Se asume que las alertas, reportes, paneles de control y analíticas de tendencias serán funciones útiles para ambos segmentos objetivo.
+
+- Se asume que una plataforma digital conectada a nodos IoT multisensor distribuidos en microzonas del cultivo permitirá una supervisión más eficiente y ordenada.
+
+**5. User Outcome Assumptions**:
+
+- Se asume que los usuarios podrán comprender mejor el estado del cultivo gracias a la visualización de datos en tiempo real.
+
+- Se asume que los usuarios podrán actuar con mayor rapidez frente a riesgos o cambios en la plantación.
+
+- Se asume que los usuarios tomarán decisiones con mayor respaldo de información, mejorando el control, la prevención y la gestión general del cultivo.
   
 
 #### 1.2.2.3 Lean UX Hypothesis Statements
