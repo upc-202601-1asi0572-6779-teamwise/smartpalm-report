@@ -475,7 +475,81 @@ Ubiquitous Language (o Lenguaje Ubicuo) es un conjunto de términos compartidos 
 
 ## 3.2 User Stories
 
-USER STORIES
+| Epic / Story | ID | Título | Descripción | Criterios de Aceptación | Relacionado con (Epic ID) |
+|---|---|---|---|---|---|
+| Epic | EP-01 | Gestión de Dispositivos IoT | Administración del ciclo de vida de dispositivos instalados en campo. | Given existe un dispositivo registrado, When cambia su estado operativo, Then el sistema actualiza la trazabilidad del dispositivo. | - |
+| User Story | US-01 | Registrar dispositivo | Como dueño del cultivo, quiero registrar un dispositivo para asociarlo a mi plantación. | Given usuario autenticado, When ingresa código válido, Then el sistema vincula el dispositivo a la plantación. | EP-01 |
+| User Story | US-02 | Configurar parámetros iniciales | Como dueño del cultivo, quiero definir parámetros iniciales del cultivo para calibrar monitoreo. | Given dispositivo vinculado, When registra parámetros agronómicos, Then el sistema guarda configuración activa. | EP-01 |
+| User Story | US-03 | Desactivar dispositivo | Como dueño del cultivo, quiero desactivar un dispositivo para detener monitoreo temporalmente. | Given dispositivo activo, When solicita desactivación, Then el sistema cambia estado a inactivo. | EP-01 |
+| User Story | US-04 | Consultar estado del dispositivo | Como usuario autorizado, quiero visualizar el estado operativo del dispositivo. | Given dispositivo registrado, When consulta detalle, Then el sistema muestra estado actual y última comunicación. | EP-01 |
+| User Story | US-05 | Asociar dispositivo a zona | Como usuario autorizado, quiero asociar un dispositivo a una zona de monitoreo. | Given dispositivo disponible, When selecciona zona válida, Then el sistema registra la asociación. | EP-01 |
+| Epic | EP-02 | Gestión de Plantaciones y Zonas | Organización estructural del cultivo por plantaciones y sectores. | Given usuario autenticado, When administra su cultivo, Then el sistema conserva estructura organizada. | - |
+| User Story | US-06 | Registrar plantación | Como dueño del cultivo, quiero registrar una plantación para comenzar el monitoreo digital. | Given datos obligatorios válidos, When guarda registro, Then el sistema crea la plantación. | EP-02 |
+| User Story | US-07 | Editar plantación | Como dueño del cultivo, quiero actualizar datos de mi plantación. | Given plantación existente, When modifica información válida, Then el sistema actualiza registro. | EP-02 |
+| User Story | US-08 | Crear zona de monitoreo | Como dueño del cultivo, quiero dividir la plantación en zonas para análisis sectorizado. | Given plantación existente, When registra nueva zona, Then el sistema la vincula correctamente. | EP-02 |
+| User Story | US-09 | Editar zona de monitoreo | Como dueño del cultivo, quiero actualizar una zona registrada. | Given zona existente, When modifica datos válidos, Then el sistema guarda cambios. | EP-02 |
+| User Story | US-10 | Visualizar zonas por plantación | Como usuario autorizado, quiero ver todas las zonas de una plantación. | Given plantación registrada, When consulta detalle, Then el sistema muestra zonas asociadas. | EP-02 |
+| Epic | EP-03 | Monitoreo de Sensores | Captura, validación y almacenamiento de lecturas de campo. | Given sensor operativo, When envía lectura, Then el sistema procesa datos correctamente. | - |
+| User Story | US-11 | Recibir lectura sensor | Como sistema, quiero recibir lecturas periódicas desde sensores para monitoreo continuo. | Given sensor activo, When transmite datos, Then el sistema registra timestamp y valores. | EP-03 |
+| User Story | US-12 | Validar integridad lectura | Como sistema, quiero validar consistencia de datos recibidos para evitar errores. | Given lectura recibida, When contiene valores inválidos, Then el sistema la rechaza. | EP-03 |
+| User Story | US-13 | Normalizar lectura | Como sistema, quiero normalizar unidades para comparar históricos. | Given lectura válida, When ingresa al sistema, Then se convierte al formato estándar. | EP-03 |
+| User Story | US-14 | Persistir series temporales | Como agrónomo, quiero consultar histórico de datos para análisis técnico. | Given lectura procesada, When finaliza validación, Then se almacena en series temporales. | EP-03 |
+| User Story | US-15 | Consultar última actualización | Como usuario, quiero saber cuándo se actualizó una zona por última vez. | Given zona con lecturas, When consulta información, Then el sistema muestra fecha y hora reciente. | EP-03 |
+| Epic | EP-04 | Alertas Inteligentes | Generación automática de alertas por condiciones críticas. | Given parámetro fuera de rango, When se detecta evento, Then el sistema genera alerta. | - |
+| User Story | US-16 | Clasificar severidad alerta | Como sistema, quiero categorizar alertas según impacto agronómico. | Given condición crítica, When evalúa riesgo, Then asigna nivel bajo, medio o alto. | EP-04 |
+| User Story | US-17 | Suprimir duplicados | Como usuario, quiero evitar alertas repetidas. | Given alerta activa similar, When ocurre nuevo evento igual, Then no duplica notificación. | EP-04 |
+| User Story | US-18 | Enviar push notification | Como dueño del cultivo, quiero recibir alertas inmediatas en mi celular. | Given alerta crítica, When se genera evento, Then el sistema envía notificación push. | EP-04 |
+| User Story | US-19 | Confirmar alerta | Como usuario, quiero confirmar recepción de alerta. | Given alerta enviada, When usuario la revisa, Then queda reconocida. | EP-04 |
+| User Story | US-20 | Ver alertas activas | Como usuario, quiero visualizar alertas pendientes. | Given alertas vigentes, When consulta panel, Then el sistema muestra listado actualizado. | EP-04 |
+| User Story | US-21 | Historial de alertas | Como usuario, quiero revisar alertas anteriores del cultivo. | Given alertas registradas, When consulta historial, Then el sistema muestra eventos cronológicos. | EP-04 |
+| Epic | EP-05 | IA Agronómica | Recomendaciones basadas en reglas y modelos predictivos. | Given existen datos suficientes, When se detecta riesgo, Then el sistema genera recomendación. | - |
+| User Story | US-22 | Evaluar umbrales agronómicos | Como sistema, quiero comparar lecturas contra parámetros técnicos. | Given nueva lectura, When supera límite definido, Then activa análisis agronómico. | EP-05 |
+| User Story | US-23 | Generar recomendación IA | Como productor, quiero recibir acciones sugeridas para prevenir pérdidas. | Given riesgo detectado, When IA procesa datos, Then propone acción concreta. | EP-05 |
+| User Story | US-24 | Aprobar recomendación manual | Como agrónomo, quiero validar recomendaciones antes de publicarlas. | Given recomendación generada, When la aprueba, Then queda disponible al productor. | EP-05 |
+| User Story | US-25 | Publicar recomendación | Como sistema, quiero notificar recomendaciones aprobadas. | Given recomendación aprobada, When se publica, Then usuario recibe aviso. | EP-05 |
+| User Story | US-26 | Consultar historial recomendaciones | Como productor, quiero revisar recomendaciones anteriores. | Given recomendaciones emitidas, When consulta historial, Then el sistema muestra registros ordenados. | EP-05 |
+| Epic | EP-06 | Dashboard Productor | Visualización simple para dueños de cultivos. | Given productor autenticado, When ingresa al panel, Then visualiza estado general. | - |
+| User Story | US-27 | Ver salud del cultivo | Como productor, quiero conocer estado general de mi plantación. | Given datos recientes, When abre dashboard, Then muestra indicadores resumidos. | EP-06 |
+| User Story | US-28 | Ver historial de sensores | Como productor, quiero revisar tendencias de variables. | Given datos históricos, When consulta parámetro, Then visualiza evolución temporal. | EP-06 |
+| User Story | US-29 | Ver recomendaciones activas | Como productor, quiero revisar acciones sugeridas pendientes. | Given recomendaciones vigentes, When abre panel, Then sistema lista acciones pendientes. | EP-06 |
+| User Story | US-30 | Vista multi-plantación | Como productor con varios lotes, quiero comparar estado entre plantaciones. | Given múltiples lotes registrados, When abre resumen, Then muestra comparación consolidada. | EP-06 |
+| User Story | US-31 | Consultar detalle de zona | Como productor, quiero revisar una zona específica. | Given zona registrada, When consulta detalle, Then muestra variables y estado actual. | EP-06 |
+| Epic | EP-07 | Dashboard Agrónomo | Herramientas avanzadas para especialistas. | Given agrónomo autenticado, When accede al sistema, Then ve cartera de clientes. | - |
+| User Story | US-32 | Ver cartera de plantaciones | Como agrónomo, quiero gestionar múltiples clientes desde panel único. | Given clientes asociados, When abre dashboard, Then lista plantaciones asignadas. | EP-07 |
+| User Story | US-33 | Priorizar visitas de campo | Como agrónomo, quiero identificar cultivos críticos para planificar visitas. | Given alertas activas, When consulta prioridades, Then ordena por severidad. | EP-07 |
+| User Story | US-34 | Registrar intervención | Como agrónomo, quiero documentar acciones realizadas en campo. | Given visita completada, When registra intervención, Then queda asociada al lote. | EP-07 |
+| User Story | US-35 | Historial técnico | Como agrónomo, quiero revisar intervenciones previas. | Given plantación seleccionada, When consulta historial, Then muestra eventos cronológicos. | EP-07 |
+| User Story | US-36 | Comparar zonas | Como agrónomo, quiero comparar zonas de una plantación. | Given dos o más zonas con datos, When solicita comparación, Then el sistema muestra diferencias relevantes. | EP-07 |
+| Epic | EP-08 | Reportes Técnicos | Generación automática de reportes agronómicos. | Given existe información suficiente, When usuario solicita reporte, Then sistema lo genera. | - |
+| User Story | US-37 | Borrador automático reporte | Como agrónomo, quiero ahorrar tiempo generando reportes iniciales. | Given datos disponibles, When solicita borrador, Then sistema arma documento preliminar. | EP-08 |
+| User Story | US-38 | Publicar reporte final | Como agrónomo, quiero emitir reporte validado al cliente. | Given borrador aprobado, When publica reporte, Then productor puede consultarlo. | EP-08 |
+| User Story | US-39 | Exportar PDF | Como usuario, quiero descargar reportes en PDF. | Given reporte disponible, When solicita exportación, Then genera archivo PDF. | EP-08 |
+| User Story | US-40 | Consultar reportes previos | Como usuario autorizado, quiero revisar reportes anteriores. | Given reportes registrados, When consulta historial, Then el sistema muestra documentos disponibles. | EP-08 |
+| Epic | EP-09 | Usuarios y Seguridad | Acceso, autenticación y roles. | Given credenciales válidas, When inicia sesión, Then accede según permisos. | - |
+| User Story | US-41 | Registro de usuario | Como visitante, quiero crear cuenta para usar la plataforma. | Given datos válidos, When envía formulario, Then sistema crea cuenta. | EP-09 |
+| User Story | US-42 | Inicio de sesión | Como usuario, quiero autenticarme de forma segura. | Given usuario registrado, When ingresa credenciales correctas, Then accede al sistema. | EP-09 |
+| User Story | US-43 | Recuperar contraseña | Como usuario, quiero restablecer acceso si olvido contraseña. | Given correo registrado, When solicita recuperación, Then recibe instrucciones seguras. | EP-09 |
+| User Story | US-44 | Gestión de roles | Como administrador, quiero asignar permisos según perfil. | Given usuario existente, When cambia rol, Then sistema actualiza permisos. | EP-09 |
+| User Story | US-45 | Gestionar perfil | Como usuario, quiero actualizar mis datos personales. | Given usuario autenticado, When modifica perfil válido, Then el sistema guarda cambios. | EP-09 |
+| Epic | EP-10 | Suscripciones y Pagos | Monetización SaaS por planes. | Given usuario interesado, When selecciona plan, Then puede suscribirse. | - |
+| User Story | US-46 | Seleccionar plan | Como productor, quiero elegir plan según hectáreas gestionadas. | Given planes disponibles, When selecciona opción, Then queda preinscrito. | EP-10 |
+| User Story | US-47 | Procesar pago | Como productor, quiero pagar suscripción digitalmente. | Given método válido, When confirma pago, Then sistema activa transacción. | EP-10 |
+| User Story | US-48 | Activar suscripción | Como sistema, quiero habilitar funciones tras pago exitoso. | Given pago aprobado, When confirma gateway, Then activa plan contratado. | EP-10 |
+| User Story | US-49 | Renovar suscripción | Como usuario, quiero renovar continuidad del servicio. | Given plan próximo a vencer, When paga renovación, Then extiende vigencia. | EP-10 |
+| User Story | US-50 | Cancelar suscripción | Como usuario, quiero cancelar renovación automática. | Given plan activo, When solicita cancelación, Then sistema detiene renovación futura. | EP-10 |
+| Epic | EP-11 | Landing Page | Sitio web estático comercial de captación. | Given visitante nuevo, When ingresa web pública, Then comprende propuesta de valor. | - |
+| User Story | US-51 | Ver propuesta de valor | Como visitante, quiero entender beneficios de Smart Palm rápidamente. | Given acceso público, When entra al sitio, Then visualiza mensaje principal claro. | EP-11 |
+| User Story | US-52 | Ver planes comerciales | Como visitante, quiero conocer precios antes de registrarme. | Given sección precios, When la consulta, Then muestra planes vigentes. | EP-11 |
+| User Story | US-53 | Formulario contacto | Como visitante, quiero solicitar demo comercial. | Given visitante interesado, When envía datos, Then sistema registra lead. | EP-11 |
+| User Story | US-54 | Testimonios y casos | Como visitante, quiero validar confianza mediante casos reales. | Given sitio público, When consulta testimonios, Then visualiza referencias disponibles. | EP-11 |
+| Epic | EP-12 | APIs e Integraciones | Servicios internos y externos. | Given sistema autorizado, When consume API, Then recibe respuesta segura. | - |
+| User Story | US-55 | API lecturas sensores | Como developer, quiero enviar lecturas vía REST API. | Given token válido, When envía request, Then API responde confirmación. | EP-12 |
+| User Story | US-56 | API usuarios | Como developer, quiero administrar usuarios mediante backend. | Given credenciales válidas, When consulta endpoint, Then retorna datos autorizados. | EP-12 |
+| User Story | US-57 | Webhook pagos | Como developer, quiero recibir confirmación del gateway de pago. | Given pago procesado, When gateway notifica, Then sistema actualiza estado. | EP-12 |
+| Epic | EP-13 | Operación Offline | Continuidad en zonas sin internet. | Given no existe conectividad, When sistema sigue operando, Then no pierde datos. | - |
+| User Story | US-58 | Almacenamiento local edge | Como sistema, quiero guardar datos localmente sin internet. | Given conexión caída, When llegan lecturas, Then se almacenan localmente. | EP-13 |
+| User Story | US-59 | Sincronización diferida | Como sistema, quiero enviar backlog al recuperar red. | Given conexión restablecida, When inicia sincronización, Then transmite datos pendientes. | EP-13 |
+| User Story | US-60 | Alertas locales críticas | Como productor, quiero alertas críticas aunque no haya internet. | Given evento crítico detectado localmente, When no existe red, Then dispositivo activa alerta local. | EP-13 |
 
 ## 3.3 Impact Mapping
 
