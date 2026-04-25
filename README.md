@@ -187,15 +187,15 @@ De esta manera, TempWise se posiciona como una iniciativa innovadora con potenci
     </td>
   </tr>
   <tr>
-    <td><strong>[COMPLETAR NOMBRE]</strong></td>
+    <td><strong>Renso Anthony Julca Cruz</strong></td>
     <td>
-      <strong>Código de estudiante:</strong> [COMPLETAR]<br><br>
-      <strong>Carrera:</strong> [COMPLETAR]<br><br>
-      [COMPLETAR DESCRIPCIÓN DEL INTEGRANTE]<br><br>
-      [COMPLETAR CONOCIMIENTOS Y APORTE AL EQUIPO]
+      <strong>Código de estudiante: </strong>U202121579<br><br>
+      <strong>Carrera: </strong>Ingeniería de Software<br><br>
+      Soy Renso Anthony Julca Cruz estudiante de Ingenieria de Software, actualmente curso el 7mo ciclo de esta carrera. Me apasiona programar y ser autodidacta para poder mejorar mis habilidades en el desarrollo de software, quisiera dedicarme a la parte de gestion bancaria, o la parte de data analyst.<br><br>
+      Cuento con conocimientos en HTML, CSS y JavaScript en la parte de desarrollo web. Python a nivel básico-intermedio, SQL a nivel intermedio y BI a nivel intermedio. Estas competencias y habilidades me permitiran aportar a este proyecto y poder mejorar en la práctica. 
     </td>
     <td align="center">
-      [COMPLETAR FOTO]
+      <img src="./assets/img/team/renso.png" alt="Foto de Renso Anthony Julca Cruz" width="160"> 
     </td>
   </tr>
     <tr>
