@@ -34,8 +34,8 @@
         <td>[COMPLETAR]</td>
     </tr>
     <tr>
-        <td>[COMPLETAR]</td>
-        <td>[COMPLETAR]</td>
+        <td>Renso Anthony Julca Cruz</td>
+        <td>U202121579</td>
     </tr>
     <tr>
         <td>[COMPLETAR]</td>
@@ -51,7 +51,7 @@
     </tr>
 </table >
 
-<center> Julio, 2025</center>
+<center> Abril, 2026</center>
 
 **Registro de Versiones del Informe:**
 
