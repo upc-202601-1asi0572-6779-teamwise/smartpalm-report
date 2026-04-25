@@ -555,7 +555,70 @@ Ubiquitous Language (o Lenguaje Ubicuo) es un conjunto de términos compartidos 
 
 ## 3.4 Product Backlog
 
-Product Backlog Trello:
+Product Backlog Trello: https://trello.com/invite/b/69eb8c2d27c69ed83ef9ebff/ATTI31bf2749b1bde51404f7438f4fff64ad7B05FE5A/smart-palm-product-backlog
+
+| # | User Story ID | Título | Descripción | Story Points |
+|---|---|---|---|---|
+| 1 | US-51 | Ver propuesta de valor | Como visitante, quiero entender beneficios de Smart Palm rápidamente para evaluar interés en el servicio. | 2 |
+| 2 | US-53 | Formulario contacto | Como visitante, quiero solicitar demo comercial para recibir información personalizada. | 3 |
+| 3 | US-52 | Ver planes comerciales | Como visitante, quiero conocer precios antes de registrarme para comparar opciones. | 2 |
+| 4 | US-41 | Registro de usuario | Como visitante, quiero crear cuenta para usar la plataforma. | 3 |
+| 5 | US-42 | Inicio de sesión | Como usuario, quiero autenticarme de forma segura para acceder al sistema. | 3 |
+| 6 | US-06 | Registrar plantación | Como dueño del cultivo, quiero registrar una plantación para comenzar el monitoreo digital. | 5 |
+| 7 | US-08 | Crear zona de monitoreo | Como dueño del cultivo, quiero dividir la plantación en zonas para análisis sectorizado. | 5 |
+| 8 | US-01 | Registrar dispositivo | Como dueño del cultivo, quiero registrar un dispositivo para asociarlo a mi plantación. | 5 |
+| 9 | US-05 | Asociar dispositivo a zona | Como usuario autorizado, quiero asociar un dispositivo a una zona de monitoreo. | 3 |
+| 10 | US-11 | Recibir lectura sensor | Como sistema, quiero recibir lecturas periódicas desde sensores para monitoreo continuo. | 8 |
+| 11 | US-12 | Validar integridad lectura | Como sistema, quiero validar consistencia de datos recibidos para evitar errores. | 5 |
+| 12 | US-14 | Persistir series temporales | Como agrónomo, quiero consultar histórico de datos para análisis técnico. | 5 |
+| 13 | US-27 | Ver salud del cultivo | Como productor, quiero conocer estado general de mi plantación. | 3 |
+| 14 | US-31 | Consultar detalle de zona | Como productor, quiero revisar una zona específica con sus variables actuales. | 3 |
+| 15 | US-16 | Clasificar severidad alerta | Como sistema, quiero categorizar alertas según impacto agronómico. | 5 |
+| 16 | US-18 | Enviar push notification | Como dueño del cultivo, quiero recibir alertas inmediatas en mi celular. | 5 |
+| 17 | US-20 | Ver alertas activas | Como usuario, quiero visualizar alertas pendientes para actuar rápidamente. | 3 |
+| 18 | US-22 | Evaluar umbrales agronómicos | Como sistema, quiero comparar lecturas contra parámetros técnicos. | 5 |
+| 19 | US-23 | Generar recomendación IA | Como productor, quiero recibir acciones sugeridas para prevenir pérdidas. | 8 |
+| 20 | US-29 | Ver recomendaciones activas | Como productor, quiero revisar acciones sugeridas pendientes. | 3 |
+| 21 | US-32 | Ver cartera de plantaciones | Como agrónomo, quiero gestionar múltiples clientes desde panel único. | 5 |
+| 22 | US-33 | Priorizar visitas de campo | Como agrónomo, quiero identificar cultivos críticos para planificar visitas. | 5 |
+| 23 | US-34 | Registrar intervención | Como agrónomo, quiero documentar acciones realizadas en campo. | 3 |
+| 24 | US-37 | Borrador automático reporte | Como agrónomo, quiero ahorrar tiempo generando reportes iniciales. | 5 |
+| 25 | US-38 | Publicar reporte final | Como agrónomo, quiero emitir reporte validado al cliente. | 3 |
+| 26 | US-39 | Exportar PDF | Como usuario, quiero descargar reportes en PDF. | 3 |
+| 27 | US-46 | Seleccionar plan | Como productor, quiero elegir plan según hectáreas gestionadas. | 3 |
+| 28 | US-47 | Procesar pago | Como productor, quiero pagar suscripción digitalmente. | 5 |
+| 29 | US-48 | Activar suscripción | Como sistema, quiero habilitar funciones tras pago exitoso. | 3 |
+| 30 | US-58 | Almacenamiento local edge | Como sistema, quiero guardar datos localmente sin internet. | 8 |
+| 31 | US-59 | Sincronización diferida | Como sistema, quiero enviar backlog al recuperar red. | 8 |
+| 32 | US-60 | Alertas locales críticas | Como productor, quiero alertas críticas aunque no haya internet. | 5 |
+| 33 | US-43 | Recuperar contraseña | Como usuario, quiero restablecer acceso si olvido contraseña. | 3 |
+| 34 | US-45 | Gestionar perfil | Como usuario, quiero actualizar mis datos personales. | 2 |
+| 35 | US-54 | Testimonios y casos | Como visitante, quiero validar confianza mediante casos reales. | 2 |
+| 36 | US-07 | Editar plantación | Como dueño del cultivo, quiero actualizar datos de mi plantación. | 3 |
+| 37 | US-09 | Editar zona de monitoreo | Como dueño del cultivo, quiero actualizar una zona registrada. | 3 |
+| 38 | US-10 | Visualizar zonas por plantación | Como usuario autorizado, quiero ver todas las zonas de una plantación. | 2 |
+| 39 | US-15 | Consultar última actualización | Como usuario, quiero saber cuándo se actualizó una zona por última vez. | 2 |
+| 40 | US-17 | Suprimir duplicados | Como usuario, quiero evitar alertas repetidas. | 3 |
+| 41 | US-19 | Confirmar alerta | Como usuario, quiero confirmar recepción de alerta. | 2 |
+| 42 | US-21 | Historial de alertas | Como usuario, quiero revisar alertas anteriores del cultivo. | 3 |
+| 43 | US-24 | Aprobar recomendación manual | Como agrónomo, quiero validar recomendaciones antes de publicarlas. | 3 |
+| 44 | US-25 | Publicar recomendación | Como sistema, quiero notificar recomendaciones aprobadas. | 2 |
+| 45 | US-26 | Consultar historial recomendaciones | Como productor, quiero revisar recomendaciones anteriores. | 3 |
+| 46 | US-28 | Ver historial de sensores | Como productor, quiero revisar tendencias de variables. | 5 |
+| 47 | US-30 | Vista multi-plantación | Como productor con varios lotes, quiero comparar estado entre plantaciones. | 5 |
+| 48 | US-35 | Historial técnico | Como agrónomo, quiero revisar intervenciones previas. | 3 |
+| 49 | US-36 | Comparar zonas | Como agrónomo, quiero comparar zonas de una plantación. | 5 |
+| 50 | US-40 | Consultar reportes previos | Como usuario autorizado, quiero revisar reportes anteriores. | 2 |
+| 51 | US-44 | Gestión de roles | Como administrador, quiero asignar permisos según perfil. | 5 |
+| 52 | US-49 | Renovar suscripción | Como usuario, quiero renovar continuidad del servicio. | 3 |
+| 53 | US-50 | Cancelar suscripción | Como usuario, quiero cancelar renovación automática. | 3 |
+| 54 | US-55 | API lecturas sensores | Como developer, quiero enviar lecturas vía REST API. | 5 |
+| 55 | US-56 | API usuarios | Como developer, quiero administrar usuarios mediante backend. | 5 |
+| 56 | US-57 | Webhook pagos | Como developer, quiero recibir confirmación del gateway de pago. | 3 |
+| 57 | US-02 | Configurar parámetros iniciales | Como dueño del cultivo, quiero definir parámetros iniciales del cultivo. | 3 |
+| 58 | US-03 | Desactivar dispositivo | Como dueño del cultivo, quiero desactivar un dispositivo temporalmente. | 2 |
+| 59 | US-04 | Consultar estado del dispositivo | Como usuario autorizado, quiero visualizar estado operativo del dispositivo. | 2 |
+| 60 | US-13 | Normalizar lectura | Como sistema, quiero normalizar unidades para comparar históricos. | 5 |
 
 # Chapter 04: Solution Software Design
 
