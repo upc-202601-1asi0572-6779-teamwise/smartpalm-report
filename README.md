@@ -18,7 +18,7 @@
 
 ### <center>Producto: [COMPLETAR]</center>
 
-### Integrantes:
+### Integrantes
 
 <table >
     <tr>
@@ -63,7 +63,7 @@ En esta sección se resumen todas las modificaciones relevantes que sean realiza
 
 # Project Report Collaboration Insights
 
-Link de Repositorio: https://github.com/TempWise-DesarrolloIoT-202610/upc-Desarrollo-IoT-Report
+Link de Repositorio: <https://github.com/TempWise-DesarrolloIoT-202610/upc-Desarrollo-IoT-Report>
 
 TB1: En esta etapa, el equipo se reunió para definir el alcance y los objetivos, asignando tareas específicas a cada miembro. Comenzamos recopilando datos y revisando información relevante, con cada miembro contribuyendo con investigaciones individuales que luego compartimos y discutimos en reuniones periódicas. En GitHub, establecimos un flujo de trabajo para colaborar en la redacción del informe, creando un repositorio dedicado con secciones divididas en archivos Markdown para facilitar la colaboración y revisión
 
@@ -183,7 +183,7 @@ De esta manera, TempWise se posiciona como una iniciativa innovadora con potenci
       Tengo conocimientos en desarrollo web para el lado frontend con Angular 21 y backend con ASP.Net para C# y Spring boot para java. También, flutter para desarrollo móvil, python básico, c++, sql, familiarizado con el marco de trabajo ágil Scrum, diseño de patrones de software, y conocimientos básicos de electronica. Considero que estás habilidades y conocimientos me servirán para desarrollar este proyecto y a seguir mejorandolas con la práctica.
     </td>
     <td align="center">
-    <img src="./assets/img/team/victor.jpg" alt="Foto de Victor Manuel Rojas Reategui" width="160"> 
+    <img src="./assets/img/team/victor.jpg" alt="Foto de Victor Manuel Rojas Reategui" width="160">
     </td>
   </tr>
   <tr>
@@ -249,6 +249,7 @@ De esta manera, TempWise se posiciona como una iniciativa innovadora con potenci
 </table>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       | [COMPLETAR]                                                                                                   |
 
 ## 1.2 Solution Profile
+
 ### 1.2.1 Antecedentes y problemática
 
 La palma aceitera (*Elaeis guineensis* Jacq.) se cultivó por primera vez en el Perú en 1960 en la provincia de Tocache, región San Martín. En Ucayali, la producción a pequeña escala se inició en la década de los noventa con el respaldo del Programa de las Naciones Unidas para el Desarrollo (PNUD), que la promovió como cultivo alternativo a la hoja de coca. Entre 1995 y 2010, el cultivo contribuyó al reemplazo de más de 25 000 hectáreas de coca ilegal en todo el país, consolidándose como un instrumento de desarrollo económico y reconversión productiva en zonas históricamente vulnerables de la Amazonia (MIDAGRI, 2026).
@@ -298,7 +299,6 @@ Desarrollar una solución IoT para el monitoreo en tiempo real de cultivos de pa
 **How (¿Cómo?):** La problemática se manifiesta en un ciclo reactivo que caracteriza la gestión de la mayoría de plantaciones amazónicas: el productor realiza inspecciones manuales esporádicas de su cultivo, detecta problemas cuando los síntomas visuales ya son irreversibles, convoca a un técnico que puede tardar días en llegar dadas las distancias y el estado de las vías rurales, y aplica una intervención que en muchos casos ya no puede revertir el daño acumulado. El Manual del Cultivo de Palma Aceitera para Ucayali (INIA, 2018) advierte que la Marchitez Sorpresiva puede acabar con una plantación completa si no se actúa de inmediato al eliminar la fuente de inóculo, intervención que resulta prácticamente inalcanzable sin un sistema de detección continua en campo.
 
 **How Much (¿Cuánto?):** Las pérdidas económicas derivadas de una gestión agronómica deficiente son cuantificables con precisión. El Plan de Competitividad de Ucayali 2016–2026 establece que en un escenario de producción de 10 t de RFF/ha/año, rendimiento del productor tradicional sin tecnificación, a un precio de USD 90/t y costos de mantenimiento de USD 850/ha, la utilidad neta es de apenas USD 50/ha/año, situación que ante una baja del precio puede derivar en pérdidas netas. En contraste, con una productividad de 20 t/ha a USD 130/t, la utilidad sube a USD 1750/ha/año (Gobierno Regional de Ucayali, 2016): la brecha entre ambos escenarios, de hasta USD 1700/ha/año, es directamente atribuible a la calidad de la gestión agronómica y representa el valor económico que Smart Palm puede contribuir a capturar. A nivel fitosanitario, el Manual del Cultivo de Palma Aceitera del INIAP documenta que los insectos defoliadores como *Alurnus humeralis* pueden provocar defoliaciones de entre el 30% y el 50% del área foliar en períodos de alta incidencia (INIAP, 2018), y que la Marchitez Sorpresiva puede destruir una plantación completa de no actuarse de forma oportuna (INIA, 2018). Aplicando los rangos de daño documentados sobre el ingreso de un productor promedio con 10 hectáreas en Ucayali, con producción de 150 a 160 t/año a rendimiento promedio de 15–16 t/ha/año (Agraria.pe, 2023), las pérdidas por evento fitosanitario no controlado pueden oscilar entre USD 4050 y la pérdida total del ingreso del ciclo. A nivel de riesgo sistémico regional, el Manual del INIAP registra que la Pudrición del Cogollo diezmó aproximadamente 25000 hectáreas en el noroccidente del Ecuador (ANCUPA, 2014); con 95000 hectáreas en producción activa en la Amazonia peruana y el agravante del Fenómeno El Niño proyectado hasta 2027, la exposición potencial del sector peruano a este tipo de evento justifica de manera contundente la inversión en herramientas de monitoreo continuo y detección temprana como las que propone Smart Palm.
-
 
 ### 1.2.2 Lean UX Process
 
@@ -356,7 +356,6 @@ Como estrategia inicial, la solución se enfocará primero en atender a los due�
 
 - Se asume que los usuarios tomarán decisiones con mayor respaldo de información, mejorando el control, la prevención y la gestión general del cultivo.
   
-
 #### 1.2.2.3 Lean UX Hypothesis Statements
 
 **Hipótesis 1:**
@@ -491,21 +490,21 @@ Product Backlog Trello:
 
 #### 4.1.1.1 Candidate Context Discovery
 
-#### 4.1.1.2 Domain Message Flows Modeling.
+#### 4.1.1.2 Domain Message Flows Modeling
 
-#### 4.1.1.3 Bounded Context Canvases.
+#### 4.1.1.3 Bounded Context Canvases
 
-### 4.1.2. Context Mapping.
+### 4.1.2. Context Mapping
 
-### 4.1.3. Software Architecture.
+### 4.1.3. Software Architecture
 
-#### 4.1.3.1. Software Architecture System Landscape Diagram.
+#### 4.1.3.1. Software Architecture System Landscape Diagram
 
-#### 4.1.3.2. Software Architecture Context Level Diagrams.
+#### 4.1.3.2. Software Architecture Context Level Diagrams
 
-#### 4.1.3.3. Software Architecture Container Level Diagrams.
+#### 4.1.3.3. Software Architecture Container Level Diagrams
 
-#### 4.1.3.4. Software Architecture Deployment Diagrams.
+#### 4.1.3.4. Software Architecture Deployment Diagrams
 
 ## 4.2. Tactical-Level Domain-Driven Design
 
@@ -1107,7 +1106,6 @@ La **Infrastructure Layer** del bounded context **IoT Device Management** agrupa
 
 ![BC-01 Component Diagram](./assets/img/chapter-4/bc-01-component-diagram.png)
 
-
 #### 4.2.1.6. Bounded Context Software Architecture Code Level Diagrams
 
 ##### 4.2.1.6.1. Bounded Context Domain Layer Class Diagrams
@@ -1606,7 +1604,7 @@ A diferencia de las capas de dominio y aplicación, esta capa no define reglas d
 
 Este Bounded Context es el encargado de gestionar el ciclo de vida completo de las alertas generadas por el sistema de monitoreo. Su propósito principal es supervisar los datos provenientes de los dispositivos IoT, evaluar si estos superan los umbrales agronómicos definidos por el INIA, clasificar la severidad de los eventos, suprimir notificaciones duplicadas y permitir que los usuarios (dueños de cultivos o agrónomos) reconozcan y gestionen las alertas críticas.
 
-#### 4.2.3.1. Domain Layer.
+#### 4.2.3.1. Domain Layer
 
 A continuación, se describen las entidades, objetos de valor, servicios de dominio, factorías y repositorios que componen la lógica central de este contexto.
 
@@ -1729,7 +1727,7 @@ A continuación, se describen las entidades, objetos de valor, servicios de domi
 | :--- | :--- | :--- | :--- |
 | Create | Alert | public | Valida datos y crea una nueva instancia de alerta |
 
-#### 4.2.3.2. Interface Layer.
+#### 4.2.3.2. Interface Layer
 
 En esta sección se presentan las clases que conforman la capa de interfaz del Bounded Context **Alert & Notification**. Esta capa es fundamental para exponer las funcionalidades de monitoreo del cultivo de palma aceitera a las aplicaciones móviles de los usuarios (Palm Growers y Agrónomos) y gestionar la comunicación con servicios externos de mensajería.
 
@@ -1765,7 +1763,7 @@ En esta sección se presentan las clases que conforman la capa de interfaz del B
 | DispatchPushNotification | Task | public | Enviar notificación push |
 | ProcessAlertEvent | Task | public | Escuchar eventos de alertas internas para disparar el flujo de notificación |
 
-#### 4.2.3.3. Application Layer.
+#### 4.2.3.3. Application Layer
 
 La capa de aplicación es responsable de orquestar los flujos de procesos del negocio, coordinando las interacciones entre la capa de interfaz (Interface Layer) y el núcleo del dominio. Aquí se implementan los casos de uso a través de **Command Handlers**, que procesan las intenciones de los usuarios, y **Event Handlers**, que reaccionan a los eventos del dominio para disparar procesos secundarios (como notificaciones o actualizaciones de estado).
 
@@ -1823,7 +1821,7 @@ La capa de aplicación es responsable de orquestar los flujos de procesos del ne
 | :--- | :--- | :--- | :--- |
 | Handle | Task | public | Notifica al dashboard sobre el cambio de estado de la alerta |
 
-#### 4.2.3.4. Infrastructure Layer.
+#### 4.2.3.4. Infrastructure Layer
 
 Esta capa contiene la implementación técnica necesaria para que el sistema interactúe con servicios externos. Aquí se implementan las interfaces definidas en la Domain Layer (como los repositorios) y se gestiona la integración con sistemas de persistencia (Base de Datos) y sistemas de mensajería/notificaciones externas.
 
@@ -1887,17 +1885,17 @@ Esta capa contiene la implementación técnica necesaria para que el sistema int
 | :--- | :--- | :--- | :--- |
 | Alerts | DbSet<Alert> | private | Colección mapeada a la tabla de alertas en la base de datos. |
 
-#### 4.2.3.5. Bounded Context Software Architecture Component Level Diagrams.
+#### 4.2.3.5. Bounded Context Software Architecture Component Level Diagrams
 
 ![BC-03 Component Diagram](./assets/img/chapter-4/bc-03-component-diagram.png)
 
-#### 4.2.3.6. Bounded Context Software Architecture Code Level Diagrams.
+#### 4.2.3.6. Bounded Context Software Architecture Code Level Diagrams
 
-##### 4.2.3.6.1. Bounded Context Domain Layer Class Diagrams.
+##### 4.2.3.6.1. Bounded Context Domain Layer Class Diagrams
 
 ![BC-03 Class Diagram](./assets/img/chapter-4/bc-03-class-diagram.png)
 
-##### 4.2.3.6.2. Bounded Context Database Design Diagram.
+##### 4.2.3.6.2. Bounded Context Database Design Diagram
 
 ![BC-03 Database Diagram](./assets/img/chapter-4/bc-03-database-diagram.png)
 
@@ -1905,7 +1903,7 @@ Esta capa contiene la implementación técnica necesaria para que el sistema int
 
 Esta capa contiene las entidades y reglas de negocio necesarias para gestionar la generación, aprobación y publicación de recomendaciones agronómicas.
 
-#### 4.2.4.1. Domain Layer.
+#### 4.2.4.1. Domain Layer
 
 #### Clase: Recommendation (Aggregate Root)
 
@@ -2035,7 +2033,7 @@ Esta capa contiene las entidades y reglas de negocio necesarias para gestionar l
 | GetByIdAsync | Task<Recommendation> | public | Recupera recomendación por ID |
 | GetPendingByAgronomist | Task<IEnumerable<Recommendation>> | public | Lista las pendientes de aprobación |
 
-#### 4.2.4.2. Interface Layer.
+#### 4.2.4.2. Interface Layer
 
 #### Controller: RecommendationController
 
@@ -2068,9 +2066,10 @@ Esta capa contiene las entidades y reglas de negocio necesarias para gestionar l
 | :--- | :--- | :--- | :--- |
 | ProcessAIEvent | Task | public | Consume el evento de "Predicción generada" y llama a la lógica de aplicación para registrar la recomendación |
 
-#### 4.2.4.3. Application Layer.
+#### 4.2.4.3. Application Layer
 
 #### Command Handlers
+
 Estos componentes gestionan las solicitudes de los usuarios (Agrónomos o Palm Growers) y ejecutan las acciones en el modelo de dominio.
 
 | Nombre: | ApproveRecommendationCommandHandler |
@@ -2079,6 +2078,7 @@ Estos componentes gestionan las solicitudes de los usuarios (Agrónomos o Palm G
 | **Propósito:** | Procesar la aprobación de una recomendación generada por IA o manual. |
 
 **Métodos**
+
 | Nombre | Tipo de retorno | Visibilidad | Descripción |
 | :--- | :--- | :--- | :--- |
 | Handle | Task | public | Cambia el estado de la recomendación a "Approved" tras la validación técnica |
@@ -2091,6 +2091,7 @@ Estos componentes gestionan las solicitudes de los usuarios (Agrónomos o Palm G
 | **Propósito:** | Ejecutar la publicación de la recomendación para que sea visible al Palm Grower. |
 
 **Métodos**
+
 | Nombre | Tipo de retorno | Visibilidad | Descripción |
 | :--- | :--- | :--- | :--- |
 | Handle | Task | public | Cambia el estado a "Published" y activa las notificaciones |
@@ -2103,6 +2104,7 @@ Estos componentes gestionan las solicitudes de los usuarios (Agrónomos o Palm G
 | **Propósito:** | Registrar la intervención realizada en campo por el Palm Grower. |
 
 **Métodos**
+
 | Nombre | Tipo de retorno | Visibilidad | Descripción |
 | :--- | :--- | :--- | :--- |
 | Handle | Task | public | Crea un registro de intervención asociado a una recomendación previa |
@@ -2110,6 +2112,7 @@ Estos componentes gestionan las solicitudes de los usuarios (Agrónomos o Palm G
 ---
 
 #### Event Handlers
+
 Estos componentes reaccionan a los eventos del sistema para disparar procesos secundarios de forma asíncrona.
 
 | Nombre: | AlertTriggeredEventHandler |
@@ -2118,6 +2121,7 @@ Estos componentes reaccionan a los eventos del sistema para disparar procesos se
 | **Propósito:** | Reaccionar a alertas disparadas para iniciar automáticamente la generación de recomendaciones IA. |
 
 **Métodos**
+
 | Nombre | Tipo de retorno | Visibilidad | Descripción |
 | :--- | :--- | :--- | :--- |
 | Handle | Task | public | Invoca al servicio de IA para procesar la alerta entrante |
@@ -2130,11 +2134,12 @@ Estos componentes reaccionan a los eventos del sistema para disparar procesos se
 | **Propósito:** | Disparar notificaciones al Palm Grower inmediatamente después de la publicación. |
 
 **Métodos**
+
 | Nombre | Tipo de retorno | Visibilidad | Descripción |
 | :--- | :--- | :--- | :--- |
 | Handle | Task | public | Envía notificación push al usuario final con la recomendación |
 
-#### 4.2.4.4. Infrastructure Layer.
+#### 4.2.4.4. Infrastructure Layer
 
 #### Clase: RecommendationRepository (Implementación)
 
@@ -2197,38 +2202,633 @@ Estos componentes reaccionan a los eventos del sistema para disparar procesos se
 | Recommendations | DbSet<Recommendation> | private | Tabla que almacena el historial de recomendaciones |
 | Interventions | DbSet<AgronomicIntervention> | private | Tabla que almacena las intervenciones registradas en campo |
 
-#### 4.2.4.5. Bounded Context Software Architecture Component Level Diagrams.
+#### 4.2.4.5. Bounded Context Software Architecture Component Level Diagrams
 
 ![BC-04 Component Diagram](./assets/img/chapter-4/bc-04-component-diagram.png)
 
-#### 4.2.4.6. Bounded Context Software Architecture Code Level Diagrams.
+#### 4.2.4.6. Bounded Context Software Architecture Code Level Diagrams
 
-##### 4.2.4.6.1. Bounded Context Domain Layer Class Diagrams.
+##### 4.2.4.6.1. Bounded Context Domain Layer Class Diagrams
 
 ![BC-04 Class Diagram](./assets/img/chapter-4/bc-04-class-diagram.png)
 
-##### 4.2.4.6.2. Bounded Context Database Design Diagram.
+##### 4.2.4.6.2. Bounded Context Database Design Diagram
 
 ![BC-04 Database Diagram](./assets/img/chapter-4/bc-04-database-diagram.png)
 
+### 4.2.6. Bounded Context: Field Technical Management
+
+Este bounded context se encarga de gestionar las actividades técnicas de campo realizadas por el ingeniero agrónomo: planificación de visitas, registro de inspecciones presenciales, vinculación de observaciones con alertas activas y registro de intervenciones agronómicas con trazabilidad hacia las recomendaciones que las originaron. Interactúa con los bounded contexts de Alert & Notification (BC-03) como fuente de alertas activas, Agronomic Recommendation (BC-04) como origen de las recomendaciones que motivan intervenciones, y Crop Monitoring Dashboard (BC-05) como destino de los datos de inspección para visualización. Incorpora soporte offline para registro de inspecciones en campo sin conectividad, resolviendo el pain point identificado en el EventStorming.
+
+#### 4.2.6.1. Domain Layer
+
+Contiene la lógica de negocio pura y las entidades principales relacionadas con la planificación de visitas de campo, el registro de inspecciones y observaciones, la vinculación con alertas activas y el registro de intervenciones agronómicas con trazabilidad completa.
+
+---
+
+**Aggregate 1: FieldVisit**
+
+| Nombre     | Categoría              | Descripción                                                                                                                                                                                                                           |
+| ---------- | ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| FieldVisit | Entity (Aggregate Root) | Representa una visita de campo planificada o ejecutada por el ingeniero agrónomo a una plantación. Gestiona el ciclo de vida desde la planificación hasta la finalización, y agrupa las inspecciones realizadas durante la visita. |
+
+**Attributes**
+
+| Nombre        | Tipo de dato            | Visibilidad | Descripción                                                          |
+| ------------- | ----------------------- | ----------- | --------------------------------------------------------------------- |
+| id            | UUID                    | Private     | Identificador único de la visita de campo.                           |
+| plantationId  | UUID                    | Private     | Identificador de la plantación a visitar.                            |
+| agronomistId  | UUID                    | Private     | Identificador del agrónomo responsable de la visita.                 |
+| scheduledDate | LocalDate               | Private     | Fecha planificada para la visita.                                     |
+| actualDate    | LocalDate               | Private     | Fecha real en que se ejecutó la visita (null si aún no se ejecuta). |
+| status        | VisitStatus (enum)      | Private     | Estado de la visita: PLANNED, IN_PROGRESS, COMPLETED, CANCELLED.      |
+| objectives    | String                  | Private     | Objetivos de la visita definidos por el agrónomo.                    |
+| inspections   | List\<FieldInspection\> | Private     | Lista de inspecciones registradas durante la visita.                  |
+| createdAt     | LocalDateTime           | Private     | Fecha de creación del registro.                                      |
+| completedAt   | LocalDateTime           | Private     | Fecha de finalización de la visita.                                  |
+
+**Methods**
+
+| Nombre                                     | Tipo de retorno | Visibilidad | Descripción                                                                                      |
+| ------------------------------------------ | --------------- | ----------- | ------------------------------------------------------------------------------------------------- |
+| start()                                    | Void            | Public      | Inicia la visita cambiando su estado de PLANNED a IN_PROGRESS y registra la fecha actual.         |
+| complete()                                 | Void            | Public      | Finaliza la visita cambiando su estado a COMPLETED. Requiere al menos una inspección registrada. |
+| cancel(reason: String)                     | Void            | Public      | Cancela la visita. Solo permitido en estado PLANNED.                                              |
+| addInspection(inspection: FieldInspection) | Void            | Public      | Agrega una inspección a la visita. Solo permitido en estado IN_PROGRESS.                         |
+| hasInspections()                           | Boolean         | Public      | Indica si la visita tiene inspecciones registradas.                                               |
+
+---
+
+**Aggregate 2: FieldInspection**
+
+| Nombre          | Categoría              | Descripción                                                                                                                                                                                                                                                      |
+| --------------- | ----------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| FieldInspection | Entity (Aggregate Root) | Representa una inspección técnica realizada por el agrónomo en una zona de monitoreo durante una visita de campo. Contiene observaciones, evidencia fotográfica y puede vincularse a alertas activas. Soporta registro offline con sincronización posterior. |
+
+**Attributes**
+
+| Nombre         | Tipo de dato             | Visibilidad | Descripción                                                                           |
+| -------------- | ------------------------ | ----------- | -------------------------------------------------------------------------------------- |
+| id             | UUID                     | Private     | Identificador único de la inspección.                                                |
+| visitId        | UUID                     | Private     | Identificador de la visita de campo a la que pertenece.                                |
+| zoneId         | UUID                     | Private     | Identificador de la zona de monitoreo inspeccionada.                                   |
+| plantationId   | UUID                     | Private     | Identificador de la plantación.                                                       |
+| agronomistId   | UUID                     | Private     | Identificador del agrónomo que realizó la inspección.                               |
+| observations   | List\<FieldObservation\> | Private     | Observaciones registradas durante la inspección.                                      |
+| inspectedAt    | LocalDateTime            | Private     | Fecha y hora de la inspección en campo.                                               |
+| registeredAt   | LocalDateTime            | Private     | Fecha y hora de registro en el sistema (puede diferir de inspectedAt en caso offline). |
+| syncStatus     | SyncStatus (enum)        | Private     | Estado de sincronización: SYNCED, PENDING_SYNC.                                       |
+| linkedAlertIds | List\<UUID\>             | Private     | Identificadores de alertas activas vinculadas a esta inspección.                      |
+
+**Methods**
+
+| Nombre                                        | Tipo de retorno | Visibilidad | Descripción                                                                           |
+| --------------------------------------------- | --------------- | ----------- | -------------------------------------------------------------------------------------- |
+| addObservation(observation: FieldObservation) | Void            | Public      | Agrega una observación a la inspección.                                              |
+| linkToAlert(alertId: UUID)                    | Void            | Public      | Vincula la inspección a una alerta activa del BC-03.                                  |
+| markAsSynced()                                | Void            | Public      | Marca la inspección como sincronizada con el servidor.                                |
+| isPendingSync()                               | Boolean         | Public      | Indica si la inspección está pendiente de sincronización.                           |
+| wasRegisteredOffline()                        | Boolean         | Public      | Indica si la inspección fue registrada offline (inspectedAt difiere de registeredAt). |
+
+---
+
+**Value Object: FieldObservation**
+
+| Nombre           | Categoría   | Descripción                                                                             |
+| ---------------- | ------------ | ---------------------------------------------------------------------------------------- |
+| FieldObservation | Value Object | Observación técnica individual registrada durante una inspección de campo. Inmutable. |
+
+**Attributes**
+
+| Nombre          | Tipo de dato               | Visibilidad | Descripción                                                                       |
+| --------------- | -------------------------- | ----------- | ---------------------------------------------------------------------------------- |
+| description     | String                     | Private     | Descripción textual de la observación.                                           |
+| category        | ObservationCategory (enum) | Private     | Categoría: PHYTOSANITARY, SOIL_CONDITION, PLANT_DEVELOPMENT, IRRIGATION, GENERAL. |
+| severity        | ObservationSeverity (enum) | Private     | Severidad: LOW, MEDIUM, HIGH.                                                      |
+| photoReferences | List\<String\>             | Private     | Referencias a evidencia fotográfica (URLs o IDs de archivos).                     |
+| observedAt      | LocalDateTime              | Private     | Momento en que se realizó la observación.                                        |
+
+---
+
+**Aggregate 3: AgronomicIntervention**
+
+| Nombre                | Categoría              | Descripción                                                                                                                                                                                                                                                               |
+| --------------------- | ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| AgronomicIntervention | Entity (Aggregate Root) | Representa una intervención agronómica ejecutada en una zona o plantación como resultado de una recomendación. Mantiene trazabilidad hacia la recomendación que la originó y la inspección que la motivó, cerrando el ciclo recomendación → acción → registro. |
+
+**Attributes**
+
+| Nombre                 | Tipo de dato              | Visibilidad | Descripción                                                                                           |
+| ---------------------- | ------------------------- | ----------- | ------------------------------------------------------------------------------------------------------ |
+| id                     | UUID                      | Private     | Identificador único de la intervención.                                                              |
+| plantationId           | UUID                      | Private     | Identificador de la plantación intervenida.                                                           |
+| zoneId                 | UUID                      | Private     | Identificador de la zona intervenida (opcional si aplica a toda la plantación).                       |
+| registeredBy           | UUID                      | Private     | Identificador del usuario que registró la intervención (agrónomo o dueño del cultivo).             |
+| interventionType       | InterventionType (enum)   | Private     | Tipo: FERTILIZATION, PEST_CONTROL, IRRIGATION_ADJUSTMENT, PRUNING, SOIL_AMENDMENT, OTHER.              |
+| description            | String                    | Private     | Descripción detallada de la intervención realizada.                                                  |
+| originRecommendationId | UUID                      | Private     | Identificador de la recomendación del BC-04 que originó esta intervención (null si es espontánea). |
+| originInspectionId     | UUID                      | Private     | Identificador de la inspección que motivó la intervención (null si no aplica).                      |
+| executedAt             | LocalDateTime             | Private     | Fecha y hora de ejecución de la intervención.                                                        |
+| registeredAt           | LocalDateTime             | Private     | Fecha y hora de registro en el sistema.                                                                |
+| status                 | InterventionStatus (enum) | Private     | Estado: REGISTERED, VERIFIED, REJECTED.                                                                |
+| verificationNotes      | String                    | Private     | Notas del agrónomo al verificar la intervención.                                                     |
+
+**Methods**
+
+| Nombre                    | Tipo de retorno | Visibilidad | Descripción                                                            |
+| ------------------------- | --------------- | ----------- | ----------------------------------------------------------------------- |
+| verify(notes: String)     | Void            | Public      | El agrónomo verifica que la intervención fue ejecutada correctamente. |
+| reject(notes: String)     | Void            | Public      | El agrónomo rechaza la intervención como incorrecta o insuficiente.   |
+| hasOriginRecommendation() | Boolean         | Public      | Indica si la intervención fue originada por una recomendación.        |
+| hasOriginInspection()     | Boolean         | Public      | Indica si la intervención fue motivada por una inspección.            |
+| isVerified()              | Boolean         | Public      | Indica si la intervención ha sido verificada.                          |
+
+---
+
+**Enumeraciones**
+
+**Enum: VisitStatus**
+
+| Código     | Descripción                                    |
+| ----------- | ----------------------------------------------- |
+| PLANNED     | Visita planificada, pendiente de ejecución.    |
+| IN_PROGRESS | Visita en curso.                                |
+| COMPLETED   | Visita finalizada con inspecciones registradas. |
+| CANCELLED   | Visita cancelada antes de su ejecución.        |
+
+**Enum: SyncStatus**
+
+| Código      | Descripción                                     |
+| ------------ | ------------------------------------------------ |
+| SYNCED       | Registro sincronizado con el servidor.           |
+| PENDING_SYNC | Registro pendiente de sincronización (offline). |
+
+**Enum: ObservationCategory**
+
+| Código           | Descripción                                       |
+| ----------------- | -------------------------------------------------- |
+| PHYTOSANITARY     | Observación fitosanitaria (plagas, enfermedades). |
+| SOIL_CONDITION    | Condición del suelo.                              |
+| PLANT_DEVELOPMENT | Desarrollo de la planta.                           |
+| IRRIGATION        | Estado del riego.                                  |
+| GENERAL           | Observación general.                              |
+
+**Enum: ObservationSeverity**
+
+| Código | Descripción                                |
+| ------- | ------------------------------------------- |
+| LOW     | Severidad baja, informativa.                |
+| MEDIUM  | Severidad media, requiere seguimiento.      |
+| HIGH    | Severidad alta, requiere acción inmediata. |
+
+**Enum: InterventionType**
+
+| Código               | Descripción                      |
+| --------------------- | --------------------------------- |
+| FERTILIZATION         | Aplicación de fertilizantes.     |
+| PEST_CONTROL          | Control de plagas o enfermedades. |
+| IRRIGATION_ADJUSTMENT | Ajuste del sistema de riego.      |
+| PRUNING               | Poda de plantas.                  |
+| SOIL_AMENDMENT        | Enmienda o corrección del suelo. |
+| OTHER                 | Otro tipo de intervención.       |
+
+**Enum: InterventionStatus**
+
+| Código    | Descripción                                          |
+| ---------- | ----------------------------------------------------- |
+| REGISTERED | Intervención registrada, pendiente de verificación. |
+| VERIFIED   | Intervención verificada por el agrónomo.            |
+| REJECTED   | Intervención rechazada por el agrónomo.             |
+
+---
+
+**Domain Services**
+
+| Nombre                          | Descripción                                                                                                                                                                                                 |
+| ------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| InspectionSyncService           | Servicio de dominio que gestiona la lógica de sincronización de inspecciones registradas offline. Determina el orden de sincronización, detecta conflictos y marca los registros como sincronizados.      |
+| InterventionTraceabilityService | Servicio de dominio que gestiona la trazabilidad entre intervenciones, recomendaciones e inspecciones. Valida que las referencias cruzadas sean consistentes y construye la cadena de trazabilidad completa. |
+
+---
+
+**Repository Interfaces (Domain contracts)**
+
+| Nombre                          | Descripción                                                                                                |
+| ------------------------------- | ----------------------------------------------------------------------------------------------------------- |
+| FieldVisitRepository            | Contrato para persistir y consultar visitas de campo por agrónomo, plantación y estado.                   |
+| FieldInspectionRepository       | Contrato para persistir y consultar inspecciones por visita, zona, plantación y estado de sincronización. |
+| AgronomicInterventionRepository | Contrato para persistir y consultar intervenciones por plantación, zona, tipo y estado de verificación.   |
+
+---
+
+---
+
+#### 4.2.6.2. Interface Layer
+
+Esta capa es responsable de la recepción y formato de peticiones/respuestas externas (API REST), validación básica del formato y los datos de entrada, manejo de errores a nivel de API y delegación de la lógica de negocio a la capa de Aplicación. Expone los endpoints consumidos por la plataforma web del agrónomo y la aplicación móvil del dueño del cultivo.
+
+---
+
+**Controller 1: FieldVisitController**
+
+| Nombre               | Categoría | Descripción                                                                                                     |
+| -------------------- | ---------- | ---------------------------------------------------------------------------------------------------------------- |
+| FieldVisitController | Controller | Controlador para los endpoints de planificación y gestión del ciclo de vida de visitas de campo del agrónomo. |
+
+**Attributes**
+
+| Nombre            | Tipo de dato      | Visibilidad | Descripción                                                            |
+| ----------------- | ----------------- | ----------- | ----------------------------------------------------------------------- |
+| fieldVisitService | FieldVisitService | Private     | Servicio de la capa de Aplicación para lógica de gestión de visitas. |
+| visitMapper       | FieldVisitMapper  | Private     | Mapper para convertir entre entidades de dominio y DTOs de respuesta.   |
+
+**Endpoints**
+
+| Ruta                                 | Método | Descripción                                                                                                             |
+| ------------------------------------ | ------- | ------------------------------------------------------------------------------------------------------------------------ |
+| /api/field/visits                    | POST    | Planifica una nueva visita de campo a una plantación.                                                                   |
+| /api/field/visits                    | GET     | Retorna las visitas de campo del agrónomo autenticado con filtros opcionales por plantación, estado y rango de fechas. |
+| /api/field/visits/{visitId}          | GET     | Retorna el detalle de una visita de campo específica con sus inspecciones asociadas.                                    |
+| /api/field/visits/{visitId}/start    | PUT     | Inicia una visita planificada, cambiando su estado a IN_PROGRESS.                                                        |
+| /api/field/visits/{visitId}/complete | PUT     | Finaliza una visita en curso, cambiando su estado a COMPLETED.                                                           |
+| /api/field/visits/{visitId}/cancel   | PUT     | Cancela una visita planificada.                                                                                          |
+
+---
+
+**Controller 2: FieldInspectionController**
+
+| Nombre                    | Categoría | Descripción                                                                                                                       |
+| ------------------------- | ---------- | ---------------------------------------------------------------------------------------------------------------------------------- |
+| FieldInspectionController | Controller | Controlador para los endpoints de registro de inspecciones de campo, incluyendo soporte para sincronización de registros offline. |
+
+**Attributes**
+
+| Nombre                 | Tipo de dato           | Visibilidad | Descripción                                                                 |
+| ---------------------- | ---------------------- | ----------- | ---------------------------------------------------------------------------- |
+| fieldInspectionService | FieldInspectionService | Private     | Servicio de la capa de Aplicación para lógica de gestión de inspecciones. |
+| inspectionMapper       | FieldInspectionMapper  | Private     | Mapper para convertir entre entidades de dominio y DTOs de respuesta.        |
+
+**Endpoints**
+
+| Ruta                                               | Método | Descripción                                                                                                    |
+| -------------------------------------------------- | ------- | --------------------------------------------------------------------------------------------------------------- |
+| /api/field/visits/{visitId}/inspections            | POST    | Registra una nueva inspección de campo dentro de una visita en curso.                                          |
+| /api/field/inspections/sync                        | POST    | Sincroniza un lote de inspecciones registradas offline. Acepta una lista de inspecciones con sus observaciones. |
+| /api/field/inspections/{inspectionId}              | GET     | Retorna el detalle de una inspección específica con sus observaciones y alertas vinculadas.                   |
+| /api/field/inspections/{inspectionId}/observations | POST    | Agrega una observación a una inspección existente.                                                            |
+| /api/field/inspections/{inspectionId}/link-alert   | POST    | Vincula una inspección a una alerta activa del sistema.                                                        |
+| /api/field/plantations/{plantationId}/inspections  | GET     | Retorna el historial de inspecciones de una plantación con filtros opcionales por zona y rango de fechas.      |
+
+---
+
+**Controller 3: AgronomicInterventionController**
+
+| Nombre                          | Categoría | Descripción                                                                                                                                               |
+| ------------------------------- | ---------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| AgronomicInterventionController | Controller | Controlador para los endpoints de registro, verificación y consulta de intervenciones agronómicas con trazabilidad hacia recomendaciones e inspecciones. |
+
+**Attributes**
+
+| Nombre              | Tipo de dato                 | Visibilidad | Descripción                                                                   |
+| ------------------- | ---------------------------- | ----------- | ------------------------------------------------------------------------------ |
+| interventionService | AgronomicInterventionService | Private     | Servicio de la capa de Aplicación para lógica de gestión de intervenciones. |
+| interventionMapper  | AgronomicInterventionMapper  | Private     | Mapper para convertir entre entidades de dominio y DTOs de respuesta.          |
+
+**Endpoints**
+
+| Ruta                                                | Método | Descripción                                                                                                     |
+| --------------------------------------------------- | ------- | ---------------------------------------------------------------------------------------------------------------- |
+| /api/field/interventions                            | POST    | Registra una nueva intervención agronómica en una plantación o zona.                                          |
+| /api/field/interventions/{interventionId}           | GET     | Retorna el detalle de una intervención específica con su trazabilidad completa.                                |
+| /api/field/interventions/{interventionId}/verify    | PUT     | El agrónomo verifica que la intervención fue ejecutada correctamente.                                          |
+| /api/field/interventions/{interventionId}/reject    | PUT     | El agrónomo rechaza la intervención como incorrecta o insuficiente.                                            |
+| /api/field/plantations/{plantationId}/interventions | GET     | Retorna el historial de intervenciones de una plantación con filtros por zona, tipo, estado y rango de fechas.  |
+| /api/field/plantations/{plantationId}/traceability  | GET     | Retorna la cadena de trazabilidad completa: recomendación → inspección → intervención para una plantación. |
+
+---
+
+**DTOs**
+
+| Nombre                               | Descripción                                                                                                                                                                                                                                                       |
+| ------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| PlanFieldVisitRequestDto             | { plantationId: UUID, scheduledDate: LocalDate, objectives: String }                                                                                                                                                                                               |
+| FieldVisitResponseDto                | { id: UUID, plantationId: UUID, agronomistId: UUID, scheduledDate: LocalDate, actualDate: LocalDate, status: String, objectives: String, inspectionCount: Integer, createdAt: DateTime, completedAt: DateTime }                                                    |
+| FieldVisitListResponseDto            | { visits: List\<FieldVisitResponseDto\>, totalCount: Integer }                                                                                                                                                                                                     |
+| CancelVisitRequestDto                | { reason: String }                                                                                                                                                                                                                                                 |
+| RegisterInspectionRequestDto         | { zoneId: UUID, observations: List\<FieldObservationDto\>, inspectedAt: DateTime, linkedAlertIds: List\<UUID\> }                                                                                                                                                   |
+| SyncInspectionsRequestDto            | { inspections: List\<RegisterInspectionRequestDto\>, visitId: UUID }                                                                                                                                                                                               |
+| SyncInspectionsResponseDto           | { syncedCount: Integer, failedCount: Integer, failedIds: List\<UUID\>, syncedAt: DateTime }                                                                                                                                                                        |
+| FieldInspectionResponseDto           | { id: UUID, visitId: UUID, zoneId: UUID, plantationId: UUID, agronomistId: UUID, observations: List\<FieldObservationDto\>, inspectedAt: DateTime, registeredAt: DateTime, syncStatus: String, linkedAlertIds: List\<UUID\>, wasOffline: Boolean }                 |
+| FieldInspectionListResponseDto       | { inspections: List\<FieldInspectionResponseDto\>, totalCount: Integer }                                                                                                                                                                                           |
+| FieldObservationDto                  | { description: String, category: String, severity: String, photoReferences: List\<String\>, observedAt: DateTime }                                                                                                                                                 |
+| AddObservationRequestDto             | { description: String, category: String, severity: String, photoReferences: List\<String\> }                                                                                                                                                                       |
+| LinkAlertRequestDto                  | { alertId: UUID }                                                                                                                                                                                                                                                  |
+| RegisterInterventionRequestDto       | { plantationId: UUID, zoneId: UUID, interventionType: String, description: String, originRecommendationId: UUID, originInspectionId: UUID, executedAt: DateTime }                                                                                                  |
+| VerifyInterventionRequestDto         | { verificationNotes: String }                                                                                                                                                                                                                                      |
+| RejectInterventionRequestDto         | { verificationNotes: String }                                                                                                                                                                                                                                      |
+| AgronomicInterventionResponseDto     | { id: UUID, plantationId: UUID, zoneId: UUID, registeredBy: UUID, interventionType: String, description: String, originRecommendationId: UUID, originInspectionId: UUID, executedAt: DateTime, registeredAt: DateTime, status: String, verificationNotes: String } |
+| AgronomicInterventionListResponseDto | { interventions: List\<AgronomicInterventionResponseDto\>, totalCount: Integer }                                                                                                                                                                                   |
+| TraceabilityChainResponseDto         | { plantationId: UUID, chains: List\<TraceabilityItemDto\> }                                                                                                                                                                                                        |
+| TraceabilityItemDto                  | { recommendationId: UUID, recommendationContent: String, inspectionId: UUID, inspectedAt: DateTime, interventionId: UUID, interventionType: String, interventionStatus: String, executedAt: DateTime }                                                             |
+
+---
+
+---
+
+#### 4.2.6.3. Application Layer
+
+En la capa de Application Layer se ubican los servicios que orquestan los casos de uso del bounded context Field Technical Management. Estos servicios coordinan la lógica de negocio delegando a las entidades y servicios de dominio, gestionan transacciones y actúan como intermediarios entre la capa de Interface y la capa de Domain.
+
+---
+
+**Service 1: FieldVisitService**
+
+| Nombre            | Categoría          | Descripción                                                                                                                         |
+| ----------------- | ------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| FieldVisitService | Application Service | Servicio de aplicación responsable de los casos de uso de planificación, inicio, finalización y cancelación de visitas de campo. |
+
+**Dependencies**
+
+| Nombre                    | Tipo de Objeto            | Visibilidad | Descripción                                                    |
+| ------------------------- | ------------------------- | ----------- | --------------------------------------------------------------- |
+| fieldVisitRepository      | FieldVisitRepository      | Private     | Acceso a la persistencia de visitas de campo.                   |
+| fieldInspectionRepository | FieldInspectionRepository | Private     | Acceso a inspecciones para validar requisitos de finalización. |
+| visitMapper               | FieldVisitMapper          | Private     | Mapper para convertir entre entidades de dominio y DTOs.        |
+
+**Methods**
+
+| Nombre                                                  | Tipo de retorno           | Visibilidad | Descripción                                              |
+| ------------------------------------------------------- | ------------------------- | ----------- | --------------------------------------------------------- |
+| planVisit(PlanVisitCommand command)                     | FieldVisitResponseDto     | Public      | Planifica una nueva visita de campo a una plantación.    |
+| getVisitsByAgronomist(GetVisitsByAgronomistQuery query) | FieldVisitListResponseDto | Public      | Retorna las visitas del agrónomo con filtros opcionales. |
+| getVisitById(GetVisitByIdQuery query)                   | FieldVisitResponseDto     | Public      | Retorna el detalle de una visita específica.             |
+| startVisit(StartVisitCommand command)                   | FieldVisitResponseDto     | Public      | Inicia una visita planificada.                            |
+| completeVisit(CompleteVisitCommand command)             | FieldVisitResponseDto     | Public      | Finaliza una visita en curso.                             |
+| cancelVisit(CancelVisitCommand command)                 | FieldVisitResponseDto     | Public      | Cancela una visita planificada.                           |
+
+---
+
+**Service 2: FieldInspectionService**
+
+| Nombre                 | Categoría          | Descripción                                                                                                                                                    |
+| ---------------------- | ------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| FieldInspectionService | Application Service | Servicio de aplicación responsable de los casos de uso de registro de inspecciones, sincronización offline, vinculación con alertas y consulta de historial. |
+
+**Dependencies**
+
+| Nombre                    | Tipo de Objeto            | Visibilidad | Descripción                                                 |
+| ------------------------- | ------------------------- | ----------- | ------------------------------------------------------------ |
+| fieldInspectionRepository | FieldInspectionRepository | Private     | Acceso a la persistencia de inspecciones.                    |
+| fieldVisitRepository      | FieldVisitRepository      | Private     | Acceso a visitas para validar estado IN_PROGRESS.            |
+| inspectionSyncService     | InspectionSyncService     | Private     | Servicio de dominio para lógica de sincronización offline. |
+| alertQueryClient          | AlertQueryClient          | Private     | Cliente ACL para validar alertas del BC-03.                  |
+| inspectionMapper          | FieldInspectionMapper     | Private     | Mapper para convertir entre entidades de dominio y DTOs.     |
+
+**Methods**
+
+| Nombre                                                            | Tipo de retorno                | Visibilidad | Descripción                                                  |
+| ----------------------------------------------------------------- | ------------------------------ | ----------- | ------------------------------------------------------------- |
+| registerInspection(RegisterInspectionCommand command)             | FieldInspectionResponseDto     | Public      | Registra una nueva inspección dentro de una visita en curso. |
+| syncOfflineInspections(SyncOfflineInspectionsCommand command)     | SyncInspectionsResponseDto     | Public      | Sincroniza un lote de inspecciones registradas offline.       |
+| getInspectionById(GetInspectionByIdQuery query)                   | FieldInspectionResponseDto     | Public      | Retorna el detalle de una inspección específica.            |
+| addObservation(AddObservationCommand command)                     | FieldInspectionResponseDto     | Public      | Agrega una observación a una inspección existente.          |
+| linkInspectionToAlert(LinkInspectionToAlertCommand command)       | FieldInspectionResponseDto     | Public      | Vincula una inspección a una alerta activa.                  |
+| getInspectionsByPlantation(GetInspectionsByPlantationQuery query) | FieldInspectionListResponseDto | Public      | Retorna el historial de inspecciones de una plantación.      |
+
+---
+
+**Service 3: AgronomicInterventionService**
+
+| Nombre                       | Categoría          | Descripción                                                                                                                                                     |
+| ---------------------------- | ------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| AgronomicInterventionService | Application Service | Servicio de aplicación responsable de los casos de uso de registro, verificación, rechazo y consulta de intervenciones agronómicas con trazabilidad completa. |
+
+**Dependencies**
+
+| Nombre                          | Tipo de Objeto                  | Visibilidad | Descripción                                             |
+| ------------------------------- | ------------------------------- | ----------- | -------------------------------------------------------- |
+| interventionRepository          | AgronomicInterventionRepository | Private     | Acceso a la persistencia de intervenciones.              |
+| interventionTraceabilityService | InterventionTraceabilityService | Private     | Servicio de dominio para gestionar trazabilidad.         |
+| recommendationQueryClient       | RecommendationQueryClient       | Private     | Cliente ACL para validar recomendaciones del BC-04.      |
+| fieldInspectionRepository       | FieldInspectionRepository       | Private     | Acceso a inspecciones para validar referencias.          |
+| interventionMapper              | AgronomicInterventionMapper     | Private     | Mapper para convertir entre entidades de dominio y DTOs. |
+
+**Methods**
+
+| Nombre                                                                | Tipo de retorno                      | Visibilidad | Descripción                                                   |
+| --------------------------------------------------------------------- | ------------------------------------ | ----------- | -------------------------------------------------------------- |
+| registerIntervention(RegisterInterventionCommand command)             | AgronomicInterventionResponseDto     | Public      | Registra una nueva intervención agronómica con trazabilidad. |
+| verifyIntervention(VerifyInterventionCommand command)                 | AgronomicInterventionResponseDto     | Public      | Verifica que la intervención fue ejecutada correctamente.     |
+| rejectIntervention(RejectInterventionCommand command)                 | AgronomicInterventionResponseDto     | Public      | Rechaza la intervención como incorrecta o insuficiente.       |
+| getInterventionById(GetInterventionByIdQuery query)                   | AgronomicInterventionResponseDto     | Public      | Retorna el detalle de una intervención específica.           |
+| getInterventionsByPlantation(GetInterventionsByPlantationQuery query) | AgronomicInterventionListResponseDto | Public      | Retorna el historial de intervenciones de una plantación.     |
+| getTraceabilityChain(GetTraceabilityChainQuery query)                 | TraceabilityChainResponseDto         | Public      | Retorna la cadena de trazabilidad completa de una plantación. |
+
+---
+
+**Commands**
+
+| Nombre                        | Atributos                                                                                                                                                                                        | Descripción                                               |
+| ----------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------- |
+| PlanVisitCommand              | plantationId: UUID, agronomistId: UUID, scheduledDate: LocalDate, objectives: String                                                                                                             | Comando para planificar una nueva visita de campo.         |
+| StartVisitCommand             | visitId: UUID, agronomistId: UUID                                                                                                                                                                | Comando para iniciar una visita planificada.               |
+| CompleteVisitCommand          | visitId: UUID, agronomistId: UUID                                                                                                                                                                | Comando para finalizar una visita en curso.                |
+| CancelVisitCommand            | visitId: UUID, agronomistId: UUID, reason: String                                                                                                                                                | Comando para cancelar una visita planificada.              |
+| RegisterInspectionCommand     | visitId: UUID, zoneId: UUID, agronomistId: UUID, observations: List\<FieldObservationDto\>, inspectedAt: LocalDateTime, linkedAlertIds: List\<UUID\>                                             | Comando para registrar una inspección de campo.           |
+| SyncOfflineInspectionsCommand | visitId: UUID, agronomistId: UUID, inspections: List\<RegisterInspectionCommand\>                                                                                                                | Comando para sincronizar inspecciones offline en lote.     |
+| AddObservationCommand         | inspectionId: UUID, description: String, category: ObservationCategory, severity: ObservationSeverity, photoReferences: List\<String\>                                                           | Comando para agregar una observación a una inspección.   |
+| LinkInspectionToAlertCommand  | inspectionId: UUID, alertId: UUID                                                                                                                                                                | Comando para vincular una inspección a una alerta activa. |
+| RegisterInterventionCommand   | plantationId: UUID, zoneId: UUID, registeredBy: UUID, interventionType: InterventionType, description: String, originRecommendationId: UUID, originInspectionId: UUID, executedAt: LocalDateTime | Comando para registrar una intervención agronómica.      |
+| VerifyInterventionCommand     | interventionId: UUID, agronomistId: UUID, verificationNotes: String                                                                                                                              | Comando para verificar una intervención.                  |
+| RejectInterventionCommand     | interventionId: UUID, agronomistId: UUID, verificationNotes: String                                                                                                                              | Comando para rechazar una intervención.                   |
+
+**Queries**
+
+| Nombre                            | Atributos                                                                                                                                                                                                 | Descripción                                                |
+| --------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------- |
+| GetVisitsByAgronomistQuery        | agronomistId: UUID, plantationId: UUID (opcional), status: VisitStatus (opcional), startDate: LocalDate (opcional), endDate: LocalDate (opcional)                                                         | Consulta de visitas del agrónomo con filtros.              |
+| GetVisitByIdQuery                 | visitId: UUID                                                                                                                                                                                             | Consulta de detalle de una visita.                          |
+| GetInspectionByIdQuery            | inspectionId: UUID                                                                                                                                                                                        | Consulta de detalle de una inspección.                     |
+| GetInspectionsByPlantationQuery   | plantationId: UUID, zoneId: UUID (opcional), startDate: LocalDateTime (opcional), endDate: LocalDateTime (opcional)                                                                                       | Consulta de historial de inspecciones de una plantación.   |
+| GetInterventionByIdQuery          | interventionId: UUID                                                                                                                                                                                      | Consulta de detalle de una intervención.                   |
+| GetInterventionsByPlantationQuery | plantationId: UUID, zoneId: UUID (opcional), interventionType: InterventionType (opcional), status: InterventionStatus (opcional), startDate: LocalDateTime (opcional), endDate: LocalDateTime (opcional) | Consulta de historial de intervenciones de una plantación. |
+| GetTraceabilityChainQuery         | plantationId: UUID                                                                                                                                                                                        | Consulta de la cadena de trazabilidad completa.             |
+
+---
+
+---
+
+#### 4.2.6.4. Infrastructure Layer
+
+En la capa de Infrastructure Layer se encuentran las implementaciones concretas de los contratos definidos en las capas de dominio y aplicación. Incluye los repositorios JPA, los clientes de integración con otros bounded contexts (Anti-Corruption Layer) y los servicios técnicos de almacenamiento.
+
+---
+
+**JpaFieldVisitRepositoryImpl**
+
+| Nombre                      | Categoría                | Implementa           | Descripción                                                                                                                                                                          |
+| --------------------------- | ------------------------- | -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| JpaFieldVisitRepositoryImpl | Repository Implementation | FieldVisitRepository | Implementación concreta de la interfaz FieldVisitRepository utilizando JPA y Spring Data JPA. Maneja el mapeo entre el agregado de dominio FieldVisit y la base de datos relacional. |
+
+**Funcionalidad clave**
+
+- Busca y carga agregados FieldVisit por ID, agronomistId y plantationId.
+- Guarda (inserta/actualiza) agregados FieldVisit con sus inspecciones asociadas.
+- Filtra visitas por estado (PLANNED, IN_PROGRESS, COMPLETED, CANCELLED) y rango de fechas.
+- Cuenta visitas por plantación y agrónomo para estadísticas.
+- Lista visitas ordenadas por fecha programada descendente.
+
+---
+
+**JpaFieldInspectionRepositoryImpl**
+
+| Nombre                           | Categoría                | Implementa                | Descripción                                                                                                                                                                                                                               |
+| -------------------------------- | ------------------------- | ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| JpaFieldInspectionRepositoryImpl | Repository Implementation | FieldInspectionRepository | Implementación concreta de la interfaz FieldInspectionRepository utilizando JPA y Spring Data JPA. Maneja el mapeo entre el agregado de dominio FieldInspection y la base de datos, incluyendo observaciones y vinculaciones con alertas. |
+
+**Funcionalidad clave**
+
+- Busca y carga agregados FieldInspection por ID, visitId, zoneId y plantationId.
+- Guarda (inserta/actualiza) agregados FieldInspection con sus FieldObservation embebidas.
+- Filtra inspecciones por estado de sincronización (SYNCED, PENDING_SYNC).
+- Lista inspecciones por plantación con filtros por zona y rango de fechas.
+- Consulta inspecciones pendientes de sincronización para el proceso de sync offline.
+
+---
+
+**JpaAgronomicInterventionRepositoryImpl**
+
+| Nombre                                 | Categoría                | Implementa                      | Descripción                                                                                                                                                                                     |
+| -------------------------------------- | ------------------------- | ------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| JpaAgronomicInterventionRepositoryImpl | Repository Implementation | AgronomicInterventionRepository | Implementación concreta de la interfaz AgronomicInterventionRepository utilizando JPA y Spring Data JPA. Maneja el mapeo entre el agregado de dominio AgronomicIntervention y la base de datos. |
+
+**Funcionalidad clave**
+
+- Busca y carga agregados AgronomicIntervention por ID, plantationId y zoneId.
+- Guarda (inserta/actualiza) agregados AgronomicIntervention.
+- Filtra intervenciones por tipo (InterventionType), estado (InterventionStatus) y rango de fechas.
+- Consulta intervenciones por originRecommendationId para construir cadenas de trazabilidad.
+- Lista intervenciones ordenadas por fecha de ejecución descendente.
+
+---
+
+**AlertQueryClientImpl**
+
+| Nombre               | Categoría                   | Implementa       | Descripción                                                                                                                                                                          |
+| -------------------- | ---------------------------- | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| AlertQueryClientImpl | Anti-Corruption Layer Client | AlertQueryClient | Implementación concreta del cliente de integración con el BC-03 (Alert & Notification). Valida la existencia de alertas activas antes de permitir la vinculación con inspecciones. |
+
+**Funcionalidad clave**
+
+- Valida que un alertId corresponda a una alerta activa en el BC-03 antes de vincularla a una inspección.
+- Consulta detalles de alertas activas por plantación para facilitar la vinculación durante la inspección.
+- Maneja errores de comunicación retornando respuestas de validación negativas en caso de indisponibilidad del BC-03.
+
+---
+
+**RecommendationQueryClientImpl**
+
+| Nombre                        | Categoría                   | Implementa                | Descripción                                                                                                                                                                                         |
+| ----------------------------- | ---------------------------- | ------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| RecommendationQueryClientImpl | Anti-Corruption Layer Client | RecommendationQueryClient | Implementación concreta del cliente de integración con el BC-04 (Agronomic Recommendation). Valida la existencia de recomendaciones y obtiene su contenido para construir cadenas de trazabilidad. |
+
+**Funcionalidad clave**
+
+- Valida que un originRecommendationId corresponda a una recomendación publicada en el BC-04.
+- Obtiene el contenido resumido de recomendaciones para incluir en la cadena de trazabilidad.
+- Maneja errores de comunicación permitiendo el registro de intervenciones sin recomendación vinculada en caso de indisponibilidad.
+
+---
+
+**PhotoStorageServiceImpl**
+
+| Nombre                  | Categoría        | Implementa          | Descripción                                                                                                                                                                                           |
+| ----------------------- | ----------------- | ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| PhotoStorageServiceImpl | Technical Service | PhotoStorageService | Implementación concreta del servicio de almacenamiento de evidencia fotográfica de inspecciones. Gestiona la subida, almacenamiento y recuperación de imágenes asociadas a observaciones de campo. |
+
+**Funcionalidad clave**
+
+- Almacena imágenes en un servicio de almacenamiento de objetos (S3/Azure Blob) y retorna la URL de referencia.
+- Comprime imágenes antes del almacenamiento para optimizar espacio y ancho de banda.
+- Genera URLs pre-firmadas para acceso temporal a las imágenes.
+- Maneja almacenamiento local temporal en el dispositivo del agrónomo durante operaciones offline, con sincronización posterior.
+
+---
+
+---
+
+#### 4.2.6.5. Bounded Context Software Architecture Component Level Diagrams
+
+Los diagramas de componentes del bounded context Field Technical Management se elaboraron utilizando el modelo C4 en la herramienta Structurizr. Muestran la arquitectura interna del backend (API) y la aplicación móvil del agrónomo con soporte offline.
+
+##### Diagrama 1: Component Level — Backend API (Spring Boot)
+
+![BC06_Backend_Components](./assets/img/chapter-4/BC06_Backend_Components.png)
+
+##### Diagrama 2: Component Level — Web Platform (Angular)
+
+![BC06_WebPlatform_Components](./assets/img/chapter-4/BC06_WebPlatform_Components.png)
+
+##### Diagrama 3: Component Level — Mobile Application (Flutter)
+
+![BC06_Mobile_Components](./assets/img/chapter-4/BC06_MobileApp_Components.png)
+
+#### 4.2.6.6. Bounded Context Software Architecture Code Level Diagrams
+
+##### 4.2.6.6.1. Bounded Context Domain Layer Class Diagrams
+
+El diagrama de clases del Domain Layer del bounded context Field Technical Management se elaboró utilizando PlantUML. Muestra las entidades, value objects, enumeraciones, servicios de dominio e interfaces de repositorio.
+
+![BC06-UML](./assets/img/chapter-4/BC06_UML.png)
+
+---
+
+**Descripción del diagrama:**
+
+El diagrama muestra el diseño del Domain Layer del bounded context Field Technical Management, compuesto por tres agregados principales:
+
+- **FieldVisit** es la entidad raíz que modela el ciclo de vida de una visita de campo (PLANNED → IN_PROGRESS → COMPLETED/CANCELLED). Agrupa las inspecciones realizadas durante la visita y valida que solo se puedan agregar inspecciones cuando la visita está en curso.
+- **FieldInspection** modela una inspección técnica realizada en una zona de monitoreo. Contiene una lista de **FieldObservation** (value object) con categoría, severidad y evidencia fotográfica. Incorpora soporte offline mediante el enum **SyncStatus**, resolviendo el pain point identificado en el EventStorming. Puede vincularse a alertas activas del BC-03.
+- **AgronomicIntervention** modela una intervención ejecutada como resultado de una recomendación. Mantiene trazabilidad bidireccional hacia la recomendación del BC-04 que la originó y la inspección que la motivó. Soporta un ciclo de verificación por parte del agrónomo (REGISTERED → VERIFIED/REJECTED).
+
+Los **Domain Services** encapsulan la lógica de sincronización offline (InspectionSyncService) y la construcción de cadenas de trazabilidad recomendación → inspección → intervención (InterventionTraceabilityService).
+
+##### 4.2.6.6.2. Bounded Context Database Design Diagram
+
+![BC-06 Database Diagram](./assets/img/chapter-4/BC06-DB.png)
+
+---
+**Descripción del diagrama:**
+
+El modelo relacional del bounded context Field Technical Management está compuesto por 6 tablas que reflejan los 3 agregados del Domain Layer y sus relaciones:
+
+- **field_visits** almacena las visitas de campo con su ciclo de vida (PLANNED → IN_PROGRESS → COMPLETED/CANCELLED). Los índices compuestos por `agronomist_id + status` y `plantation_id + scheduled_date` optimizan las consultas del panel del agrónomo.
+- **field_inspections** almacena las inspecciones técnicas con soporte offline. El campo `sync_status` controla el estado de sincronización, y la diferencia entre `inspected_at` y `registered_at` permite identificar registros offline. La FK a `field_visits` garantiza que cada inspección pertenezca a una visita.
+- **field_observations** contiene las observaciones categorizadas por tipo y severidad dentro de cada inspección. El índice compuesto `(inspection_id, category)` facilita filtrados por categoría.
+- **observation_photos** almacena las referencias a evidencia fotográfica. Las imágenes físicas residen en almacenamiento de objetos externo (S3/Azure Blob), y esta tabla solo guarda las URLs.
+- **inspection_alert_links** es la tabla intermedia que vincula inspecciones con alertas activas del BC-03. La restricción `unique(inspection_id, alert_id)` evita duplicados.
+- **agronomic_interventions** almacena las intervenciones con trazabilidad completa. Los campos `origin_recommendation_id` (referencia lógica al BC-04) y `origin_inspection_id` (FK a `field_inspections`) construyen la cadena de trazabilidad recomendación → inspección → intervención. Los índices por `origin_recommendation_id` y `origin_inspection_id` optimizan las consultas de trazabilidad.
+
 ### 4.2.X. Bounded Context: (Bounded Context Name)
 
-#### 4.2.X.1. Domain Layer.
+#### 4.2.X.1. Domain Layer
 
-#### 4.2.X.2. Interface Layer.
+#### 4.2.X.2. Interface Layer
 
-#### 4.2.X.3. Application Layer.
+#### 4.2.X.3. Application Layer
 
-#### 4.2.X.4. Infrastructure Layer.
+#### 4.2.X.4. Infrastructure Layer
 
-#### 4.2.X.5. Bounded Context Software Architecture Component Level Diagrams.
+#### 4.2.X.5. Bounded Context Software Architecture Component Level Diagrams
 
-#### 4.2.X.6. Bounded Context Software Architecture Code Level Diagrams.
+#### 4.2.X.6. Bounded Context Software Architecture Code Level Diagrams
 
-#### 4.2.X.6.1. Bounded Context Domain Layer Class Diagrams.
+#### 4.2.X.6.1. Bounded Context Domain Layer Class Diagrams
 
-#### 4.2.X.6.2. Bounded Context Database Design Diagram.
+#### 4.2.X.6.2. Bounded Context Database Design Diagram
 
-# Conclusiones 
-# Conclusiones y recomendaciones. 
-# Video About-the-Team.
+# Conclusiones
+
+# Conclusiones y recomendaciones
+
+# Video About-the-Team
