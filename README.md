@@ -1823,6 +1823,70 @@ La capa de aplicación es responsable de orquestar los flujos de procesos del ne
 | :--- | :--- | :--- | :--- |
 | Handle | Task | public | Notifica al dashboard sobre el cambio de estado de la alerta |
 
+#### 4.2.3.4. Infrastructure Layer.
+
+Esta capa contiene la implementación técnica necesaria para que el sistema interactúe con servicios externos. Aquí se implementan las interfaces definidas en la Domain Layer (como los repositorios) y se gestiona la integración con sistemas de persistencia (Base de Datos) y sistemas de mensajería/notificaciones externas.
+
+### Clase: AlertRepository (Implementación)
+
+| Nombre: | AlertRepository |
+| :--- | :--- |
+| **Categoría:** | Repository Implementation |
+| **Propósito:** | Implementación de la interfaz `IAlertRepository` para persistir y recuperar alertas desde la base de datos. |
+
+**Métodos**
+
+| Nombre | Tipo de retorno | Visibilidad | Descripción |
+| :--- | :--- | :--- | :--- |
+| AddAsync | Task | public | Inserta una nueva entidad Alert en la base de datos |
+| GetByIdAsync | Task<Alert> | public | Consulta una alerta específica usando Entity Framework |
+| GetHistoryBySensorAsync | Task<IEnumerable<Alert>> | public | Ejecuta una query para obtener alertas históricas filtradas por sensor |
+
+---
+
+### Clase: FirebaseNotificationService
+
+| Nombre: | FirebaseNotificationService |
+| :--- | :--- |
+| **Categoría:** | External Service |
+| **Propósito:** | Implementar la lógica para el envío de notificaciones push utilizando la API externa. |
+
+**Métodos**
+
+| Nombre | Tipo de retorno | Visibilidad | Descripción |
+| :--- | :--- | :--- | :--- |
+| SendNotificationAsync | Task | public | Envía el payload de la alerta al servicio externo. |
+
+---
+
+### Clase: AlertMessageBroker
+
+| Nombre: | AlertMessageBroker |
+| :--- | :--- |
+| **Categoría:** | Messaging System |
+| **Propósito:** | Gestionar el envío de alertas a una cola de mensajes (Message Broker) para desacoplar el procesamiento del sistema de notificaciones. |
+
+**Métodos**
+
+| Nombre | Tipo de retorno | Visibilidad | Descripción |
+| :--- | :--- | :--- | :--- |
+| PublishAlertEvent | Task | public | Publica un evento de alerta en el bus de mensajes para consumo asíncrono |
+
+---
+
+### Clase: AppDbContext
+
+| Nombre: | AppDbContext |
+| :--- | :--- |
+| **Categoría:** | Database Access |
+| **Propósito:** | Clase de contexto de Entity Framework encargada de mapear las entidades del dominio al esquema relacional de la base de datos. |
+
+**Atributos**
+
+| Nombre | Tipo de dato | Visibilidad | Descripción |
+| :--- | :--- | :--- | :--- |
+| Alerts | DbSet<Alert> | private | Colección mapeada a la tabla de alertas en la base de datos. |
+
 ### 4.2.X. Bounded Context: (Bounded Context Name)
 
 #### 4.2.X.1. Domain Layer.
