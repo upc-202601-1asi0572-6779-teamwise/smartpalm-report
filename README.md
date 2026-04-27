@@ -1891,6 +1891,16 @@ Esta capa contiene la implementación técnica necesaria para que el sistema int
 
 ![BC-03 Component Diagram](./assets/img/chapter-4/bc-03-component-diagram.png)
 
+#### 4.2.3.6. Bounded Context Software Architecture Code Level Diagrams.
+
+##### 4.2.3.6.1. Bounded Context Domain Layer Class Diagrams.
+
+![BC-03 Class Diagram](./assets/img/chapter-4/bc-03-class-diagram.png)
+
+##### 4.2.3.6.2. Bounded Context Database Design Diagram.
+
+
+
 ### 4.2.X. Bounded Context: (Bounded Context Name)
 
 #### 4.2.X.1. Domain Layer.
