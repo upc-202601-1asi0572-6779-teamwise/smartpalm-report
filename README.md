@@ -1887,6 +1887,10 @@ Esta capa contiene la implementación técnica necesaria para que el sistema int
 | :--- | :--- | :--- | :--- |
 | Alerts | DbSet<Alert> | private | Colección mapeada a la tabla de alertas en la base de datos. |
 
+#### 4.2.3.5. Bounded Context Software Architecture Component Level Diagrams.
+
+![BC-03 Component Diagram](./assets/img/chapter-4/bc-03-component-diagram.png)
+
 ### 4.2.X. Bounded Context: (Bounded Context Name)
 
 #### 4.2.X.1. Domain Layer.
