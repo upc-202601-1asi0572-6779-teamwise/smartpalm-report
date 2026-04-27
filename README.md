@@ -1901,6 +1901,140 @@ Esta capa contiene la implementación técnica necesaria para que el sistema int
 
 
 
+### 4.2.4. Bounded Context: <Bounded Agronomic Recommendation>
+
+Esta capa contiene las entidades y reglas de negocio necesarias para gestionar la generación, aprobación y publicación de recomendaciones agronómicas.
+
+#### 4.2.4.1. Domain Layer.
+
+#### Clase: Recommendation (Aggregate Root)
+
+| Nombre: | Recommendation |
+| :--- | :--- |
+| **Categoría:** | Entity / Aggregate Root |
+| **Propósito:** | Representar una propuesta de manejo para el cultivo, generada ya sea por IA o de forma manual por un agrónomo. |
+
+**Atributos**
+
+| Nombre | Tipo de dato | Visibilidad | Descripción |
+| :--- | :--- | :--- | :--- |
+| RecommendationId | Guid | private | Identificador único de la recomendación |
+| PlantationId | Guid | private | Identificador de la plantación objetivo |
+| AgronomistId | Guid | private | Identificador del agrónomo responsable |
+| Content | string | private | Detalle de la recomendación técnica |
+| Type | RecommendationType | private | Origen (AI o Manual) |
+| Status | RecommendationStatus | private | Estado del ciclo de vida |
+| CreatedAt | DateTime | private | Fecha de generación |
+
+**Métodos**
+
+| Nombre | Tipo de retorno | Visibilidad | Descripción |
+| :--- | :--- | :--- | :--- |
+| Approve | void | public | Cambia el estado a Aprobado |
+| Publish | void | public | Cambia el estado a Publicado y notifica |
+| UpdateContent | void | public | Permite edición manual del contenido |
+
+---
+
+#### Clase: RecommendationStatus (Value Object)
+
+| Nombre: | RecommendationStatus |
+| :--- | :--- |
+| **Categoría:** | Value Object |
+| **Propósito:** | Definir los estados del flujo de la recomendación (Pending, Approved, Published). |
+
+**Atributos**
+
+| Nombre | Tipo de dato | Visibilidad | Descripción |
+| :--- | :--- | :--- | :--- |
+| Value | string | private | Nombre del estado |
+
+---
+
+#### Clase: RecommendationType (Value Object)
+
+| Nombre: | RecommendationType |
+| :--- | :--- |
+| **Categoría:** | Value Object |
+| **Propósito:** | Diferenciar si la recomendación fue generada por el AI Engine o un Agrónomo. |
+
+**Atributos**
+
+| Nombre | Tipo de dato | Visibilidad | Descripción |
+| :--- | :--- | :--- | :--- |
+| TypeName | string | private | Identificador del tipo (AI o Manual) |
+
+---
+
+#### Clase: AIRecommendationService (Domain Service)
+
+| Nombre: | AIRecommendationService |
+| :--- | :--- |
+| **Categoría:** | Domain Service |
+| **Propósito:** | Lógica de negocio para invocar el motor de IA y generar recomendaciones basadas en datos de sensores. |
+
+**Métodos**
+
+| Nombre | Tipo de retorno | Visibilidad | Descripción |
+| :--- | :--- | :--- | :--- |
+| GenerateAIRecommendation | Recommendation | public | Procesa inputs y genera la recomendación automática |
+
+---
+
+#### Clase: RecommendationFactory (Factory)
+
+| Nombre: | RecommendationFactory |
+| :--- | :--- |
+| **Categoría:** | Factory |
+| **Propósito:** | Encapsular la lógica de instanciación de recomendaciones según su origen. |
+
+**Métodos**
+
+| Nombre | Tipo de retorno | Visibilidad | Descripción |
+| :--- | :--- | :--- | :--- |
+| CreateAI | Recommendation | public | Crea recomendación basada en el motor de IA |
+| CreateManual | Recommendation | public | Crea recomendación basada en entrada del Agrónomo |
+
+---
+
+#### Clase: AgronomicIntervention (Entity)
+
+| Nombre: | AgronomicIntervention |
+| :--- | :--- |
+| **Categoría:** | Entity |
+| **Propósito:** | Registrar la acción tomada por el Palm Grower tras recibir una recomendación. |
+
+**Atributos**
+
+| Nombre | Tipo de dato | Visibilidad | Descripción |
+| :--- | :--- | :--- | :--- |
+| InterventionId | Guid | private | Identificador único |
+| RecommendationId | Guid | private | Referencia a la recomendación base |
+| ExecutionDate | DateTime | private | Fecha real de ejecución |
+
+**Métodos**
+
+| Nombre | Tipo de retorno | Visibilidad | Descripción |
+| :--- | :--- | :--- | :--- |
+| RegisterIntervention | void | public | Guarda el registro de la actividad realizada en campo |
+
+---
+
+#### Clase: IRecommendationRepository (Interface)
+
+| Nombre: | IRecommendationRepository |
+| :--- | :--- |
+| **Categoría:** | Repository (Interface) |
+| **Propósito:** | Definir las operaciones para persistir y consultar las recomendaciones en el sistema. |
+
+**Métodos**
+
+| Nombre | Tipo de retorno | Visibilidad | Descripción |
+| :--- | :--- | :--- | :--- |
+| AddAsync | Task | public | Guarda una recomendación en persistencia |
+| GetByIdAsync | Task<Recommendation> | public | Recupera recomendación por ID |
+| GetPendingByAgronomist | Task<IEnumerable<Recommendation>> | public | Lista las pendientes de aprobación |
+
 ### 4.2.X. Bounded Context: (Bounded Context Name)
 
 #### 4.2.X.1. Domain Layer.
