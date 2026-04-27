@@ -2197,6 +2197,10 @@ Estos componentes reaccionan a los eventos del sistema para disparar procesos se
 | Recommendations | DbSet<Recommendation> | private | Tabla que almacena el historial de recomendaciones |
 | Interventions | DbSet<AgronomicIntervention> | private | Tabla que almacena las intervenciones registradas en campo |
 
+#### 4.2.4.5. Bounded Context Software Architecture Component Level Diagrams.
+
+![BC-04 Component Diagram](./assets/img/chapter-4/bc-04-component-diagram.png)
+
 ### 4.2.X. Bounded Context: (Bounded Context Name)
 
 #### 4.2.X.1. Domain Layer.
