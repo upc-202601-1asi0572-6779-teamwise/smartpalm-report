@@ -2035,6 +2035,39 @@ Esta capa contiene las entidades y reglas de negocio necesarias para gestionar l
 | GetByIdAsync | Task<Recommendation> | public | Recupera recomendación por ID |
 | GetPendingByAgronomist | Task<IEnumerable<Recommendation>> | public | Lista las pendientes de aprobación |
 
+#### 4.2.4.2. Interface Layer.
+
+#### Controller: RecommendationController
+
+| Nombre: | RecommendationController |
+| :--- | :--- |
+| **Categoría:** | Controller |
+| **Propósito:** | Servir como interfaz para que los Agrónomos gestionen el flujo de aprobación y para que los Palm Growers consulten sus recomendaciones. |
+
+**Métodos**
+
+| Nombre | Tipo de retorno | Visibilidad | Descripción |
+| :--- | :--- | :--- | :--- |
+| GetPendingRecommendations | Task<IEnumerable<RecommendationResponse>> | public | Lista todas las recomendaciones pendientes de validación por el agrónomo |
+| ApproveRecommendation | Task<IActionResult> | public | Registra la aprobación de una recomendación específica |
+| UpdateRecommendation | Task<IActionResult> | public | Modifica el contenido de una recomendación (manual o IA) |
+| GetPlantationHistory | Task<IEnumerable<RecommendationResponse>> | public | Obtiene el historial de recomendaciones de una plantación |
+
+---
+
+#### Consumer: AIRecommendationConsumer
+
+| Nombre: | AIRecommendationConsumer |
+| :--- | :--- |
+| **Categoría:** | Consumer |
+| **Propósito:** | Escuchar eventos de entrada provenientes del Motor de IA y disparar el proceso de creación de una nueva recomendación en el sistema. |
+
+**Métodos**
+
+| Nombre | Tipo de retorno | Visibilidad | Descripción |
+| :--- | :--- | :--- | :--- |
+| ProcessAIEvent | Task | public | Consume el evento de "Predicción generada" y llama a la lógica de aplicación para registrar la recomendación |
+
 ### 4.2.X. Bounded Context: (Bounded Context Name)
 
 #### 4.2.X.1. Domain Layer.
