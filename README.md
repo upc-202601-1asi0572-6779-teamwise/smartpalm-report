@@ -1899,7 +1899,7 @@ Esta capa contiene la implementación técnica necesaria para que el sistema int
 
 ##### 4.2.3.6.2. Bounded Context Database Design Diagram.
 
-
+![BC-03 Class Diagram](./assets/img/chapter-4/bc-03-database-diagram.png)
 
 ### 4.2.4. Bounded Context: <Bounded Agronomic Recommendation>
 
