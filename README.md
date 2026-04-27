@@ -1899,7 +1899,7 @@ Esta capa contiene la implementación técnica necesaria para que el sistema int
 
 ##### 4.2.3.6.2. Bounded Context Database Design Diagram.
 
-![BC-03 Class Diagram](./assets/img/chapter-4/bc-03-database-diagram.png)
+![BC-03 Database Diagram](./assets/img/chapter-4/bc-03-database-diagram.png)
 
 ### 4.2.4. Bounded Context: <Bounded Agronomic Recommendation>
 
@@ -2206,6 +2206,10 @@ Estos componentes reaccionan a los eventos del sistema para disparar procesos se
 ##### 4.2.4.6.1. Bounded Context Domain Layer Class Diagrams.
 
 ![BC-04 Class Diagram](./assets/img/chapter-4/bc-04-class-diagram.png)
+
+##### 4.2.4.6.2. Bounded Context Database Design Diagram.
+
+![BC-04 Database Diagram](./assets/img/chapter-4/bc-04-database-diagram.png)
 
 ### 4.2.X. Bounded Context: (Bounded Context Name)
 
