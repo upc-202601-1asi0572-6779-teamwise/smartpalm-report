@@ -2068,6 +2068,72 @@ Esta capa contiene las entidades y reglas de negocio necesarias para gestionar l
 | :--- | :--- | :--- | :--- |
 | ProcessAIEvent | Task | public | Consume el evento de "Predicción generada" y llama a la lógica de aplicación para registrar la recomendación |
 
+#### 4.2.4.3. Application Layer.
+
+#### Command Handlers
+Estos componentes gestionan las solicitudes de los usuarios (Agrónomos o Palm Growers) y ejecutan las acciones en el modelo de dominio.
+
+| Nombre: | ApproveRecommendationCommandHandler |
+| :--- | :--- |
+| **Categoría:** | Command Handler |
+| **Propósito:** | Procesar la aprobación de una recomendación generada por IA o manual. |
+
+**Métodos**
+| Nombre | Tipo de retorno | Visibilidad | Descripción |
+| :--- | :--- | :--- | :--- |
+| Handle | Task | public | Cambia el estado de la recomendación a "Approved" tras la validación técnica |
+
+---
+
+| Nombre: | PublishRecommendationCommandHandler |
+| :--- | :--- |
+| **Categoría:** | Command Handler |
+| **Propósito:** | Ejecutar la publicación de la recomendación para que sea visible al Palm Grower. |
+
+**Métodos**
+| Nombre | Tipo de retorno | Visibilidad | Descripción |
+| :--- | :--- | :--- | :--- |
+| Handle | Task | public | Cambia el estado a "Published" y activa las notificaciones |
+
+---
+
+| Nombre: | RegisterAgronomicInterventionCommandHandler |
+| :--- | :--- |
+| **Categoría:** | Command Handler |
+| **Propósito:** | Registrar la intervención realizada en campo por el Palm Grower. |
+
+**Métodos**
+| Nombre | Tipo de retorno | Visibilidad | Descripción |
+| :--- | :--- | :--- | :--- |
+| Handle | Task | public | Crea un registro de intervención asociado a una recomendación previa |
+
+---
+
+#### Event Handlers
+Estos componentes reaccionan a los eventos del sistema para disparar procesos secundarios de forma asíncrona.
+
+| Nombre: | AlertTriggeredEventHandler |
+| :--- | :--- |
+| **Categoría:** | Event Handler |
+| **Propósito:** | Reaccionar a alertas disparadas para iniciar automáticamente la generación de recomendaciones IA. |
+
+**Métodos**
+| Nombre | Tipo de retorno | Visibilidad | Descripción |
+| :--- | :--- | :--- | :--- |
+| Handle | Task | public | Invoca al servicio de IA para procesar la alerta entrante |
+
+---
+
+| Nombre: | RecommendationPublishedEventHandler |
+| :--- | :--- |
+| **Categoría:** | Event Handler |
+| **Propósito:** | Disparar notificaciones al Palm Grower inmediatamente después de la publicación. |
+
+**Métodos**
+| Nombre | Tipo de retorno | Visibilidad | Descripción |
+| :--- | :--- | :--- | :--- |
+| Handle | Task | public | Envía notificación push al usuario final con la recomendación |
+
 ### 4.2.X. Bounded Context: (Bounded Context Name)
 
 #### 4.2.X.1. Domain Layer.
