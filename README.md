@@ -2134,6 +2134,69 @@ Estos componentes reaccionan a los eventos del sistema para disparar procesos se
 | :--- | :--- | :--- | :--- |
 | Handle | Task | public | Envía notificación push al usuario final con la recomendación |
 
+#### 4.2.4.4. Infrastructure Layer.
+
+#### Clase: RecommendationRepository (Implementación)
+
+| Nombre: | RecommendationRepository |
+| :--- | :--- |
+| **Categoría:** | Repository Implementation |
+| **Propósito:** | Implementar la interfaz `IRecommendationRepository` para gestionar la persistencia de recomendaciones en la base de datos SQL. |
+
+**Métodos**
+
+| Nombre | Tipo de retorno | Visibilidad | Descripción |
+| :--- | :--- | :--- | :--- |
+| AddAsync | Task | public | Persiste la nueva recomendación en la tabla `Recommendations` |
+| GetPendingByAgronomistAsync | Task<IEnumerable<Recommendation>> | public | Consulta recomendaciones con estado 'Pending' usando LINQ/EF |
+| UpdateAsync | Task | public | Actualiza el estado o contenido de una recomendación |
+
+---
+
+#### Clase: AIEngineClient (External Service)
+
+| Nombre: | AIEngineClient |
+| :--- | :--- |
+| **Categoría:** | External Service |
+| **Propósito:** | Actuar como cliente para comunicarse con el "AI Engine" externo y obtener las sugerencias agronómicas basadas en parámetros INIA. |
+
+**Métodos**
+
+| Nombre | Tipo de retorno | Visibilidad | Descripción |
+| :--- | :--- | :--- | :--- |
+| GetSuggestionAsync | Task<string> | public | Realiza llamada HTTP/gRPC al servicio de IA externo para obtener sugerencias |
+
+---
+
+#### Clase: RecommendationMessageBroker (Messaging System)
+
+| Nombre: | RecommendationMessageBroker |
+| :--- | :--- |
+| **Categoría:** | Messaging System |
+| **Propósito:** | Implementar la infraestructura de mensajería para publicar el evento `RecommendationPublished`, permitiendo que otros contextos (como Notificaciones) reaccionen. |
+
+**Métodos**
+
+| Nombre | Tipo de retorno | Visibilidad | Descripción |
+| :--- | :--- | :--- | :--- |
+| PublishRecommendationEventAsync | Task | public | Publica el evento de recomendación publicada en el Message Bus |
+
+---
+
+#### Clase: RecommendationDbContext
+
+| Nombre: | RecommendationDbContext |
+| :--- | :--- |
+| **Categoría:** | Database Access |
+| **Propósito:** | Contexto de persistencia que mapea las entidades del dominio de recomendaciones a tablas de la base de datos. |
+
+**Atributos**
+
+| Nombre | Tipo de dato | Visibilidad | Descripción |
+| :--- | :--- | :--- | :--- |
+| Recommendations | DbSet<Recommendation> | private | Tabla que almacena el historial de recomendaciones |
+| Interventions | DbSet<AgronomicIntervention> | private | Tabla que almacena las intervenciones registradas en campo |
+
 ### 4.2.X. Bounded Context: (Bounded Context Name)
 
 #### 4.2.X.1. Domain Layer.
