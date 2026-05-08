@@ -9,11 +9,11 @@ Para la elaboración del informe, las tareas se dividieron de la siguiente maner
 
 **Evidencias de Colaboración y Commits (GitHub):**
 
-![Analíticas de colaboración TB1](../assets/img/tb1-insights.png "Gráfico de Insights de GitHub")
+![Analíticas de colaboración TB1](../../assets/img/tb1-insights.png "Gráfico de Insights de GitHub")
 
 <br>
 
-![Commits del equipo TB1](../assets/img/tb1-commits.png "Historial de Commits en develop")
+![Commits del equipo TB1](../../assets/img/tb1-commits.png "Historial de Commits en develop")
 
 
 ### TP
