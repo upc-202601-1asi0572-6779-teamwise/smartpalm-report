@@ -1,34 +1,28 @@
-# Capítulo I: Introducción
 
-## 1.1. Startup Profile
+## 2.5. Ubiquitous Language
 
-### 1.1.1. Descripción de la Startup
+El Ubiquitous Language de Smart Palm establece un glosario de términos y conceptos del dominio de negocio utilizados de manera consistente por todos los miembros del equipo y los stakeholders del proyecto. Los términos se presentan en inglés como idioma principal, con el equivalente en español entre paréntesis cuando aplica. Se incluyen únicamente términos del dominio agrícola y de negocio; los términos técnicos de ingeniería de software quedan excluidos de este glosario.
 
-### 1.1.2. Perfiles de integrantes del equipo
-
-| Integrante                               | Información                                                                                                                                                                                              | Foto                                                                  |
-| :--------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :-------------------------------------------------------------------- |
-| **Victor Manuel Rojas Reategui** | `Código:` U202123655  <br> `Carrera:` Ingeniería de Software <br> Soy Victor Rojas y voy en el 7mo ciclo de la carrera de Ingeniería de Software. Me gusta lo rápido que cambia la tecnología en la actualidad, por lo que este curso me ayudará a expandir mis conocimientos y a explorar nuevas aplicaciones de mi carrera que no había experimentado antes. | ![](assets/img/team/victor-rojas.jpg)   |
-| **Renso Anthony Julca Cruz** | `Código:` U202121579 <br> `Carrera:` Ingeniería de Software <br> Soy Renso Anthony Julca Cruz estudiante de Ingenieria de Software, actualmente curso el 7mo ciclo de esta carrera. Me apasiona programar y ser autodidacta para poder mejorar mis habilidades en el desarrollo de software, quisiera dedicarme a la parte de gestion bancaria, o la parte de data analyst.<br><br> Cuento con conocimientos en HTML, CSS y JavaScript en la parte de desarrollo web. Python a nivel básico-intermedio, SQL a nivel intermedio y BI a nivel intermedio. Estas competencias y habilidades me permitiran aportar a este proyecto y poder mejorar en la práctica. | ![](assets/img/team/renso-julca.png) |
-| **Javier Oswaldo Tello Murga** | `Código:` U202116207 <br> `Carrera:` Soy estudiante de Ingeniería de Software en la Universidad Peruana de Ciencias Aplicadas. Me caracterizo por ser una persona responsable, con disposición para aprender continuamente y fortalecer mis conocimientos en temas relacionados con mi formación profesional. Dentro del equipo, aporto compromiso, interés por el trabajo colaborativo y motivación para contribuir activamente en el desarrollo del proyecto. Cuento con conocimientos en WordPress básico, HTML, CSS y JavaScript, Python a nivel básico, fundamentos de base de datos y bases de programación en C++. Estas competencias me permiten apoyar en tareas de documentación, desarrollo web y comprensión de las tecnologías que forman parte de la solución.                                  | ![](assets/img/team/javier-tello.jpg)    |
-| **Jeremy Alión Paucar Meneses** | `Código:` u201919449   <br> `Carrera:` Ingeniería de Software <br> Soy estudiante de Ingeniería de Software, apasionado por la programación y el desarrollo de soluciones tecnológicas. Poseo conocimientos en C++, JavaScript y C#, así como experiencia básica en el uso de frameworks modernos como Vue.js. Me considero una persona curiosa, perseverante y orientada al aprendizaje continuo. En mi tiempo libre disfruto escuchar música, ver fútbol y series, actividades que me ayudan a mantener el equilibrio entre la creatividad y la concentración.                                                    | ![](assets/img/team/jeremy-paucar.jpeg)    |
-| **Renzo Javier Loli Ruiz** | `Código:` U20161C993 <br> `Carrera:` Ingeniería de Software <br> Soy Renzo Loli, tengo 26 años y soy de la carrera de Ingeniería de Software. Curso el 8vo ciclo. Tengo conocimientos en lenguages como javascript y python y base en arquitecturas cloud como aws. Me desemboco mejor en el ambito de identificar y resolver problemas.                     | ![](assets/img/team/renzo-loli.jpeg)    |
-| **Sebastian Carbajal Santivañez**| `Código:` u202111461  <br> `Carrera:` Ingeniería de Software <br> Soy estudiante de Ingeniería de Software en la Universidad Peruana de Ciencias Aplicadas, actualmente cursando el 8vo ciclo de la carrera. Me apasiona el análisis de datos y el desarrollo de Databases, asimismo, el diseñar diferentes tipos de Interfaces para el usuario y brindar UX’s eficiente, asimismo me considero una persona analitica y creativa en el ambito innovativo. Cuento con conocimientos en Lenguajes como Python, React, Node.js MySQL, SQL Management, Swift, C# y C++, también poseo habilidades con la plataforma MongoDB Atlas , Microsoft Azure Studio y Adobe Creative Cloud Suite,Estas competencias me permitiran aportar a este proyecto y poder pulir lo ya adquirido.                                                 | ![](assets/img/team/sebastian-carbajal.jpeg) |
-
-## 1.2. Solution Profile
-
-### 1.2.1. Antecedentes y problemática
-
-### 1.2.2. Lean UX Process
-
-#### 1.2.2.1. Lean UX Problem Statements
-
-#### 1.2.2.2. Lean UX Assumptions
-
-#### 1.2.2.3. Lean UX Hypothesis Statements
-
-#### 1.2.2.4. Lean UX Canvas
-
-![Lean UX Canvas](../assets/img/leanUx/lean-ux-canvas.png "Lean UX Canvas de TempWise")
-
-## 1.3. Segmentos objetivo
+| Término (inglés) | Equivalente (español) | Definición en el contexto de Smart Palm |
+|------------------|-----------------------|------------------------------------------|
+| **Palm Grower** | Dueño del cultivo / Palmicultor | Persona natural o familia propietaria de una o más plantaciones de palma aceitera en la Amazonia peruana. Usuario primario de la aplicación móvil de Smart Palm. |
+| **Agronomist** | Ingeniero agrónomo | Profesional con titulación en agronomía que supervisa el estado técnico de las plantaciones y emite recomendaciones agronómicas. Usuario primario de la plataforma web de Smart Palm. |
+| **Palm Plantation** | Plantación de palma aceitera | Unidad productiva compuesta por un conjunto de palmeras ubicadas en una parcela delimitada, gestionada por un Palm Grower. |
+| **Palm Tree** | Palmera | Individuo vegetal de la especie *Elaeis guineensis* cultivado en la plantación. Unidad mínima de monitoreo dentro de una Palm Plantation. |
+| **Fresh Fruit Bunch (FFB)** | Racimo de Fruta Fresca (RFF) | Racimo de frutos maduros cosechado de la palmera. Unidad de medida de la producción y base del cálculo del rendimiento por hectárea. |
+| **Crude Palm Oil (CPO)** | Aceite Crudo de Palma (ACP) | Producto derivado del procesamiento de los FFB en planta extractora. Producto final comercializable de la cadena productiva. |
+| **Crop Yield** | Rendimiento del cultivo | Cantidad de FFB producida por hectárea en un período dado, expresada en toneladas métricas por hectárea por año (t/ha/año). Indicador central de productividad en Smart Palm. |
+| **Agronomic Threshold** | Umbral agronómico | Valor límite de un parámetro sensorial por encima o por debajo del cual el sistema genera una alerta. Definido con base en los parámetros del INIA para la región Ucayali. |
+| **Sensor Reading** | Lectura sensorial | Valor numérico registrado por un sensor del dispositivo IoT en un momento determinado. Dato bruto antes de ser procesado por la plataforma. |
+| **Alert** | Alerta | Notificación generada automáticamente cuando una Sensor Reading supera un Agronomic Threshold. Puede ser de tipo informativa, de advertencia o crítica. |
+| **Agronomic Intervention** | Intervención agronómica | Acción técnica realizada sobre la plantación: aplicación de fertilizante, tratamiento fitosanitario, poda, cosecha. Debe registrarse en la plataforma para mantener la trazabilidad del cultivo. |
+| **Agronomic Recommendation** | Recomendación agronómica | Instrucción técnica generada por el motor de IA de Smart Palm o redactada por el Agronomist, dirigida al Palm Grower con indicaciones concretas de acción sobre su cultivo. |
+| **Field Inspection** | Inspección de campo | Visita presencial del Agronomist a la plantación para evaluar su estado mediante observación directa. Actividad que Smart Palm busca hacer más eficiente y menos frecuente. |
+| **Crop Health Status** | Estado de salud del cultivo | Condición general de la plantación derivada de la combinación de los parámetros sensoriales actuales, expresada de manera comprensible para el Palm Grower: óptimo, en riesgo o crítico. |
+| **Subscription Plan** | Plan de suscripción | Nivel de servicio contratado por el usuario en el modelo SaaS de Smart Palm, diferenciado por el área máxima gestionable (hectáreas) y el conjunto de funcionalidades disponibles. |
+| **Monitoring Zone** | Zona de monitoreo | Subárea delimitada dentro de una Palm Plantation a la que se asigna uno o más dispositivos IoT para su supervisión diferenciada. |
+| **Edge Node** | Nodo de borde | Componente del dispositivo IoT que procesa datos localmente en campo sin conexión activa a la nube, garantizando la operación del sistema en zonas sin conectividad. |
+| **Bud Rot** | Pudrición del Cogollo (PC) | Enfermedad de etiología no completamente determinada que afecta el tejido apical de la palmera y puede causar su muerte si no se detecta en etapas tempranas. Considerada la enfermedad más limitante del cultivo en América Latina. |
+| **Sudden Wilt** | Marchitez Sorpresiva | Enfermedad letal asociada a una fitoplasma transmitida por el chinche del género *Lyncus sp.*, de creciente incidencia en el corredor Aguaytía de Ucayali. |
+| **Defoliator** | Insecto defoliador | Plaga que consume el tejido foliar de la palmera, reduciendo su área fotosintética activa. En Ucayali destacan *Alurnus humeralis* y *Opsiphanes cassina*, entre otros. |
+| **Technical Report** | Reporte técnico | Documento estructurado generado por el Agronomist a partir de los datos del cultivo en Smart Palm, utilizado para comunicar el estado de la plantación al Palm Grower o a entidades externas como cooperativas, financiadoras u organismos de certificación. |
