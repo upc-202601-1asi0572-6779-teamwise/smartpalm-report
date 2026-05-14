@@ -94,3 +94,19 @@ Asimismo, se implementaron filtros rápidos y búsqueda contextual dentro de das
 El sistema priorizó velocidad y simplicidad de uso, considerando entornos con conectividad limitada.
 
 ---
+
+# 5.2.5. Navigation Systems
+
+El sistema de navegación de SmartPalm fue construido utilizando una navegación jerárquica persistente complementada con accesos rápidos contextuales.
+
+En la plataforma web se utilizó un menú lateral fijo que permitió acceder rápidamente a los módulos principales del sistema. En la aplicación móvil se implementó una navegación inferior simplificada orientada a tareas frecuentes.
+
+La navegación se estructuró bajo los siguientes principios:
+
+- Acceso rápido a información crítica.
+- Reducción de pasos innecesarios.
+- Consistencia visual entre plataformas.
+- Navegación intuitiva y predecible.
+- Priorización de alertas activas.
+
+Además, se incorporaron breadcrumbs y estados visuales activos para mejorar la orientación del usuario dentro de la plataforma.
