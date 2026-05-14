@@ -4227,11 +4227,11 @@ A diferencia de las capas de dominio y aplicación, esta capa no define reglas d
 
 ##### 4.2.7.6.1. Bounded Context Domain Layer Class Diagrams
 
-![BC-07 Domain Layer Class Diagram](./assets/img/chapter-4/bc-07-domain-layer-class-diagram.png)
+![BC-07 Domain Layer Class Diagram](./assets/img/chapter-4/bc-07-domain-layer-class-diagram.jpeg)
 
 ##### 4.2.7.6.2. Bounded Context Database Design Diagram
 
-![BC-07 Database Diagram](./assets/img/chapter-4/bc-07-database-diagram.jpeg)
+![BC-07 Database Diagram](./assets/img/chapter-4/bc-07-database-diagram.png)
 
 
 
