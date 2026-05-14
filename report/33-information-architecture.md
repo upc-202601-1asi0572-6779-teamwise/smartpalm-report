@@ -8,3 +8,22 @@ Asimismo, se diseñó una arquitectura escalable que permite incorporar nuevas f
 
 ---
 
+# 5.2.1. Organization Systems
+
+El sistema de organización de SmartPalm fue diseñado utilizando una estructura jerárquica combinada con agrupamiento funcional de contenidos. Esto permitió categorizar la información según tareas específicas y frecuencia de uso.
+
+La plataforma organizó sus módulos principales en las siguientes categorías:
+
+- Dashboard principal.
+- Monitoreo de sensores.
+- Alertas y notificaciones.
+- Gestión de plantaciones.
+- Recomendaciones agronómicas.
+- Reportes técnicos.
+- Configuración de dispositivos.
+
+La organización priorizó que las funciones críticas relacionadas con monitoreo y alertas se encontraran disponibles desde la pantalla principal, reduciendo el tiempo de acceso ante situaciones de riesgo agrícola.
+
+Adicionalmente, se implementó una estructura modular que facilita el crecimiento futuro de la plataforma sin afectar la organización existente.
+
+---
