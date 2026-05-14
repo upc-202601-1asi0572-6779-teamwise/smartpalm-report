@@ -1,34 +1,144 @@
-# Capítulo I: Introducción
+<h2>2.1 Competidores</h2>
 
-## 1.1. Startup Profile
+<h3>2.1.1. Análisis competitivo</h3>
 
-### 1.1.1. Descripción de la Startup
+El objetivo de este análisis es identificar y evaluar las principales soluciones existentes en el mercado que compiten —de manera directa o indirecta— con Smart Palm, a fin de comprender el panorama competitivo, detectar las brechas que TempWise puede aprovechar y fundamentar las decisiones de posicionamiento de la startup. La pregunta central que guía este análisis es: ¿qué ofrecen las soluciones actuales de monitoreo agrícola y gestión de cultivos, y qué aspectos críticos del pequeño y mediano palmicultor amazónico peruano ninguna de ellas resuelve de manera contextualizada?
 
-### 1.1.2. Perfiles de integrantes del equipo
+<table>
+    <tr>
+        <th colspan="6">
+            Competitive Analysis Landscape
+        </th>
+    </tr>
+    <tr>
+        <td>¿Por qué llevar a cabo este análisis?</td>
+        <td colspan="5">
+             El objetivo de este análisis es investigar a detalle las características principales y las propuestas de valor que ofrecen otras empresas que tienen el objetivo de brindar una solución a nuestra misma problemática. Así, podremos encontrar una forma viable y consistente con la que podremos diferenciarnos de ellos.
+            <colgroup >
+                <col span = "1">
+            </colgroup>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">Nombre de la StartUp</td>
+        <td>
+            <span>TempWise — Smart Palm</span>
+            <img src="../assets/img/logo1.png" alt="Logo TempWise">
+        </td>
+        <td>
+            Trimble Agriculture
+            <img src="../assets/img/trimble_logo.png" alt="Logo Trimble Agriculture">
+        </td>
+        <td>
+            CropX
+            <img src="../assets/img/CropX_logo.jpg" alt="Logo CropX">
+        </td>
+        <td>
+            Farmonaut
+            <img src="../assets/img/Farmonaout.jpg" alt="Logo Farmonaut">
+        </td>
+    </tr>
+    <div class="Profile">
+        <tr>
+            <td rowspan="2" STYLE="transform: rotate(-90deg)" aling="center">Perfil</td>
+            <td>Overview</td>
+            <td>Startup peruana de AgTech fundada en 2026. Plataforma SaaS de monitoreo IoT especializada en palma aceitera para la Amazonia peruana. Integra dispositivo IoT de campo, aplicación móvil para el productor y plataforma web para el ingeniero agrónomo, con motor de IA calibrado para condiciones amazónicas locales.</td>
+            <td>Empresa estadounidense líder global en tecnología de agricultura de precisión. Ofrece soluciones de guidance, mapeo, control de aplicación de insumos y gestión de datos para grandes operaciones mecanizadas.</td>
+            <td>Startup de origen israelí con operaciones globales. Ofrece sensores de suelo inalámbricos y una plataforma cloud de análisis agronómico con base en datos de humedad del suelo, temperatura y análisis satelital.</td>
+            <td>Startup de origen indio con presencia en más de 100 países. Ofrece monitoreo satelital de cultivos, análisis NDVI y gestión agronómica vía suscripción por hectáreas, sin hardware IoT en campo.</td>
+        </tr>
+        <tr>
+            <td>Ventaja Competitiva<br>¿Qué valor ofrece a los clientes?</td>
+            <td>Especialización exclusiva en palma aceitera amazónica con parámetros calibrados para condiciones edafoclimáticas locales, cobertura offline vía edge computing y LoRaWAN, y modelo de precios accesible para el pequeño productor.</td>
+            <td>Portafolio tecnológico robusto con respaldo de marca global. Integración con maquinaria agrícola de alta gama.</td>
+            <td>Sensores de suelo de alta precisión con IA para recomendaciones de riego. Instalación simple y resultados probados en múltiples cultivos.</td>
+            <td>Bajo costo de entrada al no requerir hardware. Acceso desde dispositivo móvil con cobertura satelital global.</td>
+        </tr>
+    </div>
+    <div class="MarketingProfile">
+        <tr>
+            <td rowspan="2" STYLE="transform: rotate(-90deg)" aling="center">Perfil de Marketing</td>
+            <td>Mercado objetivo</td>
+            <td>Pequeños y medianos palmicultores amazónicos (5–100 ha) e ingenieros agrónomos con operaciones en Ucayali, San Martín y Loreto, Perú.</td>
+            <td>Grandes operaciones agrícolas mecanizadas en América del Norte, Europa y Oceanía.</td>
+            <td>Medianos y grandes productores de cultivos de alto valor (viticultura, horticultura, fruticultura) en mercados con infraestructura tecnológica desarrollada.</td>
+            <td>Agricultores de pequeña y mediana escala en mercados emergentes de Asia, África y América Latina sin acceso a hardware costoso.</td>
+        </tr>
+        <tr>
+            <td>Estrategias de marketing</td>
+            <td>Alianzas con cooperativas palmicultoras (COCEPU, ASPASH), instituciones como el INIA y MIDAGRI, y programas del PNUD. Marketing directo en ferias agrícolas regionales y canales digitales orientados al agrónomo.</td>
+            <td>Marketing B2B en ferias agrícolas internacionales. Red global de distribuidores y revendedores.</td>
+            <td>Marketing digital y alianzas con distribuidores de insumos agrícolas. Modelo freemium con conversión a suscripción.</td>
+            <td>Marketing digital SEO/SEM intensivo. Modelo freemium con tier gratuito. Comunidad activa en redes sociales.</td>
+        </tr>
+    </div>
+    <div class="ProductProfile">
+        <tr>
+            <td rowspan="3" STYLE="transform: rotate(-90deg)" aling="center">Perfil del Producto</td>
+            <td>Productos & Servicios</td>
+            <td>Dispositivo IoT de campo (sensores de humedad, temperatura, pH, conductividad, módulo de imagen), aplicación móvil para el dueño del cultivo, plataforma web para el ingeniero agrónomo, motor de IA con recomendaciones específicas para palma aceitera amazónica.</td>
+            <td>Sistemas de guiado GPS, controladores de aplicación variable de insumos, plataformas de gestión de datos agrícolas, sensores y drones.</td>
+            <td>Sensores inalámbricos de suelo, plataforma cloud de análisis de humedad, recomendaciones de riego basadas en IA, integración con sistemas de riego automatizado.</td>
+            <td>Aplicación web y móvil de monitoreo satelital, análisis NDVI, predicción de rendimiento, gestión de actividades agrícolas, sin hardware físico.</td>
+        </tr>
+        <tr>
+            <td>Precios & Costos</td>
+            <td>Modelo SaaS por suscripción escalonada: Plan Semilla (hasta 10 ha), Plan Cosecha (10–50 ha), Plan Palma Pro (50+ ha). Sin tier gratuito. Período de prueba de 30 días. Hardware incluido o en arrendamiento según plan.</td>
+            <td>Alto costo de adquisición de hardware. Licencias anuales desde varios miles de dólares. Orientado a operaciones con alto capital.</td>
+            <td>Costo del kit de sensores más suscripción mensual. Desde aproximadamente USD 500 por kit de instalación.</td>
+            <td>Modelo freemium con tier gratuito. Suscripciones de pago por hectáreas desde aproximadamente USD 30/mes para 100 ha.</td>
+        </tr>
+        <tr>
+            <td>Canales de distribución (Web y/o Móvil)</td>
+            <td>App Store / Google Play, plataforma web, venta directa a cooperativas y productores en la región amazónica peruana.</td>
+            <td>Distribuidores autorizados globales, tiendas especializadas en agricultura de precisión, integración con fabricantes de maquinaria.</td>
+            <td>Distribuidores de insumos agrícolas, alianzas con fabricantes de sistemas de riego, venta directa online.</td>
+            <td>Acceso web y app móvil. Sin distribuidores físicos. API disponible para integradores.</td>
+        </tr>
+    </div>
+    <div class="SwotAnalysis">
+        <tr>
+            <td rowspan="4" STYLE="transform: rotate(-90deg)" aling="center">Análisis SWOT</td>
+            <td>Fortalezas</td>
+            <td>Especialización contextualizada en palma aceitera amazónica. Operación offline con edge computing. Integración del dueño y el agrónomo en un mismo sistema. Modelo de precios escalable.</td>
+            <td>Marca global de alta confianza. Portafolio completo e integrado. Soporte técnico internacional.</td>
+            <td>Sensores de alta precisión validados. IA eficiente para riego. Facilidad de instalación.</td>
+            <td>Sin hardware, costo de entrada muy bajo. Cobertura satelital global. Interfaz simple y accesible.</td>
+        </tr>
+        <tr>
+            <td>Debilidades</td>
+            <td>Startup en etapa inicial, sin base instalada de usuarios ni historial de credibilidad en el mercado. Dependencia del desarrollo del prototipo IoT.</td>
+            <td>Costo inaccesible para pequeños productores. No diseñado para conectividad limitada de la Amazonia. Complejidad de uso.</td>
+            <td>Sin especialización en palma aceitera. Dependencia de conectividad para transmisión de datos. Precio elevado para mercados emergentes.</td>
+            <td>Sin sensores IoT en campo: datos solo satelitales, limitando la precisión a nivel de planta. No opera offline.</td>
+        </tr>
+        <tr>
+            <td>Oportunidades</td>
+            <td>Política pública favorable (MIDAGRI 2026). Crecimiento del sector palmicultor amazónico. Alianzas con INIA, PNUD y cooperativas regionales.</td>
+            <td>Expansión hacia operaciones agroindustriales de gran escala en mercados emergentes.</td>
+            <td>Ingreso a mercados de América Latina con foco en cultivos de alto valor.</td>
+            <td>Alianzas con programas de desarrollo agrícola en mercados emergentes de América Latina.</td>
+        </tr>
+        <tr>
+            <td>Amenazas</td>
+            <td>Posible entrada de competidores genéricos con mayor capital. Resistencia al cambio tecnológico del productor tradicional. Riesgo de conectividad en zonas remotas.</td>
+            <td>Soluciones emergentes de bajo costo que desplazan su propuesta en mercados en desarrollo.</td>
+            <td>Nuevos entrantes con sensores más económicos y plataformas más simples.</td>
+            <td>Plataformas que integren datos satelitales e IoT en campo a bajo costo, cubriendo su principal debilidad.</td>
+        </tr>
+    </div>
+</table>
 
-| Integrante                               | Información                                                                                                                                                                                              | Foto                                                                  |
-| :--------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :-------------------------------------------------------------------- |
-| **Victor Manuel Rojas Reategui** | `Código:` U202123655  <br> `Carrera:` Ingeniería de Software <br> Soy Victor Rojas y voy en el 7mo ciclo de la carrera de Ingeniería de Software. Me gusta lo rápido que cambia la tecnología en la actualidad, por lo que este curso me ayudará a expandir mis conocimientos y a explorar nuevas aplicaciones de mi carrera que no había experimentado antes. | ![](assets/img/team/victor-rojas.jpg)   |
-| **Renso Anthony Julca Cruz** | `Código:` U202121579 <br> `Carrera:` Ingeniería de Software <br> Soy Renso Anthony Julca Cruz estudiante de Ingenieria de Software, actualmente curso el 7mo ciclo de esta carrera. Me apasiona programar y ser autodidacta para poder mejorar mis habilidades en el desarrollo de software, quisiera dedicarme a la parte de gestion bancaria, o la parte de data analyst.<br><br> Cuento con conocimientos en HTML, CSS y JavaScript en la parte de desarrollo web. Python a nivel básico-intermedio, SQL a nivel intermedio y BI a nivel intermedio. Estas competencias y habilidades me permitiran aportar a este proyecto y poder mejorar en la práctica. | ![](assets/img/team/renso-julca.png) |
-| **Javier Oswaldo Tello Murga** | `Código:` U202116207 <br> `Carrera:` Soy estudiante de Ingeniería de Software en la Universidad Peruana de Ciencias Aplicadas. Me caracterizo por ser una persona responsable, con disposición para aprender continuamente y fortalecer mis conocimientos en temas relacionados con mi formación profesional. Dentro del equipo, aporto compromiso, interés por el trabajo colaborativo y motivación para contribuir activamente en el desarrollo del proyecto. Cuento con conocimientos en WordPress básico, HTML, CSS y JavaScript, Python a nivel básico, fundamentos de base de datos y bases de programación en C++. Estas competencias me permiten apoyar en tareas de documentación, desarrollo web y comprensión de las tecnologías que forman parte de la solución.                                  | ![](assets/img/team/javier-tello.jpg)    |
-| **Jeremy Alión Paucar Meneses** | `Código:` u201919449   <br> `Carrera:` Ingeniería de Software <br> Soy estudiante de Ingeniería de Software, apasionado por la programación y el desarrollo de soluciones tecnológicas. Poseo conocimientos en C++, JavaScript y C#, así como experiencia básica en el uso de frameworks modernos como Vue.js. Me considero una persona curiosa, perseverante y orientada al aprendizaje continuo. En mi tiempo libre disfruto escuchar música, ver fútbol y series, actividades que me ayudan a mantener el equilibrio entre la creatividad y la concentración.                                                    | ![](assets/img/team/jeremy-paucar.jpeg)    |
-| **Renzo Javier Loli Ruiz** | `Código:` U20161C993 <br> `Carrera:` Ingeniería de Software <br> Soy Renzo Loli, tengo 26 años y soy de la carrera de Ingeniería de Software. Curso el 8vo ciclo. Tengo conocimientos en lenguages como javascript y python y base en arquitecturas cloud como aws. Me desemboco mejor en el ambito de identificar y resolver problemas.                     | ![](assets/img/team/renzo-loli.jpeg)    |
-| **Sebastian Carbajal Santivañez**| `Código:` u202111461  <br> `Carrera:` Ingeniería de Software <br> Soy estudiante de Ingeniería de Software en la Universidad Peruana de Ciencias Aplicadas, actualmente cursando el 8vo ciclo de la carrera. Me apasiona el análisis de datos y el desarrollo de Databases, asimismo, el diseñar diferentes tipos de Interfaces para el usuario y brindar UX’s eficiente, asimismo me considero una persona analitica y creativa en el ambito innovativo. Cuento con conocimientos en Lenguajes como Python, React, Node.js MySQL, SQL Management, Swift, C# y C++, también poseo habilidades con la plataforma MongoDB Atlas , Microsoft Azure Studio y Adobe Creative Cloud Suite,Estas competencias me permitiran aportar a este proyecto y poder pulir lo ya adquirido.                                                 | ![](assets/img/team/sebastian-carbajal.jpeg) |
+<h3>2.1.2. Estrategias y tácticas frente a competidores</h3>
 
-## 1.2. Solution Profile
+El análisis competitivo evidencia que TempWise no compite frontalmente con actores globales de gran escala como Trimble, orientados a grandes operaciones mecanizadas con alto poder adquisitivo y sin propuestas adaptadas al pequeño palmicultor amazónico peruano. La competencia más relevante se concentra en soluciones de mediano alcance como CropX y Farmonaut, que presentan una debilidad estructural frente a Smart Palm: la ausencia de especialización en palma aceitera y la falta de adaptación a las condiciones de conectividad limitada de la Amazonia.
 
-### 1.2.1. Antecedentes y problemática
+En este contexto, TempWise adoptará las siguientes estrategias y tácticas competitivas.
 
-### 1.2.2. Lean UX Process
+**Estrategia de nicho especializado.** La táctica central consiste en profundizar la especialización técnica en palma aceitera amazónica como barrera de entrada difícilmente replicable por competidores genéricos. Esto implica calibrar los modelos de IA con datos agronómicos validados por el INIA para la región Ucayali e incluir en la plataforma los parámetros de referencia del Manual de Cultivo de Palma Aceitera (INIA, 2018), generando una credibilidad técnica que ninguna solución genérica puede ofrecer sin inversión local equivalente.
 
-#### 1.2.2.1. Lean UX Problem Statements
+**Estrategia de alianzas institucionales.** Frente a la falta de reconocimiento de marca en etapa inicial, TempWise buscará legitimidad a través de alianzas con instituciones establecidas en la región: INIA, JUNPALMA, COCEPU y el Gobierno Regional de Ucayali. La táctica operativa es participar activamente en programas de transferencia tecnológica en curso —como el Proyecto PPS del PNUD— posicionando Smart Palm como una herramienta complementaria a las iniciativas institucionales existentes.
 
-#### 1.2.2.2. Lean UX Assumptions
+**Estrategia de resiliencia tecnológica.** Frente a soluciones que dependen de conectividad constante, TempWise se diferenciará mediante la arquitectura edge computing del dispositivo IoT, que garantiza operación autónoma en zonas sin internet. La táctica es demostrar esta capacidad durante las pruebas de campo del prototipo en Ucayali, generando evidencia documentada de confiabilidad en condiciones reales que se convertirá en el principal argumento de diferenciación frente a CropX y Farmonaut.
 
-#### 1.2.2.3. Lean UX Hypothesis Statements
-
-#### 1.2.2.4. Lean UX Canvas
-
-![Lean UX Canvas](../assets/img/leanUx/lean-ux-canvas.png "Lean UX Canvas de TempWise")
-
-## 1.3. Segmentos objetivo
+**Estrategia de precio por valor económico demostrable.** Para contrarrestar la percepción del costo como barrera, TempWise comunicará el valor de la suscripción en términos del retorno de inversión concreto para el productor, utilizando la brecha documentada en el Plan de Competitividad de Ucayali: la diferencia entre USD 50/ha/año (productor sin tecnificación) y USD 1 750/ha/año (productor tecnificado) hace que el costo de cualquiera de los planes sea directamente justificable en términos económicos.
