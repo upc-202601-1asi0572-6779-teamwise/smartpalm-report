@@ -1,2 +1,4 @@
 # Configuración de compilación de reportes
 build.yaml
+inline-images.lua
+./filters/inline-images.lua

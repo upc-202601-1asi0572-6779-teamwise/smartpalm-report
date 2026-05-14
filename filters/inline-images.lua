@@ -13,6 +13,34 @@
 -- Solución: \adjustbox{valign=t} alinea el TOPE de la imagen con el tope
 -- de la línea de texto, haciendo que imagen y texto comiencen al mismo nivel.
 
+-- Problema D (resuelto aquí): imágenes referenciadas en bloques {=latex} crudos
+-- no entran al mediabag de pandoc, por lo que lualatex no las encuentra en el
+-- directorio temporal. Esta función las inserta manualmente al mediabag.
+local mime_types = {
+  png  = "image/png",
+  jpg  = "image/jpeg",
+  jpeg = "image/jpeg",
+  gif  = "image/gif",
+  svg  = "image/svg+xml",
+}
+
+function RawBlock(el)
+  if FORMAT ~= "latex" then return el end
+  for path in el.text:gmatch("\\includegraphics[^{]*{([^}]+)}") do
+    local ext = path:match("%.(%w+)$")
+    if ext then
+      local mime = mime_types[ext:lower()] or "image/jpeg"
+      local f = io.open(path, "rb")
+      if f then
+        local content = f:read("*all")
+        f:close()
+        pandoc.mediabag.insert(path, mime, content)
+      end
+    end
+  end
+  return el
+end
+
 local function make_includegraphics(src, width)
   width = width or "3cm"
 
