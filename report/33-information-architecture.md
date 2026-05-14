@@ -76,3 +76,21 @@ Ejemplo de meta tags implementadas:
 Estas configuraciones permitieron mejorar la indexación del sitio y optimizar su visualización en redes sociales y motores de búsqueda.
 
 ---
+
+# 5.2.4. Searching Systems
+
+El sistema de búsqueda fue diseñado para facilitar la localización rápida de plantaciones, sensores, reportes y alertas dentro de la plataforma.
+
+La búsqueda incorporó:
+
+- Búsqueda por nombre de plantación.
+- Filtrado por estado de sensores.
+- Filtrado por rango de fechas.
+- Búsqueda de alertas históricas.
+- Filtrado por ubicación geográfica.
+
+Asimismo, se implementaron filtros rápidos y búsqueda contextual dentro de dashboards técnicos para reducir el tiempo de acceso a información relevante.
+
+El sistema priorizó velocidad y simplicidad de uso, considerando entornos con conectividad limitada.
+
+---
