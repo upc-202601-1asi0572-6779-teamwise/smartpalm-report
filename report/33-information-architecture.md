@@ -27,3 +27,24 @@ La organización priorizó que las funciones críticas relacionadas con monitore
 Adicionalmente, se implementó una estructura modular que facilita el crecimiento futuro de la plataforma sin afectar la organización existente.
 
 ---
+
+# 5.2.2. Labeling Systems
+
+El sistema de etiquetado fue diseñado utilizando terminología simple, directa y contextualizada al sector agrícola amazónico. Se evitó el uso excesivo de tecnicismos para facilitar la comprensión de los productores agrícolas con menor experiencia digital.
+
+Los nombres de módulos, botones y alertas fueron definidos utilizando lenguaje descriptivo y orientado a la acción.
+
+Ejemplos de etiquetas implementadas:
+
+| Función | Etiqueta |
+|---|---|
+| Dashboard | Estado del Cultivo |
+| Alertas | Alertas Activas |
+| Sensores | Sensores en Campo |
+| Reportes | Reportes Técnicos |
+| Recomendaciones | Recomendaciones IA |
+| Historial | Historial de Parámetros |
+
+Asimismo, las alertas utilizaron códigos visuales y colores para mejorar la interpretación inmediata del estado del cultivo.
+
+---
