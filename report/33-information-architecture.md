@@ -48,3 +48,31 @@ Ejemplos de etiquetas implementadas:
 Asimismo, las alertas utilizaron códigos visuales y colores para mejorar la interpretación inmediata del estado del cultivo.
 
 ---
+
+# 5.2.3. SEO Tags and Meta Tags
+
+Se incorporó estrategias de optimización SEO y metaetiquetas con el objetivo de mejorar la visibilidad del producto en motores de búsqueda y facilitar su posicionamiento digital dentro del sector AgTech.
+
+Se implementaron meta tags relacionadas con:
+
+- Agricultura inteligente.
+- IoT agrícola.
+- Palma aceitera.
+- Monitoreo agrícola.
+- Agricultura de precisión.
+- Smart farming.
+
+Asimismo, cada página incluyó títulos optimizados, descripciones resumidas y palabras clave relacionadas con el contexto agrícola amazónico peruano.
+
+Ejemplo de meta tags implementadas:
+
+```html
+<meta name="description" content="SmartPalm plataforma IoT para monitoreo inteligente de cultivos de palma aceitera">
+<meta name="keywords" content="AgTech, IoT agrícola, palma aceitera, smart farming">
+<meta property="og:title" content="SmartPalm">
+<meta property="og:description" content="Monitoreo inteligente para cultivos amazónicos">
+```
+
+Estas configuraciones permitieron mejorar la indexación del sitio y optimizar su visualización en redes sociales y motores de búsqueda.
+
+---
