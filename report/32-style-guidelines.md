@@ -12,7 +12,7 @@ La interfaz mantiene coherencia en todos los componentes mediante un sistema uni
 
 Las directrices generales de estilo definieron los elementos visuales base utilizados en toda la solución SmartPalm. Estas directrices permitieron mantener uniformidad gráfica y facilitar la identificación de la marca dentro de los distintos entornos digitales del sistema.
 
-![Style Branding]("../assets/img/style-guidelines/style-branding.jpeg")
+![Style Branding](../assets/img/style-guidelines/style-branding.jpeg)
 
 ## Paleta de colores
 
@@ -28,7 +28,7 @@ Se utilizó una paleta basada principalmente en tonalidades verdes, turquesas y 
 | Rojo | `#EF4444` | Alertas críticas |
 
 
-![Style Colors]("../assets/img/style-guidelines/style-colors.png")
+![Style Colors](../assets/img/style-guidelines/style-colors.png)
 
 ## Tipografía
 
@@ -42,7 +42,7 @@ Se empleó una tipografía sans-serif moderna orientada a interfaces digitales, 
 | Información secundaria | 14px |
 
 
-![Style Typography]("../assets/img/style-guidelines/style-typography.png")
+![Style Typography](../assets/img/style-guidelines/style-typography.png)
 
 ## Componentes visuales
 
@@ -50,26 +50,26 @@ Se definieron componentes reutilizables para tarjetas, dashboards, alertas, grá
 
 
 ### Botones
-![Style Buttons]("../assets/img/style-guidelines/style-buttons.png")
+![Style Buttons](../assets/img/style-guidelines/style-buttons.png)
 
 ### Metricas
-![Style Metrics]("../assets/img/style-guidelines/style-metrics.png")
+![Style Metrics](../assets/img/style-guidelines/style-metrics.png)
 
 ### Alertas
-![Style Alerts]("../assets/img/style-guidelines/style-alerts.png")
+![Style Alerts](../assets/img/style-guidelines/style-alerts.png)
 
 ## Iconografía
 
 la iconografía utilizada estuvo orientada al monitoreo agrícola y dispositivos iot, incorporando símbolos relacionados con sensores, clima, temperatura, humedad, alertas y cultivos.
 
-![Style Icons]("../assets/img/style-guidelines/style-icons.png")
+![Style Icons](../assets/img/style-guidelines/style-icons.png)
 
 
 ## espaciados
 
 Los espaciados se utilizaron para separar elementos de forma clara y uniforme, proporcionando una coherencia visual en la interfaz. Estos espaciados incluían espaciados entre elementos, espaciados en relación con el texto, espaciados en relación con los bordes y espaciados en relación con los bordes de los elementos.
 
-![Style Spacing]("../assets/img/style-guidelines/style-spacing.png")
+![Style Spacing](../assets/img/style-guidelines/style-spacing.png)
 
 ---
 
