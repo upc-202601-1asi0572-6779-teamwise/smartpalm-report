@@ -674,5 +674,4 @@ La tabla **inspection_alert_links** funciona como tabla intermedia para vincular
 
 Finalmente, la tabla **agronomic_interventions** almacena las intervenciones agronómicas ejecutadas como respuesta a una inspección o a una recomendación previa. Esta tabla soporta la trazabilidad del proceso completo, enlazando de forma lógica la intervención con una recomendación del **BC-04 Agronomic Recommendation** y, de forma física, con la inspección que le dio origen. De este modo, el modelo permite reconstruir la cadena recomendación → inspección → intervención, que es una de las capacidades centrales de este bounded context. 
 
-En conjunto, el diagrama muestra un diseño relacional coherente con el dominio, donde las relaciones internas del bounded context se implementan con claves foráneas directas, mientras que las dependencias hacia otros bounded contexts se representan mediante referencias lógicas, respetando los principios de desacoplamiento de la arquitectura DDD. 
 ---
