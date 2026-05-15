@@ -471,7 +471,20 @@ A diferencia de las capas de dominio y aplicación, esta capa no define reglas d
 
 #### 4.2.2.5. Bounded Context Software Architecture Component Level Diagrams
 
-![BC-02 Component Diagram](../assets/img/chapter-4/bc-02-component-diagram.png)
+Diagrama 1: Component Level — Backend API (ASP.NET Core)  
+Este diagrama muestra la arquitectura de componentes del backend del BC-02 Sensor Data Processing dentro del monolito Smart Palm. Se organiza en controladores REST, servicios de aplicación, servicios de dominio, repositorios, publicadores de eventos y servicios técnicos de soporte. Además, representa la integración con el Edge Node, la base de datos y el bounded context BC-03 Alert & Notification.
+
+![BC-02 Component Diagram 1](../assets/img/chapter-4/bc-02-component-diagram1.png)
+
+Diagrama 2: Component Level — Web Platform (Angular)  
+Este diagrama muestra la arquitectura de componentes de la plataforma web para el BC-02 Sensor Data Processing. Se organiza en módulos Angular orientados a la consulta del historial de lecturas, visualización del resumen sensorial por plantación y seguimiento de umbrales, apoyados por un servicio HTTP y un interceptor JWT.
+
+![BC-02 Component Diagram 2](../assets/img/chapter-4/bc-02-component-diagram2.png)
+
+Diagrama 3: Component Level — Mobile Application (Flutter)  
+Este diagrama muestra la arquitectura de componentes de la aplicación móvil para el BC-02 Sensor Data Processing. Se organiza en pantallas, blocs, repositorio móvil, cliente HTTP y caché local, permitiendo al productor consultar lecturas procesadas, historial y alertas derivadas de umbrales agronómicos.
+
+![BC-02 Component Diagram 3](../assets/img/chapter-4/bc-02-component-diagram3.png)
 
 #### 4.2.2.6. Bounded Context Software Architecture Code Level Diagrams
 
