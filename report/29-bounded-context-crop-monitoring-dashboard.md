@@ -750,20 +750,20 @@ En la capa de Infrastructure Layer se encuentran las implementaciones concretas 
 
 #### 4.2.5.5. Bounded Context Software Architecture Component Level Diagrams
 
-Diagrama 1: Component Level — Backend API (Spring Boot)
-Este diagrama muestra la arquitectura de componentes del backend del BC-05 Crop Monitoring Dashboard, organizado en controladores REST, servicios de aplicación, servicios de dominio, repositorios JPA y clientes de integración ACL. Los controladores reciben las solicitudes HTTP desde la app móvil y la plataforma web, los servicios orquestan la lógica de negocio, los repositorios manejan la persistencia y los clientes ACL consumen datos de los bounded contexts BC-03 (Alert & Notification) y BC-04 (Agronomic Recommendation).
+Diagrama 1: Component Level — Backend API (ASP.NET Core)  
+Este diagrama muestra la arquitectura de componentes del backend del BC-05 Crop Monitoring Dashboard dentro del monolito Smart Palm. Se organiza en servicios de consulta del estado de salud del cultivo, overview de plantaciones, series temporales, reportes técnicos, consulta de alertas y recomendaciones, junto con servicios de integración y persistencia.
 
-##### Diagrama 1: Component Level — Backend API (Spring Boot)
+![BC05_Backend_Components](../assets/img/chapter-4/bc05-component1.png)
 
-![BC05_Backend_Components](../assets/img/chapter-4/BC05_Backend_Components.png)
+Diagrama 2: Component Level — Web Platform (Angular)  
+Este diagrama muestra la arquitectura de componentes de la plataforma web para el BC-05 Crop Monitoring Dashboard. Se organiza en servicios orientados a la visualización consolidada del cultivo, análisis histórico, reportes técnicos, alertas y recomendaciones, apoyados por un servicio central de consumo de API y gestión de sesión web.
 
-##### Diagrama 2: Component Level — Web Platform (Angular)
+![BC05_WebPlatform_Components](../assets/img/chapter-4/bc05-component2.png)
 
-![BC05_WebPlatform_Components](../assets/img/chapter-4/BC05_WebPlatform_Components.png)
+Diagrama 3: Component Level — Mobile Application (Flutter)  
+Este diagrama muestra la arquitectura de componentes de la aplicación móvil para el BC-05 Crop Monitoring Dashboard. Se organiza en servicios orientados a la consulta rápida del estado del cultivo, historial resumido, alertas activas y recomendaciones publicadas, apoyados por servicios de acceso remoto, sesión móvil y almacenamiento local.
 
-##### Diagrama 3: Component Level — Mobile Application (Flutter)
-
-![BC05_Mobile_Components](../assets/img/chapter-4/BC05_MobileApp_Components.png)
+![BC05_Mobile_Components](../assets/img/chapter-4/bc05-component3.png)
 
 #### 4.2.5.6. Bounded Context Software Architecture Code Level Diagrams
 
