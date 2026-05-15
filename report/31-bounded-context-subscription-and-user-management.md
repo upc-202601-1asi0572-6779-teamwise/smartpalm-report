@@ -759,7 +759,21 @@ A diferencia de las capas de dominio y aplicación, esta capa no define reglas d
 
 #### 4.2.7.5. Bounded Context Software Architecture Component Level Diagrams
 
-![BC-07 Component Diagram](../assets/img/chapter-4/bc-07-component-diagram.png)
+Diagrama 1: Component Level — Backend API (ASP.NET Core)  
+Este diagrama muestra la arquitectura de componentes del backend del BC-07 Subscription & User Management dentro del monolito Smart Palm. Se organiza en controladores REST, servicios de aplicación, repositorios, clientes de integración con pagos, mensajería y servicios de seguridad para autenticación.
+
+![BC-07 Component Diagram 1](../assets/img/chapter-4/bc-07-component-diagram1.png)
+
+Diagrama 2: Component Level — Web Platform (Angular)  
+Este diagrama muestra la arquitectura de componentes de la plataforma web para el BC-07 Subscription & User Management. Se organiza en módulos Angular orientados al registro, autenticación y gestión de suscripciones, apoyados por un servicio HTTP y un interceptor JWT.
+
+![BC-07 Component Diagram 2](../assets/img/chapter-4/bc-07-component-diagram2.png)
+
+Diagrama 3: Component Level — Mobile Application (Flutter)  
+Este diagrama muestra la arquitectura de componentes de la aplicación móvil para el BC-07 Subscription & User Management. Se organiza en pantallas, blocs, repositorio móvil, cliente HTTP y caché local, permitiendo al usuario registrarse, autenticarse y gestionar su suscripción desde la app móvil.
+
+![BC-07 Component Diagram 3](../assets/img/chapter-4/bc-07-component-diagram3.png)
+
 
 #### 4.2.7.6. Bounded Context Software Architecture Code Level Diagrams
 
