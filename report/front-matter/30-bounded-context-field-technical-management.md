@@ -537,3 +537,56 @@ En la capa de Infrastructure Layer se encuentran las implementaciones concretas 
 
 ---
 
+---
+
+#### 4.2.6.5. Bounded Context Software Architecture Component Level Diagrams
+
+Los diagramas de componentes del bounded context Field Technical Management se elaboraron utilizando el modelo C4 en la herramienta Structurizr. Muestran la arquitectura interna del backend (API) y la aplicaciÃ³n mÃ³vil del agrÃ³nomo con soporte offline.
+
+##### Diagrama 1: Component Level â€” Backend API (Spring Boot)
+
+![BC06_Backend_Components](../../assets/img/chapter-4/BC06_Backend_Components.png)
+
+##### Diagrama 2: Component Level â€” Web Platform (Angular)
+
+![BC06_WebPlatform_Components](../../assets/img/chapter-4/BC06_WebPlatform_Components.png)
+
+##### Diagrama 3: Component Level â€” Mobile Application (Flutter)
+
+![BC06_Mobile_Components](../../assets/img/chapter-4/BC06_MobileApp_Components.png)
+
+#### 4.2.6.6. Bounded Context Software Architecture Code Level Diagrams
+
+##### 4.2.6.6.1. Bounded Context Domain Layer Class Diagrams
+
+El diagrama de clases del Domain Layer del bounded context Field Technical Management se elaborÃ³ utilizando PlantUML. Muestra las entidades, value objects, enumeraciones, servicios de dominio e interfaces de repositorio.
+
+![BC06-UML](../../assets/img/chapter-4/BC06_UML.png)
+
+---
+
+**DescripciÃ³n del diagrama:**
+
+El diagrama muestra el diseÃ±o del Domain Layer del bounded context Field Technical Management, compuesto por tres agregados principales:
+
+- **FieldVisit** es la entidad raÃ­z que modela el ciclo de vida de una visita de campo (PLANNED â†’ IN_PROGRESS â†’ COMPLETED/CANCELLED). Agrupa las inspecciones realizadas durante la visita y valida que solo se puedan agregar inspecciones cuando la visita estÃ¡ en curso.
+- **FieldInspection** modela una inspecciÃ³n tÃ©cnica realizada en una zona de monitoreo. Contiene una lista de **FieldObservation** (value object) con categorÃ­a, severidad y evidencia fotogrÃ¡fica. Incorpora soporte offline mediante el enum **SyncStatus**, resolviendo el pain point identificado en el EventStorming. Puede vincularse a alertas activas del BC-03.
+- **AgronomicIntervention** modela una intervenciÃ³n ejecutada como resultado de una recomendaciÃ³n. Mantiene trazabilidad bidireccional hacia la recomendaciÃ³n del BC-04 que la originÃ³ y la inspecciÃ³n que la motivÃ³. Soporta un ciclo de verificaciÃ³n por parte del agrÃ³nomo (REGISTERED â†’ VERIFIED/REJECTED).
+
+Los **Domain Services** encapsulan la lÃ³gica de sincronizaciÃ³n offline (InspectionSyncService) y la construcciÃ³n de cadenas de trazabilidad recomendaciÃ³n â†’ inspecciÃ³n â†’ intervenciÃ³n (InterventionTraceabilityService).
+
+##### 4.2.6.6.2. Bounded Context Database Design Diagram
+
+![BC-06 Database Diagram](../../assets/img/chapter-4/BC06-DB.png)
+
+---
+**DescripciÃ³n del diagrama:**
+
+El modelo relacional del bounded context Field Technical Management estÃ¡ compuesto por 6 tablas que reflejan los 3 agregados del Domain Layer y sus relaciones:
+
+- **field_visits** almacena las visitas de campo con su ciclo de vida (PLANNED â†’ IN_PROGRESS â†’ COMPLETED/CANCELLED). Los Ã­ndices compuestos por `agronomist_id + status` y `plantation_id + scheduled_date` optimizan las consultas del panel del agrÃ³nomo.
+- **field_inspections** almacena las inspecciones tÃ©cnicas con soporte offline. El campo `sync_status` controla el estado de sincronizaciÃ³n, y la diferencia entre `inspected_at` y `registered_at` permite identificar registros offline. La FK a `field_visits` garantiza que cada inspecciÃ³n pertenezca a una visita.
+- **field_observations** contiene las observaciones categorizadas por tipo y severidad dentro de cada inspecciÃ³n. El Ã­ndice compuesto `(inspection_id, category)` facilita filtrados por categorÃ­a.
+- **observation_photos** almacena las referencias a evidencia fotogrÃ¡fica. Las imÃ¡genes fÃ­sicas residen en almacenamiento de objetos externo (S3/Azure Blob), y esta tabla solo guarda las URLs.
+- **inspection_alert_links** es la tabla intermedia que vincula inspecciones con alertas activas del BC-03. La restricciÃ³n `unique(inspection_id, alert_id)` evita duplicados.
+- **agronomic_interventions** almacena las intervenciones con trazabilidad completa. Los campos `origin_recommendation_id` (referencia lÃ³gica al BC-04) y `origin_inspection_id` (FK a `field_inspections`) construyen la cadena de trazabilidad recomendaciÃ³n â†’ inspecciÃ³n â†’ intervenciÃ³n. Los Ã­ndices por `origin_recommendation_id` y `origin_inspection_id` optimizan las consultas de trazabilidad.
