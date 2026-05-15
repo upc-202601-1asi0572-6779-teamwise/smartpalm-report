@@ -203,3 +203,115 @@ Contiene la lÃ³gica de negocio pura y las entidades principales relacionadas c
 
 ---
 
+---
+
+#### 4.2.6.2. Interface Layer
+
+Esta capa es responsable de la recepciÃ³n y formato de peticiones/respuestas externas (API REST), validaciÃ³n bÃ¡sica del formato y los datos de entrada, manejo de errores a nivel de API y delegaciÃ³n de la lÃ³gica de negocio a la capa de AplicaciÃ³n. Expone los endpoints consumidos por la plataforma web del agrÃ³nomo y la aplicaciÃ³n mÃ³vil del dueÃ±o del cultivo.
+
+---
+
+**Controller 1: FieldVisitController**
+
+| Nombre               | CategorÃ­a | DescripciÃ³n                                                                                                     |
+| -------------------- | ---------- | ---------------------------------------------------------------------------------------------------------------- |
+| FieldVisitController | Controller | Controlador para los endpoints de planificaciÃ³n y gestiÃ³n del ciclo de vida de visitas de campo del agrÃ³nomo. |
+
+**Attributes**
+
+| Nombre            | Tipo de dato      | Visibilidad | DescripciÃ³n                                                            |
+| ----------------- | ----------------- | ----------- | ----------------------------------------------------------------------- |
+| fieldVisitService | FieldVisitService | Private     | Servicio de la capa de AplicaciÃ³n para lÃ³gica de gestiÃ³n de visitas. |
+| visitMapper       | FieldVisitMapper  | Private     | Mapper para convertir entre entidades de dominio y DTOs de respuesta.   |
+
+**Endpoints**
+
+| Ruta                                 | MÃ©todo | DescripciÃ³n                                                                                                             |
+| ------------------------------------ | ------- | ------------------------------------------------------------------------------------------------------------------------ |
+| /api/field/visits                    | POST    | Planifica una nueva visita de campo a una plantaciÃ³n.                                                                   |
+| /api/field/visits                    | GET     | Retorna las visitas de campo del agrÃ³nomo autenticado con filtros opcionales por plantaciÃ³n, estado y rango de fechas. |
+| /api/field/visits/{visitId}          | GET     | Retorna el detalle de una visita de campo especÃ­fica con sus inspecciones asociadas.                                    |
+| /api/field/visits/{visitId}/start    | PUT     | Inicia una visita planificada, cambiando su estado a IN_PROGRESS.                                                        |
+| /api/field/visits/{visitId}/complete | PUT     | Finaliza una visita en curso, cambiando su estado a COMPLETED.                                                           |
+| /api/field/visits/{visitId}/cancel   | PUT     | Cancela una visita planificada.                                                                                          |
+
+---
+
+**Controller 2: FieldInspectionController**
+
+| Nombre                    | CategorÃ­a | DescripciÃ³n                                                                                                                       |
+| ------------------------- | ---------- | ---------------------------------------------------------------------------------------------------------------------------------- |
+| FieldInspectionController | Controller | Controlador para los endpoints de registro de inspecciones de campo, incluyendo soporte para sincronizaciÃ³n de registros offline. |
+
+**Attributes**
+
+| Nombre                 | Tipo de dato           | Visibilidad | DescripciÃ³n                                                                 |
+| ---------------------- | ---------------------- | ----------- | ---------------------------------------------------------------------------- |
+| fieldInspectionService | FieldInspectionService | Private     | Servicio de la capa de AplicaciÃ³n para lÃ³gica de gestiÃ³n de inspecciones. |
+| inspectionMapper       | FieldInspectionMapper  | Private     | Mapper para convertir entre entidades de dominio y DTOs de respuesta.        |
+
+**Endpoints**
+
+| Ruta                                               | MÃ©todo | DescripciÃ³n                                                                                                    |
+| -------------------------------------------------- | ------- | --------------------------------------------------------------------------------------------------------------- |
+| /api/field/visits/{visitId}/inspections            | POST    | Registra una nueva inspecciÃ³n de campo dentro de una visita en curso.                                          |
+| /api/field/inspections/sync                        | POST    | Sincroniza un lote de inspecciones registradas offline. Acepta una lista de inspecciones con sus observaciones. |
+| /api/field/inspections/{inspectionId}              | GET     | Retorna el detalle de una inspecciÃ³n especÃ­fica con sus observaciones y alertas vinculadas.                   |
+| /api/field/inspections/{inspectionId}/observations | POST    | Agrega una observaciÃ³n a una inspecciÃ³n existente.                                                            |
+| /api/field/inspections/{inspectionId}/link-alert   | POST    | Vincula una inspecciÃ³n a una alerta activa del sistema.                                                        |
+| /api/field/plantations/{plantationId}/inspections  | GET     | Retorna el historial de inspecciones de una plantaciÃ³n con filtros opcionales por zona y rango de fechas.      |
+
+---
+
+**Controller 3: AgronomicInterventionController**
+
+| Nombre                          | CategorÃ­a | DescripciÃ³n                                                                                                                                               |
+| ------------------------------- | ---------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| AgronomicInterventionController | Controller | Controlador para los endpoints de registro, verificaciÃ³n y consulta de intervenciones agronÃ³micas con trazabilidad hacia recomendaciones e inspecciones. |
+
+**Attributes**
+
+| Nombre              | Tipo de dato                 | Visibilidad | DescripciÃ³n                                                                   |
+| ------------------- | ---------------------------- | ----------- | ------------------------------------------------------------------------------ |
+| interventionService | AgronomicInterventionService | Private     | Servicio de la capa de AplicaciÃ³n para lÃ³gica de gestiÃ³n de intervenciones. |
+| interventionMapper  | AgronomicInterventionMapper  | Private     | Mapper para convertir entre entidades de dominio y DTOs de respuesta.          |
+
+**Endpoints**
+
+| Ruta                                                | MÃ©todo | DescripciÃ³n                                                                                                     |
+| --------------------------------------------------- | ------- | ---------------------------------------------------------------------------------------------------------------- |
+| /api/field/interventions                            | POST    | Registra una nueva intervenciÃ³n agronÃ³mica en una plantaciÃ³n o zona.                                          |
+| /api/field/interventions/{interventionId}           | GET     | Retorna el detalle de una intervenciÃ³n especÃ­fica con su trazabilidad completa.                                |
+| /api/field/interventions/{interventionId}/verify    | PUT     | El agrÃ³nomo verifica que la intervenciÃ³n fue ejecutada correctamente.                                          |
+| /api/field/interventions/{interventionId}/reject    | PUT     | El agrÃ³nomo rechaza la intervenciÃ³n como incorrecta o insuficiente.                                            |
+| /api/field/plantations/{plantationId}/interventions | GET     | Retorna el historial de intervenciones de una plantaciÃ³n con filtros por zona, tipo, estado y rango de fechas.  |
+| /api/field/plantations/{plantationId}/traceability  | GET     | Retorna la cadena de trazabilidad completa: recomendaciÃ³n â†’ inspecciÃ³n â†’ intervenciÃ³n para una plantaciÃ³n. |
+
+---
+
+**DTOs**
+
+| Nombre                               | DescripciÃ³n                                                                                                                                                                                                                                                       |
+| ------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| PlanFieldVisitRequestDto             | { plantationId: UUID, scheduledDate: LocalDate, objectives: String }                                                                                                                                                                                               |
+| FieldVisitResponseDto                | { id: UUID, plantationId: UUID, agronomistId: UUID, scheduledDate: LocalDate, actualDate: LocalDate, status: String, objectives: String, inspectionCount: Integer, createdAt: DateTime, completedAt: DateTime }                                                    |
+| FieldVisitListResponseDto            | { visits: List\<FieldVisitResponseDto\>, totalCount: Integer }                                                                                                                                                                                                     |
+| CancelVisitRequestDto                | { reason: String }                                                                                                                                                                                                                                                 |
+| RegisterInspectionRequestDto         | { zoneId: UUID, observations: List\<FieldObservationDto\>, inspectedAt: DateTime, linkedAlertIds: List\<UUID\> }                                                                                                                                                   |
+| SyncInspectionsRequestDto            | { inspections: List\<RegisterInspectionRequestDto\>, visitId: UUID }                                                                                                                                                                                               |
+| SyncInspectionsResponseDto           | { syncedCount: Integer, failedCount: Integer, failedIds: List\<UUID\>, syncedAt: DateTime }                                                                                                                                                                        |
+| FieldInspectionResponseDto           | { id: UUID, visitId: UUID, zoneId: UUID, plantationId: UUID, agronomistId: UUID, observations: List\<FieldObservationDto\>, inspectedAt: DateTime, registeredAt: DateTime, syncStatus: String, linkedAlertIds: List\<UUID\>, wasOffline: Boolean }                 |
+| FieldInspectionListResponseDto       | { inspections: List\<FieldInspectionResponseDto\>, totalCount: Integer }                                                                                                                                                                                           |
+| FieldObservationDto                  | { description: String, category: String, severity: String, photoReferences: List\<String\>, observedAt: DateTime }                                                                                                                                                 |
+| AddObservationRequestDto             | { description: String, category: String, severity: String, photoReferences: List\<String\> }                                                                                                                                                                       |
+| LinkAlertRequestDto                  | { alertId: UUID }                                                                                                                                                                                                                                                  |
+| RegisterInterventionRequestDto       | { plantationId: UUID, zoneId: UUID, interventionType: String, description: String, originRecommendationId: UUID, originInspectionId: UUID, executedAt: DateTime }                                                                                                  |
+| VerifyInterventionRequestDto         | { verificationNotes: String }                                                                                                                                                                                                                                      |
+| RejectInterventionRequestDto         | { verificationNotes: String }                                                                                                                                                                                                                                      |
+| AgronomicInterventionResponseDto     | { id: UUID, plantationId: UUID, zoneId: UUID, registeredBy: UUID, interventionType: String, description: String, originRecommendationId: UUID, originInspectionId: UUID, executedAt: DateTime, registeredAt: DateTime, status: String, verificationNotes: String } |
+| AgronomicInterventionListResponseDto | { interventions: List\<AgronomicInterventionResponseDto\>, totalCount: Integer }                                                                                                                                                                                   |
+| TraceabilityChainResponseDto         | { plantationId: UUID, chains: List\<TraceabilityItemDto\> }                                                                                                                                                                                                        |
+| TraceabilityItemDto                  | { recommendationId: UUID, recommendationContent: String, inspectionId: UUID, inspectedAt: DateTime, interventionId: UUID, interventionType: String, interventionStatus: String, executedAt: DateTime }                                                             |
+
+---
+
