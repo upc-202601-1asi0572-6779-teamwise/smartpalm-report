@@ -286,7 +286,21 @@ Esta capa contiene la implementación técnica necesaria para que el sistema int
 
 #### 4.2.3.5. Bounded Context Software Architecture Component Level Diagrams.
 
-![BC-03 Component Diagram](../assets/img/chapter-4/bc-03-component-diagram.png)
+Diagrama 1: Component Level — Backend API (ASP.NET Core)  
+Este diagrama muestra la arquitectura de componentes del backend del BC-03 Alert & Notification dentro del monolito Smart Palm. Se organiza en controladores REST, consumidores, command handlers, event handlers, servicios de dominio, repositorios, mensajería e integración con el servicio externo de notificaciones push.
+
+![BC-03 Component Diagram 1](../assets/img/chapter-4/bc-03-component-diagram1.png)
+
+Diagrama 2: Component Level — Web Platform (Angular)  
+Este diagrama muestra la arquitectura de componentes de la plataforma web para el BC-03 Alert & Notification. Se organiza en módulos Angular orientados a la consulta, reconocimiento y supresión de alertas, apoyados por un servicio HTTP y un interceptor JWT.
+
+![BC-03 Component Diagram 2](../assets/img/chapter-4/bc-03-component-diagram2.png)
+
+Diagrama 3: Component Level — Mobile Application (Flutter)  
+Este diagrama muestra la arquitectura de componentes de la aplicación móvil para el BC-03 Alert & Notification. Se organiza en pantallas, blocs, repositorio móvil, cliente HTTP y caché local, permitiendo al usuario consultar, reconocer y gestionar alertas desde la app móvil.
+
+![BC-03 Component Diagram 3](../assets/img/chapter-4/bc-03-component-diagram3.png)
+
 
 #### 4.2.3.6. Bounded Context Software Architecture Code Level Diagrams.
 
