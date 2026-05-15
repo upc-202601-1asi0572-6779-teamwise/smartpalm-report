@@ -12,7 +12,7 @@ La interfaz mantiene coherencia en todos los componentes mediante un sistema uni
 
 Las directrices generales de estilo definieron los elementos visuales base utilizados en toda la solución SmartPalm. Estas directrices permitieron mantener uniformidad gráfica y facilitar la identificación de la marca dentro de los distintos entornos digitales del sistema.
 
-![Style Branding](../assets/img/style-guidelines/style-branding.jpeg)
+![Style Branding](../assets/img/style-guidelines/style-branding.png)
 
 ## Paleta de colores
 
