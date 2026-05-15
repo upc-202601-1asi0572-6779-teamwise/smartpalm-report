@@ -155,3 +155,23 @@ Reportes y estadísticas del cultivo: evolución de condiciones, frecuencia de a
 Gestión del plan de suscripción del usuario: estado del plan contratado, fecha de renovación y acceso a funcionalidades según el nivel de suscripción activa.
 
 ![Subscription Mockup](../../assets/img/Applications-Mock-ups/Suscripcion.png)
+
+---
+
+### 5.5. Applications Prototyping
+
+#### Web Application
+
+A continuación, se presenta el prototipo interactivo de la aplicación web SmartPalm, donde se evidencia el flujo de usuario completo: autenticación, panel de control, gestión de plantaciones, consulta de alertas y generación de reportes.
+
+- **Prototipo (Figma):** [Web App - SmartPalm](https://www.figma.com/proto/bFDv7p60jPElSFuoSRZF1H/WebApp?node-id=2072-1742&p=f&t=c8TbbdnJ2ZNXnFD4-1&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=2072%3A75)
+- **Video demostrativo (SharePoint):** [Web App - Recorrido completo](https://upcedupe-my.sharepoint.com/:v:/g/personal/u201719449_upc_edu_pe/IQDRFTcIoRRKSIPuibljwKbuATifjeCvBUGp_ySdt9_s_Kg?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&e=r0SlD2)
+
+---
+
+#### Mobile Application
+
+A continuación, se presenta el prototipo interactivo de la aplicación móvil SmartPalm, mostrando el flujo de trabajo del ingeniero agrónomo en campo: registro de inspecciones offline, vinculación con alertas y consulta de recomendaciones.
+
+- **Prototipo (Figma):** [Mobile App - SmartPalm](https://www.figma.com/proto/9zfoLcEEgnm15cXfdElAv6/Prototyping?node-id=1-2015&p=f&t=lTXhQ079NFQ9NE2a-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=1%3A2015)
+- **Video demostrativo (SharePoint):** [Mobile App - Flujo en campo](https://upcedupe-my.sharepoint.com/:v:/g/personal/u202312318_upc_edu_pe/IQD95BReG4PVTIdWSt4Xts5IATR2tJSg7a6IYBVbzCr34Po?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&e=OwGYah)
