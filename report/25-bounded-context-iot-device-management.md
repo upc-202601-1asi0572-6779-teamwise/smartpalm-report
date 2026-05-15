@@ -600,24 +600,24 @@ La **Infrastructure Layer** del bounded context **IoT Device Management** agrupa
 Diagrama 1: Component Level — Backend API (ASP.NET Core)  
 Este diagrama muestra la arquitectura de componentes del backend del BC-01 IoT Device Management dentro del monolito Smart Palm. Se organiza en controladores REST, consumidores de eventos, servicios de aplicación, handlers de comandos/eventos, repositorios, mappers y componentes de integración. Además, muestra la interacción con el Edge Node, la base de datos y el bounded context BC-07 Subscription & User Management.
 
-![BC-01 Component Diagram 1](./assets/img/chapter-4/bc-01-component-diagram1.png)
+![BC-01 Component Diagram 1](../assets/img/chapter-4/bc-01-component-diagram1.png)
 
 Diagrama 2: Component Level — Web Platform (Angular)  
 Este diagrama muestra la arquitectura de componentes de la plataforma web para el BC-01 IoT Device Management. Se organiza en módulos Angular orientados al registro, configuración, visualización de estado y sincronización de dispositivos, apoyados por un servicio de consumo HTTP y un interceptor de autenticación JWT.
 
-![BC-01 Component Diagram 2](./assets/img/chapter-4/bc-01-component-diagram2.png)
+![BC-01 Component Diagram 2](../assets/img/chapter-4/bc-01-component-diagram2.png)
 
 Diagrama 3: Component Level — Mobile Application (Flutter)  
 Este diagrama muestra la arquitectura de componentes de la aplicación móvil para el BC-01 IoT Device Management. Se organiza en pantallas, blocs de estado, repositorio móvil, cliente HTTP y caché local, permitiendo registrar, consultar y configurar dispositivos IoT desde la app móvil del productor.
 
-![BC-01 Component Diagram 3](./assets/img/chapter-4/bc-01-component-diagram3.png)
+![BC-01 Component Diagram 3](../assets/img/chapter-4/bc-01-component-diagram3.png)
 
 #### 4.2.1.6. Bounded Context Software Architecture Code Level Diagrams
 
 ##### 4.2.1.6.1. Bounded Context Domain Layer Class Diagrams
 
-![BC-01 Domain Layer Class Diagram](./assets/img/chapter-4/bc-01-domain-layer-class-diagram.png)
+![BC-01 Domain Layer Class Diagram](../assets/img/chapter-4/bc-01-domain-layer-class-diagram.png)
 
 ##### 4.2.1.6.2. Bounded Context Database Design Diagram
 
-![BC-01 Database Diagram](./assets/img/chapter-4/bc-01-database-diagram.png)
+![BC-01 Database Diagram](../assets/img/chapter-4/bc-01-database-diagram.png)
