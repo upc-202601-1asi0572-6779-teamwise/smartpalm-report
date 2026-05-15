@@ -315,3 +315,126 @@ Esta capa es responsable de la recepciÃ³n y formato de peticiones/respuestas e
 
 ---
 
+---
+
+#### 4.2.6.3. Application Layer
+
+En la capa de Application Layer se ubican los servicios que orquestan los casos de uso del bounded context Field Technical Management. Estos servicios coordinan la lÃ³gica de negocio delegando a las entidades y servicios de dominio, gestionan transacciones y actÃºan como intermediarios entre la capa de Interface y la capa de Domain.
+
+---
+
+**Service 1: FieldVisitService**
+
+| Nombre            | CategorÃ­a          | DescripciÃ³n                                                                                                                         |
+| ----------------- | ------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| FieldVisitService | Application Service | Servicio de aplicaciÃ³n responsable de los casos de uso de planificaciÃ³n, inicio, finalizaciÃ³n y cancelaciÃ³n de visitas de campo. |
+
+**Dependencies**
+
+| Nombre                    | Tipo de Objeto            | Visibilidad | DescripciÃ³n                                                    |
+| ------------------------- | ------------------------- | ----------- | --------------------------------------------------------------- |
+| fieldVisitRepository      | FieldVisitRepository      | Private     | Acceso a la persistencia de visitas de campo.                   |
+| fieldInspectionRepository | FieldInspectionRepository | Private     | Acceso a inspecciones para validar requisitos de finalizaciÃ³n. |
+| visitMapper               | FieldVisitMapper          | Private     | Mapper para convertir entre entidades de dominio y DTOs.        |
+
+**Methods**
+
+| Nombre                                                  | Tipo de retorno           | Visibilidad | DescripciÃ³n                                              |
+| ------------------------------------------------------- | ------------------------- | ----------- | --------------------------------------------------------- |
+| planVisit(PlanVisitCommand command)                     | FieldVisitResponseDto     | Public      | Planifica una nueva visita de campo a una plantaciÃ³n.    |
+| getVisitsByAgronomist(GetVisitsByAgronomistQuery query) | FieldVisitListResponseDto | Public      | Retorna las visitas del agrÃ³nomo con filtros opcionales. |
+| getVisitById(GetVisitByIdQuery query)                   | FieldVisitResponseDto     | Public      | Retorna el detalle de una visita especÃ­fica.             |
+| startVisit(StartVisitCommand command)                   | FieldVisitResponseDto     | Public      | Inicia una visita planificada.                            |
+| completeVisit(CompleteVisitCommand command)             | FieldVisitResponseDto     | Public      | Finaliza una visita en curso.                             |
+| cancelVisit(CancelVisitCommand command)                 | FieldVisitResponseDto     | Public      | Cancela una visita planificada.                           |
+
+---
+
+**Service 2: FieldInspectionService**
+
+| Nombre                 | CategorÃ­a          | DescripciÃ³n                                                                                                                                                    |
+| ---------------------- | ------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| FieldInspectionService | Application Service | Servicio de aplicaciÃ³n responsable de los casos de uso de registro de inspecciones, sincronizaciÃ³n offline, vinculaciÃ³n con alertas y consulta de historial. |
+
+**Dependencies**
+
+| Nombre                    | Tipo de Objeto            | Visibilidad | DescripciÃ³n                                                 |
+| ------------------------- | ------------------------- | ----------- | ------------------------------------------------------------ |
+| fieldInspectionRepository | FieldInspectionRepository | Private     | Acceso a la persistencia de inspecciones.                    |
+| fieldVisitRepository      | FieldVisitRepository      | Private     | Acceso a visitas para validar estado IN_PROGRESS.            |
+| inspectionSyncService     | InspectionSyncService     | Private     | Servicio de dominio para lÃ³gica de sincronizaciÃ³n offline. |
+| alertQueryClient          | AlertQueryClient          | Private     | Cliente ACL para validar alertas del BC-03.                  |
+| inspectionMapper          | FieldInspectionMapper     | Private     | Mapper para convertir entre entidades de dominio y DTOs.     |
+
+**Methods**
+
+| Nombre                                                            | Tipo de retorno                | Visibilidad | DescripciÃ³n                                                  |
+| ----------------------------------------------------------------- | ------------------------------ | ----------- | ------------------------------------------------------------- |
+| registerInspection(RegisterInspectionCommand command)             | FieldInspectionResponseDto     | Public      | Registra una nueva inspecciÃ³n dentro de una visita en curso. |
+| syncOfflineInspections(SyncOfflineInspectionsCommand command)     | SyncInspectionsResponseDto     | Public      | Sincroniza un lote de inspecciones registradas offline.       |
+| getInspectionById(GetInspectionByIdQuery query)                   | FieldInspectionResponseDto     | Public      | Retorna el detalle de una inspecciÃ³n especÃ­fica.            |
+| addObservation(AddObservationCommand command)                     | FieldInspectionResponseDto     | Public      | Agrega una observaciÃ³n a una inspecciÃ³n existente.          |
+| linkInspectionToAlert(LinkInspectionToAlertCommand command)       | FieldInspectionResponseDto     | Public      | Vincula una inspecciÃ³n a una alerta activa.                  |
+| getInspectionsByPlantation(GetInspectionsByPlantationQuery query) | FieldInspectionListResponseDto | Public      | Retorna el historial de inspecciones de una plantaciÃ³n.      |
+
+---
+
+**Service 3: AgronomicInterventionService**
+
+| Nombre                       | CategorÃ­a          | DescripciÃ³n                                                                                                                                                     |
+| ---------------------------- | ------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| AgronomicInterventionService | Application Service | Servicio de aplicaciÃ³n responsable de los casos de uso de registro, verificaciÃ³n, rechazo y consulta de intervenciones agronÃ³micas con trazabilidad completa. |
+
+**Dependencies**
+
+| Nombre                          | Tipo de Objeto                  | Visibilidad | DescripciÃ³n                                             |
+| ------------------------------- | ------------------------------- | ----------- | -------------------------------------------------------- |
+| interventionRepository          | AgronomicInterventionRepository | Private     | Acceso a la persistencia de intervenciones.              |
+| interventionTraceabilityService | InterventionTraceabilityService | Private     | Servicio de dominio para gestionar trazabilidad.         |
+| recommendationQueryClient       | RecommendationQueryClient       | Private     | Cliente ACL para validar recomendaciones del BC-04.      |
+| fieldInspectionRepository       | FieldInspectionRepository       | Private     | Acceso a inspecciones para validar referencias.          |
+| interventionMapper              | AgronomicInterventionMapper     | Private     | Mapper para convertir entre entidades de dominio y DTOs. |
+
+**Methods**
+
+| Nombre                                                                | Tipo de retorno                      | Visibilidad | DescripciÃ³n                                                   |
+| --------------------------------------------------------------------- | ------------------------------------ | ----------- | -------------------------------------------------------------- |
+| registerIntervention(RegisterInterventionCommand command)             | AgronomicInterventionResponseDto     | Public      | Registra una nueva intervenciÃ³n agronÃ³mica con trazabilidad. |
+| verifyIntervention(VerifyInterventionCommand command)                 | AgronomicInterventionResponseDto     | Public      | Verifica que la intervenciÃ³n fue ejecutada correctamente.     |
+| rejectIntervention(RejectInterventionCommand command)                 | AgronomicInterventionResponseDto     | Public      | Rechaza la intervenciÃ³n como incorrecta o insuficiente.       |
+| getInterventionById(GetInterventionByIdQuery query)                   | AgronomicInterventionResponseDto     | Public      | Retorna el detalle de una intervenciÃ³n especÃ­fica.           |
+| getInterventionsByPlantation(GetInterventionsByPlantationQuery query) | AgronomicInterventionListResponseDto | Public      | Retorna el historial de intervenciones de una plantaciÃ³n.     |
+| getTraceabilityChain(GetTraceabilityChainQuery query)                 | TraceabilityChainResponseDto         | Public      | Retorna la cadena de trazabilidad completa de una plantaciÃ³n. |
+
+---
+
+**Commands**
+
+| Nombre                        | Atributos                                                                                                                                                                                        | DescripciÃ³n                                               |
+| ----------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------- |
+| PlanVisitCommand              | plantationId: UUID, agronomistId: UUID, scheduledDate: LocalDate, objectives: String                                                                                                             | Comando para planificar una nueva visita de campo.         |
+| StartVisitCommand             | visitId: UUID, agronomistId: UUID                                                                                                                                                                | Comando para iniciar una visita planificada.               |
+| CompleteVisitCommand          | visitId: UUID, agronomistId: UUID                                                                                                                                                                | Comando para finalizar una visita en curso.                |
+| CancelVisitCommand            | visitId: UUID, agronomistId: UUID, reason: String                                                                                                                                                | Comando para cancelar una visita planificada.              |
+| RegisterInspectionCommand     | visitId: UUID, zoneId: UUID, agronomistId: UUID, observations: List\<FieldObservationDto\>, inspectedAt: LocalDateTime, linkedAlertIds: List\<UUID\>                                             | Comando para registrar una inspecciÃ³n de campo.           |
+| SyncOfflineInspectionsCommand | visitId: UUID, agronomistId: UUID, inspections: List\<RegisterInspectionCommand\>                                                                                                                | Comando para sincronizar inspecciones offline en lote.     |
+| AddObservationCommand         | inspectionId: UUID, description: String, category: ObservationCategory, severity: ObservationSeverity, photoReferences: List\<String\>                                                           | Comando para agregar una observaciÃ³n a una inspecciÃ³n.   |
+| LinkInspectionToAlertCommand  | inspectionId: UUID, alertId: UUID                                                                                                                                                                | Comando para vincular una inspecciÃ³n a una alerta activa. |
+| RegisterInterventionCommand   | plantationId: UUID, zoneId: UUID, registeredBy: UUID, interventionType: InterventionType, description: String, originRecommendationId: UUID, originInspectionId: UUID, executedAt: LocalDateTime | Comando para registrar una intervenciÃ³n agronÃ³mica.      |
+| VerifyInterventionCommand     | interventionId: UUID, agronomistId: UUID, verificationNotes: String                                                                                                                              | Comando para verificar una intervenciÃ³n.                  |
+| RejectInterventionCommand     | interventionId: UUID, agronomistId: UUID, verificationNotes: String                                                                                                                              | Comando para rechazar una intervenciÃ³n.                   |
+
+**Queries**
+
+| Nombre                            | Atributos                                                                                                                                                                                                 | DescripciÃ³n                                                |
+| --------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------- |
+| GetVisitsByAgronomistQuery        | agronomistId: UUID, plantationId: UUID (opcional), status: VisitStatus (opcional), startDate: LocalDate (opcional), endDate: LocalDate (opcional)                                                         | Consulta de visitas del agrÃ³nomo con filtros.              |
+| GetVisitByIdQuery                 | visitId: UUID                                                                                                                                                                                             | Consulta de detalle de una visita.                          |
+| GetInspectionByIdQuery            | inspectionId: UUID                                                                                                                                                                                        | Consulta de detalle de una inspecciÃ³n.                     |
+| GetInspectionsByPlantationQuery   | plantationId: UUID, zoneId: UUID (opcional), startDate: LocalDateTime (opcional), endDate: LocalDateTime (opcional)                                                                                       | Consulta de historial de inspecciones de una plantaciÃ³n.   |
+| GetInterventionByIdQuery          | interventionId: UUID                                                                                                                                                                                      | Consulta de detalle de una intervenciÃ³n.                   |
+| GetInterventionsByPlantationQuery | plantationId: UUID, zoneId: UUID (opcional), interventionType: InterventionType (opcional), status: InterventionStatus (opcional), startDate: LocalDateTime (opcional), endDate: LocalDateTime (opcional) | Consulta de historial de intervenciones de una plantaciÃ³n. |
+| GetTraceabilityChainQuery         | plantationId: UUID                                                                                                                                                                                        | Consulta de la cadena de trazabilidad completa.             |
+
+---
+
