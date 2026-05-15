@@ -438,3 +438,102 @@ En la capa de Application Layer se ubican los servicios que orquestan los casos 
 
 ---
 
+---
+
+#### 4.2.6.4. Infrastructure Layer
+
+En la capa de Infrastructure Layer se encuentran las implementaciones concretas de los contratos definidos en las capas de dominio y aplicaciÃ³n. Incluye los repositorios JPA, los clientes de integraciÃ³n con otros bounded contexts (Anti-Corruption Layer) y los servicios tÃ©cnicos de almacenamiento.
+
+---
+
+**JpaFieldVisitRepositoryImpl**
+
+| Nombre                      | CategorÃ­a                | Implementa           | DescripciÃ³n                                                                                                                                                                          |
+| --------------------------- | ------------------------- | -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| JpaFieldVisitRepositoryImpl | Repository Implementation | FieldVisitRepository | ImplementaciÃ³n concreta de la interfaz FieldVisitRepository utilizando JPA y Spring Data JPA. Maneja el mapeo entre el agregado de dominio FieldVisit y la base de datos relacional. |
+
+**Funcionalidad clave**
+
+- Busca y carga agregados FieldVisit por ID, agronomistId y plantationId.
+- Guarda (inserta/actualiza) agregados FieldVisit con sus inspecciones asociadas.
+- Filtra visitas por estado (PLANNED, IN_PROGRESS, COMPLETED, CANCELLED) y rango de fechas.
+- Cuenta visitas por plantaciÃ³n y agrÃ³nomo para estadÃ­sticas.
+- Lista visitas ordenadas por fecha programada descendente.
+
+---
+
+**JpaFieldInspectionRepositoryImpl**
+
+| Nombre                           | CategorÃ­a                | Implementa                | DescripciÃ³n                                                                                                                                                                                                                               |
+| -------------------------------- | ------------------------- | ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| JpaFieldInspectionRepositoryImpl | Repository Implementation | FieldInspectionRepository | ImplementaciÃ³n concreta de la interfaz FieldInspectionRepository utilizando JPA y Spring Data JPA. Maneja el mapeo entre el agregado de dominio FieldInspection y la base de datos, incluyendo observaciones y vinculaciones con alertas. |
+
+**Funcionalidad clave**
+
+- Busca y carga agregados FieldInspection por ID, visitId, zoneId y plantationId.
+- Guarda (inserta/actualiza) agregados FieldInspection con sus FieldObservation embebidas.
+- Filtra inspecciones por estado de sincronizaciÃ³n (SYNCED, PENDING_SYNC).
+- Lista inspecciones por plantaciÃ³n con filtros por zona y rango de fechas.
+- Consulta inspecciones pendientes de sincronizaciÃ³n para el proceso de sync offline.
+
+---
+
+**JpaAgronomicInterventionRepositoryImpl**
+
+| Nombre                                 | CategorÃ­a                | Implementa                      | DescripciÃ³n                                                                                                                                                                                     |
+| -------------------------------------- | ------------------------- | ------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| JpaAgronomicInterventionRepositoryImpl | Repository Implementation | AgronomicInterventionRepository | ImplementaciÃ³n concreta de la interfaz AgronomicInterventionRepository utilizando JPA y Spring Data JPA. Maneja el mapeo entre el agregado de dominio AgronomicIntervention y la base de datos. |
+
+**Funcionalidad clave**
+
+- Busca y carga agregados AgronomicIntervention por ID, plantationId y zoneId.
+- Guarda (inserta/actualiza) agregados AgronomicIntervention.
+- Filtra intervenciones por tipo (InterventionType), estado (InterventionStatus) y rango de fechas.
+- Consulta intervenciones por originRecommendationId para construir cadenas de trazabilidad.
+- Lista intervenciones ordenadas por fecha de ejecuciÃ³n descendente.
+
+---
+
+**AlertQueryClientImpl**
+
+| Nombre               | CategorÃ­a                   | Implementa       | DescripciÃ³n                                                                                                                                                                          |
+| -------------------- | ---------------------------- | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| AlertQueryClientImpl | Anti-Corruption Layer Client | AlertQueryClient | ImplementaciÃ³n concreta del cliente de integraciÃ³n con el BC-03 (Alert & Notification). Valida la existencia de alertas activas antes de permitir la vinculaciÃ³n con inspecciones. |
+
+**Funcionalidad clave**
+
+- Valida que un alertId corresponda a una alerta activa en el BC-03 antes de vincularla a una inspecciÃ³n.
+- Consulta detalles de alertas activas por plantaciÃ³n para facilitar la vinculaciÃ³n durante la inspecciÃ³n.
+- Maneja errores de comunicaciÃ³n retornando respuestas de validaciÃ³n negativas en caso de indisponibilidad del BC-03.
+
+---
+
+**RecommendationQueryClientImpl**
+
+| Nombre                        | CategorÃ­a                   | Implementa                | DescripciÃ³n                                                                                                                                                                                         |
+| ----------------------------- | ---------------------------- | ------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| RecommendationQueryClientImpl | Anti-Corruption Layer Client | RecommendationQueryClient | ImplementaciÃ³n concreta del cliente de integraciÃ³n con el BC-04 (Agronomic Recommendation). Valida la existencia de recomendaciones y obtiene su contenido para construir cadenas de trazabilidad. |
+
+**Funcionalidad clave**
+
+- Valida que un originRecommendationId corresponda a una recomendaciÃ³n publicada en el BC-04.
+- Obtiene el contenido resumido de recomendaciones para incluir en la cadena de trazabilidad.
+- Maneja errores de comunicaciÃ³n permitiendo el registro de intervenciones sin recomendaciÃ³n vinculada en caso de indisponibilidad.
+
+---
+
+**PhotoStorageServiceImpl**
+
+| Nombre                  | CategorÃ­a        | Implementa          | DescripciÃ³n                                                                                                                                                                                           |
+| ----------------------- | ----------------- | ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| PhotoStorageServiceImpl | Technical Service | PhotoStorageService | ImplementaciÃ³n concreta del servicio de almacenamiento de evidencia fotogrÃ¡fica de inspecciones. Gestiona la subida, almacenamiento y recuperaciÃ³n de imÃ¡genes asociadas a observaciones de campo. |
+
+**Funcionalidad clave**
+
+- Almacena imÃ¡genes en un servicio de almacenamiento de objetos (S3/Azure Blob) y retorna la URL de referencia.
+- Comprime imÃ¡genes antes del almacenamiento para optimizar espacio y ancho de banda.
+- Genera URLs pre-firmadas para acceso temporal a las imÃ¡genes.
+- Maneja almacenamiento local temporal en el dispositivo del agrÃ³nomo durante operaciones offline, con sincronizaciÃ³n posterior.
+
+---
+
