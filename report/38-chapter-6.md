@@ -118,3 +118,45 @@ El equipo TempWise acordó estándares de escritura de código para cada lenguaj
 - Cada archivo fuente incluye un encabezado de copyright con el nombre del proyecto, el autor y la licencia.
 - Se prohíbe el *hard-coding* de valores mágicos; deben declararse como constantes con nombres descriptivos.
 - El código debe estar documentado con JSDoc (TypeScript), XML Documentation (C#) o DartDoc (Dart) para métodos públicos y clases del dominio.
+
+---
+
+### 6.1.4. Software Deployment Configuration
+
+La estrategia de despliegue de SmartPalm se basa en una arquitectura cloud híbrida que integra servicios de hosting estático para el frontend, plataformas de backend as a service para la API, e infraestructura edge-fog para el dispositivo IoT.
+
+#### Plataformas de despliegue por producto
+
+| Producto digital | Plataforma | URL pública | Estado |
+| :--- | :--- | :--- | :--- |
+| **Landing Page** | Netlify | `https://lading-page-smartpalm.netlify.app` | Desplegado |
+| **Web Application** | Cloudflare Pages | `https://webapp-9sf.pages.dev` | Desplegado (fase inicial) |
+| **Mock API** | Render | `https://smartpalm-mock-api.onrender.com` | Desplegado |
+| **Mobile Application** | Google Play / App Store | *(URL pendiente)* | Por desplegar |
+| **Edge API** | Raspberry Pi (campo) + Render (nube) | *(URL interna pendiente)* | Por desplegar |
+| **Embedded Application** | ESP32 (campo) | *(Conectividad LoRaWAN)* | Por desplegar |
+| **Base de datos** | PostgreSQL (Render) / SQL Server (Azure) | *(URL interna pendiente)* | Por desplegar |
+
+#### Diagrama de despliegue
+
+El diagrama de despliegue de la arquitectura de SmartPalm fue elaborado en el Capítulo IV (Software Architecture) utilizando el modelo C4. A continuación se describe la configuración resumida:
+
+- **Navegador del usuario** (Web App y Landing Page) se conecta a **Cloudflare Pages** (hosting estático).
+- **Aplicación móvil** (Flutter) se conecta a la **API RESTful** desplegada en **Render**.
+- **API RESTful** (ASP.NET Core) se conecta a la **base de datos** (PostgreSQL) y al **broker de mensajes** para sincronización con el Edge.
+- **Edge Node** (Raspberry Pi en campo) ejecuta el Edge API y almacena datos localmente cuando no hay conectividad.
+- **Dispositivo IoT** (ESP32) transmite lecturas sensoriales al Edge Node mediante **LoRaWAN**.
+
+![Deployment Diagram](../assets/img/SoftwareArchitecture/deployment_diagrams.png)
+
+#### Variables de entorno
+
+El sistema utiliza variables de entorno para separar configuraciones sensibles del código fuente. Las principales variables son:
+
+| Variable | Descripción | Ejemplo |
+| :--- | :--- | :--- |
+| `DATABASE_CONNECTION_STRING` | Cadena de conexión a PostgreSQL | *(secreto)* |
+| `JWT_SECRET_KEY` | Clave para firma de tokens JWT | *(secreto)* |
+| `LORAWAN_APP_KEY` | Clave de aplicación para el módulo LoRa | *(secreto)* |
+| `API_BASE_URL` | URL base de la API RESTful | `https://api.smartpalm.io` |
+| `EDGE_API_BASE_URL` | URL base del Edge API en campo | `http://192.168.1.100:5000` |
