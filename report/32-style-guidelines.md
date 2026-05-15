@@ -73,3 +73,41 @@ Los espaciados se utilizaron para separar elementos de forma clara y uniforme, p
 
 ---
 
+# 5.1.2. Web, Mobile and IoT Style Guidelines
+
+La solución SmartPalm fue diseñada considerando tres entornos principales: plataforma web, aplicación móvil y dispositivos IoT de monitoreo en campo. Cada uno mantuvo consistencia visual con la identidad general del producto, adaptando la experiencia según el contexto de uso.
+
+## Plataforma Web
+
+La interfaz web estuvo orientada principalmente a ingenieros agrónomos y usuarios técnicos que requieren supervisar múltiples plantaciones simultáneamente. Se utilizaron dashboards con visualización de métricas, mapas, gráficas históricas y paneles administrativos.
+
+El diseño priorizó:
+
+- Distribución modular de información.
+- Uso de gráficos de alto contraste.
+- Navegación lateral persistente.
+- Visualización simultánea de múltiples métricas.
+
+## Aplicación Mobile
+
+La aplicación móvil fue diseñada para productores agrícolas con conectividad limitada y menor experiencia tecnológica. La interfaz priorizó simplicidad, accesibilidad y rapidez de interpretación.
+
+Se implementaron:
+
+- Botones grandes y visibles.
+- Alertas rápidas en tiempo real.
+- Navegación simplificada.
+- Información resumida y priorizada.
+
+Asimismo, se redujo la cantidad de pasos necesarios para acceder a información crítica del cultivo.
+
+## Dispositivos IoT
+
+Los dispositivos IoT mantuvieron una identidad visual alineada al ecosistema SmartPalm mediante indicadores LED, carcasa resistente y etiquetado técnico simplificado.
+
+El diseño físico consideró:
+
+- Resistencia a humedad y altas temperaturas.
+- Facilidad de instalación en campo.
+- Identificación rápida de estado operativo.
+- Bajo consumo energético.
