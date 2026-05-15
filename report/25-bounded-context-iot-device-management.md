@@ -13,6 +13,7 @@ La **Domain Layer** del bounded context **IoT Device Management** representa el 
 
 Para este bounded context, el dominio se encuentra compuesto por una entidad principal que actúa como *aggregate root*, complementada por un objeto de valor, enumeraciones, una interfaz de repositorio, una *factory* y un *domain service*. Esta organización permite representar de forma clara la lógica de negocio del contexto sin mezclarla con detalles de infraestructura o persistencia.
 
+---
 
 ##### 1. IoTDevice
 
@@ -47,6 +48,7 @@ Para este bounded context, el dominio se encuentra compuesto por una entidad pri
 | RestoreConnectivity | void | public | Restablecer el estado de conectividad del dispositivo. |
 | SynchronizeEdgeData | void | public | Registrar la sincronización de los datos almacenados localmente en el edge node. |
 
+---
 
 ##### 2. DeviceConfiguration
 
@@ -74,6 +76,7 @@ Para este bounded context, el dominio se encuentra compuesto por una entidad pri
 | UpdateTransmissionMode | void | public | Actualizar el modo de transmisión de datos. |
 | UpdateRetryPolicy | void | public | Actualizar la política de reintentos del dispositivo. |
 
+---
 
 ##### 3. ConnectivityStatus
 
@@ -91,6 +94,7 @@ Para este bounded context, el dominio se encuentra compuesto por una entidad pri
 | Disconnected | El dispositivo ha perdido la conectividad, pero aún no se ha confirmado la operación offline. |
 | OfflineMode | El dispositivo opera en modo offline y almacena datos localmente. |
 
+---
 
 ##### 4. DeviceHealthStatus
 
@@ -108,7 +112,7 @@ Para este bounded context, el dominio se encuentra compuesto por una entidad pri
 | Warning | El dispositivo presenta una condición que requiere atención. |
 | Critical | El dispositivo presenta una condición crítica que compromete su operación. |
 
-
+---
 
 ##### 5. ActivationStatus
 
@@ -118,7 +122,6 @@ Para este bounded context, el dominio se encuentra compuesto por una entidad pri
 | **Categoría** | Enumeration |
 | **Propósito** | Representar el estado de activación del dispositivo dentro del sistema. |
 
-
 **Valores**
 
 | Nombre | Descripción |
@@ -126,6 +129,7 @@ Para este bounded context, el dominio se encuentra compuesto por una entidad pri
 | Active | El dispositivo está habilitado para operar. |
 | Inactive | El dispositivo ha sido desactivado. |
 
+---
 
 ##### 6. IoTDeviceRepository
 
@@ -145,7 +149,7 @@ Para este bounded context, el dominio se encuentra compuesto por una entidad pri
 | Update | void | public | Actualizar el estado o configuración de un dispositivo existente. |
 | Remove | void | public | Eliminar o dar de baja lógica a un dispositivo. |
 
-
+---
 
 ##### 7. IoTDeviceFactory
 
@@ -162,7 +166,7 @@ Para este bounded context, el dominio se encuentra compuesto por una entidad pri
 | Create | IoTDevice | public | Crear una nueva instancia de dispositivo IoT. |
 | CreateWithDefaultConfiguration | IoTDevice | public | Crear un nuevo dispositivo con una configuración inicial por defecto. |
 
-
+---
 
 ##### 8. EdgeSynchronizationService
 
@@ -186,7 +190,7 @@ La **Interface Layer** del bounded context **IoT Device Management** agrupa las 
 
 En este bounded context, la capa de interfaz se encuentra compuesta principalmente por clases del tipo **Controller** y **Consumer**, ya que la interacción puede provenir tanto de solicitudes HTTP como de eventos o mensajes relacionados con la conectividad y sincronización del dispositivo.
 
-
+---
 
 ##### 1. IoTDeviceController
 
@@ -212,7 +216,7 @@ En este bounded context, la capa de interfaz se encuentra compuesta principalmen
 | GetDeviceById | HttpResponse | public | Obtener la información de un dispositivo específico. |
 | GetDeviceStatus | HttpResponse | public | Consultar el estado de activación, conectividad y salud de un dispositivo. |
 
-
+---
 
 ##### 2. ConnectivityEventConsumer
 
@@ -235,7 +239,7 @@ En este bounded context, la capa de interfaz se encuentra compuesta principalmen
 | ConsumeConnectivityLost | void | public | Procesar el evento de pérdida de conectividad del dispositivo. |
 | ConsumeConnectivityRestored | void | public | Procesar el evento de restauración de conectividad del dispositivo. |
 
-
+---
 
 ##### 3. EdgeSynchronizationConsumer
 
@@ -258,7 +262,7 @@ En este bounded context, la capa de interfaz se encuentra compuesta principalmen
 | ConsumeSynchronizationRequest | void | public | Procesar una solicitud de sincronización de datos acumulados desde el edge node. |
 | ConsumeSynchronizationCompleted | void | public | Procesar la confirmación de que la sincronización fue completada. |
 
-
+---
 
 ##### 4. SubscriptionActivatedConsumer
 
@@ -284,7 +288,7 @@ En este bounded context, la capa de interfaz se encuentra compuesta principalmen
 
 La **Application Layer** del bounded context **IoT Device Management** se encarga de coordinar los flujos de negocio asociados al ciclo de vida de los dispositivos IoT. Su responsabilidad principal es recibir las solicitudes derivadas desde la Interface Layer, transformarlas en comandos o eventos de aplicación, y orquestar su ejecución utilizando las clases del dominio correspondientes.
 
-
+---
 
 ##### 1. DeviceApplicationService
 
@@ -315,7 +319,7 @@ La **Application Layer** del bounded context **IoT Device Management** se encarg
 | HandleConnectivityChange | void | public | Coordinar el procesamiento de cambios de conectividad. |
 | SynchronizeDeviceData | void | public | Coordinar la sincronización de datos acumulados desde el edge node. |
 
-
+---
 
 ##### 2. RegisterDeviceCommandHandler
 
@@ -338,7 +342,7 @@ La **Application Layer** del bounded context **IoT Device Management** se encarg
 |---|---|---|---|
 | Handle | void | public | Procesar el comando de registro de dispositivo y persistir la nueva entidad. |
 
-
+---
 
 ##### 3. ConfigureSamplingParametersCommandHandler
 
@@ -360,7 +364,7 @@ La **Application Layer** del bounded context **IoT Device Management** se encarg
 |---|---|---|---|
 | Handle | void | public | Procesar el comando de actualización de configuración operativa del dispositivo. |
 
-
+---
 
 ##### 4. DeactivateDeviceCommandHandler
 
@@ -382,7 +386,7 @@ La **Application Layer** del bounded context **IoT Device Management** se encarg
 |---|---|---|---|
 | Handle | void | public | Procesar el comando que desactiva el dispositivo dentro del sistema. |
 
-
+---
 
 ##### 5. ConnectivityEventHandler
 
@@ -405,7 +409,7 @@ La **Application Layer** del bounded context **IoT Device Management** se encarg
 | HandleConnectivityLost | void | public | Procesar el evento de pérdida de conectividad y activar el modo offline. |
 | HandleConnectivityRestored | void | public | Procesar el evento de restauración de conectividad del dispositivo. |
 
-
+---
 
 ##### 6. EdgeSynchronizationCommandHandler
 
@@ -428,7 +432,7 @@ La **Application Layer** del bounded context **IoT Device Management** se encarg
 |---|---|---|---|
 | Handle | void | public | Procesar el comando de sincronización de datos acumulados. |
 
-
+---
 
 ##### 7. SubscriptionActivatedEventHandler
 
@@ -454,7 +458,7 @@ La **Application Layer** del bounded context **IoT Device Management** se encarg
 
 La **Infrastructure Layer** del bounded context **IoT Device Management** agrupa las clases responsables de la persistencia, integración y comunicación con servicios externos necesarios para soportar el ciclo de vida de los dispositivos IoT. En esta capa se materializan técnicamente las abstracciones definidas en la Domain Layer, permitiendo que el bounded context pueda operar sobre componentes reales de base de datos, mensajería e interoperabilidad con otros bounded contexts.
 
-
+---
 
 ##### 1. IoTDeviceRepositoryImpl
 
@@ -481,7 +485,7 @@ La **Infrastructure Layer** del bounded context **IoT Device Management** agrupa
 | Update | void | public | Actualizar la información de un dispositivo existente. |
 | Remove | void | public | Ejecutar la baja lógica o eliminación del dispositivo. |
 
-
+---
 
 ##### 2. IoTDeviceMapper
 
@@ -498,7 +502,7 @@ La **Infrastructure Layer** del bounded context **IoT Device Management** agrupa
 | ToDomain | IoTDevice | public | Convertir una estructura de persistencia en una entidad del dominio. |
 | ToPersistence | Record | public | Convertir una entidad del dominio en una estructura lista para persistir. |
 
-
+---
 
 ##### 3. SubscriptionValidationClient
 
@@ -520,7 +524,7 @@ La **Infrastructure Layer** del bounded context **IoT Device Management** agrupa
 |---|---|---|---|
 | ValidateActiveSubscription | bool | public | Verificar si la suscripción asociada al dispositivo o plantación está activa. |
 
-
+---
 
 ##### 4. DeviceEventPublisher
 
@@ -544,7 +548,7 @@ La **Infrastructure Layer** del bounded context **IoT Device Management** agrupa
 | PublishConnectivityRestored | void | public | Publicar el evento de restauración de conectividad. |
 | PublishEdgeDataSynchronized | void | public | Publicar el evento relacionado con la sincronización de datos del edge node. |
 
-
+---
 
 ##### 5. EdgeSynchronizationGateway
 
@@ -567,7 +571,7 @@ La **Infrastructure Layer** del bounded context **IoT Device Management** agrupa
 | ReceiveSynchronizationBatch | void | public | Recibir un lote de datos acumulados desde el edge node. |
 | ForwardSynchronizationBatch | void | public | Derivar el lote recibido hacia la capa de aplicación para su procesamiento. |
 
-
+---
 
 ##### 6. LocalEdgeStorageAdapter
 
@@ -590,3 +594,30 @@ La **Infrastructure Layer** del bounded context **IoT Device Management** agrupa
 | StoreOfflineData | void | public | Almacenar datos localmente mientras el dispositivo se encuentra sin conectividad. |
 | RetrieveStoredData | List<Record> | public | Recuperar los datos almacenados localmente para su posterior sincronización. |
 | ClearSynchronizedData | void | public | Limpiar los datos que ya fueron sincronizados correctamente. |
+
+#### 4.2.1.5. Bounded Context Software Architecture Component Level Diagrams
+
+Diagrama 1: Component Level — Backend API (ASP.NET Core)  
+Este diagrama muestra la arquitectura de componentes del backend del BC-01 IoT Device Management dentro del monolito Smart Palm. Se organiza en controladores REST, consumidores de eventos, servicios de aplicación, handlers de comandos/eventos, repositorios, mappers y componentes de integración. Además, muestra la interacción con el Edge Node, la base de datos y el bounded context BC-07 Subscription & User Management.
+
+![BC-01 Component Diagram 1](./assets/img/chapter-4/bc-01-component-diagram1.png)
+
+Diagrama 2: Component Level — Web Platform (Angular)  
+Este diagrama muestra la arquitectura de componentes de la plataforma web para el BC-01 IoT Device Management. Se organiza en módulos Angular orientados al registro, configuración, visualización de estado y sincronización de dispositivos, apoyados por un servicio de consumo HTTP y un interceptor de autenticación JWT.
+
+![BC-01 Component Diagram 2](./assets/img/chapter-4/bc-01-component-diagram2.png)
+
+Diagrama 3: Component Level — Mobile Application (Flutter)  
+Este diagrama muestra la arquitectura de componentes de la aplicación móvil para el BC-01 IoT Device Management. Se organiza en pantallas, blocs de estado, repositorio móvil, cliente HTTP y caché local, permitiendo registrar, consultar y configurar dispositivos IoT desde la app móvil del productor.
+
+![BC-01 Component Diagram 3](./assets/img/chapter-4/bc-01-component-diagram3.png)
+
+#### 4.2.1.6. Bounded Context Software Architecture Code Level Diagrams
+
+##### 4.2.1.6.1. Bounded Context Domain Layer Class Diagrams
+
+![BC-01 Domain Layer Class Diagram](./assets/img/chapter-4/bc-01-domain-layer-class-diagram.png)
+
+##### 4.2.1.6.2. Bounded Context Database Design Diagram
+
+![BC-01 Database Diagram](./assets/img/chapter-4/bc-01-database-diagram.png)
