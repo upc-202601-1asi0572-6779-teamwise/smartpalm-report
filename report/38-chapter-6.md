@@ -216,3 +216,49 @@ El Sprint Backlog 1 se construyó a partir del Product Backlog priorizado del Ca
 | **Total** | | | **25** | |
 
 *Tablero de gestión del Sprint: URL de Trello/Jira pendiente.*
+
+#### 6.2.1.4. Development Evidence for Sprint Review
+
+Durante el Sprint 1, el equipo implementó las secciones principales del Landing Page y la estructura base de la Web Application. A continuación se presentan los commits principales del repositorio del reporte que evidencian la escritura y validación de los capítulos correspondientes.
+
+| Repository | Branch | Commit ID | Commit Message | Commit Message Body | Author | Date |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| `upc-Desarrollo-IoT-Report` | `feature/10-startup-profile` | `93daf5f` | `docs: re-structure startup profile` | Restructuración del perfil de startup | `VRojas1603` | 2026-05-15 |
+| `upc-Desarrollo-IoT-Report` | `feature/11-solution-profile` | `0018900` | `docs: re-structure solution profile` | Reestructuración del perfil de solución | `VRojas1603` | 2026-05-15 |
+| `upc-Desarrollo-IoT-Report` | `feature/12-lean-ux-process` | `91de319` | `docs: re-structure lean ux process` | Reestructuración del proceso Lean UX | `VRojas1603` | 2026-05-15 |
+| `upc-Desarrollo-IoT-Report` | `feature/13-target-segment` | `2a3a3b4` | `docs:re-structure target segment` | Reestructuración del segmento objetivo | `VRojas1603` | 2026-05-15 |
+| `upc-Desarrollo-IoT-Report` | `feature/14-competitors` | `5f87e7d` | `Merge branch 'develop' into feature/14-competitors` | Merge de develop con análisis de competidores | `VRojas1603` | 2026-05-15 |
+| `upc-Desarrollo-IoT-Report` | `feature/15-interviews` | `48f6485` | `Merge pull request #10` | Merge de entrevistas | `VRojas1603` | 2026-05-15 |
+| `upc-Desarrollo-IoT-Report` | `feature/16-needfinding` | `995db68` | `Merge pull request #11` | Merge de needfinding | `VRojas1603` | 2026-05-15 |
+| `upc-Desarrollo-IoT-Report` | `feature/17-big-picture-event-storming` | `05b58c6` | `Merge branch 'develop' into feature/17` | Merge de Big Picture EventStorming | `VRojas1603` | 2026-05-15 |
+| `upc-Desarrollo-IoT-Report` | `feature/35-applications-ux-ui-design` | `3241a4e` | `docs: add mobile mockups` | Adición de mock-ups móviles | `VRojas1603` | 2026-05-15 |
+| `upc-Desarrollo-IoT-Report` | `feature/35-applications-ux-ui-design` | `b55539f` | `docs: add mobile user flows` | Adición de user flows móviles | `VRojas1603` | 2026-05-15 |
+| `upc-Desarrollo-IoT-Report` | `feature/37-iot-device-design` | `5e5e963` | `Create 37-iot-device-design.md` | Creación del capítulo de diseño IoT | `Sebastian Carbajal Santivañez` | 2026-05-15 |
+
+#### 6.2.1.5. Testing Suite Evidence for Sprint Review
+
+Durante el Sprint 1, el alcance del testing se centró en la validación estructural del reporte, la revisión de contenido académico y la verificación de la coherencia de los artefactos de diseño. Las pruebas formales de software (unit tests, integration tests, acceptance tests) corresponden al Sprint 2, cuando el backend y el frontend comiencen su implementación funcional.
+
+| Test | Tipo | Relacionado con | Resultado | Evidencia |
+| :--- | :--- | :--- | :--- | :--- |
+| Revisión de estructura del reporte | Validación de documento | Capítulos 10–13 | Aprobado | Commits de reestructuración |
+| Validación de diseño UX/UI | Revisión visual | Landing Page, Web App | Aprobado | Mock-ups y wireframes en Figma |
+| Verificación de nombres de archivo y rutas | Validación de integridad | Assets del reporte | Aprobado | Corrección de rutas en commits |
+
+#### 6.2.1.6. Execution Evidence for Sprint Review
+
+El resultado ejecutable del Sprint 1 es el Landing Page desplegado en Netlify, que presenta la propuesta de valor de SmartPalm, los planes de suscripción y la información institucional de TempWise.
+
+**URL desplegada del Landing Page:** [https://lading-page-smartpalm.netlify.app](https://lading-page-smartpalm.netlify.app)
+
+**URL desplegada de la Web Application:** [https://webapp-9sf.pages.dev](https://webapp-9sf.pages.dev)
+
+**Pantallas implementadas:**
+
+1. **Hero Section:** Cabecera principal con el slogan "Revolutionize palm oil farming in the Amazon" y el call-to-action para descargar la app o acceder al dashboard.
+2. **Sección de Beneficios:** Explicación de las ventajas del monitoreo IoT, alertas en tiempo real y recomendaciones agronómicas.
+3. **Sección de Segmentos:** Diferenciación de la propuesta de valor para el dueño del cultivo y para el ingeniero agrónomo.
+4. **Sección de Pricing:** Presentación de los planes Semilla, Cosecha y Palma Pro.
+5. **Sección About the Team:** Perfiles del equipo TempWise.
+
+*(Incluir capturas de pantalla del Landing Page desplegado en la URL pública)*
