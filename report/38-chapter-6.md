@@ -160,3 +160,59 @@ El sistema utiliza variables de entorno para separar configuraciones sensibles d
 | `LORAWAN_APP_KEY` | Clave de aplicación para el módulo LoRa | *(secreto)* |
 | `API_BASE_URL` | URL base de la API RESTful | `https://api.smartpalm.io` |
 | `EDGE_API_BASE_URL` | URL base del Edge API en campo | `http://192.168.1.100:5000` |
+
+---
+
+## 6.2. Landing Page, Services & Applications Implementation
+
+Esta sección documenta la evidencia de implementación del primer Sprint de desarrollo (Sprint 1), enfocado en la entrega funcional del Landing Page y la estructura inicial de la Web Application. El objetivo es validar la propuesta de valor ante los segmentos objetivo y habilitar la navegación básica del sistema.
+
+---
+
+### 6.2.1. Sprint 1
+
+#### 6.2.1.1. Sprint Planning 1
+
+| Campo | Detalle |
+| :--- | :--- |
+| **Sprint** | Sprint 1 |
+| **Fecha** | *(fecha de la reunión)* |
+| **Hora** | *(hora de la reunión)* |
+| **Lugar / Medio** | Discord / Zoom / Presencial |
+| **Prepared by** | Victor Manuel Rojas Reategui |
+| **Attendees** | Victor Rojas, Renso Julca, Javier Tello, Jeremy Paucar, Renzo Loli, Sebastian Carbajal |
+| **Sprint Goal** | *Our focus is on delivering the first functional version of the Landing Page and the initial Web Application navigation. We believe it delivers early product visibility to visitors and allows users to understand the main value proposal. This will be confirmed when users can access the deployed Landing Page and navigate to the main Web Application views.* |
+| **Sprint Velocity** | 25 Story Points |
+| **Sum of Story Points** | 25 |
+
+#### 6.2.1.2. Aspect Leaders and Collaborators
+
+La siguiente matriz define los roles de liderazgo (L) y colaboración (C) de cada integrante del equipo durante el Sprint 1.
+
+| Integrante | GitHub Username | Landing Page | Web App | API | Testing | Deployment |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| Rojas Reategui, Victor Manuel | `VRojas1603` | C | L | C | C | L |
+| Tello Murga, Javier Oswaldo | `JavierTello20` | C | C | L | C | C |
+| Loli Ruiz, Renzo Javier | `0renzo0loli0` | C | L | C | L | C |
+| Julca Cruz, Renso Anthony | `Renso Julca` | L | C | C | C | C |
+| Carbajal Santivañez, Sebastian | `Sebastian Carbajal Santivañez` | C | C | C | C | C |
+| Paucar Meneses, Jeremy Alión | `asmip_10` | C | C | C | C | C |
+
+#### 6.2.1.3. Sprint Backlog 1
+
+El Sprint Backlog 1 se construyó a partir del Product Backlog priorizado del Capítulo III, seleccionando las historias de usuario del Epic EP001 (Landing Page) y las primeras historias del Epic EP002 (Web App para el Ingeniero Agrónomo) que forman el núcleo de la navegación inicial.
+
+| # | User Story ID | User Story | Story Points | Estado |
+| :--- | :--- | :--- | :--- | :--- |
+| 1 | US001 | Presentar la propuesta de valor de Smart Palm | 2 | Done |
+| 2 | US002 | Consultar los planes de suscripción disponibles | 2 | Done |
+| 3 | US006 | Conocer información institucional sobre TempWise | 1 | Done |
+| 4 | US003 | Iniciar el proceso de contratación de un plan | 3 | Done |
+| 5 | US004 | Completar el registro asociado al plan contratado | 3 | Done |
+| 6 | US005 | Completar el proceso de pago de la suscripción | 5 | Done |
+| 7 | US007 | Visualizar el panel general de plantaciones asignadas | 3 | Done |
+| 8 | US008 | Consultar el detalle técnico de una plantación | 3 | Done |
+| 9 | US009 | Visualizar el estado del cultivo por zona | 3 | Done |
+| **Total** | | | **25** | |
+
+*Tablero de gestión del Sprint: URL de Trello/Jira pendiente.*
