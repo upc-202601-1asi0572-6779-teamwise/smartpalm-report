@@ -598,19 +598,22 @@ La **Infrastructure Layer** del bounded context **IoT Device Management** agrupa
 #### 4.2.1.5. Bounded Context Software Architecture Component Level Diagrams
 
 Diagrama 1: Component Level — Backend API (ASP.NET Core)  
-Este diagrama muestra la arquitectura de componentes del backend del BC-01 IoT Device Management dentro del monolito Smart Palm. Se organiza en controladores REST, consumidores de eventos, servicios de aplicación, handlers de comandos/eventos, repositorios, mappers y componentes de integración. Además, muestra la interacción con el Edge Node, la base de datos y el bounded context BC-07 Subscription & User Management.
+Este diagrama muestra la arquitectura de componentes del backend del BC-01 IoT Device Management dentro del monolito Smart Palm. Se organiza en servicios de registro, configuración, consulta de estado, monitoreo de conectividad, sincronización con el edge node, validación de suscripción y publicación de eventos de integración.
 
-![BC-01 Component Diagram 1](../assets/img/chapter-4/bc-01-component-diagram1.png)
+![BC-01 Component Diagram 1](../assets/img/chapter-4/bc01-component1.png)
+
 
 Diagrama 2: Component Level — Web Platform (Angular)  
-Este diagrama muestra la arquitectura de componentes de la plataforma web para el BC-01 IoT Device Management. Se organiza en módulos Angular orientados al registro, configuración, visualización de estado y sincronización de dispositivos, apoyados por un servicio de consumo HTTP y un interceptor de autenticación JWT.
+Este diagrama muestra la arquitectura de componentes de la plataforma web para el BC-01 IoT Device Management. Se organiza en servicios orientados a la administración de dispositivos, configuración de parámetros, consulta de estado y monitoreo de sincronización, apoyados por un servicio central de consumo de API y gestión de sesión web.
 
-![BC-01 Component Diagram 2](../assets/img/chapter-4/bc-01-component-diagram2.png)
+![BC-01 Component Diagram 2](../assets/img/chapter-4/bc01-component2.png)
+
 
 Diagrama 3: Component Level — Mobile Application (Flutter)  
-Este diagrama muestra la arquitectura de componentes de la aplicación móvil para el BC-01 IoT Device Management. Se organiza en pantallas, blocs de estado, repositorio móvil, cliente HTTP y caché local, permitiendo registrar, consultar y configurar dispositivos IoT desde la app móvil del productor.
+Este diagrama muestra la arquitectura de componentes de la aplicación móvil para el BC-01 IoT Device Management. Se organiza en servicios orientados al registro rápido, consulta de estado en campo, configuración básica y revisión de sincronización offline, apoyados por servicios de acceso remoto, sesión móvil y almacenamiento local.
 
-![BC-01 Component Diagram 3](../assets/img/chapter-4/bc-01-component-diagram3.png)
+![BC-01 Component Diagram 3](../assets/img/chapter-4/bc01-component3.png)
+
 
 #### 4.2.1.6. Bounded Context Software Architecture Code Level Diagrams
 
