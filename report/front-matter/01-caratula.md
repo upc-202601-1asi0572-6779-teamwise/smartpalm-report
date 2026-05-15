@@ -1,6 +1,6 @@
 # Universidad Peruana de Ciencias Aplicadas
 
-![Logo UPC](../../assets/img/logo_upc.png "Logo UPC"){ width=3cm }
+![Logo UPC](../../assets/img/logo_upc.png){width=3cm}
 
 **Carrera:** Ingeniería de Software  
 **Ciclo:** 2026-10  
