@@ -262,3 +262,64 @@ El resultado ejecutable del Sprint 1 es el Landing Page desplegado en Netlify, q
 5. **Sección About the Team:** Perfiles del equipo TempWise.
 
 *(Incluir capturas de pantalla del Landing Page desplegado en la URL pública)*
+
+#### 6.2.1.7. Services Documentation Evidence for Sprint Review
+
+Durante el Sprint 1, la documentación de servicios se limitó a la definición del contrato de la API RESTful (endpoints planificados) y a la documentación de los Bounded Contexts en el reporte. Se desplegó una Mock API provisional en Render para validar la estructura de respuestas del backend. La documentación completa con OpenAPI/Swagger se generará en el Sprint 2 cuando los endpoints estén implementados.
+
+**URL de la Mock API:** [https://smartpalm-mock-api.onrender.com](https://smartpalm-mock-api.onrender.com)
+
+| Método | Endpoint (planificado) | Parámetros | Descripción | Response |
+| :--- | :--- | :--- | :--- | :--- |
+| `GET` | `/api/plantations` | Ninguno | Lista las plantaciones del usuario autenticado | JSON con array de plantaciones |
+| `GET` | `/api/plantations/{id}` | `id` (UUID) | Detalle técnico de una plantación | JSON con plantación y zonas |
+| `GET` | `/api/zones/{id}` | `id` (UUID) | Estado actual de una zona de monitoreo | JSON con lecturas sensoriales |
+| `POST` | `/api/auth/login` | Body JSON (email, password) | Autenticación de usuario | JSON con token JWT |
+
+#### 6.2.1.8. Software Deployment Evidence for Sprint Review
+
+| Producto | Plataforma | URL | Estado | Evidencia |
+| :--- | :--- | :--- | :--- | :--- |
+| **Landing Page** | Netlify | `https://lading-page-smartpalm.netlify.app` | Desplegado | Captura del sitio funcionando |
+| **Web Application** | Cloudflare Pages | `https://webapp-9sf.pages.dev` | Desplegado (fase inicial) | Captura de navegación inicial |
+| **Mock API** | Render | `https://smartpalm-mock-api.onrender.com` | Desplegado | Captura de endpoints funcionando |
+| **Mobile Application** | Google Play / App Store | *(pendiente)* | Por desplegar | — |
+
+**Pasos de despliegue (Netlify - Landing Page):**
+
+1. Conectar el repositorio de GitHub a Netlify.
+2. Seleccionar la rama `main` como fuente de despliegue.
+3. Configurar el comando de build (`npm run build` o equivalente).
+4. Establecer el directorio de publicación (`dist/` o `build/`).
+5. Ejecutar el deploy; Netlify genera automáticamente la URL pública: `lading-page-smartpalm.netlify.app`.
+
+**Pasos de despliegue (Cloudflare Pages - Web Application):**
+
+1. Conectar el repositorio de GitHub a Cloudflare Pages.
+2. Seleccionar la rama `main` o `develop` como fuente de despliegue.
+3. Configurar el framework de compilación (Angular / React / Vanilla).
+4. Establecer las variables de entorno necesarias (API_BASE_URL).
+5. Ejecutar el build; Cloudflare Pages genera automáticamente la URL pública.
+
+#### 6.2.1.9. Team Collaboration Insights during Sprint
+
+Durante el Sprint 1, la colaboración del equipo se evidenció a través de los commits en el repositorio del reporte y la distribución de responsabilidades en los capítulos del producto.
+
+**Distribución de commits por integrante:**
+
+| Integrante | Commits en reporte | Rol principal en Sprint 1 |
+| :--- | :--- | :--- |
+| **Victor Rojas** (`VRojas1603`) | Mayoría de los merge de Pull Requests | Líder de integración, despliegue y Web App |
+| **Javier Tello** (`JavierTello20`) | DDD táctico (caps. 25–29) | Líder del backend y diseño de bounded contexts |
+| **Renzo Loli** (`0renzo0loli0`) | Modelo C4, plataformas de despliegue | Líder de arquitectura de software |
+| **Sebastian Carbajal** | Diseño del dispositivo IoT (cap. 37) | Líder del firmware y hardware |
+| **Renso Julca** | Landing Page (imágenes) | Colaborador en UI/UX |
+| **Jeremy Paucar** (`asmip_10`) | Prototipado y UX | Colaborador en aplicaciones |
+
+**Insights de GitHub:**
+
+- El equipo utilizó Pull Requests para integrar cada capítulo del reporte a la rama `develop`, garantizando revisión por pares antes del merge.
+- Se identificó un flujo de trabajo en cascada, donde cada rama `feature/*` fue creada desde `develop` después de que la anterior fue mergeada.
+- La actividad de commits se concentró en la fecha del 15 de mayo de 2026, evidenciando un esfuerzo coordinado de entrega del proyecto.
+
+*(Incluir capturas de GitHub Insights: Contributors, Commits over time, Network graph)*
