@@ -661,6 +661,7 @@ Los **Domain Services** encapsulan la lógica de sincronización offline (Inspec
 ![BC-06 Database Diagram](../assets/img/chapter-4/bc-06-database-diagram.png)
 
 ---
+
 **Descripción del diagrama:**
 
 El modelo relacional del bounded context **Field Technical Management** está compuesto por **6 tablas** que reflejan los **3 agregados principales del Domain Layer**: **FieldVisit**, **FieldInspection** y **AgronomicIntervention**. El diseño permite soportar la planificación de visitas, el registro de inspecciones y observaciones de campo, la vinculación con alertas activas y la trazabilidad de las intervenciones agronómicas. :contentReference[oaicite:0]{index=0}
