@@ -777,20 +777,23 @@ El diagrama de clases del Domain Layer del bounded context Crop Monitoring Dashb
 
 El diagrama de base de datos del bounded context Crop Monitoring Dashboard se elaboró utilizando dbdiagram.io. Muestra el modelo relacional que soporta la persistencia de los agregados del dominio: snapshots de salud del cultivo, vistas de plantación, series temporales de variables monitoreadas y reportes técnicos. El diseño refleja las decisiones del Domain Layer y garantiza la integridad referencial entre las tablas.
 
-![BC05_UML](../assets/img/chapter-4/BC05-DB.png)
+![BC05_UML](../assets/img/chapter-4/bc-05-database-diagram.png)
 
 **Descripción del diagrama:**
 
-El modelo relacional del bounded context Crop Monitoring Dashboard está compuesto por 8 tablas que reflejan los 4 agregados del Domain Layer y sus relaciones:
+El modelo relacional del bounded context **Crop Monitoring Dashboard** está compuesto por **9 tablas** que reflejan los agregados definidos en el **Domain Layer** y sus relaciones de persistencia.
 
-- **crop_health_snapshots** es la tabla central que almacena las capturas del estado de salud por zona. Cada snapshot se genera cuando el sistema recibe datos actualizados de los sensores. Contiene el estado consolidado (`overall_status`), el factor de riesgo dominante y el conteo de alertas activas. Los índices compuestos por `plantation_id + evaluated_at` y `zone_id + evaluated_at` optimizan las consultas por plantación y zona en rangos temporales.
-- **parameter_summaries** almacena el detalle de cada variable monitoreada dentro de un snapshot. La restricción `unique(snapshot_id, parameter_type)` garantiza que no se repita un tipo de parámetro dentro del mismo snapshot. Cada registro incluye el valor actual, la unidad de medida, el estado individual y los umbrales configurados.
-- **plantation_overviews** mantiene una fila por plantación con el resumen consolidado de sus zonas. La restricción `unique(plantation_id)` asegura una sola vista activa por plantación. Se actualiza cada vez que se regeneran los snapshots de las zonas de la plantación.
-- **plantation_overview_snapshots** es la tabla intermedia que relaciona cada vista de plantación con los snapshots de sus zonas, implementando la relación de agregación del Domain Layer.
-- **sensor_time_series** almacena los metadatos de las series temporales consultadas, incluyendo la zona, el tipo de variable, el rango temporal y la tendencia calculada. El índice compuesto `(zone_id, parameter_type, start_date, end_date)` optimiza las consultas de historial.
-- **time_series_data_points** contiene los puntos individuales de datos de cada serie temporal. La restricción `unique(time_series_id, timestamp)` evita duplicados dentro de una misma serie. El índice por `timestamp` facilita las consultas por rango de fechas.
-- **technical_reports** almacena los reportes técnicos con su ciclo de vida DRAFT → PUBLISHED. Una vez publicado, el reporte es inmutable. Los índices por `plantation_id + status` y `plantation_id + generated_at` optimizan las consultas filtradas del agrónomo.
-- **report_sections** contiene las secciones ordenadas de cada reporte. La restricción `unique(report_id, section_order)` garantiza el orden correcto de las secciones.
-- **report_snapshot_references** vincula cada reporte con los snapshots que fueron considerados en su elaboración, garantizando trazabilidad entre el reporte técnico y los datos de monitoreo que lo sustentan.
-Las columnas `zone_id`, `plantation_id` y `author_id` son referencias lógicas a entidades de otros bounded contexts (Plantation Management, Device Management, Subscription & User Management) y no tienen foreign keys físicas, respetando la independencia entre bounded contexts en la arquitectura DDD.
+La tabla **crop_health_snapshots** funciona como núcleo del modelo, ya que almacena las capturas consolidadas del estado de salud por zona. Cada snapshot representa una evaluación del cultivo en un momento específico e incluye el estado general, el factor de riesgo dominante y la cantidad de alertas activas. A partir de esta tabla se relacionan otras estructuras que complementan la vista de monitoreo y trazabilidad.
+
+La tabla **parameter_summaries** almacena el detalle de cada variable monitoreada dentro de un snapshot. La restricción `unique(snapshot_id, parameter_type)` asegura que no exista duplicidad de parámetros dentro de una misma captura, permitiendo representar de forma consistente el resumen de humedad, temperatura, pH u otros indicadores evaluados.
+
+La tabla **plantation_overviews** mantiene una vista consolidada por plantación, incluyendo la cantidad de zonas en estado crítico, en riesgo u óptimo, así como el estado general y la última actualización. La tabla **plantation_overview_snapshots** actúa como tabla intermedia que relaciona cada vista de plantación con los snapshots de las zonas consideradas en su consolidación, implementando la agregación entre ambos elementos del dominio.
+
+La tabla **technical_reports** almacena los reportes técnicos generados por el agrónomo, incluyendo su ciclo de vida de borrador a publicado. La tabla **report_sections** guarda las secciones ordenadas que componen cada reporte, mientras que **report_snapshot_references** vincula cada reporte con los snapshots utilizados en su elaboración, garantizando trazabilidad entre la información presentada y los datos de monitoreo que la sustentan.
+
+Por otro lado, las tablas **sensor_time_series** y **time_series_data_points** se presentan visualmente en un bloque separado porque corresponden al agregado de series temporales. Este agregado tiene una lógica distinta a la de snapshots y reportes: está orientado al análisis histórico de variables monitoreadas en el tiempo. **sensor_time_series** almacena los metadatos de la consulta temporal, mientras que **time_series_data_points** contiene los puntos individuales de datos asociados a cada serie. Su separación visual en el diagrama ayuda a distinguir este subgrupo funcional del resto de estructuras centradas en consolidación y reporting.
+
+Asimismo, algunas columnas como **zone_id**, **plantation_id** y **author_id** se mantienen como referencias lógicas a entidades pertenecientes a otros bounded contexts, por lo que no se representan con claves foráneas físicas. Esta decisión respeta la independencia entre bounded contexts dentro de la arquitectura basada en DDD.
+
+En conjunto, el diseño garantiza integridad referencial en las relaciones internas del bounded context y, al mismo tiempo, mantiene una separación clara entre los subdominios de snapshots, vistas consolidadas, series temporales y reportes técnicos.
 
