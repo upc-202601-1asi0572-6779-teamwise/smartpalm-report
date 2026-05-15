@@ -657,19 +657,22 @@ Los **Domain Services** encapsulan la lógica de sincronización offline (Inspec
 
 ##### 4.2.6.6.2. Bounded Context Database Design Diagram
 
-![BC-06 Database Diagram](../assets/img/chapter-4/BC06-DB.png)
+![BC-06 Database Diagram](../assets/img/chapter-4/bc-06-database-diagram.png)
 
 ---
-
 **Descripción del diagrama:**
 
-El modelo relacional del bounded context Field Technical Management está compuesto por 6 tablas que reflejan los 3 agregados del Domain Layer y sus relaciones:
+El modelo relacional del bounded context **Field Technical Management** está compuesto por **6 tablas** que reflejan los **3 agregados principales del Domain Layer**: **FieldVisit**, **FieldInspection** y **AgronomicIntervention**. El diseño permite soportar la planificación de visitas, el registro de inspecciones y observaciones de campo, la vinculación con alertas activas y la trazabilidad de las intervenciones agronómicas. :contentReference[oaicite:0]{index=0}
 
-- **field_visits** almacena las visitas de campo con su ciclo de vida (PLANNED → IN_PROGRESS → COMPLETED/CANCELLED). Los índices compuestos por `agronomist_id + status` y `plantation_id + scheduled_date` optimizan las consultas del panel del agrónomo.
-- **field_inspections** almacena las inspecciones técnicas con soporte offline. El campo `sync_status` controla el estado de sincronización, y la diferencia entre `inspected_at` y `registered_at` permite identificar registros offline. La FK a `field_visits` garantiza que cada inspección pertenezca a una visita.
-- **field_observations** contiene las observaciones categorizadas por tipo y severidad dentro de cada inspección. El índice compuesto `(inspection_id, category)` facilita filtrados por categoría.
-- **observation_photos** almacena las referencias a evidencia fotográfica. Las imágenes físicas residen en almacenamiento de objetos externo (S3/Azure Blob), y esta tabla solo guarda las URLs.
-- **inspection_alert_links** es la tabla intermedia que vincula inspecciones con alertas activas del BC-03. La restricción `unique(inspection_id, alert_id)` evita duplicados.
-- **agronomic_interventions** almacena las intervenciones con trazabilidad completa. Los campos `origin_recommendation_id` (referencia lógica al BC-04) y `origin_inspection_id` (FK a `field_inspections`) construyen la cadena de trazabilidad recomendación → inspección → intervención. Los índices por `origin_recommendation_id` y `origin_inspection_id` optimizan las consultas de trazabilidad.
+La tabla **field_visits** almacena las visitas de campo planificadas o ejecutadas por el agrónomo. Contiene información como la plantación, el responsable, fechas programadas o reales, estado de la visita y objetivos definidos. Esta tabla representa la raíz del agregado **FieldVisit** y sirve como punto de partida para agrupar las inspecciones realizadas durante una visita. :contentReference[oaicite:1]{index=1}
 
+La tabla **field_inspections** almacena las inspecciones técnicas realizadas durante una visita. Se relaciona directamente con **field_visits** mediante una clave foránea, garantizando que cada inspección pertenezca a una visita existente. Además, incluye el campo **sync_status**, que permite modelar el soporte offline identificado en el dominio, diferenciando inspecciones ya sincronizadas de aquellas pendientes de envío al servidor. 
+
+La tabla **field_observations** contiene las observaciones registradas dentro de una inspección, incluyendo la descripción, categoría, severidad y momento de observación. Esta tabla representa la persistencia del value object **FieldObservation** y permite descomponer una inspección en múltiples hallazgos técnicos. A su vez, **observation_photos** complementa este modelo almacenando las referencias a la evidencia fotográfica asociada a cada observación. En este caso, la base de datos guarda únicamente la URL o referencia del archivo, mientras que la imagen física reside en un servicio externo de almacenamiento de objetos. 
+
+La tabla **inspection_alert_links** funciona como tabla intermedia para vincular una inspección con alertas activas provenientes del bounded context **BC-03 Alert & Notification**. Esto permite que una observación técnica de campo quede conectada con una alerta previamente detectada por el sistema, sin romper la independencia entre bounded contexts, ya que el identificador de la alerta se maneja como referencia lógica. 
+
+Finalmente, la tabla **agronomic_interventions** almacena las intervenciones agronómicas ejecutadas como respuesta a una inspección o a una recomendación previa. Esta tabla soporta la trazabilidad del proceso completo, enlazando de forma lógica la intervención con una recomendación del **BC-04 Agronomic Recommendation** y, de forma física, con la inspección que le dio origen. De este modo, el modelo permite reconstruir la cadena recomendación → inspección → intervención, que es una de las capacidades centrales de este bounded context. 
+
+En conjunto, el diagrama muestra un diseño relacional coherente con el dominio, donde las relaciones internas del bounded context se implementan con claves foráneas directas, mientras que las dependencias hacia otros bounded contexts se representan mediante referencias lógicas, respetando los principios de desacoplamiento de la arquitectura DDD. 
 ---
