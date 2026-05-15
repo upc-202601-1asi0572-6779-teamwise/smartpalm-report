@@ -53,3 +53,45 @@ Pantalla de soporte y ayuda donde el usuario puede consultar la documentaciÃ³n
 ![Support Wireframe](../../assets/img/Applications-Wireframes/7_Support.png)
 
 ---
+
+### 5.4.2. Applications Wireflow Diagrams
+
+#### Web Application
+
+##### Register
+
+Flujo de registro de nuevo usuario: ingreso de datos personales â†’ validaciÃ³n de correo â†’ selecciÃ³n de tipo de cuenta (ingeniero agrÃ³nomo o dueÃ±o de cultivo) â†’ confirmaciÃ³n â†’ redirecciÃ³n al dashboard principal.
+
+![Register Wireflow](../../assets/img/Applications-Wireflow-Diagrams/1_Register.png)
+
+##### Login
+
+Flujo de autenticaciÃ³n: ingreso de credenciales â†’ validaciÃ³n contra el sistema â†’ redirecciÃ³n al dashboard con vista personalizada segÃºn el rol del usuario (ingeniero agrÃ³nomo o dueÃ±o de cultivo).
+
+![Login Wireflow](../../assets/img/Applications-Wireflow-Diagrams/2_Login.png)
+
+##### Schedule
+
+Flujo de planificaciÃ³n de visita de campo: selecciÃ³n de plantaciÃ³n â†’ elecciÃ³n de fecha en el calendario â†’ definiciÃ³n de objetivos de la visita â†’ confirmaciÃ³n y registro de la visita programada.
+
+![Schedule Wireflow](../../assets/img/Applications-Wireflow-Diagrams/3_Schedule.png)
+
+##### History
+
+Flujo de consulta de historial: selecciÃ³n de plantaciÃ³n â†’ aplicaciÃ³n de filtros por zona y rango de fechas â†’ visualizaciÃ³n del listado de inspecciones e intervenciones â†’ acceso al detalle de cada registro con trazabilidad completa.
+
+![History Wireflow](../../assets/img/Applications-Wireflow-Diagrams/4_History.png)
+
+---
+
+##### Settings
+
+Flujo de configuraciÃ³n de cuenta: navegaciÃ³n a la secciÃ³n de ajustes â†’ modificaciÃ³n de preferencias de notificaciÃ³n y parÃ¡metros de la aplicaciÃ³n â†’ guardado de cambios â†’ confirmaciÃ³n visual de la actualizaciÃ³n.
+
+![Settings Wireflow](../../assets/img/Applications-Wireflow-Diagrams/5_Settings.png)
+
+##### Support
+
+Flujo de soporte al usuario: acceso a la secciÃ³n de ayuda â†’ consulta de documentaciÃ³n frecuente o envÃ­o de ticket de incidencia â†’ confirmaciÃ³n de recepciÃ³n y seguimiento del caso.
+
+![Support Wireflow](../../assets/img/Applications-Wireflow-Diagrams/6_Support.png)
