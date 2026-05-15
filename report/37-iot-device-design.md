@@ -1,16 +1,15 @@
 # 5.6 Device Design
 
-
 ## Introducción
 
-#### En esta sección presentamos el diseño e implementación del dispositivo IoT desarrollado en Wokwi para SmartPalm.
-
-
+###### En esta sección presentamos el diseño e implementación del dispositivo IoT desarrollado en Wokwi para SmartPalm.
 ---
 
-##  Circuit Design
+## Circuit Design
 
-###  Componentes del sistema
+![alt text](../assets/img/smartpalm_circuit_design.png)
+
+### Componentes del sistema
 
 | Componente | Modelo | Función | Interfaz |
 |---|---|---|---|
@@ -24,15 +23,13 @@
 | Display | LCD 1602 I2C | Visualización local de lecturas | I2C (GPIO 21/22) |
 | Sistema de energía | Panel solar 5W + TP4056 + LiPo 5000mAh | Alimentación autónoma | VIN / 3.3V |
 
-###  Diagrama de circuito (Wokwi)
+### Diagrama de circuito (Wokwi)
 
 El esquemático fue implementado en Wokwi usando el ESP32 DevKit V1 como microcontrolador central. Los sensores analógicos (humedad de suelo, pH y EC) se conectan a los canales ADC de 12 bits del ESP32. El DHT22 usa un pin digital con resistencia pull-up de 10kΩ a 3.3V. El módulo LoRa SX1276 se comunica mediante el bus SPI completo. El LCD 1602 usa comunicación I2C con dirección 0x27.
 
 
 
-![Circuit Design - SmartPalm IoT Edge Node](https://raw.githubusercontent.com/upc-202601-1asi0572-6779-teamwise/smartpalm-report/feature/37-iot-device-design/assets/img/smartpalm_circuit_design.svg)
-
-### 2.3 Tabla de pin mapping
+###  Tabla de pin mapping
 
 | Pin ESP32 | Función | Componente |
 |---|---|---|
@@ -67,6 +64,8 @@ El dispositivo físico SmartPalm consiste en una carcasa de ABS con protección 
 
 **Dimensiones de la carcasa:** 22cm × 15cm × 10cm
 
+![alt text](../assets/img/smartpalm_physical_device.png)
+
 ###  Componentes físicos y su ubicación
 
 | Componente | Ubicación física |
@@ -86,9 +85,6 @@ Las sondas subterráneas salen de la base de la carcasa mediante prensaestopas s
 ###  Diagrama físico
 
 
-
-![Physical Device Design - SmartPalm IoT](https://raw.githubusercontent.com/upc-202601-1asi0572-6779-teamwise/smartpalm-report/feature/37-iot-device-design/assets/img/smartpalm_physical_device.svg)
-
 ---
 
 ##  Implementación del Firmware (Wokwi)
@@ -100,8 +96,6 @@ En esta sección presentamos el diseño e implementación del dispositivo IoT de
 El sistema cuenta con un módulo de edge computing que evalúa cada lectura contra los umbrales agronómicos definidos por el INIA para la región Ucayali: humedad de suelo menor a 30% activa alerta de sequía, pH fuera del rango 4.5–6.5 indica condición ácida o alcalina crítica, y temperatura del aire superior a 35°C señala estrés térmico en el cultivo. Ante cualquier condición crítica, el LCD muestra el mensaje de alerta y el payload de transmisión incluye el flag correspondiente.
 
 La comunicación LoRaWAN es simulada mediante el Serial Monitor, donde cada 15 segundos se genera un payload JSON comprimido con todas las lecturas del ciclo activo, el número de ciclo, el flag de alerta y la confirmación de envío al gateway con su respectivo ACK hacia Azure IoT Hub. La simulación fue desarrollada en Wokwi con un ESP32 DevKit V1, permitiendo validar el comportamiento completo del firmware — lectura de sensores, procesamiento edge y transmisión — antes de pasar a la implementación física del dispositivo en campo.
-
-![Simulación Wokwi - SmartPalm IoT funcionando](https://raw.githubusercontent.com/upc-202601-1asi0572-6779-teamwise/smartpalm-report/feature/37-iot-device-design/assets/img/Physical%20Circuit%20Working.png)
 
 ###  Librerías utilizadas
 
@@ -143,7 +137,7 @@ La comunicación LoRaWAN es simulada mediante el Serial Monitor, donde cada 15 s
 
 ---
 
-##  Los 12 Steps del Device Design
+## Los 12 Steps del Device Design
 
 **Step 1 — Definición del problema del dispositivo**  
 El Edge Node de SmartPalm debe monitorear en tiempo real parámetros críticos del cultivo de palma aceitera en zonas remotas de la Amazonia peruana, donde no existe conectividad a internet, las condiciones ambientales son extremas (humedad >85%, temperatura 24–32°C, lluvias de hasta 3500mm/año) y el acceso técnico es infrecuente. El dispositivo debe operar de forma completamente autónoma.
@@ -180,6 +174,8 @@ El payload LoRa se estructura como JSON comprimido (ver sección 4.3). La frecue
 
 **Step 12 — Plan de pruebas y validación**  
 Las pruebas se estructuran en tres fases: (1) pruebas de banco — verificación de lecturas de cada sensor contra instrumentos calibrados, pruebas de consumo energético con multímetro; (2) pruebas de integración — verificación del ciclo completo del firmware, alcance LoRa en entorno simulado, autonomía de batería en ciclo continuo de 72h; (3) pruebas de campo en Ucayali — validación de lecturas contra parámetros INIA, prueba de resistencia a lluvia intensa, medición de alcance LoRa real en vegetación amazónica, verificación de autonomía solar en período nublado. Criterio de aceptación: tasa de entrega de paquetes superior al 90% durante 30 días consecutivos.
+
+![alt text](<../assets/img/Physical Circuit Working.png>)
 
 ---
 
