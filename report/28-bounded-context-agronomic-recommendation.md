@@ -315,21 +315,19 @@ Estos componentes reaccionan a los eventos del sistema para disparar procesos se
 #### 4.2.4.5. Bounded Context Software Architecture Component Level Diagrams.
 
 Diagrama 1: Component Level — Backend API (ASP.NET Core)  
-Este diagrama muestra la arquitectura de componentes del backend del BC-04 Agronomic Recommendation dentro del monolito Smart Palm. Se organiza en controladores REST, consumidores, command handlers, event handlers, servicios de dominio, repositorios, mensajería e integración con servicios externos de IA y parámetros agronómicos.
+Este diagrama muestra la arquitectura de componentes del backend del BC-04 Agronomic Recommendation dentro del monolito Smart Palm. Se organiza en servicios de generación, aprobación, publicación, consulta histórica, registro de intervenciones, integración con IA y parámetros agronómicos, y publicación de eventos de recomendación.
 
-![BC-04 Component Diagram 1](../assets/img/chapter-4/bc-04-component-diagram1.png)
-
+![BC-04 Component Diagram 1](../assets/img/chapter-4/bc04-component1.png)
 
 Diagrama 2: Component Level — Web Platform (Angular)  
-Este diagrama muestra la arquitectura de componentes de la plataforma web para el BC-04 Agronomic Recommendation. Se organiza en módulos Angular orientados a la revisión, aprobación, publicación y consulta histórica de recomendaciones, apoyados por un servicio HTTP y un interceptor JWT.
+Este diagrama muestra la arquitectura de componentes de la plataforma web para el BC-04 Agronomic Recommendation. Se organiza en servicios orientados a la revisión, aprobación, publicación y consulta histórica de recomendaciones, apoyados por un servicio central de consumo de API y gestión de sesión web.
 
-![BC-04 Component Diagram 2](../assets/img/chapter-4/bc-04-component-diagram2.png)
-
+![BC-04 Component Diagram 2](../assets/img/chapter-4/bc04-component2.png)
 
 Diagrama 3: Component Level — Mobile Application (Flutter)  
-Este diagrama muestra la arquitectura de componentes de la aplicación móvil para el BC-04 Agronomic Recommendation. Se organiza en pantallas, blocs, repositorio móvil, cliente HTTP y caché local, permitiendo al Palm Grower consultar recomendaciones publicadas y registrar intervenciones agronómicas.
+Este diagrama muestra la arquitectura de componentes de la aplicación móvil para el BC-04 Agronomic Recommendation. Se organiza en servicios orientados a la consulta de recomendaciones publicadas, revisión de detalle y registro de intervenciones agronómicas, apoyados por servicios de acceso remoto, sesión móvil y almacenamiento local.
 
-![BC-04 Component Diagram 3](../assets/img/chapter-4/bc-04-component-diagram3.png)
+![BC-04 Component Diagram 3](../assets/img/chapter-4/bc04-component3.png)
 
 #### 4.2.4.6. Bounded Context Software Architecture Code Level Diagrams.
 
