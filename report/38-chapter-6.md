@@ -81,3 +81,40 @@ El proyecto utiliza Semantic Versioning (`vMAJOR.MINOR.PATCH`):
 | `v1.0.0` | Primera versión estable con funcionalidades del Sprint 1 desplegadas. |
 | `v1.1.0` | Nuevas funcionalidades (minor) agregadas en Sprint 2. |
 | `v1.1.1` | Corrección de errores (patch) sobre la versión 1.1.0. |
+
+---
+
+### 6.1.3. Source Code Style Guide & Coding Conventions
+
+El equipo TempWise acordó estándares de escritura de código para cada lenguaje involucrado en la solución, con el fin de garantizar legibilidad, mantenibilidad y consistencia entre los integrantes.
+
+#### Lenguajes y guías de referencia
+
+| Lenguaje / Framework | Guía de estilo de referencia |
+| :--- | :--- |
+| **TypeScript** (Angular) | Google TypeScript Style Guide, Angular Style Guide |
+| **C#** (ASP.NET Core) | Microsoft C# Coding Conventions, Framework Design Guidelines |
+| **Dart** (Flutter) | Effective Dart Style Guide |
+| **C++** (Arduino / ESP32) | Google C++ Style Guide (adaptado a microcontroladores) |
+| **HTML / CSS** | Google HTML/CSS Style Guide |
+| **Gherkin** (BDD / Acceptance Tests) | Cucumber Gherkin Reference |
+
+#### Convenciones de nomenclatura
+
+| Elemento | Convención | Ejemplo |
+| :--- | :--- | :--- |
+| Clases / Interfaces | PascalCase | `SensorReading`, `AgronomicThreshold` |
+| Métodos / Funciones | camelCase | `evaluateThreshold()`, `registerDevice()` |
+| Variables locales | camelCase | `currentReading`, `alertLevel` |
+| Constantes | UPPER_SNAKE_CASE | `MAX_OFFLINE_STORAGE_HOURS` |
+| Archivos TypeScript / Dart | kebab-case | `sensor-reading.service.ts` |
+| Archivos C# | PascalCase | `SensorReadingService.cs` |
+| Nombres de ramas Git | kebab-case | `feature/add-login-form` |
+| Commits | inglés, imperativo | `feat: add real-time alert dispatch` |
+
+#### Reglas generales
+
+- Todo el código fuente, comentarios técnicos y nombres de variables se redactan en **inglés**, salvo los textos visibles al usuario que se adaptan al idioma objetivo (español latinoamericano para el productor amazónico).
+- Cada archivo fuente incluye un encabezado de copyright con el nombre del proyecto, el autor y la licencia.
+- Se prohíbe el *hard-coding* de valores mágicos; deben declararse como constantes con nombres descriptivos.
+- El código debe estar documentado con JSDoc (TypeScript), XML Documentation (C#) o DartDoc (Dart) para métodos públicos y clases del dominio.
