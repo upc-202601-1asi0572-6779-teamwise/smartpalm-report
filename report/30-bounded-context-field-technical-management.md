@@ -621,19 +621,20 @@ En la capa de Infrastructure Layer se encuentran las implementaciones concretas 
 
 #### 4.2.6.5. Bounded Context Software Architecture Component Level Diagrams
 
-Los diagramas de componentes del bounded context Field Technical Management se elaboraron utilizando el modelo C4 en la herramienta Structurizr. Muestran la arquitectura interna del backend (API) y la aplicación móvil del agrónomo con soporte offline.
+Diagrama 1: Component Level — Backend API (ASP.NET Core)  
+Este diagrama muestra la arquitectura de componentes del backend del BC-06 Field Technical Management dentro del monolito Smart Palm. Se organiza en servicios de planificación de visitas, registro de inspecciones, observaciones de campo, vinculación con alertas, sincronización offline, registro de intervenciones y trazabilidad técnica.
 
-##### Diagrama 1: Component Level — Backend API (Spring Boot)
+![BC06_Backend_Components](../assets/img/chapter-4/bc06-component1.png)
 
-![BC06_Backend_Components](../assets/img/chapter-4/BC06_Backend_Components.png)
+Diagrama 2: Component Level — Web Platform (Angular)  
+Este diagrama muestra la arquitectura de componentes de la plataforma web para el BC-06 Field Technical Management. Se organiza en servicios orientados a la planificación de visitas, consulta de inspecciones, seguimiento de intervenciones y trazabilidad técnica, apoyados por un servicio central de consumo de API y gestión de sesión web.
 
-##### Diagrama 2: Component Level — Web Platform (Angular)
+![BC06_WebPlatform_Components](../assets/img/chapter-4/bc06-component2.png)
 
-![BC06_WebPlatform_Components](../assets/img/chapter-4/BC06_WebPlatform_Components.png)
+Diagrama 3: Component Level — Mobile Application (Flutter)  
+Este diagrama muestra la arquitectura de componentes de la aplicación móvil para el BC-06 Field Technical Management. Se organiza en servicios orientados al registro de inspecciones en campo, captura de observaciones, soporte offline, sincronización y registro de intervenciones agronómicas, apoyados por servicios de acceso remoto, sesión móvil y almacenamiento local.
 
-##### Diagrama 3: Component Level — Mobile Application (Flutter)
-
-![BC06_Mobile_Components](../assets/img/chapter-4/BC06_MobileApp_Components.png)
+![BC06_Mobile_Components](../assets/img/chapter-4/bc06-component3.png)
 
 #### 4.2.6.6. Bounded Context Software Architecture Code Level Diagrams
 
