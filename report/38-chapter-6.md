@@ -176,8 +176,8 @@ Esta sección documenta la evidencia de implementación del primer Sprint de des
 | Campo | Detalle |
 | :--- | :--- |
 | **Sprint** | Sprint 1 |
-| **Fecha** | *(fecha de la reunión)* |
-| **Hora** | *(hora de la reunión)* |
+| **Fecha** | 14-05-2026 |
+| **Hora** | 19:30 |
 | **Lugar / Medio** | Discord / Zoom / Presencial |
 | **Prepared by** | Victor Manuel Rojas Reategui |
 | **Attendees** | Victor Rojas, Renso Julca, Javier Tello, Jeremy Paucar, Renzo Loli, Sebastian Carbajal |
@@ -191,12 +191,12 @@ La siguiente matriz define los roles de liderazgo (L) y colaboración (C) de cad
 
 | Integrante | GitHub Username | Landing Page | Web App | API | Testing | Deployment |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| Rojas Reategui, Victor Manuel | `VRojas1603` | C | L | C | C | L |
+| Rojas Reategui, Victor Manuel | `VRojas1603` | C | C | C | L | C |
 | Tello Murga, Javier Oswaldo | `JavierTello20` | C | C | L | C | C |
 | Loli Ruiz, Renzo Javier | `0renzo0loli0` | C | L | C | L | C |
 | Julca Cruz, Renso Anthony | `Renso Julca` | L | C | C | C | C |
 | Carbajal Santivañez, Sebastian | `Sebastian Carbajal Santivañez` | C | C | C | C | C |
-| Paucar Meneses, Jeremy Alión | `asmip_10` | C | C | C | C | C |
+| Paucar Meneses, Jeremy Alión | `asmip_10` | C | L | C | C | C |
 
 #### 6.2.1.3. Sprint Backlog 1
 
