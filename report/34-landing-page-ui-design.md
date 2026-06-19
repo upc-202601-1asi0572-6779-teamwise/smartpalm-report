@@ -6,29 +6,57 @@ Asimismo, las decisiones de diseño visual se fundamentan en la aplicación estr
 
 ## 5.3.1. Landing Page Wireframe.
 
+### Agricultor
+
 ### Header y Hero Section (Inicio de la página)
 
-![header](../assets/img/wireframes-landing/header.png)
+![Header](../assets/img/wireframes-landing/agricultor/Inicio.png)
 
-### Sección de Beneficios y "About the Product"
+### Sección de Problema
 
-![beneficios](../assets/img/wireframes-landing/beneficios.png)
+![Problema](../assets/img/wireframes-landing/agricultor/Problema.png)
 
-### Sección de Segmentos
+### Sección de Como Funciona
 
-![segmentos](../assets/img/wireframes-landing/segmentos.png)
+![Como-Funciona](../assets/img/wireframes-landing/agricultor/Como-Funciona.png)
 
-### Sección de Pricing 
+### Sección de Beneficios
 
-![prices](../assets/img/wireframes-landing/prices.png)
+![Beneficios](../assets/img/wireframes-landing/agricultor/Beneficios.png)
 
-### About the Team
+### Sección de Planes
 
-![team](../assets/img/wireframes-landing/team.png)
+![Planes](../assets/img/wireframes-landing/agricultor/Planes.png)
+
+### Sección de Nosotros
+
+![Nosotros](../assets/img/wireframes-landing/agricultor/Nosotros.png)
 
 ### Footer (Pie de página)
 
-![footer](../assets/img/wireframes-landing/footer.png)
+![Footer](../assets/img/wireframes-landing/agricultor/Footer.png)
+
+### Agronomo
+
+### Header y Hero Section (Inicio de la página)
+
+![Header](../assets/img/wireframes-landing/agronomo/Inicio.png)
+
+### Sección de Como Funciona
+
+![Como-Funciona](../assets/img/wireframes-landing/agronomo/Como-Funciona.png)
+
+### Sección de Beneficios
+
+![Beneficios](../assets/img/wireframes-landing/agronomo/Beneficios.png)
+
+### Sección de Planes
+
+![Planes](../assets/img/wireframes-landing/agronomo/Planes.png)
+
+### Footer (Pie de página)
+
+![Footer](../assets/img/wireframes-landing/agronomo/Footer.png)
 
 ## 5.3.2. Landing Page Mock-up.
 
