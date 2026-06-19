@@ -32,26 +32,54 @@ Asimismo, las decisiones de diseño visual se fundamentan en la aplicación estr
 
 ## 5.3.2. Landing Page Mock-up.
 
+### Agricultor
+
 ### Header y Hero Section (Inicio de la página)
 
-![header](../assets/img/mockup-landing/header.png)
+![Header](../assets/img/mockup-landing/agricultor/Inicio.png)
 
-### Sección de Beneficios y "About the Product"
+### Sección de Problema
 
-![beneficios](../assets/img/mockup-landing/beneficios.png)
+![Problema](../assets/img/mockup-landing/agricultor/Problema.png)
 
-### Sección de Segmentos
+### Sección de Como Funciona
 
-![segmentos](../assets/img/mockup-landing/segmentos.png)
+![Como-Funciona](../assets/img/mockup-landing/agricultor/Como-Funciona.png)
 
-### Sección de Pricing 
+### Sección de Beneficios 
 
-![prices](../assets/img/mockup-landing/prices.png)
+![Beneficios](../assets/img/mockup-landing/agricultor/Beneficios.png)
 
-### About the Team
+### Sección de Planes
 
-![team](../assets/img/mockup-landing/team.png)
+![Planes](../assets/img/mockup-landing/agricultor/Planes.png)
+
+### Sección de Nosotros
+
+![Nosotros](../assets/img/mockup-landing/agricultor/Nosotros.png)
 
 ### Footer (Pie de página)
 
-![footer](../assets/img/mockup-landing/footer.png)
+![Footer](../assets/img/mockup-landing/agricultor/Footer.png)
+
+### Agronomo
+
+### Header y Hero Section (Inicio de la página)
+
+![Header](../assets/img/mockup-landing/agronomo/Inicio.png)
+
+### Sección de Como Funciona
+
+![Como-Funciona](../assets/img/mockup-landing/agronomo/Como-Funciona.png)
+
+### Sección de Beneficios
+
+![Beneficios](../assets/img/mockup-landing/agronomo/Beneficios.png)
+
+### Sección de Planes
+
+![Planes](../assets/img/mockup-landing/agronomo/Planes.png)
+
+### Footer (Pie de página)
+
+![Footer](../assets/img/mockup-landing/agronomo/Footer.png)
