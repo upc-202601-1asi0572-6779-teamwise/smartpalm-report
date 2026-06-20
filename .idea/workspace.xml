@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="5a2b9ebf-7c87-496b-87e3-e9fa861f38c5" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/report/44-development-evidence-for-sprint-review.md" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="EmbeddingIndexingInfo">
+    <option name="cachedIndexableFilesCount" value="220" />
+    <option name="fileBasedEmbeddingIndicesEnabled" value="true" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="feature/development-evidence-for-sprint-review-2" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;rajc02&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/upc-202601-1asi0572-6779-teamwise/smartpalm-report.git&quot;,
+    &quot;accountId&quot;: &quot;c6d3c0c1-ea81-48f9-a6ef-9b49b4d184a7&quot;
+  }
+}</component>
+  <component name="McpProjectServerCommands">
+    <commands />
+    <urls />
+  </component>
+  <component name="NextEditCompletionFeaturesState">
+    <decayedCancelled>
+      <entry key="MS100" value="2.075194403081042" />
+      <entry key="MS500" value="4.3238831092666885" />
+      <entry key="S2" value="10.561398906505998" />
+      <entry key="S5" value="17.435894261329437" />
+      <entry key="S10" value="22.23289508676306" />
+      <entry key="S30" value="27.004277261173282" />
+      <entry key="S60" value="29.10927502606691" />
+      <entry key="M2" value="32.10125946301095" />
+      <entry key="M5" value="42.90211428043028" />
+      <entry key="M10" value="64.53422842938778" />
+      <entry key="M15" value="81.42511653081256" />
+      <entry key="M30" value="111.46051847134338" />
+      <entry key="H1" value="141.0644209642555" />
+      <entry key="H2" value="172.20500890839364" />
+      <entry key="H4" value="200.57396464846985" />
+      <entry key="D1" value="238.16558157306184" />
+      <entry key="W1" value="246.5368576744834" />
+    </decayedCancelled>
+    <decayedSelected>
+      <entry key="MS100" value="0.0" />
+      <entry key="MS500" value="0.0" />
+      <entry key="S2" value="0.0" />
+      <entry key="S5" value="3.3540500695486656E-171" />
+      <entry key="S10" value="5.791416121769064E-86" />
+      <entry key="S30" value="3.868966092407054E-29" />
+      <entry key="S60" value="6.220101359629972E-15" />
+      <entry key="M2" value="7.88676192085821E-8" />
+      <entry key="M5" value="0.0014413169446838825" />
+      <entry key="M10" value="0.03796518988628922" />
+      <entry key="M15" value="0.11303912669793369" />
+      <entry key="M30" value="0.3487731430150848" />
+      <entry key="H1" value="0.738982458567022" />
+      <entry key="H2" value="1.325756127886863" />
+      <entry key="H4" value="1.9349896861012983" />
+      <entry key="D1" value="2.777405487905456" />
+      <entry key="W1" value="2.9668614841215923" />
+    </decayedSelected>
+    <decayedShown>
+      <entry key="MS100" value="1.979935234793009" />
+      <entry key="MS500" value="4.283117237824684" />
+      <entry key="S2" value="10.531631741767931" />
+      <entry key="S5" value="17.41398840305559" />
+      <entry key="S10" value="22.218342518293344" />
+      <entry key="S30" value="26.998220764490245" />
+      <entry key="S60" value="29.10597649774553" />
+      <entry key="M2" value="32.099409619838426" />
+      <entry key="M5" value="42.90242076001821" />
+      <entry key="M10" value="64.57102658119564" />
+      <entry key="M15" value="81.53690924108905" />
+      <entry key="M30" value="111.808098563885" />
+      <entry key="H1" value="141.80247043794586" />
+      <entry key="H2" value="173.53010698817812" />
+      <entry key="H4" value="202.50853303528194" />
+      <entry key="D1" value="240.94289554511585" />
+      <entry key="W1" value="249.50370539109647" />
+    </decayedShown>
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7,
+  &quot;fromUser&quot;: false
+}</component>
+  <component name="ProjectId" id="3F8VYItMOkhDk1qtpZ8Tc3p3wYX" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.MCP Project settings loaded": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "ignore.virus.scanning.warn.message": "true",
+    "javascript.preferred.runtime.type.id": "node",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Victus\Desktop\IOT\smartpalm-report\assets\img\wireframes-landing\agronomo" />
+      <recent name="C:\Users\Victus\Desktop\IOT\smartpalm-report\assets\img\wireframes-landing\agricultor" />
+      <recent name="C:\Users\Victus\Desktop\IOT\smartpalm-report\assets\img\mockup-landing\agricultor" />
+      <recent name="C:\Users\Victus\Desktop\IOT\smartpalm-report\assets\img\mockup-landing\agronomo" />
+    </key>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-31caf2ab9e3c-JavaScript-WS-261.25134.101" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="5a2b9ebf-7c87-496b-87e3-e9fa861f38c5" name="Changes" comment="" />
+      <created>1781456734376</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1781456734376</updated>
+      <workItem from="1781456743306" duration="2397000" />
+      <workItem from="1781573689106" duration="6000" />
+      <workItem from="1781880729534" duration="14101000" />
+      <workItem from="1781935425219" duration="1956000" />
+      <workItem from="1781937417057" duration="3302000" />
+    </task>
+    <task id="LOCAL-00001" summary="docs: New landing page URL">
+      <option name="closed" value="true" />
+      <created>1781936452783</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1781936452783</updated>
+    </task>
+    <task id="LOCAL-00002" summary="docs: New landing page URL">
+      <option name="closed" value="true" />
+      <created>1781936523554</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1781936523554</updated>
+    </task>
+    <task id="LOCAL-00003" summary="docs: New landing page URL">
+      <option name="closed" value="true" />
+      <created>1781936559760</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1781936559760</updated>
+    </task>
+    <task id="LOCAL-00004" summary="docs: Update all links to landing page">
+      <option name="closed" value="true" />
+      <created>1781937327472</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1781937327472</updated>
+    </task>
+    <task id="LOCAL-00005" summary="docs: Add missing aspect leaders">
+      <option name="closed" value="true" />
+      <created>1781938844064</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1781938844064</updated>
+    </task>
+    <task id="LOCAL-00006" summary="docs: Update number of sections">
+      <option name="closed" value="true" />
+      <created>1781939017849</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1781939017849</updated>
+    </task>
+    <task id="LOCAL-00007" summary="doc: add base md">
+      <option name="closed" value="true" />
+      <created>1781939462757</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1781939462758</updated>
+    </task>
+    <task id="LOCAL-00008" summary="docs: Add missing aspect leaders">
+      <option name="closed" value="true" />
+      <created>1781939481170</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1781939481170</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="docs: New landing page URL" />
+    <MESSAGE value="docs: Update all links to landing page" />
+    <MESSAGE value="docs: Update number of sections" />
+    <MESSAGE value="doc: add base md" />
+    <MESSAGE value="docs: Add missing aspect leaders" />
+    <option name="LAST_COMMIT_MESSAGE" value="docs: Add missing aspect leaders" />
+  </component>
+</project>
