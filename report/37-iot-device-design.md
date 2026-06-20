@@ -12,7 +12,7 @@ El diseño se desarrolló en dos etapas. La primera etapa corresponde al **dise�
 
 # Parte A — Diseño Conceptual (Edge Node objetivo)
 
-> Esta primera parte describe la arquitectura completa diseñada como objetivo final del producto SmartPalm, validada mediante simulación en Wokwi. El prototipado físico real, descrito en la Parte B, implementa una versión reducida de este diseño usando los componentes disponibles para el equipo en esta etapa del proyecto.
+> Esta primera parte describe la arquitectura completa diseñada como objetivo final de SmartPalm, validada mediante simulación en Wokwi. El prototipado físico real, descrito en la Parte B, implementa una versión reducida de este diseño usando los componentes disponibles para el equipo en esta etapa del proyecto.
 
 ##  Circuit Design
 
