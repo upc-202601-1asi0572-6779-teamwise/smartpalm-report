@@ -21,6 +21,7 @@ Durante el Sprint 1, el equipo se enfocó en tres frentes de implementación. Pr
 | Web App Deployment | Cloudflare Pages | Publicación de la Web Application. | https://webapp-9sf.pages.dev |
 | Mock Services Deployment | Render | Publicación de la Mock API usada por la Web Application. | https://smartpalm-mock-api.onrender.com |
 
+
 ### 6.1.2. Source Code Management
 
 El equipo utiliza Git como sistema de control de versiones y GitHub como plataforma de alojamiento remoto. Para el Sprint 1, los repositorios relevantes corresponden al reporte, la Web Application, el Landing Page y la Mock API.
@@ -108,6 +109,7 @@ La configuración de despliegue del Sprint 1 considera únicamente los artefacto
 | Landing Page | Netlify | https://lading-page-smartpalm.netlify.app | Deployed |
 | Web Application | Cloudflare Pages | https://webapp-9sf.pages.dev | Deployed |
 | Mock API | Render | https://smartpalm-mock-api.onrender.com | Deployed |
+
 
 **Deployment Configuration Summary**
 
@@ -272,6 +274,7 @@ El Sprint 1 dejó tres artefactos ejecutables: Landing Page, Web Application y M
 
 **Web Application URL:** https://webapp-9sf.pages.dev
 
+
 **Mock API URL:** https://smartpalm-mock-api.onrender.com
 
 
@@ -303,6 +306,7 @@ En el Sprint 1 se desplegaron los tres artefactos del alcance: Landing Page, Web
 | Landing Page | Deployed | https://lading-page-smartpalm.netlify.app |
 | Web Application | Deployed | https://webapp-9sf.pages.dev |
 | Mock API | Deployed | https://smartpalm-mock-api.onrender.com |
+
 
 #### 6.2.1.8. Team Collaboration Insights during Sprint
 
