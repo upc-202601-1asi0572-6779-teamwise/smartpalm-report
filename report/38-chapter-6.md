@@ -13,7 +13,7 @@ El equipo TempWise utilizó un conjunto de herramientas seleccionadas en funció
 | Herramienta | Uso en el proyecto | Enlace de acceso |
 | :--- | :--- | :--- |
 | **GitHub** | Control de versiones, repositorios de código y colaboración del equipo | [github.com/TempWise-DesarrolloIoT-202610](https://github.com/TempWise-DesarrolloIoT-202610) |
-| **Netlify** | Despliegue continuo del Landing Page | [lading-page-smartpalm.netlify.app](https://lading-page-smartpalm.netlify.app) |
+| **Netlify** | Despliegue continuo del Landing Page | [https://smart-palm.netlify.app/](https://lading-page-smartpalm.netlify.app) |
 | **Cloudflare Pages** | Despliegue continuo de la Web Application | [webapp-9sf.pages.dev](https://webapp-9sf.pages.dev) |
 | **Render** | Despliegue de la Mock API RESTful | [smartpalm-mock-api.onrender.com](https://smartpalm-mock-api.onrender.com) |
 | **Miro** | Modelado colaborativo (Big Picture EventStorming y Design-Level EventStorming) | [Tablero Big Picture](https://miro.com/app/board/uXjVK2R7nV4=/?share_link_id=837305751989) / [Tablero Design-Level](https://miro.com/app/board/uXjVHdJ_3Wo=/?share_link_id=547546845690) |
@@ -249,7 +249,7 @@ Durante el Sprint 1, el alcance del testing se centró en la validación estruct
 
 El resultado ejecutable del Sprint 1 es el Landing Page desplegado en Netlify, que presenta la propuesta de valor de SmartPalm, los planes de suscripción y la información institucional de TempWise.
 
-**URL desplegada del Landing Page:** [https://lading-page-smartpalm.netlify.app](https://lading-page-smartpalm.netlify.app)
+**URL desplegada del Landing Page:** [https://smart-palm.netlify.app/](https://lading-page-smartpalm.netlify.app)
 
 **URL desplegada de la Web Application:** [https://webapp-9sf.pages.dev](https://webapp-9sf.pages.dev)
 
@@ -280,7 +280,7 @@ Durante el Sprint 1, la documentación de servicios se limitó a la definición 
 
 | Producto | Plataforma | URL | Estado | Evidencia |
 | :--- | :--- | :--- | :--- | :--- |
-| **Landing Page** | Netlify | `https://lading-page-smartpalm.netlify.app` | Desplegado | Captura del sitio funcionando |
+| **Landing Page** | Netlify | `https://smart-palm.netlify.app/` | Desplegado | Captura del sitio funcionando |
 | **Web Application** | Cloudflare Pages | `https://webapp-9sf.pages.dev` | Desplegado (fase inicial) | Captura de navegación inicial |
 | **Mock API** | Render | `https://smartpalm-mock-api.onrender.com` | Desplegado | Captura de endpoints funcionando |
 | **Mobile Application** | Google Play / App Store | *(pendiente)* | Por desplegar | — |
