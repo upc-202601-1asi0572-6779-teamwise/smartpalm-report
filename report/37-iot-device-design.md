@@ -35,7 +35,7 @@ El diseño se desarrolló en dos etapas. La primera etapa corresponde al **dise�
 
 El esquemático fue implementado en Wokwi usando el ESP32 DevKit V1 como microcontrolador central. Los sensores analógicos (humedad de suelo, pH y EC) se conectan a los canales ADC de 12 bits del ESP32. El DHT22 usa un pin digital con resistencia pull-up de 10kΩ a 3.3V. El módulo LoRa SX1276 se comunica mediante el bus SPI completo. El LCD 1602 usa comunicación I2C con dirección 0x27.
 
-![Circuit Design - SmartPalm IoT Edge Node](https://raw.githubusercontent.com/upc-202601-1asi0572-6779-teamwise/smartpalm-report/feature/37-iot-device-design/assets/img/smartpalm_circuit_design.svg)
+![Circuit Design - SmartPalm IoT Edge Node](https://raw.githubusercontent.com/upc-202601-1asi0572-6779-teamwise/smartpalm-report/feature/37-iot-device-design/assets/img/smartpalm_circuit_design.png)
 
 ### Tabla de pin mapping
 
@@ -92,7 +92,7 @@ Las sondas subterráneas salen de la base de la carcasa mediante prensaestopas s
 
 ###  Diagrama físico
 
-![Physical Device Design - SmartPalm IoT](https://raw.githubusercontent.com/upc-202601-1asi0572-6779-teamwise/smartpalm-report/feature/37-iot-device-design/assets/img/smartpalm_physical_device.svg)
+![Physical Device Design - SmartPalm IoT](https://raw.githubusercontent.com/upc-202601-1asi0572-6779-teamwise/smartpalm-report/feature/37-iot-device-design/assets/img/smartpalm_physical_device.png)
 
 ---
 
@@ -206,7 +206,7 @@ La comunicación LoRaWAN del diseño conceptual fue reemplazada por WiFi en el p
 
 ### Arquitectura de los dos prototipos
 
-![Arquitectura de los dos prototipos SmartPalm](https://raw.githubusercontent.com/upc-202601-1asi0572-6779-teamwise/smartpalm-report/feature/37-iot-device-design/assets/img/smartpalm_prototipos_arquitectura.svg)
+![Arquitectura de los dos prototipos SmartPalm](../assets/img/smartpalm_prototipos_arquitectura.png)
 
 El Prototipo 1 cumple el rol de **nodo sensor de campo**: captura las variables agronómicas y las envía por WiFi. El Prototipo 2 cumple el rol de **nodo gateway**: no tiene sensores propios, sino que recibe los datos del Prototipo 1, los almacena temporalmente y los reenvía en lote al backend, replicando — a menor escala y sobre WiFi en vez de LoRa — el mismo patrón de "nodo de campo → gateway → cloud" que define el diseño conceptual de la Parte A.
 
