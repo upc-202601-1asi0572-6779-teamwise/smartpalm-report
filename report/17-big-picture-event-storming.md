@@ -19,20 +19,6 @@ Enlace de Miro: https://miro.com/app/board/uXjVK2R7nV4=/?share_link_id=837305751
 
 <br>
 
-- Commands: Representan instrucciones o solicitudes que se envían para realizar una acción.
-
-
-![commands](../assets/img/big-picture-event-storming/commands.jpg)
-
-<br>
-
-- External Systems: Representan sistemas externos que interactúan con el dominio.
-
-
-![external-systems](../assets/img/big-picture-event-storming/external_systems.jpg)
-
-<br>
-
 - Pain Points: Representan problemas o desafíos que enfrentan los usuarios o el sistema.
 
 ![pain-points](../assets/img/big-picture-event-storming/pain_points.jpg)
