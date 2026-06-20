@@ -2,10 +2,18 @@
 
 ## Introducción
 
-###### En esta sección presentamos el diseño e implementación del dispositivo IoT desarrollado en Wokwi para SmartPalm.
+#### En esta sección presentamos el diseño e implementación del dispositivo IoT desarrollado para SmartPalm, desde el diseño conceptual simulado en Wokwi hasta el prototipado físico real construido y validado en hardware.
+
+El diseño se desarrolló en dos etapas. La primera etapa corresponde al **diseño conceptual** (Edge Node objetivo), que define la arquitectura completa de sensores, comunicación LoRaWAN y energía solar pensada para el despliegue final en campo, y que fue validada mediante simulación en Wokwi. La segunda etapa corresponde al **prototipado físico**, en la cual el equipo construyó y probó en hardware real dos dispositivos complementarios — un Nodo Sensor y un Nodo Gateway (Edge Node) — que implementan una versión reducida y funcional del diseño conceptual, ajustada a los componentes disponibles y a las condiciones de prueba en laboratorio. Las secciones siguientes documentan ambas etapas y la relación entre ellas.
+
+
 ---
 
-## Circuit Design
+# Parte A — Diseño Conceptual (Edge Node objetivo)
+
+> Esta primera parte describe la arquitectura completa diseñada como objetivo final de SmartPalm, validada mediante simulación en Wokwi. El prototipado físico real, descrito en la Parte B, implementa una versión reducida de este diseño usando los componentes disponibles para el equipo en esta etapa del proyecto.
+
+##  Circuit Design
 
 ![alt text](../assets/img/smartpalm_circuit_design.png)
 
@@ -27,9 +35,9 @@
 
 El esquemático fue implementado en Wokwi usando el ESP32 DevKit V1 como microcontrolador central. Los sensores analógicos (humedad de suelo, pH y EC) se conectan a los canales ADC de 12 bits del ESP32. El DHT22 usa un pin digital con resistencia pull-up de 10kΩ a 3.3V. El módulo LoRa SX1276 se comunica mediante el bus SPI completo. El LCD 1602 usa comunicación I2C con dirección 0x27.
 
+![Circuit Design - SmartPalm IoT Edge Node](https://raw.githubusercontent.com/upc-202601-1asi0572-6779-teamwise/smartpalm-report/feature/37-iot-device-design/assets/img/smartpalm_circuit_design.svg)
 
-
-###  Tabla de pin mapping
+### Tabla de pin mapping
 
 | Pin ESP32 | Función | Componente |
 |---|---|---|
@@ -84,6 +92,7 @@ Las sondas subterráneas salen de la base de la carcasa mediante prensaestopas s
 
 ###  Diagrama físico
 
+![Physical Device Design - SmartPalm IoT](https://raw.githubusercontent.com/upc-202601-1asi0572-6779-teamwise/smartpalm-report/feature/37-iot-device-design/assets/img/smartpalm_physical_device.svg)
 
 ---
 
@@ -133,7 +142,7 @@ La comunicación LoRaWAN es simulada mediante el Serial Monitor, donde cada 15 s
 | `ec` | Conductividad eléctrica | µS/cm |
 | `al` | Flag de alerta (0=OK, 1=alerta) | — |
 
-
+> Ver archivo `sketch.ino` para el código fuente completo del firmware.
 
 ---
 
@@ -175,10 +184,170 @@ El payload LoRa se estructura como JSON comprimido (ver sección 4.3). La frecue
 **Step 12 — Plan de pruebas y validación**  
 Las pruebas se estructuran en tres fases: (1) pruebas de banco — verificación de lecturas de cada sensor contra instrumentos calibrados, pruebas de consumo energético con multímetro; (2) pruebas de integración — verificación del ciclo completo del firmware, alcance LoRa en entorno simulado, autonomía de batería en ciclo continuo de 72h; (3) pruebas de campo en Ucayali — validación de lecturas contra parámetros INIA, prueba de resistencia a lluvia intensa, medición de alcance LoRa real en vegetación amazónica, verificación de autonomía solar en período nublado. Criterio de aceptación: tasa de entrega de paquetes superior al 90% durante 30 días consecutivos.
 
-![alt text](<../assets/img/Physical Circuit Working.png>)
+> Las fases (1) y (2) de este plan ya cuentan con una primera validación real, documentada en la Parte B: el prototipado físico confirmó la lectura correcta de sensores, el ciclo completo de firmware (captura → buffer → reenvío por lotes) y la comunicación entre dos nodos vía WiFi. Las pruebas de campo en Ucayali y la validación con LoRaWAN quedan pendientes para la siguiente iteración, una vez integrados los componentes del diseño conceptual completo.
+
+---
+
+# Parte B — Prototipado Físico
+
+## Del diseño conceptual al prototipo real
+
+El diseño conceptual descrito en la Parte A contempla un único Edge Node con seis sensores, comunicación LoRaWAN y alimentación solar autónoma. Para esta etapa del proyecto, el equipo priorizó validar en hardware real el **flujo completo de datos** — desde la captura en campo hasta el envío a un backend — antes de invertir en los componentes de mayor costo y complejidad de integración (LoRa, sondas de pH/EC, sistema solar). Como resultado, se construyeron y probaron **dos prototipos físicos** que, trabajando en conjunto, cubren ese flujo de extremo a extremo:
+
+| | Diseño conceptual | Prototipado físico |
+|---|---|---|
+| Sensores | DHT22, DS18B20, soil moisture, pH, EC | DHT11, HW-390 (soil), ARD-LDR (luz) |
+| Comunicación | LoRaWAN 915 MHz | WiFi 802.11 b/g/n (AP + STA) |
+| Topología | 1 nodo → gateway externo → cloud | 2 nodos propios (sensor + gateway) → Flask API |
+| Energía | Solar + LiPo autónoma | USB / 3.3V de laboratorio |
+| Estado | Validado por simulación (Wokwi) | Validado en hardware físico real |
+
+La comunicación LoRaWAN del diseño conceptual fue reemplazada por WiFi en el prototipo porque el alcance de campo no era una variable a probar en esta etapa; en cambio, sí lo era la arquitectura de dos nodos (sensor + gateway) y el protocolo de telemetría hacia el backend, que se mantiene compatible con el diseño objetivo. Asimismo, los sensores agronómicos avanzados (pH, EC, temperatura de suelo) quedan pendientes de integración en una siguiente iteración del prototipo, una vez validado el flujo de comunicación.
+
+### Arquitectura de los dos prototipos
+
+![Arquitectura de los dos prototipos SmartPalm](https://raw.githubusercontent.com/upc-202601-1asi0572-6779-teamwise/smartpalm-report/feature/37-iot-device-design/assets/img/smartpalm_prototipos_arquitectura.svg)
+
+El Prototipo 1 cumple el rol de **nodo sensor de campo**: captura las variables agronómicas y las envía por WiFi. El Prototipo 2 cumple el rol de **nodo gateway**: no tiene sensores propios, sino que recibe los datos del Prototipo 1, los almacena temporalmente y los reenvía en lote al backend, replicando — a menor escala y sobre WiFi en vez de LoRa — el mismo patrón de "nodo de campo → gateway → cloud" que define el diseño conceptual de la Parte A.
+
+---
+
+## Prototipo 1 — Nodo Sensor
+
+### Hardware
+
+El Prototipo 1 se implementó sobre la placa **NodeMCU-32S** (módulo ESP32-WROOM-32, dual-core 240 MHz, WiFi integrado, 38 pines).
+
+| Componente | Modelo | Función |
+|---|---|---|
+| Microcontrolador | NodeMCU-32S (ESP32-WROOM-32) | Procesamiento, WiFi cliente, lectura de sensores |
+| Sensor temp/humedad aire | DHT11 (módulo 3 pines) | Temperatura y humedad ambiental |
+| Sensor humedad suelo | HW-390 (capacitivo) | Humedad volumétrica del suelo |
+| Sensor luminosidad | ARD-LDR | Nivel de luz ambiental |
+| Display | GME12864-51 OLED 0.96" (SSD1315, I2C 0x3C) | Visualización local de lecturas |
+| LED de estado | LED built-in (GPIO2) | Indicador de ciclo de lectura activo |
+
+### Conexiones físicas
+
+| GPIO ESP32 | Componente | Señal | Cable |
+|---|---|---|---|
+| GPIO27 | DHT11 (S) | Digital (1-Wire-like) | Verde |
+| GPIO32 | HW-390 (AOUT) | ADC1 Ch4 | Azul |
+| GPIO33 | ARD-LDR (AO) | ADC1 Ch5 | Amarillo |
+| GPIO21 | OLED (SDA) | I²C | Naranja |
+| GPIO22 | OLED (SCL) | I²C | Morado |
+| GPIO2 | LED built-in | Digital output | — |
+| 3.3V | VCC de todos los periféricos | Alimentación | Rojo |
+| GND | Tierra común | — | Negro |
+
+> **Nota técnica:** GPIO32 y GPIO33 se eligieron porque pertenecen al canal **ADC1**, el único que el ESP32 puede leer de forma segura mientras el módulo WiFi está activo (el canal ADC2 queda bloqueado en modo WiFi). GPIO27, aunque pertenece a ADC2, se usa exclusivamente como pin digital para el DHT11, por lo que no genera conflicto.
+
+### Fotografía del prototipo armado
+
+![Prototipo 1 - Nodo Sensor SmartPalm](https://raw.githubusercontent.com/upc-202601-1asi0572-6779-teamwise/smartpalm-report/feature/37-iot-device-design/assets/img/prototipo1_nodo_sensor.jpeg)
+
+### Firmware y payload
+
+El firmware activo (`smart_palm_wifi.ino`) lee los 4 sensores cada 5 segundos (promediando 5 lecturas por sensor analógico), los muestra en el OLED, y los envía por HTTP POST en formato JSON al Edge Node:
+
+```json
+{
+  "temperature": 26.5,
+  "humidity": 72.0,
+  "soilMoisture": 45,
+  "light": 78,
+  "timestamp": 12340
+}
+```
+
+**Estado de implementación:**  Funcional en hardware físico. El ESP32 conecta correctamente al AP del Prototipo 2 y transmite lecturas en tiempo real.
+
+---
+
+## Prototipo 2 — Edge Node (Nodo Gateway)
+
+### Rol en la arquitectura
+
+A diferencia del Prototipo 1, el Edge Node **no tiene sensores agronómicos**. Su función es actuar como intermediario WiFi entre el nodo sensor y el backend: crea su propia red de acceso, recibe las lecturas, las acumula en un buffer y las reenvía en lote.
+
+### Hardware
+
+| Componente | Modelo | Función |
+|---|---|---|
+| Microcontrolador | ESP32-DevKitC-32U (mismo módulo ESP32-WROOM-32) | WiFi modo AP+STA simultáneo, servidor HTTP |
+| Shield auxiliar | Shield 38Pin | Acceso a pines en protoboard |
+| Display | LCD 1602A + módulo I²C PCF8574 (0x27) | Estado operativo del sistema (3 pantallas) |
+
+### Conexiones físicas
+
+| GPIO ESP32 | Componente | Señal | Cable |
+|---|---|---|---|
+| GPIO21 | LCD (SDA, vía PCF8574) | I²C | Naranja |
+| GPIO22 | LCD (SCL, vía PCF8574) | I²C | Morado |
+| 5V (Shield) | LCD / PCF8574 (VCC) | Alimentación | Rojo |
+| GND | Tierra común | — | Negro |
+
+> **⚠ Advertencia de hardware:** El módulo PCF8574 con el LCD 1602A requiere alimentación a **5V**, no 3.3V — a 3.3V el texto no se muestra o el contraste queda en blanco. Los pines de señal I²C (GPIO21/22) sí trabajan a 3.3V y son compatibles con el módulo a 5V; solo el VCC necesita el riel de 5V del Shield.
+
+### Fotografía del prototipo armado
+
+![Prototipo 2 - Edge Node SmartPalm](https://raw.githubusercontent.com/upc-202601-1asi0572-6779-teamwise/smartpalm-report/feature/37-iot-device-design/assets/img/prototipo2_edge_node.jpeg)
+
+### Pantallas del LCD
+
+El LCD rota cada 2.5 segundos entre tres vistas de estado:
+
+| Pantalla | Contenido |
+|---|---|
+| A — Conectividad | Estado del Prototipo 1 (`D1:OK`/`---`), lecturas en buffer, estado del envío al backend (`BE:OK`/`---`), total reenviado |
+| B — Última lectura | Temperatura, humedad, humedad de suelo y luminosidad más recientes recibidas del Prototipo 1 |
+| C — Red y contadores | Nombre del AP creado, total de lecturas recibidas (`Rx`) y reenviadas (`Tx`) |
+
+### Firmware y protocolo
+
+El firmware (`smart_palm_edge_node.ino`) configura el ESP32 en modo **WIFI_AP_STA simultáneo**: crea el AP `SmartPalm-EdgeNode` (IP fija `192.168.4.1`) para recibir datos del Prototipo 1, y opcionalmente se conecta a una red externa para reenviar al backend.
+
+| Parámetro | Valor | Descripción |
+|---|---|---|
+| `MAX_BUFFER` | 20 lecturas | Capacidad del buffer circular en RAM |
+| `BATCH_TRIGGER` | 5 lecturas | Envío al backend al acumular este número |
+| `BATCH_INTERVAL` | 30 s | Envío forzado aunque no se alcance el trigger |
+| `D1_TIMEOUT` | 15 s | Tiempo sin datos para marcar al Prototipo 1 como desconectado |
+
+Las lecturas se reciben y reenvían en formato `readings[]`, autenticado con headers `X-Device-Id` y `X-Api-Key`:
+
+```json
+{
+  "readings": [
+    { "variable": "temperature",   "value": 25.5, "unit": "C",   "timestamp": "2026-06-18T10:00:00+00:00" },
+    { "variable": "humidity",      "value": 65.0, "unit": "%",   "timestamp": "2026-06-18T10:00:00+00:00" },
+    { "variable": "soil_moisture", "value": 45.0, "unit": "%",   "timestamp": "2026-06-18T10:00:00+00:00" },
+    { "variable": "light",         "value": 780.0,"unit": "lux", "timestamp": "2026-06-18T10:00:00+00:00" }
+  ]
+}
+```
+
+**Estado de implementación:**  Funcional en hardware físico. El AP queda activo, el LCD muestra las 3 pantallas y la recepción de lecturas del Prototipo 1 fue confirmada. El reenvío al Flask Edge API requiere configurar la IP del computador antes de flashear (`CLOUD_API_URL`).
+
+---
+
+## Comparación entre Prototipo 1 y Prototipo 2
+
+| Aspecto | Prototipo 1 (Nodo Sensor) | Prototipo 2 (Edge Node) |
+|---|---|---|
+| Placa | NodeMCU-32S | ESP32-DevKitC-32U + Shield 38Pin |
+| Sensores | DHT11, HW-390, ARD-LDR | Ninguno |
+| Display | OLED 128×64 I²C 0x3C (3.3V) | LCD 1602A + PCF8574 I²C 0x27 (5V) |
+| Rol WiFi | Station (cliente) | AP + Station simultáneo |
+| Rol HTTP | Cliente (envía POST) | Servidor (recibe) + Cliente (reenvía) |
+| Almacenamiento | Sin persistencia local | Buffer circular en RAM (20 lecturas) |
+
+Esta separación de responsabilidades — un nodo que solo mide y un nodo que solo orquesta y reenvía — es la misma lógica de **edge computing distribuido** descrita en el diseño conceptual de la Parte A (Step 10), donde el procesamiento y filtrado de datos ocurre antes de llegar al backend final, reduciendo la carga de red y permitiendo operación con conectividad intermitente.
 
 ---
 
 ##  Conclusiones
 
 El diseño del Edge Node SmartPalm integra de forma coherente la selección de hardware, el diseño del circuito, la arquitectura del firmware y el diseño físico para responder a las condiciones específicas de los cultivos de palma aceitera en la Amazonia peruana. La elección del ESP32 con LoRaWAN permite operar de forma autónoma en zonas sin conectividad, mientras que el sistema de energía solar garantiza operación continua sin intervención técnica. La simulación en Wokwi valida el comportamiento del firmware y la lógica de edge computing antes de la implementación física, reduciendo el riesgo técnico del prototipo.
+
+El prototipado físico desarrollado en esta etapa valida en hardware real el patrón arquitectónico central del diseño conceptual: un nodo de campo que captura datos y un nodo gateway que los recibe, almacena temporalmente y reenvía al backend. Aunque el prototipo actual usa WiFi en lugar de LoRaWAN y un subconjunto reducido de sensores, el protocolo de telemetría y la lógica de buffer/reenvío por lotes son directamente extensibles al diseño objetivo, sirviendo como base funcional para la siguiente iteración del producto, en la que se integrarán los sensores agronómicos avanzados (pH, EC, temperatura de suelo), el módulo LoRa y el sistema de energía solar autónoma.
