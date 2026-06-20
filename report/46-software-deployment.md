@@ -23,6 +23,8 @@
 
 ![alt text](../assets/img/deploy-evidence/db.png)
 
+<br>
+
 - Embedded Application 1 equipo con sensores: https://github.com/upc-202601-1asi0572-6779-teamwise/embeddedapp
 
 <br> 
