@@ -129,7 +129,7 @@ La estrategia de despliegue de SmartPalm se basa en una arquitectura cloud híbr
 
 | Producto digital | Plataforma | URL pública | Estado |
 | :--- | :--- | :--- | :--- |
-| **Landing Page** | Netlify | `https://lading-page-smartpalm.netlify.app` | Desplegado |
+| **Landing Page** | Netlify | `https://smart-palm.netlify.app/` | Desplegado |
 | **Web Application** | Cloudflare Pages | `https://webapp-9sf.pages.dev` | Desplegado (fase inicial) |
 | **Mock API** | Render | `https://smartpalm-mock-api.onrender.com` | Desplegado |
 | **Mobile Application** | Google Play / App Store | *(URL pendiente)* | Por desplegar |
