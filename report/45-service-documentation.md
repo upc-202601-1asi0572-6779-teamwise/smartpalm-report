@@ -1,4 +1,4 @@
-#### 6.2.2.6. Services Documentation Evidence for Sprint Review
+#### 6.2.2.7. Services Documentation Evidence for Sprint Review
 
 | Module | Mock Resource | Main Actions | Sprint Relevance |
 |---|---|---|---|
@@ -11,16 +11,3 @@
 | Recommendations | `/api/v1/recommendations`, `/api/v1/recommendations/:id/approve`, `/api/v1/recommendations/:id/publish` | Consultar, aprobar y publicar recomendaciones agronómicas. | Soporta la experiencia del agrónomo y del productor. |
 | Reports | `/api/v1/reports`, `/api/v1/reports/generate-draft`, `/api/v1/reports/:id/publish` | Consultar, generar y publicar reportes. | Permite mostrar documentación del estado del cultivo. |
 | Field Records | `/api/v1/inspections`, `/api/v1/interventions` | Consultar inspecciones e intervenciones simuladas. | Complementa la trazabilidad del seguimiento agronómico. |
-
-#### 6.2.2.7. Software Deployment Evidence for Sprint Review
-
-En el Sprint 2 se desplegaron los seis artefactos del alcance: Landing Page, Web Application, Mock API, Web Service, Edge Service y Emebbed Apllication.
-
-| Artifact | Deployment Status | URL / Environment                       |
-|---|---|-----------------------------------------|
-| Landing Page | Deployed | https://smart-palm.netlify.app          |
-| Web Application | Deployed | https://webapp-9sf.pages.dev            |
-| Mock API | Deployed | https://smartpalm-mock-api.onrender.com |
-| Web Service | Deployed |  |
-| Edge Service | Deployed |  |
-| Emebbed Apllication | Deployed |  |

@@ -1,6 +1,6 @@
 #### 6.2.2.8. Software Deployment Evidence for Sprint Review.
 
-- Landing page desplegada en el entorno de producción, accesible a través de la URL proporcionada.
+- Landing page desplegada en el entorno de producción, accesible a través de la URL proporcionada: https://smart-palm.netlify.app
 
 <br>
 
@@ -8,7 +8,7 @@
 
 <br>
 
-- Backend desplegado en Render, accesible a través de la URL proporcionada.
+- Backend desplegado en Render, accesible a través de la URL proporcionada: https://smart-palm-platform.onrender.com/
 <br>
 
 ![alt text](../assets/img/deploy-evidence/backend2.png)
@@ -23,7 +23,7 @@
 
 ![alt text](../assets/img/deploy-evidence/db.png)
 
-- Embedded Application 1 equipo con sensores.
+- Embedded Application 1 equipo con sensores: https://github.com/upc-202601-1asi0572-6779-teamwise/embeddedapp
 
 <br> 
 
@@ -39,7 +39,7 @@
 
 <br>    
 
-- Edge Api en python.
+- Edge Api en python: https://github.com/upc-202601-1asi0572-6779-teamwise/edgeservice
 
 <br>
 
