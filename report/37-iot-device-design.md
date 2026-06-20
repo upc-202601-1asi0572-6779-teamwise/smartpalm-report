@@ -72,7 +72,7 @@ El dispositivo físico SmartPalm consiste en una carcasa de ABS con protección 
 
 **Dimensiones de la carcasa:** 22cm × 15cm × 10cm
 
-![alt text](../assets/img/smartpalm_physical_device.png)
+![alt text](../assets/img/smartpalm_physical_device_1.png)
 
 ###  Componentes físicos y su ubicación
 
