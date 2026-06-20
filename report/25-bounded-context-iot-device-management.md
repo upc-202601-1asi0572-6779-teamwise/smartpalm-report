@@ -11,15 +11,15 @@ El bounded context **IoT Device Management** se encarga de gestionar el ciclo de
 
 La **Domain Layer** del bounded context **IoT Device Management** representa el núcleo del dominio encargado de gestionar el ciclo de vida de los dispositivos IoT desplegados en campo. En esta capa se ubican las clases que modelan las reglas de negocio relacionadas con el registro del dispositivo, su configuración operativa, el control de conectividad, la activación de modo offline y la sincronización de datos acumulados cuando la conexión se restablece.
 
-Para este bounded context, el dominio se encuentra compuesto por una entidad principal que actúa como *aggregate root*, complementada por un objeto de valor, enumeraciones, una interfaz de repositorio, una *factory* y un *domain service*. Esta organización permite representar de forma clara la lógica de negocio del contexto sin mezclarla con detalles de infraestructura o persistencia.
+El dominio se compone de un *aggregate root* (`IotDevice`), una entidad de soporte (`SensorReading`), un *value object* (`DeviceConfiguration`), tres enumeraciones, una interfaz de repositorio, tres interfaces de servicio de dominio, un *domain service* y los *commands* y *queries* que estructuran las operaciones del bounded context.
 
 ---
 
-##### 1. IoTDevice
+##### 1. IotDevice
 
 | Campo | Detalle |
 |---|---|
-| **Nombre** | IoTDevice |
+| **Nombre** | IotDevice |
 | **Categoría** | Entity / Aggregate Root |
 | **Propósito** | Representar al dispositivo IoT desplegado en una microzona del cultivo y gestionar su ciclo de vida dentro del bounded context. |
 
@@ -27,30 +27,57 @@ Para este bounded context, el dominio se encuentra compuesto por una entidad pri
 
 | Nombre | Tipo de dato | Visibilidad | Descripción |
 |---|---|---|---|
-| DeviceId | UUID | private | Identificador único del dispositivo. |
+| Id | int | private | Identificador único del dispositivo generado por la base de datos. |
 | SerialNumber | string | private | Número de serie o código único del dispositivo físico. |
-| MonitoringZoneId | UUID | private | Identificador de la microzona del cultivo asociada al dispositivo. |
-| ActivationStatus | ActivationStatus | private | Estado de activación del dispositivo. |
-| ConnectivityStatus | ConnectivityStatus | private | Estado actual de conectividad del dispositivo. |
-| HealthStatus | DeviceHealthStatus | private | Estado general de salud del dispositivo en campo. |
-| Configuration | DeviceConfiguration | private | Configuración operativa del dispositivo. |
-| LastSyncAt | datetime | private | Fecha y hora de la última sincronización de datos. |
-| CreatedAt | datetime | private | Fecha y hora de registro del dispositivo. |
+| MonitoringZoneId | int | private | Identificador de la microzona del cultivo asociada al dispositivo. |
+| ActivationStatus | DeviceActivationStatus | private | Estado de activación del dispositivo. Valor inicial: `Inactive`. |
+| ConnectivityStatus | DeviceConnectivityStatus | private | Estado actual de conectividad del dispositivo. Valor inicial: `Disconnected`. |
+| HealthStatus | DeviceHealthStatus | private | Estado general de salud del dispositivo en campo. Valor inicial: `Warning`. |
+| Configuration | DeviceConfiguration | private | Configuración operativa del dispositivo. Valor inicial: `DeviceConfiguration.Default`. |
+| LastSyncAt | DateTime | private | Fecha y hora de la última sincronización de datos. |
+| CreatedAt | DateTime | private | Fecha y hora de registro del dispositivo. |
+| IsActive | bool | public | Propiedad calculada: indica si el estado de activación es `Active`. |
+| IsConnected | bool | public | Propiedad calculada: indica si el estado de conectividad es `Connected`. |
 
 **Métodos**
 
 | Nombre | Tipo de retorno | Visibilidad | Descripción |
 |---|---|---|---|
-| Register | void | public | Registrar un nuevo dispositivo en el sistema. |
-| ConfigureSamplingParameters | void | public | Configurar los parámetros de muestreo del dispositivo. |
-| Deactivate | void | public | Desactivar el dispositivo para detener su operación. |
-| ActivateOfflineMode | void | public | Cambiar el dispositivo a modo offline ante pérdida de conectividad. |
-| RestoreConnectivity | void | public | Restablecer el estado de conectividad del dispositivo. |
-| SynchronizeEdgeData | void | public | Registrar la sincronización de los datos almacenados localmente en el edge node. |
+| Register | void | public | Establece el dispositivo como activo, conectado y saludable al momento de su primer registro. |
+| ConfigureSamplingParameters | void | public | Actualiza la configuración operativa del dispositivo con el objeto `DeviceConfiguration` recibido. |
+| Activate | void | public | Establece el estado de activación en `Active`. |
+| Deactivate | void | public | Establece el estado de activación en `Inactive`. |
+| ActivateOfflineMode | void | public | Cambia el dispositivo a modo offline: activación `Inactive`, conectividad `OfflineMode` y salud `Critical`. |
+| RestoreConnectivity | void | public | Restablece el dispositivo a estado activo y conectado. |
+| SynchronizeEdgeData | void | public | Actualiza `LastSyncAt` con la hora actual y restablece el estado de conectividad a `Connected`. |
 
 ---
 
-##### 2. DeviceConfiguration
+##### 2. SensorReading
+
+| Campo | Detalle |
+|---|---|
+| **Nombre** | SensorReading |
+| **Categoría** | Entity |
+| **Propósito** | Representar una lectura individual de un sensor del dispositivo IoT, incluyendo el tipo de sensor, el valor medido y el instante de captura. |
+
+**Atributos**
+
+| Nombre | Tipo de dato | Visibilidad | Descripción |
+|---|---|---|---|
+| SensorType | SensorType | private | Tipo de sensor que generó la lectura. |
+| Value | double | private | Valor numérico registrado por el sensor. |
+| Timestamp | DateTime | private | Fecha y hora exacta en que se tomó la lectura. |
+
+**Métodos**
+
+| Nombre | Tipo de retorno | Visibilidad | Descripción |
+|---|---|---|---|
+| Clone | SensorReading | public | Crea y retorna una copia exacta de la lectura actual. |
+
+---
+
+##### 3. DeviceConfiguration
 
 | Campo | Detalle |
 |---|---|
@@ -62,27 +89,36 @@ Para este bounded context, el dominio se encuentra compuesto por una entidad pri
 
 | Nombre | Tipo de dato | Visibilidad | Descripción |
 |---|---|---|---|
-| SamplingIntervalMinutes | int | private | Intervalo de tiempo, en minutos, entre cada lectura del dispositivo. |
-| TransmissionMode | string | private | Modo de transmisión o preparación de datos del dispositivo. |
-| RetryPolicy | string | private | Política de reintentos aplicada cuando existe falla de conectividad. |
-| MaxOfflineStorageHours | int | private | Cantidad máxima de horas que el dispositivo puede almacenar datos localmente en modo offline. |
-
-**Métodos**
-
-| Nombre | Tipo de retorno | Visibilidad | Descripción |
-|---|---|---|---|
-| Validate | bool | public | Validar que la configuración sea consistente y permitida. |
-| UpdateSamplingInterval | void | public | Actualizar el intervalo de muestreo del dispositivo. |
-| UpdateTransmissionMode | void | public | Actualizar el modo de transmisión de datos. |
-| UpdateRetryPolicy | void | public | Actualizar la política de reintentos del dispositivo. |
+| SamplingIntervalMinutes | int | private | Intervalo de tiempo, en minutos, entre cada lectura del dispositivo. Valor por defecto: `60`. |
+| TransmissionMode | string | private | Modo de transmisión de datos del dispositivo. Valor por defecto: `"Push"`. |
+| RetryPolicy | string | private | Política de reintentos aplicada cuando existe falla de conectividad. Valor por defecto: `"RetryOnce"`. |
+| MaxOfflineStorageHours | int | private | Cantidad máxima de horas que el dispositivo puede almacenar datos localmente en modo offline. Valor por defecto: `24`. |
+| Default | DeviceConfiguration | public static | Propiedad estática que retorna una instancia con los valores de configuración por defecto. |
 
 ---
 
-##### 3. ConnectivityStatus
+##### 4. DeviceActivationStatus
 
 | Campo | Detalle |
 |---|---|
-| **Nombre** | ConnectivityStatus |
+| **Nombre** | DeviceActivationStatus |
+| **Categoría** | Enumeration |
+| **Propósito** | Representar el estado de activación del dispositivo dentro del sistema. |
+
+**Valores**
+
+| Nombre | Descripción |
+|---|---|
+| Active | El dispositivo está habilitado para operar. |
+| Inactive | El dispositivo ha sido desactivado. |
+
+---
+
+##### 5. DeviceConnectivityStatus
+
+| Campo | Detalle |
+|---|---|
+| **Nombre** | DeviceConnectivityStatus |
 | **Categoría** | Enumeration |
 | **Propósito** | Representar los posibles estados de conectividad del dispositivo IoT. |
 
@@ -96,7 +132,7 @@ Para este bounded context, el dominio se encuentra compuesto por una entidad pri
 
 ---
 
-##### 4. DeviceHealthStatus
+##### 6. DeviceHealthStatus
 
 | Campo | Detalle |
 |---|---|
@@ -114,486 +150,344 @@ Para este bounded context, el dominio se encuentra compuesto por una entidad pri
 
 ---
 
-##### 5. ActivationStatus
+##### 7. SensorType
 
 | Campo | Detalle |
 |---|---|
-| **Nombre** | ActivationStatus |
+| **Nombre** | SensorType |
 | **Categoría** | Enumeration |
-| **Propósito** | Representar el estado de activación del dispositivo dentro del sistema. |
+| **Propósito** | Representar los tipos de sensores soportados por el dispositivo IoT. |
 
 **Valores**
 
 | Nombre | Descripción |
 |---|---|
-| Active | El dispositivo está habilitado para operar. |
-| Inactive | El dispositivo ha sido desactivado. |
+| Temperature | Sensor de temperatura ambiental o del suelo. |
+| Humidity | Sensor de humedad relativa ambiental o del suelo. |
+| Pressure | Sensor de presión atmosférica. |
+| GasResistance | Sensor de resistencia de gas. |
+| Voltage | Sensor de voltaje eléctrico. |
+| Current | Sensor de corriente eléctrica. |
+| Power | Sensor de potencia eléctrica. |
+| Speed | Sensor de velocidad. |
+| Direction | Sensor de dirección o orientación. |
 
 ---
 
-##### 6. IoTDeviceRepository
+##### 8. IIotDeviceRepository
 
 | Campo | Detalle |
 |---|---|
-| **Nombre** | IoTDeviceRepository |
-| **Categoría** | Repository |
-| **Propósito** | Abstraer la persistencia de los dispositivos IoT gestionados por el bounded context. |
+| **Nombre** | IIotDeviceRepository |
+| **Categoría** | Repository (interfaz) |
+| **Propósito** | Abstraer la persistencia de los dispositivos IoT gestionados por el bounded context. Extiende `IBaseRepository<IotDevice>`, por lo que hereda las operaciones CRUD genéricas. |
 
-**Métodos**
+**Métodos propios**
 
 | Nombre | Tipo de retorno | Visibilidad | Descripción |
 |---|---|---|---|
-| FindById | IoTDevice | public | Buscar un dispositivo por su identificador. |
-| FindBySerialNumber | IoTDevice | public | Buscar un dispositivo por su número de serie. |
-| Save | void | public | Persistir un nuevo dispositivo. |
+| FindBySerialNumberAsync | Task\<IotDevice?\> | public | Buscar de forma asíncrona un dispositivo por su número de serie. Retorna `null` si no existe. |
+
+**Métodos heredados de IBaseRepository\<IotDevice\>**
+
+| Nombre | Tipo de retorno | Visibilidad | Descripción |
+|---|---|---|---|
+| AddAsync | Task | public | Agregar un nuevo dispositivo al repositorio. |
+| FindByIdAsync | Task\<IotDevice?\> | public | Buscar un dispositivo por su identificador. |
 | Update | void | public | Actualizar el estado o configuración de un dispositivo existente. |
 | Remove | void | public | Eliminar o dar de baja lógica a un dispositivo. |
+| ListAsync | Task\<IEnumerable\<IotDevice\>\> | public | Obtener todos los dispositivos registrados. |
 
 ---
 
-##### 7. IoTDeviceFactory
+##### 9. IDeviceStatusCommandService
 
 | Campo | Detalle |
 |---|---|
-| **Nombre** | IoTDeviceFactory |
-| **Categoría** | Factory |
-| **Propósito** | Crear nuevas instancias válidas de la entidad IoTDevice con sus configuraciones iniciales. |
+| **Nombre** | IDeviceStatusCommandService |
+| **Categoría** | Domain Service (interfaz) |
+| **Propósito** | Definir el contrato para el servicio que procesa los comandos de registro, activación y desactivación de dispositivos. |
 
 **Métodos**
 
 | Nombre | Tipo de retorno | Visibilidad | Descripción |
 |---|---|---|---|
-| Create | IoTDevice | public | Crear una nueva instancia de dispositivo IoT. |
-| CreateWithDefaultConfiguration | IoTDevice | public | Crear un nuevo dispositivo con una configuración inicial por defecto. |
+| Handle(RegisterDeviceCommand) | Task | public | Procesar el comando de registro de un nuevo dispositivo. |
+| Handle(ActivateDeviceCommand) | Task | public | Procesar el comando de activación de un dispositivo existente. |
+| Handle(DeactivateDeviceCommand) | Task | public | Procesar el comando de desactivación de un dispositivo existente. |
 
 ---
 
-##### 8. EdgeSynchronizationService
+##### 10. IDeviceStatusQueryService
+
+| Campo | Detalle |
+|---|---|
+| **Nombre** | IDeviceStatusQueryService |
+| **Categoría** | Domain Service (interfaz) |
+| **Propósito** | Definir el contrato para el servicio que procesa las consultas de estado de conectividad y activación de un dispositivo. |
+
+**Métodos**
+
+| Nombre | Tipo de retorno | Visibilidad | Descripción |
+|---|---|---|---|
+| Handle(ConnectiviyStatusQuery) | Task\<IotDevice\> | public | Procesar la consulta del estado de conectividad de un dispositivo identificado por su número de serie. |
+| Handle(ActivationStatusQuery) | Task\<IotDevice\> | public | Procesar la consulta del estado de activación de un dispositivo identificado por su número de serie. |
+
+---
+
+##### 11. IEdgeSynchronizationService
+
+| Campo | Detalle |
+|---|---|
+| **Nombre** | IEdgeSynchronizationService |
+| **Categoría** | Domain Service (interfaz) |
+| **Propósito** | Definir el contrato para el servicio que procesa el comando de sincronización de datos acumulados desde el edge node. |
+
+**Métodos**
+
+| Nombre | Tipo de retorno | Visibilidad | Descripción |
+|---|---|---|---|
+| Handle(EdgeSynchronizationCommand) | Task | public | Procesar el comando de sincronización de datos del dispositivo indicado. |
+
+---
+
+##### 12. EdgeSynchronizationService
 
 | Campo | Detalle |
 |---|---|
 | **Nombre** | EdgeSynchronizationService |
 | **Categoría** | Domain Service |
-| **Propósito** | Gestionar la lógica de negocio asociada a la sincronización de datos acumulados en el edge node cuando la conectividad es restaurada. |
+| **Propósito** | Contener la lógica de negocio asociada a la validación y ordenamiento de datos acumulados en el edge node, así como al registro de la sincronización en el agregado. |
 
 **Métodos**
 
 | Nombre | Tipo de retorno | Visibilidad | Descripción |
 |---|---|---|---|
-| ValidateSynchronization | bool | public | Validar si el dispositivo cumple las condiciones para sincronizar datos acumulados. |
-| SynchronizeStoredData | void | public | Ejecutar la sincronización lógica de los datos almacenados localmente. |
-| VerifyChronologicalOrder | bool | public | Verificar que los datos acumulados se procesen en orden cronológico. |
+| ValidateSynchronization | bool | public | Verificar si el dispositivo se encuentra activo y cumple las condiciones para sincronizar datos acumulados. |
+| MapReadingsToChronologicalOrder | List\<SensorReading\> | public | Retornar una copia ordenada cronológicamente de la lista de lecturas recibida. |
+| SynchronizeStoredData | void | public | Invocar `SynchronizeEdgeData()` en el agregado para registrar la sincronización. |
+
+---
+
+##### 13. Commands
+
+Los *commands* son objetos inmutables de tipo `record` que encapsulan la intención de modificar el estado del sistema. Los definidos en este bounded context son:
+
+| Nombre | Parámetros | Descripción |
+|---|---|---|
+| RegisterDeviceCommand | serial, monitoringZoneId, Username, Password | Solicitar el registro de un nuevo dispositivo IoT en el sistema. |
+| ActivateDeviceCommand | serial | Solicitar la activación de un dispositivo previamente registrado. |
+| DeactivateDeviceCommand | serial | Solicitar la desactivación de un dispositivo activo. |
+| EdgeSynchronizationCommand | serial | Solicitar el registro de sincronización de datos acumulados para el dispositivo indicado. |
+
+---
+
+##### 14. Queries
+
+Las *queries* son objetos inmutables de tipo `record` que encapsulan la intención de consultar el estado del sistema sin modificarlo. Las definidas en este bounded context son:
+
+| Nombre | Parámetros | Descripción |
+|---|---|---|
+| ActivationStatusQuery | serial | Consultar el estado de activación del dispositivo identificado por su número de serie. |
+| ConnectiviyStatusQuery | serial | Consultar el estado de conectividad del dispositivo identificado por su número de serie. |
 
 #### 4.2.1.2. Interface Layer
 
-La **Interface Layer** del bounded context **IoT Device Management** agrupa las clases encargadas de recibir solicitudes, eventos o mensajes provenientes de actores externos y derivarlos hacia la capa de aplicación. Su función principal es actuar como punto de entrada del bounded context, validando la estructura de los datos de entrada y canalizando correctamente las operaciones relacionadas con el ciclo de vida del dispositivo IoT.
+La **Interface Layer** del bounded context **IoT Device Management** agrupa las clases encargadas de recibir solicitudes HTTP provenientes de actores externos y derivarlas hacia la capa de aplicación. Su función principal es actuar como punto de entrada del bounded context, descomponiendo los recursos de la petición en *commands* o *queries* a través de ensambladores, y retornando recursos estructurados como respuesta.
 
-En este bounded context, la capa de interfaz se encuentra compuesta principalmente por clases del tipo **Controller** y **Consumer**, ya que la interacción puede provenir tanto de solicitudes HTTP como de eventos o mensajes relacionados con la conectividad y sincronización del dispositivo.
+En este bounded context, la capa de interfaz se encuentra compuesta por dos **Controllers** (uno para autenticación de dispositivos y otro para gestión de su estado), un conjunto de **Resources** que representan los cuerpos de petición y respuesta, y un conjunto de **Assemblers** que transforman entre recursos y objetos del dominio.
 
 ---
 
-##### 1. IoTDeviceController
+##### 1. DeviceAuthenticationController
 
 | Campo | Detalle |
 |---|---|
-| **Nombre** | IoTDeviceController |
+| **Nombre** | DeviceAuthenticationController |
 | **Categoría** | Controller |
-| **Propósito** | Exponer endpoints HTTP para las operaciones principales del bounded context, relacionadas con el registro, configuración, consulta y desactivación de dispositivos IoT. |
+| **Ruta base** | `api/v1/device/auth` |
+| **Propósito** | Exponer el endpoint de registro de dispositivos IoT en la plataforma. |
 
 **Atributos**
 
 | Nombre | Tipo de dato | Visibilidad | Descripción |
 |---|---|---|---|
-| DeviceApplicationService | DeviceApplicationService | private | Servicio de aplicación encargado de coordinar los casos de uso del bounded context. |
+| _deviceStatusCommandService | IDeviceStatusCommandService | private | Servicio de comandos de dominio inyectado para coordinar el registro del dispositivo. |
 
 **Métodos**
 
-| Nombre | Tipo de retorno | Visibilidad | Descripción |
-|---|---|---|---|
-| RegisterDevice | HttpResponse | public | Recibir la solicitud de registro de un nuevo dispositivo IoT. |
-| ConfigureSamplingParameters | HttpResponse | public | Recibir la solicitud de configuración de parámetros de muestreo del dispositivo. |
-| DeactivateDevice | HttpResponse | public | Recibir la solicitud para desactivar un dispositivo. |
-| GetDeviceById | HttpResponse | public | Obtener la información de un dispositivo específico. |
-| GetDeviceStatus | HttpResponse | public | Consultar el estado de activación, conectividad y salud de un dispositivo. |
+| Nombre | Verbo HTTP | Ruta | Tipo de retorno | Descripción |
+|---|---|---|---|---|
+| RegisterDevice | POST | `/register` | IActionResult | Recibir un `DeviceRegistrationResource`, construir el `RegisterDeviceCommand` mediante el ensamblador correspondiente y delegar su ejecución al command service. Retorna `201 Created` si el registro es exitoso. |
 
 ---
 
-##### 2. ConnectivityEventConsumer
+##### 2. DeviceStatusController
 
 | Campo | Detalle |
 |---|---|
-| **Nombre** | ConnectivityEventConsumer |
-| **Categoría** | Consumer |
-| **Propósito** | Recibir eventos o mensajes relacionados con la pérdida o restauración de conectividad del dispositivo IoT y derivarlos hacia la capa de aplicación. |
+| **Nombre** | DeviceStatusController |
+| **Categoría** | Controller |
+| **Ruta base** | `api/v1/device/status` |
+| **Propósito** | Exponer endpoints HTTP para activar, desactivar y consultar el estado de activación y conectividad de un dispositivo IoT. |
 
 **Atributos**
 
 | Nombre | Tipo de dato | Visibilidad | Descripción |
 |---|---|---|---|
-| DeviceApplicationService | DeviceApplicationService | private | Servicio de aplicación que procesa los cambios de conectividad del dispositivo. |
+| _deviceStatusCommandService | IDeviceStatusCommandService | private | Servicio de comandos de dominio inyectado para las operaciones de activación y desactivación. |
+| _deviceStatusQueryService | IDeviceStatusQueryService | private | Servicio de consultas de dominio inyectado para las operaciones de lectura de estado. |
 
 **Métodos**
 
-| Nombre | Tipo de retorno | Visibilidad | Descripción |
-|---|---|---|---|
-| ConsumeConnectivityLost | void | public | Procesar el evento de pérdida de conectividad del dispositivo. |
-| ConsumeConnectivityRestored | void | public | Procesar el evento de restauración de conectividad del dispositivo. |
+| Nombre | Verbo HTTP | Ruta | Tipo de retorno | Descripción |
+|---|---|---|---|---|
+| DeactivateDevice | POST | `/deactivate` | IActionResult | Recibir un `SerialResource`, construir el `DeactivateDeviceCommand` y delegar al command service. Retorna `200 OK`. |
+| ActivateDevice | POST | `/activate` | IActionResult | Recibir un `SerialResource`, construir el `ActivateDeviceCommand` y delegar al command service. Retorna `200 OK`. |
+| GetActivationStatus | GET | `/activation` | IActionResult | Recibir el número de serie como query param, construir el `ActivationStatusQuery` y retornar un `ActivationStatusResource`. |
+| GetConnectivityStatus | GET | `/connectivity` | IActionResult | Recibir el número de serie como query param, construir el `ConnectiviyStatusQuery` y retornar un `ConnectivityStatusResource`. |
 
 ---
 
-##### 3. EdgeSynchronizationConsumer
+##### 3. Resources
 
-| Campo | Detalle |
-|---|---|
-| **Nombre** | EdgeSynchronizationConsumer |
-| **Categoría** | Consumer |
-| **Propósito** | Recibir solicitudes o eventos relacionados con la sincronización de datos acumulados desde el edge node hacia la plataforma central. |
+Los *resources* son objetos inmutables de tipo `record` que definen la estructura de los cuerpos de solicitud y respuesta de la API REST.
 
-**Atributos**
-
-| Nombre | Tipo de dato | Visibilidad | Descripción |
-|---|---|---|---|
-| DeviceApplicationService | DeviceApplicationService | private | Servicio de aplicación que coordina el proceso de sincronización de datos del dispositivo. |
-
-**Métodos**
-
-| Nombre | Tipo de retorno | Visibilidad | Descripción |
-|---|---|---|---|
-| ConsumeSynchronizationRequest | void | public | Procesar una solicitud de sincronización de datos acumulados desde el edge node. |
-| ConsumeSynchronizationCompleted | void | public | Procesar la confirmación de que la sincronización fue completada. |
+| Nombre | Campos | Descripción |
+|---|---|---|
+| DeviceRegistrationResource | serialNumber, monitoringZoneId, username, password | Cuerpo de solicitud para el registro de un dispositivo IoT. |
+| SerialResource | serialNumber | Recurso genérico que transporta únicamente el número de serie del dispositivo. Utilizado como body en comandos y como query param en consultas. |
+| ActivationStatusResource | serialNumber, isActive | Respuesta que expone el estado de activación de un dispositivo. |
+| ConnectivityStatusResource | serialNumber, isConnected, status | Respuesta que expone el estado de conectividad de un dispositivo, incluyendo su descripción textual. |
 
 ---
 
-##### 4. SubscriptionActivatedConsumer
+##### 4. Assemblers (Transform)
 
-| Campo | Detalle |
-|---|---|
-| **Nombre** | SubscriptionActivatedConsumer |
-| **Categoría** | Consumer |
-| **Propósito** | Recibir el evento de activación de suscripción proveniente del bounded context Subscription & User Management para habilitar el registro de dispositivos asociados a una plantación activa. |
+Los *assemblers* son clases estáticas que transforman entre recursos de la interfaz y objetos del dominio (commands, queries o aggregates).
 
-**Atributos**
-
-| Nombre | Tipo de dato | Visibilidad | Descripción |
-|---|---|---|---|
-| DeviceApplicationService | DeviceApplicationService | private | Servicio de aplicación que valida y habilita el proceso de registro del dispositivo en función de la suscripción activa. |
-
-**Métodos**
-
-| Nombre | Tipo de retorno | Visibilidad | Descripción |
-|---|---|---|---|
-| ConsumeSubscriptionActivated | void | public | Procesar el evento de activación de suscripción relacionado con la habilitación del registro de dispositivos. |
+| Nombre | Método | Descripción |
+|---|---|---|
+| RegisterDeviceCommandFromResourceAssembler | ToCommandFromResource(DeviceRegistrationResource) | Construir un `RegisterDeviceCommand` a partir del recurso de registro. |
+| ActivateDeviceCommmandFromResourceAssembler | ToCommandFromResource(string serial) | Construir un `ActivateDeviceCommand` a partir del número de serie. |
+| DeactivateDeviceCommandFromResourceAssembler | ToCommandFromResource(string serial) | Construir un `DeactivateDeviceCommand` a partir del número de serie. |
+| ActivationStatusQueryFromResourceAssembler | ToQueryFromResource(string serial) | Construir un `ActivationStatusQuery` a partir del número de serie. |
+| ConnectiviyStatusQueryFromResourceAssembler | ToQueryFromResource(string serial) | Construir un `ConnectiviyStatusQuery` a partir del número de serie. |
+| ActivationStatusResourceFromIotDeviceAggregateAssembler | ToResourceFromIotDeviceAggregate(IotDevice) | Construir un `ActivationStatusResource` a partir del aggregate `IotDevice`. |
+| ConnectivityStatusResourceFromIotDeviceAggregateAssembler | ToResourceFromIotDeviceAggregate(IotDevice) | Construir un `ConnectivityStatusResource` a partir del aggregate `IotDevice`. |
 
 #### 4.2.1.3. Application Layer
 
-La **Application Layer** del bounded context **IoT Device Management** se encarga de coordinar los flujos de negocio asociados al ciclo de vida de los dispositivos IoT. Su responsabilidad principal es recibir las solicitudes derivadas desde la Interface Layer, transformarlas en comandos o eventos de aplicación, y orquestar su ejecución utilizando las clases del dominio correspondientes.
+La **Application Layer** del bounded context **IoT Device Management** se encarga de orquestar los flujos de negocio relacionados con el ciclo de vida de los dispositivos IoT. Recibe los *commands* y *queries* derivados desde la Interface Layer, accede al repositorio de dominio para recuperar o persistir el aggregate `IotDevice`, aplica la lógica de negocio sobre el mismo y confirma los cambios a través de la unidad de trabajo.
+
+En este bounded context, la capa de aplicación se compone de dos **Command Services** y un **Query Service**, implementando las interfaces de dominio correspondientes.
 
 ---
 
-##### 1. DeviceApplicationService
+##### 1. DeviceStatusCommandService
 
 | Campo | Detalle |
 |---|---|
-| **Nombre** | DeviceApplicationService |
-| **Categoría** | Application Service |
-| **Propósito** | Coordinar los principales casos de uso del bounded context y servir como punto de orquestación entre la Interface Layer y los handlers de aplicación. |
+| **Nombre** | DeviceStatusCommandService |
+| **Categoría** | Command Service |
+| **Propósito** | Implementar `IDeviceStatusCommandService`. Gestionar los flujos de registro, activación y desactivación de dispositivos IoT, coordinando el acceso al repositorio y la confirmación de cambios mediante la unidad de trabajo. |
 
 **Atributos**
 
 | Nombre | Tipo de dato | Visibilidad | Descripción |
 |---|---|---|---|
-| RegisterDeviceCommandHandler | RegisterDeviceCommandHandler | private | Handler encargado del registro de dispositivos. |
-| ConfigureSamplingParametersCommandHandler | ConfigureSamplingParametersCommandHandler | private | Handler encargado de la configuración operativa del dispositivo. |
-| DeactivateDeviceCommandHandler | DeactivateDeviceCommandHandler | private | Handler encargado de la desactivación lógica del dispositivo. |
-| ConnectivityEventHandler | ConnectivityEventHandler | private | Handler encargado de gestionar eventos de conectividad. |
-| EdgeSynchronizationCommandHandler | EdgeSynchronizationCommandHandler | private | Handler encargado de coordinar la sincronización de datos acumulados. |
-| SubscriptionActivatedEventHandler | SubscriptionActivatedEventHandler | private | Handler encargado de procesar eventos de activación de suscripción relacionados con el registro de dispositivos. |
+| uow | IUnitOfWork | private | Unidad de trabajo inyectada para confirmar las transacciones de persistencia. |
+| deviceRepository | IIotDeviceRepository | private | Repositorio inyectado para recuperar y persistir el aggregate `IotDevice`. |
 
 **Métodos**
 
 | Nombre | Tipo de retorno | Visibilidad | Descripción |
 |---|---|---|---|
-| RegisterDevice | void | public | Coordinar el flujo completo de registro de un nuevo dispositivo. |
-| ConfigureDevice | void | public | Coordinar la actualización de los parámetros de configuración del dispositivo. |
-| DeactivateDevice | void | public | Coordinar la desactivación de un dispositivo existente. |
-| HandleConnectivityChange | void | public | Coordinar el procesamiento de cambios de conectividad. |
-| SynchronizeDeviceData | void | public | Coordinar la sincronización de datos acumulados desde el edge node. |
+| Handle(RegisterDeviceCommand) | Task | public | Verificar que el número de serie no esté registrado, crear un nuevo `IotDevice`, invocarlo con `Activate()` y persistirlo. Lanza excepción si el dispositivo ya existe. |
+| Handle(ActivateDeviceCommand) | Task | public | Recuperar el dispositivo por número de serie, invocar `Activate()` y persistir el cambio. Lanza excepción si el dispositivo no existe. |
+| Handle(DeactivateDeviceCommand) | Task | public | Recuperar el dispositivo por número de serie, invocar `Deactivate()` y persistir el cambio. Lanza excepción si el dispositivo no existe. |
 
 ---
 
-##### 2. RegisterDeviceCommandHandler
+##### 2. EdgeSyncrhonizationService
 
 | Campo | Detalle |
 |---|---|
-| **Nombre** | RegisterDeviceCommandHandler |
-| **Categoría** | Command Handler |
-| **Propósito** | Ejecutar el caso de uso de registro de un nuevo dispositivo IoT dentro del sistema. |
+| **Nombre** | EdgeSyncrhonizationService |
+| **Categoría** | Command Service |
+| **Propósito** | Implementar `IEdgeSynchronizationService`. Gestionar el flujo de sincronización de datos acumulados desde el edge node, actualizando el estado del aggregate `IotDevice`. |
 
 **Atributos**
 
 | Nombre | Tipo de dato | Visibilidad | Descripción |
 |---|---|---|---|
-| IoTDeviceRepository | IoTDeviceRepository | private | Repositorio para persistir el nuevo dispositivo. |
-| IoTDeviceFactory | IoTDeviceFactory | private | Factory que permite crear una instancia válida del dispositivo. |
+| uow | IUnitOfWork | private | Unidad de trabajo inyectada para confirmar las transacciones de persistencia. |
+| deviceRepository | IIotDeviceRepository | private | Repositorio inyectado para recuperar y actualizar el aggregate `IotDevice`. |
 
 **Métodos**
 
 | Nombre | Tipo de retorno | Visibilidad | Descripción |
 |---|---|---|---|
-| Handle | void | public | Procesar el comando de registro de dispositivo y persistir la nueva entidad. |
+| Handle(EdgeSynchronizationCommand) | Task | public | Recuperar el dispositivo por número de serie, invocar `SynchronizeEdgeData()` y persistir el cambio. Lanza excepción si el dispositivo no existe. |
 
 ---
 
-##### 3. ConfigureSamplingParametersCommandHandler
+##### 3. DeviceStatusQueryService
 
 | Campo | Detalle |
 |---|---|
-| **Nombre** | ConfigureSamplingParametersCommandHandler |
-| **Categoría** | Command Handler |
-| **Propósito** | Ejecutar el caso de uso relacionado con la configuración de parámetros de muestreo del dispositivo IoT. |
+| **Nombre** | DeviceStatusQueryService |
+| **Categoría** | Query Service |
+| **Propósito** | Implementar `IDeviceStatusQueryService`. Gestionar las consultas de estado de activación y conectividad de un dispositivo IoT, retornando el aggregate completo para que la Interface Layer construya el recurso de respuesta. |
 
 **Atributos**
 
 | Nombre | Tipo de dato | Visibilidad | Descripción |
 |---|---|---|---|
-| IoTDeviceRepository | IoTDeviceRepository | private | Repositorio para recuperar y actualizar el dispositivo. |
+| deviceRepository | IIotDeviceRepository | private | Repositorio inyectado para recuperar el aggregate `IotDevice`. |
 
 **Métodos**
 
 | Nombre | Tipo de retorno | Visibilidad | Descripción |
 |---|---|---|---|
-| Handle | void | public | Procesar el comando de actualización de configuración operativa del dispositivo. |
-
----
-
-##### 4. DeactivateDeviceCommandHandler
-
-| Campo | Detalle |
-|---|---|
-| **Nombre** | DeactivateDeviceCommandHandler |
-| **Categoría** | Command Handler |
-| **Propósito** | Ejecutar el caso de uso de desactivación lógica de un dispositivo IoT. |
-
-**Atributos**
-
-| Nombre | Tipo de dato | Visibilidad | Descripción |
-|---|---|---|---|
-| IoTDeviceRepository | IoTDeviceRepository | private | Repositorio para recuperar y actualizar el estado del dispositivo. |
-
-**Métodos**
-
-| Nombre | Tipo de retorno | Visibilidad | Descripción |
-|---|---|---|---|
-| Handle | void | public | Procesar el comando que desactiva el dispositivo dentro del sistema. |
-
----
-
-##### 5. ConnectivityEventHandler
-
-| Campo | Detalle |
-|---|---|
-| **Nombre** | ConnectivityEventHandler |
-| **Categoría** | Event Handler |
-| **Propósito** | Gestionar los eventos relacionados con la pérdida o restauración de conectividad del dispositivo IoT. |
-
-**Atributos**
-
-| Nombre | Tipo de dato | Visibilidad | Descripción |
-|---|---|---|---|
-| IoTDeviceRepository | IoTDeviceRepository | private | Repositorio para recuperar y actualizar el estado de conectividad del dispositivo. |
-
-**Métodos**
-
-| Nombre | Tipo de retorno | Visibilidad | Descripción |
-|---|---|---|---|
-| HandleConnectivityLost | void | public | Procesar el evento de pérdida de conectividad y activar el modo offline. |
-| HandleConnectivityRestored | void | public | Procesar el evento de restauración de conectividad del dispositivo. |
-
----
-
-##### 6. EdgeSynchronizationCommandHandler
-
-| Campo | Detalle |
-|---|---|
-| **Nombre** | EdgeSynchronizationCommandHandler |
-| **Categoría** | Command Handler |
-| **Propósito** | Coordinar el flujo de sincronización de datos acumulados desde el edge node hacia la plataforma central. |
-
-**Atributos**
-
-| Nombre | Tipo de dato | Visibilidad | Descripción |
-|---|---|---|---|
-| IoTDeviceRepository | IoTDeviceRepository | private | Repositorio para recuperar la entidad del dispositivo a sincronizar. |
-| EdgeSynchronizationService | EdgeSynchronizationService | private | Servicio de dominio que contiene la lógica de sincronización. |
-
-**Métodos**
-
-| Nombre | Tipo de retorno | Visibilidad | Descripción |
-|---|---|---|---|
-| Handle | void | public | Procesar el comando de sincronización de datos acumulados. |
-
----
-
-##### 7. SubscriptionActivatedEventHandler
-
-| Campo | Detalle |
-|---|---|
-| **Nombre** | SubscriptionActivatedEventHandler |
-| **Categoría** | Event Handler |
-| **Propósito** | Procesar el evento de activación de suscripción proveniente de otro bounded context para habilitar el registro de dispositivos asociados a una plantación activa. |
-
-**Atributos**
-
-| Nombre | Tipo de dato | Visibilidad | Descripción |
-|---|---|---|---|
-| IoTDeviceRepository | IoTDeviceRepository | private | Repositorio utilizado para verificar la disponibilidad de asociación de dispositivos. |
-
-**Métodos**
-
-| Nombre | Tipo de retorno | Visibilidad | Descripción |
-|---|---|---|---|
-| Handle | void | public | Procesar el evento de activación de suscripción y habilitar el registro de dispositivos correspondientes. |
+| Handle(ConnectiviyStatusQuery) | Task\<IotDevice\> | public | Recuperar el dispositivo por número de serie y retornarlo para la consulta de estado de conectividad. Lanza excepción si el dispositivo no existe. |
+| Handle(ActivationStatusQuery) | Task\<IotDevice\> | public | Recuperar el dispositivo por número de serie y retornarlo para la consulta de estado de activación. Lanza excepción si el dispositivo no existe. |
 
 #### 4.2.1.4. Infrastructure Layer
 
-La **Infrastructure Layer** del bounded context **IoT Device Management** agrupa las clases responsables de la persistencia, integración y comunicación con servicios externos necesarios para soportar el ciclo de vida de los dispositivos IoT. En esta capa se materializan técnicamente las abstracciones definidas en la Domain Layer, permitiendo que el bounded context pueda operar sobre componentes reales de base de datos, mensajería e interoperabilidad con otros bounded contexts.
+La **Infrastructure Layer** del bounded context **IoT Device Management** agrupa las clases que materializan las abstracciones de persistencia definidas en la Domain Layer. Se apoya en Entity Framework Core (EFC) con acceso al `AppDbContext` compartido, implementando las interfaces de repositorio para operar sobre la base de datos relacional de la plataforma.
 
 ---
 
-##### 1. IoTDeviceRepositoryImpl
+##### 1. IotDeviceRepository
 
 | Campo | Detalle |
 |---|---|
-| **Nombre** | IoTDeviceRepositoryImpl |
+| **Nombre** | IotDeviceRepository |
 | **Categoría** | Repository Implementation |
-| **Propósito** | Implementar la interfaz `IoTDeviceRepository` para persistir y recuperar dispositivos IoT desde la base de datos de la plataforma. |
+| **Propósito** | Implementar `IIotDeviceRepository` utilizando Entity Framework Core. Extiende `BaseRepository<IotDevice>`, que provee las operaciones CRUD genéricas, y añade la búsqueda por número de serie. |
 
 **Atributos**
 
 | Nombre | Tipo de dato | Visibilidad | Descripción |
 |---|---|---|---|
-| DataSource | DatabaseConnection | private | Conexión o acceso al motor de base de datos. |
-| DeviceMapper | IoTDeviceMapper | private | Componente encargado de mapear entre objetos del dominio y estructuras de persistencia. |
+| Context | AppDbContext | protected | Contexto de base de datos de Entity Framework Core heredado de `BaseRepository<IotDevice>`. Proporciona acceso al `DbSet<IotDevice>` utilizado para las consultas y operaciones de persistencia. |
 
-**Métodos**
-
-| Nombre | Tipo de retorno | Visibilidad | Descripción |
-|---|---|---|---|
-| FindById | IoTDevice | public | Recuperar un dispositivo según su identificador. |
-| FindBySerialNumber | IoTDevice | public | Recuperar un dispositivo según su número de serie. |
-| Save | void | public | Persistir un nuevo dispositivo en la base de datos. |
-| Update | void | public | Actualizar la información de un dispositivo existente. |
-| Remove | void | public | Ejecutar la baja lógica o eliminación del dispositivo. |
-
----
-
-##### 2. IoTDeviceMapper
-
-| Campo | Detalle |
-|---|---|
-| **Nombre** | IoTDeviceMapper |
-| **Categoría** | Mapper |
-| **Propósito** | Transformar la información entre la representación del dominio (`IoTDevice`) y la representación de persistencia utilizada por la base de datos. |
-
-**Métodos**
+**Métodos propios**
 
 | Nombre | Tipo de retorno | Visibilidad | Descripción |
 |---|---|---|---|
-| ToDomain | IoTDevice | public | Convertir una estructura de persistencia en una entidad del dominio. |
-| ToPersistence | Record | public | Convertir una entidad del dominio en una estructura lista para persistir. |
+| FindBySerialNumberAsync | Task\<IotDevice?\> | public | Ejecutar una consulta asíncrona sobre el `DbSet<IotDevice>` para retornar el primer dispositivo cuyo `SerialNumber` coincida con el valor recibido, o `null` si no existe. |
 
----
-
-##### 3. SubscriptionValidationClient
-
-| Campo | Detalle |
-|---|---|
-| **Nombre** | SubscriptionValidationClient |
-| **Categoría** | External Service Client |
-| **Propósito** | Consultar al bounded context `Subscription & User Management` para validar que la suscripción asociada al dispositivo se encuentre activa antes de permitir su registro. |
-
-**Atributos**
-
-| Nombre | Tipo de dato | Visibilidad | Descripción |
-|---|---|---|---|
-| ServiceEndpoint | string | private | URL o punto de acceso al servicio externo de validación de suscripción. |
-
-**Métodos**
+**Métodos heredados de BaseRepository\<IotDevice\>**
 
 | Nombre | Tipo de retorno | Visibilidad | Descripción |
 |---|---|---|---|
-| ValidateActiveSubscription | bool | public | Verificar si la suscripción asociada al dispositivo o plantación está activa. |
-
----
-
-##### 4. DeviceEventPublisher
-
-| Campo | Detalle |
-|---|---|
-| **Nombre** | DeviceEventPublisher |
-| **Categoría** | Message Publisher |
-| **Propósito** | Publicar eventos de integración generados por el bounded context, de manera que otros bounded contexts puedan continuar el flujo de negocio. |
-
-**Atributos**
-
-| Nombre | Tipo de dato | Visibilidad | Descripción |
-|---|---|---|---|
-| MessageBrokerClient | MessageBrokerConnection | private | Cliente o conexión al sistema de mensajería utilizado por la plataforma. |
-
-**Métodos**
-
-| Nombre | Tipo de retorno | Visibilidad | Descripción |
-|---|---|---|---|
-| PublishDeviceRegistered | void | public | Publicar el evento de registro de dispositivo. |
-| PublishConnectivityRestored | void | public | Publicar el evento de restauración de conectividad. |
-| PublishEdgeDataSynchronized | void | public | Publicar el evento relacionado con la sincronización de datos del edge node. |
-
----
-
-##### 5. EdgeSynchronizationGateway
-
-| Campo | Detalle |
-|---|---|
-| **Nombre** | EdgeSynchronizationGateway |
-| **Categoría** | Integration Gateway |
-| **Propósito** | Recibir lotes de datos sincronizados desde el edge node y canalizarlos hacia los componentes internos del bounded context. |
-
-**Atributos**
-
-| Nombre | Tipo de dato | Visibilidad | Descripción |
-|---|---|---|---|
-| EndpointAddress | string | private | Punto de acceso para recepción de datos sincronizados desde el edge node. |
-
-**Métodos**
-
-| Nombre | Tipo de retorno | Visibilidad | Descripción |
-|---|---|---|---|
-| ReceiveSynchronizationBatch | void | public | Recibir un lote de datos acumulados desde el edge node. |
-| ForwardSynchronizationBatch | void | public | Derivar el lote recibido hacia la capa de aplicación para su procesamiento. |
-
----
-
-##### 6. LocalEdgeStorageAdapter
-
-| Campo | Detalle |
-|---|---|
-| **Nombre** | LocalEdgeStorageAdapter |
-| **Categoría** | Storage Adapter |
-| **Propósito** | Gestionar el acceso al almacenamiento local del edge node para los datos acumulados durante el modo offline. |
-
-**Atributos**
-
-| Nombre | Tipo de dato | Visibilidad | Descripción |
-|---|---|---|---|
-| LocalStoragePath | string | private | Ruta o referencia al almacenamiento local del edge node. |
-
-**Métodos**
-
-| Nombre | Tipo de retorno | Visibilidad | Descripción |
-|---|---|---|---|
-| StoreOfflineData | void | public | Almacenar datos localmente mientras el dispositivo se encuentra sin conectividad. |
-| RetrieveStoredData | List<Record> | public | Recuperar los datos almacenados localmente para su posterior sincronización. |
-| ClearSynchronizedData | void | public | Limpiar los datos que ya fueron sincronizados correctamente. |
+| AddAsync | Task | public | Agregar el aggregate `IotDevice` al contexto de EFC para su posterior persistencia. |
+| FindByIdAsync | Task\<IotDevice?\> | public | Recuperar un dispositivo por su clave primaria (`Id`). |
+| Update | void | public | Marcar el aggregate como modificado en el contexto de EFC. |
+| Remove | void | public | Marcar el aggregate para su eliminación en el contexto de EFC. |
+| ListAsync | Task\<IEnumerable\<IotDevice\>\> | public | Retornar todos los dispositivos registrados en la base de datos. |
 
 #### 4.2.1.5. Bounded Context Software Architecture Component Level Diagrams
 
