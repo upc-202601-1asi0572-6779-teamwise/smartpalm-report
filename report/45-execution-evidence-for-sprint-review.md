@@ -1,6 +1,6 @@
 #### 6.2.1.5. Execution Evidence for Sprint Review
 
-El Sprint 2 dejó tres artefactos ejecutables: Landing Page, Web Application, Mock API, Web Services, Embedded App y Edge Services.
+El Sprint 2 dejó 6 artefactos ejecutables: Landing Page, Web Application, Mock API, Web Services, Embedded App y Edge Services.
 
 | Evidence | Implemented Result                                                                                                                                       |
 |---|----------------------------------------------------------------------------------------------------------------------------------------------------------|
