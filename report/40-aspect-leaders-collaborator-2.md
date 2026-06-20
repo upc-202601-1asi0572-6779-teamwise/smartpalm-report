@@ -1,4 +1,4 @@
-#### 6.2.1.2. Aspect Leaders and Collaborators
+#### 6.2.2.2. Aspect Leaders and Collaborators
 
 La siguiente matriz define los roles de liderazgo (L) y colaboración (C) de cada integrante del equipo durante el Sprint 1.
 
