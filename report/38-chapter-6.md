@@ -17,7 +17,7 @@ Durante el Sprint 1, el equipo se enfocó en tres frentes de implementación. Pr
 | Collaborative Modeling | Miro | Modelado colaborativo previo de procesos y dominio del producto. | https://miro.com/app/board/uXjVK2R7nV4=/ |
 | Web Application Development | Angular | Desarrollo de la Web Application de SmartPalm. | https://angular.dev |
 | Code Editor | Visual Studio Code | Edición de código fuente, archivos Markdown y configuración de proyecto. | https://code.visualstudio.com |
-| Static Site Deployment | Netlify | Publicación del Landing Page. | https://lading-page-smartpalm.netlify.app |
+| Static Site Deployment | Netlify | Publicación del Landing Page. | https://smart-palm.netlify.app/ |
 | Web App Deployment | Cloudflare Pages | Publicación de la Web Application. | https://webapp-9sf.pages.dev |
 | Mock Services Deployment | Render | Publicación de la Mock API usada por la Web Application. | https://smartpalm-mock-api.onrender.com |
 
@@ -106,7 +106,7 @@ La configuración de despliegue del Sprint 1 considera únicamente los artefacto
 
 | Artifact | Platform | Public URL | Sprint 1 Status |
 |---|---|---|---|
-| Landing Page | Netlify | https://lading-page-smartpalm.netlify.app | Deployed |
+| Landing Page | Netlify | https://smart-palm.netlify.app/ | Deployed |
 | Web Application | Cloudflare Pages | https://webapp-9sf.pages.dev | Deployed |
 | Mock API | Render | https://smartpalm-mock-api.onrender.com | Deployed |
 
@@ -270,7 +270,7 @@ El Sprint 1 dejó tres artefactos ejecutables: Landing Page, Web Application y M
 | Web Application | Aplicación Angular con login, registro, dashboard, plantaciones, dispositivos, alertas, recomendaciones, reportes, inspecciones, perfil y suscripciones. |
 | Mock API | Servicio desplegado para entregar datos simulados a la Web Application. |
 
-**Landing Page URL:** https://lading-page-smartpalm.netlify.app
+**Landing Page URL:** https://smart-palm.netlify.app/
 
 **Web Application URL:** https://webapp-9sf.pages.dev
 
@@ -303,7 +303,7 @@ En el Sprint 1 se desplegaron los tres artefactos del alcance: Landing Page, Web
 
 | Artifact | Deployment Status | URL / Environment |
 |---|---|---|
-| Landing Page | Deployed | https://lading-page-smartpalm.netlify.app |
+| Landing Page | Deployed | https://smart-palm.netlify.app/ |
 | Web Application | Deployed | https://webapp-9sf.pages.dev |
 | Mock API | Deployed | https://smartpalm-mock-api.onrender.com |
 
