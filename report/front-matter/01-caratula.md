@@ -10,7 +10,7 @@ Universidad Peruana de Ciencias Aplicadas
 
 Carrera de Ingeniería de Software
 
-\vspace{1.5cm}
+\vspace{0.5cm}
 
 \textbf{1ASI0572}
 
@@ -30,23 +30,23 @@ Docente
 
 \textbf{Velásquez Núñez, Ángel Augusto}
 
-\vspace{1cm}
+\vspace{0.7cm}
 
 Startup
 
 \textbf{TempWise}
 
-\vspace{0.5cm}
+\vspace{0.7cm}
 
 Proyecto
 
 \textbf{SmartPalm}
 
-\vspace{1cm}
+\vspace{0.7cm}
 
 \textbf{Integrantes}
 
-\vspace{0.3cm}
+\vspace{0.1cm}
 
 \begin{tabular}{ll}
 \textbf{Código} & \textbf{Apellidos y Nombres} \\[4pt]
@@ -58,7 +58,7 @@ U202218387 & Tello Murga, Javier Oswaldo \\
 U202111461 & Carbajal Santivañez, Sebastian \\
 \end{tabular}
 
-\vspace{1.5cm}
+\vspace{1.25cm}
 
 \textbf{Período 2026-10}
 

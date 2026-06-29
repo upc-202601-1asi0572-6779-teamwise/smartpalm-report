@@ -2,3 +2,4 @@
 build.yaml
 inline-images.lua
 .claude/
+*.pdf

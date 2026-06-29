@@ -97,4 +97,3 @@ Las sesiones de validación tienen por objetivo que usuarios representativos de 
 
 ---
 
-### 6.3.3. Evaluaciones según Heurísticas
