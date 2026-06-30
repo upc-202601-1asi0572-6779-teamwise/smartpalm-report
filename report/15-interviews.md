@@ -162,31 +162,42 @@ Resumen:  La profesional identifica tres ausencias críticas en la agricultura p
 
 #### Análisis — Segmento 1: Dueño del Cultivo de Palma Aceitera
 
-El análisis siguiente se basa en las tres entrevistas realizadas a representantes del segmento de dueños del cultivo de palma aceitera. Los porcentajes se calculan sobre el total de entrevistados del segmento (n=3). El objetivo es identificar las características objetivas y subjetivas más representativas para la construcción del User Persona correspondiente.
+El siguiente análisis sintetiza los resultados de las tres entrevistas realizadas a dueños de cultivos de palma aceitera (n=3). El objetivo es identificar los patrones de comportamiento, necesidades y expectativas para la definición de los User Personas.
 
 **Características demográficas objetivas**
 
-El 100% de los entrevistados son de género masculino. El rango de edad se sitúa entre los 30 y 55 años aproximadamente. En cuanto a formación, el perfil es heterogéneo: uno de los entrevistados tiene formación técnica agropecuaria implícita por experiencia, otro es ingeniero comercial de profesión y el tercero tiene perfil de inversionista con experiencia en otros rubros, lo que indica que el 100% llegó al cultivo desde actividades económicas previas distintas a la agricultura de palma. El 67% (2 de 3) gestiona sus plantaciones en la región Ucayali, mientras que el 33% restante opera en Huánuco. El 100% gestiona superficies superiores a las 10 hectáreas, con extensiones que van desde las 10 hasta las 86 hectáreas propias, y en dos de los tres casos se suman hectáreas adicionales en régimen de consorcio o sociedad. El 67% lleva menos de 3 años en el cultivo, encontrándose aún en etapa de establecimiento sin producción, mientras que el 33% tiene más de 9 años de experiencia y sí está en etapa productiva.
+El 100% de los entrevistados es de género masculino, con edades que oscilan entre los 30 y 55 años. Un hallazgo relevante es la procedencia heterogénea: ninguno tiene una formación agronómica de base; provienen de ámbitos como la ingeniería comercial, la logística y la inversión en otros sectores. Esto los define como gestores con visión empresarial, pero con una brecha técnica que cubren mediante asesoría externa. El 67% opera en la región de Ucayali y el 33% en Huánuco, gestionando superficies que van desde las 10 hasta las 86 hectáreas. El 67% se encuentra en una etapa de establecimiento (menores de 3 años en el rubro), mientras que el 33% ya posee una trayectoria consolidada de más de 9 años.
+
+![distribucion-geografica](../assets/img/interviews/analyst/distribucion-geografica.png)
 
 **Características tecnológicas**
 
-El 100% de los entrevistados cuenta con smartphone y laptop o computadora como dispositivos principales. Sin embargo, el 100% reportó tener conectividad celular deficiente o nula en las zonas donde se ubican sus cultivos, debiendo desplazarse a centros poblados cercanos para acceder a internet. Ninguno de los tres ha utilizado alguna vez una herramienta digital específica para la gestión agrícola. El 67% mencionó espontáneamente soluciones tecnológicas para resolver la limitación de conectividad —como internet satelital Starlink, paneles solares y almacenamiento local de datos con sincronización posterior— lo que indica un nivel de alfabetización digital superior al promedio del productor tradicional de la región.
+Todos los entrevistados poseen smartphones (marcas Samsung y Xiaomi) y laptops (HP VICTUS y marcas no especificadas), utilizando el navegador Chrome de forma estandarizada. La limitación crítica es el entorno: el 100% enfrenta conectividad deficiente o nula en campo. A pesar de esto, demuestran un nivel de alfabetización digital alto; el 100% está dispuesto a adoptar tecnología si esta contempla el almacenamiento local y sincronización automática. Richard y Marcelo incluso proponen activamente soluciones de conectividad (Starlink, paneles solares), lo que evidencia una actitud innovadora ante las barreras geográficas.
 
 **Comportamientos y hábitos agronómicos**
 
-El 100% de los entrevistados basa el monitoreo de sus cultivos en inspecciones visuales presenciales, con una frecuencia que varía entre visitas semanales (33%) y visitas mensuales (67%). En todos los casos, las decisiones de fertilización y manejo fitosanitario se delegan a un ingeniero agrónomo o técnico especializado, ya sea contratado directamente o provisto por la empresa compradora. El 100% organiza sus labores agronómicas —poda, plateo, deshierbe, abonado— mediante programación previa con el personal de campo. Ninguno de los tres realiza mediciones objetivas de parámetros del suelo o del cultivo de manera propia; todos dependen del criterio del técnico para interpretar el estado de la plantación.
+El monitoreo se realiza mediante inspecciones visuales presenciales, con frecuencias que varían de semanal (33%) a mensual (67%). Existe una dependencia absoluta del ingeniero agrónomo para la toma de decisiones técnicas (fertilización y manejo fitosanitario). Esta dependencia actúa como un cuello de botella: al ser visitas espaciadas, los dueños sienten que carecen de visibilidad en tiempo real entre una visita y otra, delegando la salud de su patrimonio a un experto externo que no siempre está presente en el momento crítico.
 
 **Frustraciones principales**
 
-El 100% de los entrevistados identificó como frustración central la imposibilidad de conocer el estado de su cultivo de manera continua entre visitas, ya sea por la frecuencia insuficiente del agrónomo, por la extensión de las parcelas o por la falta de herramientas de monitoreo. El 67% reportó haber sufrido pérdidas económicas significativas atribuibles a problemas detectados de forma tardía: manejo inadecuado del deshierbe en el caso de Alberto y plaga de roedores en el caso de Marcelo. El 100% expresó preocupación por la propagación de plagas y enfermedades, destacando el riesgo de no detectarlas a tiempo antes de que afecten sectores amplios de la plantación. El 100% señaló la falta de conectividad en zona de cultivo como una limitación operativa relevante para la adopción de cualquier herramienta tecnológica.
+La frustración unánime es la "ceguera" operativa entre visitas. El 67% ha sufrido pérdidas cuantificables por detección tardía de problemas: Alberto perdió desarrollo de plantas por maleza no controlada y Marcelo perdió 320 plantones por roedores. El temor a la propagación de plagas (citando riesgos en África y Colombia) y el impacto del cambio climático (sequías) son preocupaciones constantes. La falta de conectividad en el campo se percibe no como una imposibilidad tecnológica, sino como una barrera operativa que esperan que cualquier solución IoT resuelva mediante el diseño de hardware robusto y protocolos de sincronización local.
+
+![pain-points-principales](../assets/img/interviews/analyst/pain-points-principales.png)
 
 **Objetivos y motivaciones**
 
-El 100% de los entrevistados tiene como objetivo central maximizar la producción de RFF por hectárea y reducir los costos operativos para mejorar la rentabilidad del cultivo. El 67% expresó interés en controlar o proyectar sus costos de insumos y mano de obra mediante alguna herramienta de seguimiento. El 33% mencionó explícitamente el deseo de comparar su rendimiento con el de otros productores de la zona para identificar oportunidades de mejora. En todos los casos, la motivación subyacente es económica: el cultivo representa una inversión patrimonial importante, en algunos casos compartida con socios o financiada con ingresos de otras actividades.
+El 100% de los usuarios busca maximizar la producción (toneladas por hectárea) y reducir costos operativos. A diferencia de un agricultor tradicional, ellos ven el cultivo como una inversión patrimonial estratégica. Están motivados por la eficiencia productiva: el 67% busca activamente comparar rendimientos con otros productores y controlar stocks. Su interés no es solo "cultivar", sino "gestionar" un activo.
 
 **Actitud frente a la tecnología y disposición de pago**
 
-El 100% de los entrevistados manifestó disposición a pagar una suscripción mensual por una herramienta de monitoreo si esta demuestra impacto directo en la producción o en la reducción de pérdidas. Las condiciones mencionadas de manera recurrente para justificar ese gasto son: funcionamiento sin conexión permanente a internet con sincronización posterior (100%), recomendaciones de fertilización y alertas de deficiencias del suelo (67%), seguimiento histórico de datos del cultivo para análisis de tendencias (67%) y detección temprana de plagas o condiciones de riesgo (100%). El 100% mostró una actitud receptiva y no defensiva frente a la tecnología, aunque ninguno ha dado el paso de adoptarla aún, principalmente por la ausencia de soluciones adaptadas a las condiciones de conectividad de sus zonas de cultivo.
+El 100% está dispuesto a pagar una suscripción mensual, siempre que el sistema demuestre reducir pérdidas o aumentar el rendimiento. Sus expectativas funcionales son claras y coinciden en:
+
+1. Detección temprana de plagas (100%).
+2. Alertas de deficiencias de suelo y recomendaciones de fertilización (67%).
+3. Seguimiento de cosecha para evitar sobremaduración (Richard).
+4. Almacenamiento local con sincronización (100%).
+
+![expectativas](../assets/img/interviews/analyst/expectativas.png)
 
 ---
 
