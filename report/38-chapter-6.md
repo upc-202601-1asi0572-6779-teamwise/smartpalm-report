@@ -36,15 +36,15 @@ El equipo utiliza Git como sistema de control de versiones y GitHub como platafo
 
 #### Repositorios del proyecto
 
-| Producto digital | Repositorio | Enlace |
-| :--- | :--- | :--- |
-| **Reporte del proyecto** | `upc-Desarrollo-IoT-Report` | [GitHub Repo](https://github.com/TempWise-DesarrolloIoT-202610/upc-Desarrollo-IoT-Report) |
-| **Landing Page** | `smartpalm-landing-page` | *(Repositorio por crear)* |
-| **Web Application** | `webapp-test` | [GitHub Repo](https://github.com/upc-202601-1asi0572-6779-teamwise/webapp-test) |
-| **RESTful API / Backend** | `smartpalm-api` | *(Repositorio por crear)* |
-| **Mobile Application** | `smartpalm-mobile-app` | *(Repositorio por crear)* |
-| **Edge API** | `smartpalm-edge-api` | *(Repositorio por crear)* |
-| **Embedded Application (IoT Firmware)** | `smartpalm-iot-firmware` | *(Repositorio por crear)* |
+| Producto digital | Repositorio                      | Enlace                                                                                                                                                                             |
+| :--- |:---------------------------------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Reporte del proyecto** | `upc-Desarrollo-IoT-Report`      | [GitHub Repo](https://github.com/upc-202601-1asi0572-6779-teamwise/smartpalm-report)                                                                                               |
+| **Landing Page** | `smart-palm.netlify.app` | [GitHub Repo](https://github.com/upc-202601-1asi0572-6779-teamwise/website)                                                                                                        |
+| **Web Application** | `webapp-test`                    | [GitHub Repo](https://github.com/upc-202601-1asi0572-6779-teamwise/webapp-test)                                                                                                    |
+| **RESTful API / Backend** | `smartpalm-api`                  | [GitHub Repo](https://github.com/upc-202601-1asi0572-6779-teamwise/webservice)                                                                                                     |
+| **Mobile Application** | `smartpalm-mobile-app`           | [GitHub Repo](https://github.com/upc-202601-1asi0572-6779-teamwise/mobileapp)                                                                                                                                               |
+| **Edge API** | `smartpalm-edge-api`             | [GitHub Repo](https://github.com/upc-202601-1asi0572-6779-teamwise/edgeservice)                                                                                                                                               |
+| **Embedded Application (IoT Firmware)** | `smartpalm-iot-firmware`         | [GitHub Repo](https://github.com/upc-202601-1asi0572-6779-teamwise/embeddedapp-edge-node)                                                                                                                                               |
 
 #### Estrategia de ramas: GitFlow
 
