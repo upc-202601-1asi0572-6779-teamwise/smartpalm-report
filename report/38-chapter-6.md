@@ -28,12 +28,15 @@ El equipo utiliza Git como sistema de control de versiones y GitHub como platafo
 
 **GitHub Repositories**
 
-| Product | Repository | Purpose | Status |
-|---|---|---|---|
-| Project Report | `smartpalm-report` | Contiene el informe, anexos y evidencias documentales del proyecto. | https://github.com/upc-202601-1asi0572-6779-teamwise/smartpalm-report |
-| Landing Page | `website` | Contiene el sitio público de SmartPalm con propuesta de valor, segmentos, beneficios, pricing y equipo. | https://github.com/upc-202601-1asi0572-6779-teamwise/website |
-| Web Application | `webapp-test` | Contiene la Web Application Angular implementada durante Sprint 1. | https://github.com/upc-202601-1asi0572-6779-teamwise/webapp-test |
-| Mock API | `mock-api` | Contiene los datos y endpoints simulados consumidos por la Web Application. | https://github.com/upc-202601-1asi0572-6779-teamwise/mock-api |
+| Producto digital | Repositorio                      | Enlace                                                                                                                                                                             |
+| :--- |:---------------------------------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Reporte del proyecto** | `upc-Desarrollo-IoT-Report`      | [GitHub Repo](https://github.com/upc-202601-1asi0572-6779-teamwise/smartpalm-report)                                                                                               |
+| **Landing Page** | `smart-palm.netlify.app` | [GitHub Repo](https://github.com/upc-202601-1asi0572-6779-teamwise/website)                                                                                                        |
+| **Web Application** | `webapp-test`                    | [GitHub Repo](https://github.com/upc-202601-1asi0572-6779-teamwise/webapp-test)                                                                                                    |
+| **RESTful API / Backend** | `smartpalm-api`                  | [GitHub Repo](https://github.com/upc-202601-1asi0572-6779-teamwise/webservice)                                                                                                     |
+| **Mobile Application** | `smartpalm-mobile-app`           | [GitHub Repo](https://github.com/upc-202601-1asi0572-6779-teamwise/mobileapp)                                                                                                                                               |
+| **Edge API** | `smartpalm-edge-api`             | [GitHub Repo](https://github.com/upc-202601-1asi0572-6779-teamwise/edgeservice)                                                                                                                                               |
+| **Embedded Application (IoT Firmware)** | `smartpalm-iot-firmware`         | [GitHub Repo](https://github.com/upc-202601-1asi0572-6779-teamwise/embeddedapp-edge-node)                                                                                                                                               |
 
 **GitFlow Workflow**
 
