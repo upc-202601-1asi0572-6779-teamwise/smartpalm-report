@@ -36,7 +36,6 @@ El equipo utiliza Git como sistema de control de versiones y GitHub como platafo
 | Mobile Application | `mobileapp` | Contiene la aplicación móvil desarrollada con Flutter para permitir la consulta y operación de funcionalidades de SmartPalm desde campo. | https://github.com/upc-202601-1asi0572-6779-teamwise/mobileapp |
 | Edge Service | `edgeservice` | Contiene el Edge API desarrollado con Python para gestionar la comunicación y sincronización de datos entre el dispositivo IoT y la plataforma cloud. | https://github.com/upc-202601-1asi0572-6779-teamwise/edgeservice |
 | Embedded Application | `embeddedapp` | Contiene el código de la aplicación embebida ejecutada en el dispositivo IoT para obtener y transmitir lecturas sensoriales. | https://github.com/upc-202601-1asi0572-6779-teamwise/embeddedapp |
-| Mock API | `mock-api` | Contiene los datos y endpoints simulados consumidos durante las primeras etapas de desarrollo de la Web Application. | https://github.com/upc-202601-1asi0572-6779-teamwise/mock-api |
 
 **GitFlow Workflow**
 

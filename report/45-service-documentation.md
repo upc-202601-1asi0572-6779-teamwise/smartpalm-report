@@ -2,7 +2,6 @@
 
 En este Sprint se implementó y desplegó el RESTful Web Service **SmartPalmPlatform.API** en Render, documentado con OpenAPI a través de Swagger UI. La URL base del servicio desplegado es `https://smart-palm-platform.onrender.com`. A continuación se detalla cada endpoint implementado por bounded context.
 
----
 
 
 ##### Evidencia de documentación desplegada
