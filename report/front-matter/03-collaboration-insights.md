@@ -18,3 +18,10 @@ Se realizaron corercciones con respecto a la entrega anterior, se mejoró el dis
 
 ![Commits del equipo TB1](../../assets/img/tb1-commits.png "Historial de Commits en develop")
 
+### AV2 
+
+![alt text](../../assets/img/collaboration-insights/av2-1.png)
+
+<br>
+
+![alt text](../../assets/img/collaboration-insights/av2-2.png)
