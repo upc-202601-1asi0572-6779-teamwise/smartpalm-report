@@ -312,7 +312,7 @@ Debido a restricciones presupuestarias y de disponibilidad de componentes indust
 
 ### Arquitectura de los dos prototipos
 
-![Arquitectura de los dos prototipos SmartPalm](https://raw.githubusercontent.com/upc-202601-1asi0572-6779-teamwise/smartpalm-report/feature/37-iot-device-design/assets/img/smartpalm_prototipos_arquitectura.svg)
+![Arquitectura de los dos prototipos SmartPalm](../assets/img/smartpalm_prototipos_arquitectura.png)
 
 El Prototipo 1 cumple el rol de **nodo sensor de campo**: captura variables agronómicas y las envía por WiFi. El Prototipo 2 cumple el rol de **nodo gateway**: recibe los datos, los almacena en buffer circular y los reenvía en lote al backend, replicando a menor escala el patrón "nodo de campo → gateway → cloud" del diseño conceptual.
 

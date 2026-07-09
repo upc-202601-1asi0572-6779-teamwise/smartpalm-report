@@ -1,29 +1,67 @@
-# Universidad Peruana de Ciencias Aplicadas
+```{=latex}
+\begin{titlepage}
+\begin{center}
 
-![Logo UPC](../../assets/img/logo_upc.png){width=3cm}
+\includegraphics[width=3cm]{assets/img/logo_upc.png}
 
-**Carrera:** Ingeniería de Software  
-**Ciclo:** 2026-10  
-**Código del curso:** 1ASI0572  
-**Curso:** Desarrollo de Soluciones IOT  
-**NRC:** 6779  
-**Profesor:** Velasquez Nuñez, Angel Augusto
+\vspace{0.5cm}
 
-## Informe de Trabajo Final
-**Entrega:** TP  
+Universidad Peruana de Ciencias Aplicadas
 
-### Startup: TempWise
-### Producto: SmartPalm
+Carrera de Ingeniería de Software
 
-### Integrantes:
+\vspace{0.5cm}
 
-| Apellidos y Nombres | Código |
-| :--- | :--- |
-| Rojas Reategui, Victor Manuel | U202123655 |
-| Julca Cruz, Renso Anthony | U202121579 |
-| Paucar Meneses, Jeremy Alión | U201919449 |
-| Loli Ruiz, Renzo Javier | U20161C993 |
-| Tello Murga, Javier Oswaldo | U202218387 |
-| Carbajal Santivañez, Sebastian | U202111461 |
+\textbf{1ASI0572}
 
-**Mayo, 2026**
+\textbf{Desarrollo de Soluciones IoT}
+
+NRC
+
+\textbf{6779}
+
+\vspace{0.5cm}
+
+\textbf{\Large Informe de Trabajo Final}
+
+\vspace{0.5cm}
+
+Docente
+
+\textbf{Velásquez Núñez, Ángel Augusto}
+
+\vspace{0.7cm}
+
+Startup
+
+\textbf{TempWise}
+
+\vspace{0.7cm}
+
+Proyecto
+
+\textbf{SmartPalm}
+
+\vspace{0.7cm}
+
+\textbf{Integrantes}
+
+\vspace{0.1cm}
+
+\begin{tabular}{ll}
+\textbf{Código} & \textbf{Apellidos y Nombres} \\[4pt]
+U202123655 & Rojas Reategui, Victor Manuel \\
+U202121579 & Julca Cruz, Renso Anthony \\
+U201919449 & Paucar Meneses, Jeremy Alión \\
+U20161C993 & Loli Ruiz, Renzo Javier \\
+U202218387 & Tello Murga, Javier Oswaldo \\
+U202111461 & Carbajal Santivañez, Sebastian \\
+\end{tabular}
+
+\vspace{1.25cm}
+
+\textbf{Período 2026-10}
+
+\end{center}
+\end{titlepage}
+```

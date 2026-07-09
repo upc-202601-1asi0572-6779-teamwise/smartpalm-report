@@ -21,10 +21,9 @@ Durante el Sprint 1, el equipo se enfocó en tres frentes de implementación. Pr
 | Web App Deployment | Cloudflare Pages | Publicación de la Web Application. | https://webapp-9sf.pages.dev |
 | Mock Services Deployment | Render | Publicación de la Mock API usada por la Web Application. | https://smartpalm-mock-api.onrender.com |
 
-
 ### 6.1.2. Source Code Management
 
-El equipo utiliza Git como sistema de control de versiones y GitHub como plataforma de alojamiento remoto. Para el Sprint 1, los repositorios relevantes corresponden al reporte, la Web Application, el Landing Page y la Mock API.
+El equipo utiliza Git como sistema de control de versiones y GitHub como plataforma de alojamiento remoto. Para el Sprint 2, los repositorios relevantes corresponden al informe del proyecto, Landing Page, Web Application, Web Service, Mobile Application, Edge Service, Embedded Application y Mock API.
 
 **GitHub Repositories**
 
@@ -32,8 +31,11 @@ El equipo utiliza Git como sistema de control de versiones y GitHub como platafo
 |---|---|---|---|
 | Project Report | `smartpalm-report` | Contiene el informe, anexos y evidencias documentales del proyecto. | https://github.com/upc-202601-1asi0572-6779-teamwise/smartpalm-report |
 | Landing Page | `website` | Contiene el sitio público de SmartPalm con propuesta de valor, segmentos, beneficios, pricing y equipo. | https://github.com/upc-202601-1asi0572-6779-teamwise/website |
-| Web Application | `webapp-test` | Contiene la Web Application Angular implementada durante Sprint 1. | https://github.com/upc-202601-1asi0572-6779-teamwise/webapp-test |
-| Mock API | `mock-api` | Contiene los datos y endpoints simulados consumidos por la Web Application. | https://github.com/upc-202601-1asi0572-6779-teamwise/mock-api |
+| Web Application | `webapp-test` | Contiene la Web Application principal, incluyendo los bounded contexts y componentes compartidos implementados por el equipo. | https://github.com/upc-202601-1asi0572-6779-teamwise/webapp-test |
+| Web Service | `webservice` | Contiene el RESTful API desarrollado con ASP.NET Core, los bounded contexts de backend, persistencia y documentación de endpoints mediante Swagger. | https://github.com/upc-202601-1asi0572-6779-teamwise/webservice |
+| Mobile Application | `mobileapp` | Contiene la aplicación móvil desarrollada con Flutter para permitir la consulta y operación de funcionalidades de SmartPalm desde campo. | https://github.com/upc-202601-1asi0572-6779-teamwise/mobileapp |
+| Edge Service | `edgeservice` | Contiene el Edge API desarrollado con Python para gestionar la comunicación y sincronización de datos entre el dispositivo IoT y la plataforma cloud. | https://github.com/upc-202601-1asi0572-6779-teamwise/edgeservice |
+| Embedded Application | `embeddedapp` | Contiene el código de la aplicación embebida ejecutada en el dispositivo IoT para obtener y transmitir lecturas sensoriales. | https://github.com/upc-202601-1asi0572-6779-teamwise/embeddedapp |
 
 **GitFlow Workflow**
 
@@ -44,6 +46,7 @@ El flujo de trabajo se organiza con ramas principales y ramas por funcionalidad.
 | Main Branch | `main` | Contiene versiones estables o entregables finales. |
 | Development Branch | `develop` | Integra los avances antes de pasar a una versión estable. |
 | Feature Branches | `feature/<description>` | Agrupan funcionalidades o secciones específicas del producto. |
+| Release Branches | `release/v<MAJOR>.<MINOR>.<PATCH>` | Preparan una versión candidata para entrega o despliegue, incluyendo validaciones y ajustes finales. |
 | Deployment Branch | `deploy` | Agrupa ajustes de publicación y configuración de despliegue cuando corresponde. |
 | Hotfix Branches | `hotfix/<description>` | Corrigen errores críticos detectados en una versión publicada. |
 
