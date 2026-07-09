@@ -135,7 +135,7 @@ El dominio se compone de un *aggregate root* (`EdgeDevice`), dos entidades (`Iot
 
 ##### 6. IIotDeviceRepository
 
-| Campo | Detalle |
+| Nombre | Descripción |
 |---|---|
 | **Nombre** | IIotDeviceRepository |
 | **Categoría** | Repository (interfaz) |
@@ -195,7 +195,7 @@ El dominio se compone de un *aggregate root* (`EdgeDevice`), dos entidades (`Iot
 | **Categoría** | Domain Service (interfaz) |
 | **Propósito** | Definir el contrato para el servicio que procesa los comandos de registro de edge gateways, registro de dispositivos IoT y sincronización de datos. |
 
-**Métodos**
+**Métodos heredados de IBaseRepository\<IotDevice\>**
 
 | Nombre | Tipo de retorno | Visibilidad | Descripción |
 |---|---|---|---|
@@ -304,7 +304,7 @@ En este bounded context, la capa de interfaz se encuentra compuesta por dos **Co
 
 | Nombre | Verbo HTTP | Ruta | Tipo de retorno | Descripción |
 |---|---|---|---|---|
-| RegisterEdgeDevice | POST | `` | IActionResult | Recibir un `EdgeDeviceRegistrationResource`, construir el `RegisterEdgeDeviceCommand` mediante el ensamblador y delegar al command service. Retorna `201 Created` si el registro es exitoso. |
+| RegisterEdgeDevice | POST | IActionResult | Recibir un `EdgeDeviceRegistrationResource`, construir el `RegisterEdgeDeviceCommand` mediante el ensamblador y delegar al command service. Retorna `201 Created` si el registro es exitoso. |
 | RegisterIotDevice | POST | `/{gateway-mac}/iot-devices` | IActionResult | Recibir un `IotDeviceRegistrationResource`, construir el `RegisterIotDeviceCommand` mediante el ensamblador y delegar al command service. Retorna `201 Created` si el registro es exitoso. |
 
 ---
@@ -318,18 +318,21 @@ En este bounded context, la capa de interfaz se encuentra compuesta por dos **Co
 | **Ruta base** | `api/v1/edge-gateways` |
 | **Propósito** | Exponer endpoints HTTP para listar gateways, consultar dispositivos IoT, sincronizar datos y verificar conectividad. |
 
-**Atributos**
+| Nombre | Parámetros | Descripción |
+|---|---|---|
+| ActivationStatusQuery | serial | Consultar el estado de activación del dispositivo identificado por su número de serie. |
+| ConnectiviyStatusQuery | serial | Consultar el estado de conectividad del dispositivo identificado por su número de serie. |
 
 | Nombre | Tipo de dato | Visibilidad | Descripción |
 |---|---|---|---|
 | _deviceStatusCommandService | IDeviceStatusCommandService | private | Servicio de comandos de dominio inyectado para las operaciones de sincronización. |
 | _deviceStatusQueryService | IDeviceStatusQueryService | private | Servicio de consultas de dominio inyectado para las operaciones de lectura. |
 
-**Métodos**
+La **Interface Layer** del bounded context **IoT Device Management** agrupa las clases encargadas de recibir solicitudes HTTP provenientes de actores externos y derivarlas hacia la capa de aplicación. Su función principal es actuar como punto de entrada del bounded context, descomponiendo los recursos de la petición en *commands* o *queries* a través de ensambladores, y retornando recursos estructurados como respuesta.
 
 | Nombre | Verbo HTTP | Ruta | Tipo de retorno | Descripción |
 |---|---|---|---|---|
-| GetAllGateways | GET | `` | IActionResult | Obtener todos los edge gateways registrados. Retorna una lista de `ConnectivityStatusResource`. |
+| GetAllGateways | GET | IActionResult | Obtener todos los edge gateways registrados. Retorna una lista de `ConnectivityStatusResource`. |
 | GetDevices | GET | `/{gateway-mac}/devices` | IActionResult | Obtener los dispositivos IoT registrados bajo un edge gateway. Retorna `GatewayDevicesResource`. |
 | SynchronizeEdge | POST | `/{gateway-mac}/synchronizations` | IActionResult | Recibir un `EdgeSynchronizationResource`, construir el `EdgeSynchronizationCommand` y delegar al command service. Sin autenticación (`AllowAnonymous`). |
 | GetConnectivityStatus | GET | `/{gateway-mac}/connectivity` | IActionResult | Consultar el estado de conectividad del edge gateway. Sin autenticación (`AllowAnonymous`). |
@@ -443,7 +446,7 @@ En este bounded context, la capa de aplicación se compone de un **Command Servi
 | Handle(EdgeRegistryQuery) | Task\<Tuple\<EdgeDevice, List\<EdgeRegistry\>\>\> | public | Recuperar el edge gateway y su lista de registros de vinculación. Lanza `KeyNotFoundException` si el gateway no existe. |
 | Handle(GetAllEdgeGatewaysQuery) | Task\<IEnumerable\<EdgeDevice\>\> | public | Retornar todos los edge gateways registrados en la base de datos. |
 
-#### 4.2.1.4. Infrastructure Layer
+La **Application Layer** del bounded context **IoT Device Management** se encarga de orquestar los flujos de negocio relacionados con el ciclo de vida de los dispositivos IoT. Recibe los *commands* y *queries* derivados desde la Interface Layer, accede al repositorio de dominio para recuperar o persistir el aggregate `IotDevice`, aplica la lógica de negocio sobre el mismo y confirma los cambios a través de la unidad de trabajo.
 
 La **Infrastructure Layer** del bounded context **IoT Device Management** agrupa las clases que materializan las abstracciones de persistencia definidas en la Domain Layer. Se apoya en Entity Framework Core (EFC) con acceso al `AppDbContext` compartido, implementando las interfaces de repositorio para operar sobre la base de datos relacional de la plataforma. Las tablas utilizan snake_case: `edge_devices`, `iot_devices` y `edge_registries`.
 

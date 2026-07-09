@@ -8,7 +8,7 @@ Los User Personas se elaboran en UXPressia y sus capturas se incluyen en esta se
 
 #### User Persona — Segmento 1: Dueño del Cultivo de Palma Aceitera
 
-![user-persona1](../assets/img/needfinding/user_persona01.png)
+![user-persona1](../assets/img/needfinding/user-persona-Mateo-Rojas.png)
 
 
 #### User Persona — Segmento 2: Ingeniero Agrónomo
