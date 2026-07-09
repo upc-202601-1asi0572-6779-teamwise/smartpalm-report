@@ -2,10 +2,13 @@
 
 **Enlace del Repositorio:** [Repositorio de Informes - TempWise](https://github.com/TempWise-DesarrolloIoT-202610/upc-Desarrollo-IoT-Report)
 
-### TB1
-En esta etapa, el equipo estableció el flujo de trabajo "Docs-as-Code" utilizando GitFlow para la redacción colaborativa del informe. Creamos nuestra estructura de directorios dividiendo el reporte en múltiples archivos Markdown numerados por capítulo para evitar conflictos de integración. 
+### AV1
+En esta etapa, el equipo estableció el flujo de trabajo "Docs-as-Code" utilizando GitFlow para la redacción colaborativa del informe. Creamos nuestra estructura de directorios dividiendo el reporte en múltiples archivos Markdown numerados por capítulo para evitar conflictos de integración. El equipo se reunió para definir el alcance y los objetivos, asignando tareas específicas a cada miembro. Comenzamos recopilando datos y revisando información relevante, con cada miembro contribuyendo con investigaciones individuales que luego compartimos y discutimos en reuniones periódicas. En GitHub, establecimos un flujo de trabajo para colaborar en la redacción del informe, creando un repositorio dedicado con secciones divididas en archivos Markdown para facilitar la colaboración y revisión
 
-Para la elaboración del informe, las tareas se dividieron de la siguiente manera, reflejando el trabajo evidenciado en nuestro Registro de Versiones: Víctor Rojas se encargó de la redacción del Capítulo I creando la rama `feature/11-introduccion`, mientras que Renso Julca trabajó la redacción de la Especificación de Requisitos en la rama `feature/13-requirements-specification`... *(continúa mencionando brevemente la contribución documentaria de cada miembro)*. Finalmente, todas las ramas fueron revisadas y fusionadas mediante Pull Requests hacia la rama `develop`. (solo es un ejemplo)
+
+### TB1
+En esta etapa, el equipo estableció el flujo de trabajo "Docs-as-Code" utilizando GitFlow para la redacción colaborativa del informe. Creamos nuestra estructura de directorios dividiendo el reporte en múltiples archivos Markdown numerados por secciones para evitar conflictos de integración. <br>
+Se realizaron corercciones con respecto a la entrega anterior, se mejoró el diseño del documento y se actualizó el contenido con información más detallada sobre el proceso de desarrollo, las decisiones tomadas y los resultados obtenidos. <br>
 
 **Evidencias de Colaboración y Commits (GitHub):**
 
@@ -15,5 +18,3 @@ Para la elaboración del informe, las tareas se dividieron de la siguiente maner
 
 ![Commits del equipo TB1](../../assets/img/tb1-commits.png "Historial de Commits en develop")
 
-
-### TP
