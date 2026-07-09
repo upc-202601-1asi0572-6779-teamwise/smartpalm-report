@@ -1,5 +1,6 @@
+### 6.2.2. Sprint 2
 
-### 6.2.2.1. Sprint Planning 2
+#### 6.2.2.1. Sprint Planning 2
 
 En esta sección se documenta la reunión de Sprint Planning del Sprint 2, en la que el equipo TempWise definió el objetivo de la iteración, estableció el alcance y distribuyó las responsabilidades entre los integrantes. Este sprint representa el hito central del proyecto: la primera integración completa del stack IoT de Smart Palm, desde el firmware del dispositivo físico hasta las interfaces de usuario web y móvil, respaldadas por un backend RESTful en la nube. Complementariamente, se despliega una segunda versión del Landing Page y de la Web Application con las mejoras y nuevas vistas derivadas de la retroalimentación del Sprint 1.
 

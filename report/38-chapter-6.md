@@ -326,7 +326,7 @@ La evidencia más clara de implementación disponible se encuentra en el reposit
 | Jeremy Alión Paucar Meneses | Liderazgo de Web Application, Mock API y despliegue de la experiencia funcional. |
 | Sebastian Carbajal Santivañez | Colaboración en contenido visual y soporte de documentación del producto. |
 
-**IMAGEN NECESARIA:** Captura de GitHub Insights - Contributors del repositorio `webapp-test`: https://github.com/upc-202601-1asi0572-6779-teamwise/webapp-test/graphs/contributors
+Captura de GitHub Insights - Contributors del repositorio `webapp-test`: https://github.com/upc-202601-1asi0572-6779-teamwise/webapp-test/graphs/contributors
 
 ![graph](../assets/img/sprint-01/graph.png)
 

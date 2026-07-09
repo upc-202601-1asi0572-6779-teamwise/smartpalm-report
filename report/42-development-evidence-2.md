@@ -1,4 +1,5 @@
-### 6.2.2.4. Development Evidence for Sprint Review
+#### 6.2.2.4. Development Evidence for Sprint Review
+
 
 **Landing Page Repository:** https://github.com/upc-202601-1asi0572-6779-teamwise/website
 
@@ -20,6 +21,8 @@
 | upc-202601-1asi0572-6779-teamwise | develop | 58ac66c | feat: update changes and styles | Aplica diversas actualizaciones de diseño y ajustes de estilos visuales. | Jun 12, 2026 |
 | upc-202601-1asi0572-6779-teamwise | develop | 08b4067 | Merge pull request #3 from upc-202601-1asi0572-6779-teamwise/feature/about-the-product | Fusiona la solicitud de cambios que implementa la sección acerca del producto. | Jun 12, 2026 |
 | upc-202601-1asi0572-6779-teamwise | develop | 6e96890 | Merge branch 'develop' into feature/about-the-product | Sincroniza la rama del producto para evitar conflictos futuros con la rama de desarrollo. | Jun 12, 2026 |
+
+<br>
 
 **Mobile App:** https://github.com/upc-202601-1asi0572-6779-teamwise/mobileapp
 
@@ -103,6 +106,8 @@
 | upc-202601-1asi0572-6779-teamwise | feature/widgets | d5ac75a | Add logo images. | Garantiza el acceso a elementos gráficos de marca esenciales para armar correctamente las pantallas de cabecera. | Jun 19, 2026 |
 | upc-202601-1asi0572-6779-teamwise | feature/widgets | 86d4ccb | Initial commit. | Marca el comienzo del desarrollo del módulo especializado en piezas de diseño e interfaz compartidas de toda la arquitectura visual del proyecto. | Jun 12, 2026 |
 
+<br>
+
 **Edge Services** https://github.com/upc-202601-1asi0572-6779-teamwise/edgeservice
 
 | Repository | Branch | Commit Id | Commit Message | Commit Message Body | Committed on (Date) |
@@ -131,11 +136,15 @@
 | upc-202601-1asi0572-6779-teamwise | feature/telemetry | 7eb67ce | feat: Implement TelemetryDomainService and related value objects and interfaces. | Establece las reglas de dominio y objetos de valor requeridos para procesar la telemetría. | Jun 18, 2026 |
 | upc-202601-1asi0572-6779-teamwise | feature/telemetry | ad3f0b6 | Initial commit: Create __init__.py files for each package and add shared/infrastructure/database.py. | Inicializa la estructura de paquetes del proyecto y establece la conexión compartida a la base de datos. | Jun 18, 2026 |
 
+<br>
+
 **Embebed App:** https://github.com/upc-202601-1asi0572-6779-teamwise/embeddedapp
 
 | Repository | Branch | Commit Id | Commit Message | Commit Message Body       | Committed on (Date) |
 | :--- | :--- | :--- | :--- |:--------------------------| :--- |
-    | upc-202601-1asi0572-6779-teamwise | main | 9bb75e3 | Initial commit | Iniciando el repositorio. | Jun 18, 2026 |
+| upc-202601-1asi0572-6779-teamwise | main | 9bb75e3 | Initial commit | Iniciando el repositorio. | Jun 18, 2026 |
+
+<br>
 
 **Web Services:** https://github.com/upc-202601-1asi0572-6779-teamwise/webservice
 

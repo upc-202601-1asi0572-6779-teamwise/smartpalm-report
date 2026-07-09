@@ -16,3 +16,11 @@ En esta sección se resumen todas las modificaciones relevantes que sean realiza
 | V1.0    |  14/06/2026  | Renso Julca | Cambios en sección de diseño de landing page |
 | V0.6    |  17/06/2026  | Renzo Loli | Actualización de bounded contexts |
 | V0.7    |  20/06/2026  | Victor Rojas | Entregable AV2 |
+| V0.8    |  25/06/2026  | Jeremy Paucar | Actualización web app |
+| V0.9    |  30/06/2026  | Renzo Loli | Documentación BC IoT Device Management |
+| V0.10   |  01/07/2026  | Renzo Loli | Documentación BC Sensor Data Processing |
+| V0.11   |  03/07/2026  | Victor Rojas | Actualización BC Agronomic Recommendations |
+| V0.13   |  07/07/2026  | Renso Julca | Nuevas funcionalidades mobile app |
+| V0.14   |  07/07/2026  | Javier Tello | Corrección sprint backlog 2 |
+| V0.15   |  08/07/2026  | Sebastian Carbajal | Actualización IoT design |
+| V0.16   |  08/07/2026  | Victor Rojas | Entregable TB2 |
