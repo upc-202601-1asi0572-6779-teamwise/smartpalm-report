@@ -5,64 +5,66 @@ Este Bounded Context es el encargado de gestionar el ciclo de vida completo de l
 
 #### 4.2.3.1. Domain Layer.
 
-A continuación, se describen las entidades, objetos de valor, servicios de dominio, factorías y repositorios que componen la lógica central de este contexto.
+A continuación, se describen las entidades, servicios de dominio, repositorios y enumeraciones que componen la lógica central de este contexto.
 
-#### Clase: Alert
+#### Aggregate: Alert
 
 | Nombre: | Alert |
 | :--- | :--- |
-| **Categoría:** | Entity |
-| **Propósito:** | Representar una notificación generada ante una condición crítica detectada en una zona de monitoreo. |
+| **Categoría:** | Entity / Aggregate Root |
+| **Propósito:** | Representar una alerta generada cuando una lectura de sensor excede los umbrales agronómicos definidos. |
 
 **Atributos**
 
 | Nombre | Tipo de dato | Visibilidad | Descripción |
 | :--- | :--- | :--- | :--- |
-| AlertId | Guid | private | Identificador único de la alerta |
-| SensorId | Guid | private | Identificador del nodo IoT relacionado |
+| Id | Guid | private | Identificador único de la alerta |
+| SensorType | SensorType | private | Tipo de sensor asociado (del Shared Kernel) |
+| UserId | int | private | Identificador del usuario destino (0 para alertas del sistema) |
 | Message | string | private | Descripción del evento detectado |
-| Level | AlertLevel | private | Severidad de la alerta |
-| Status | AlertStatus | private | Estado actual del ciclo de vida |
+| Level | AlertLevel | private | Severidad de la alerta (Informational, Warning, Critical) |
+| Status | AlertStatus | private | Estado actual del ciclo de vida (Active, Acknowledged, Suppressed) |
 | Timestamp | DateTime | private | Fecha y hora del registro |
 
 **Métodos**
 
 | Nombre | Tipo de retorno | Visibilidad | Descripción |
 | :--- | :--- | :--- | :--- |
-| Acknowledge | void | public | Cambia el estado a reconocido por el usuario |
-| Suppress | void | public | Cambia el estado a suprimido |
-| Classify | void | public | Asigna el nivel de severidad según reglas |
+| Acknowledge | void | public | Cambia el estado a Acknowledged si está Active |
 
 ---
 
-#### Clase: AlertLevel
+#### Enum: AlertLevel
 
 | Nombre: | AlertLevel |
 | :--- | :--- |
-| **Categoría:** | Value Object |
-| **Propósito:** | Definir la jerarquía de severidad de la alerta (Critical, Warning, Informational). |
+| **Categoría:** | Enum |
+| **Propósito:** | Definir la jerarquía de severidad de la alerta. |
 
-**Atributos**
+**Valores**
 
-| Nombre | Tipo de dato | Visibilidad | Descripción |
-| :--- | :--- | :--- | :--- |
-| Name | string | private | Nombre del nivel de severidad |
-| Priority | int | private | Valor numérico para priorización |
+| Nombre | Valor | Descripción |
+| :--- | :--- | :--- |
+| Informational | 0 | Desviación menor al 10% del punto medio del umbral |
+| Warning | 1 | Desviación entre 10% y 30% del punto medio del umbral |
+| Critical | 2 | Desviación superior al 30% del punto medio del umbral |
 
 ---
 
-#### Clase: AlertStatus
+#### Enum: AlertStatus
 
 | Nombre: | AlertStatus |
 | :--- | :--- |
-| **Categoría:** | Value Object |
-| **Propósito:** | Definir los estados válidos de la alerta (Active, Suppressed, Acknowledged). |
+| **Categoría:** | Enum |
+| **Propósito:** | Definir los estados válidos del ciclo de vida de una alerta. |
 
-**Atributos**
+**Valores**
 
-| Nombre | Tipo de dato | Visibilidad | Descripción |
-| :--- | :--- | :--- | :--- |
-| Value | string | private | Nombre del estado actual |
+| Nombre | Valor | Descripción |
+| :--- | :--- | :--- |
+| Active | 0 | Alerta activa, aún no reconocida |
+| Acknowledged | 1 | Alerta reconocida por el usuario |
+| Suppressed | 2 | Alerta suprimida (reservado para uso futuro) |
 
 ---
 
@@ -71,28 +73,13 @@ A continuación, se describen las entidades, objetos de valor, servicios de domi
 | Nombre: | AlertClassificationService |
 | :--- | :--- |
 | **Categoría:** | Domain Service |
-| **Propósito:** | Lógica de negocio para clasificar alertas basándose en parámetros agronómicos locales. |
+| **Propósito:** | Clasificar la severidad de una alerta basándose en la desviación de la lectura respecto al punto medio del umbral agronómico. |
 
 **Métodos**
 
 | Nombre | Tipo de retorno | Visibilidad | Descripción |
 | :--- | :--- | :--- | :--- |
-| ClassifySeverity | AlertLevel | public | Analiza lecturas frente a umbrales INIA |
-
----
-
-#### Clase: AlertSuppressionService
-
-| Nombre: | AlertSuppressionService |
-| :--- | :--- |
-| **Categoría:** | Domain Service |
-| **Propósito:** | Evitar la generación de alertas duplicadas en un intervalo de tiempo específico. |
-
-**Métodos**
-
-| Nombre | Tipo de retorno | Visibilidad | Descripción |
-| :--- | :--- | :--- | :--- |
-| ShouldSuppress | bool | public | Verifica si ya existe una alerta activa similar |
+| ClassifySeverity | AlertLevel | public | Calcula la desviación relativa y retorna Informational (<10%), Warning (<30%) o Critical (>=30%) |
 
 ---
 
@@ -108,23 +95,53 @@ A continuación, se describen las entidades, objetos de valor, servicios de domi
 | Nombre | Tipo de retorno | Visibilidad | Descripción |
 | :--- | :--- | :--- | :--- |
 | AddAsync | Task | public | Registra una nueva alerta en el sistema |
-| GetByIdAsync | Task<Alert> | public | Recupera una alerta por identificador |
-| GetHistoryBySensorAsync | Task<IEnumerable<Alert>> | public | Lista historial de alertas de un sensor |
+| FindByGuidAsync | Task<Alert?> | public | Busca una alerta por su identificador único |
+| FindByUserIdAsync | Task<IEnumerable<Alert>> | public | Lista las alertas asociadas a un usuario |
+| FindBySensorTypeAsync | Task<IEnumerable<Alert>> | public | Lista las alertas filtradas por tipo de sensor |
 
 ---
 
-#### Clase: AlertFactory
+#### Entity: UserAlertSetting
 
-| Nombre: | AlertFactory |
+| Nombre: | UserAlertSetting |
 | :--- | :--- |
-| **Categoría:** | Factory |
-| **Propósito:** | Centralizar la lógica de creación e instanciación de una nueva alerta. |
+| **Categoría:** | Entity |
+| **Propósito:** | Representar la preferencia de un usuario para silenciar alertas de un tipo de sensor específico. |
+
+**Atributos**
+
+| Nombre | Tipo de dato | Visibilidad | Descripción |
+| :--- | :--- | :--- | :--- |
+| Id | int | private | Identificador único autogenerado |
+| UserId | int | private | Identificador del usuario |
+| SensorType | SensorType | private | Tipo de sensor al que aplica la configuración |
+| IsMuted | bool | private | Indica si las alertas de este sensor están silenciadas |
 
 **Métodos**
 
 | Nombre | Tipo de retorno | Visibilidad | Descripción |
 | :--- | :--- | :--- | :--- |
-| Create | Alert | public | Valida datos y crea una nueva instancia de alerta |
+| UpdateMute | void | public | Actualiza el estado de silencio |
+
+Nota: La tabla `user_alert_settings` tiene un índice único compuesto en (UserId, SensorType).
+
+---
+
+#### Clase: IUserAlertSettingRepository
+
+| Nombre: | IUserAlertSettingRepository |
+| :--- | :--- |
+| **Categoría:** | Repository |
+| **Propósito:** | Definir el contrato para la persistencia de las configuraciones de alertas por usuario. |
+
+**Métodos**
+
+| Nombre | Tipo de retorno | Visibilidad | Descripción |
+| :--- | :--- | :--- | :--- |
+| AddAsync | Task | public | Registra una nueva configuración |
+| Update | void | public | Actualiza una configuración existente |
+| FindByUserIdAndSensorTypeAsync | Task<UserAlertSetting?> | public | Busca configuración por usuario y tipo de sensor |
+| FindByUserIdAsync | Task<IEnumerable<UserAlertSetting>> | public | Lista configuraciones de un usuario |
 
 #### 4.2.3.2. Interface Layer.
 
@@ -135,90 +152,119 @@ En esta sección se presentan las clases que conforman la capa de interfaz del B
 | Nombre: | AlertController |
 | :--- | :--- |
 | **Categoría:** | Controller |
-| **Propósito:** | Servir como intermediario entre las aplicaciones móviles (del Palm Grower y Agrónomo) y la lógica de negocio de alertas, permitiendo la consulta y gestión de notificaciones. |
+| **Propósito:** | Exponer endpoints para consultar y reconocer alertas. |
 
 **Métodos**
 
 | Nombre | Tipo de retorno | Visibilidad | Descripción |
 | :--- | :--- | :--- | :--- |
-| GetAlerts | Task<IEnumerable<AlertResponse>> | public | Listar las alertas activas por plantación |
-| AcknowledgeAlert | Task<IActionResult> | public | Registrar la confirmación de una alerta por el usuario |
-| GetAlertHistory | Task<IEnumerable<AlertResponse>> | public | Obtener el historial cronológico de alertas |
-| SuppressAlert | Task<IActionResult> | public | Suprimir una alerta para evitar notificaciones duplicadas |
+| GetAlerts | Task<IActionResult> | public | GET /api/v1/alerts?userId=N — Lista alertas por usuario |
+| AcknowledgeAlert | Task<IActionResult> | public | POST /api/v1/alerts/acknowledge — Reconoce una alerta por ID |
 
 ---
 
-#### Consumer: NotificationConsumer
+#### Controller: UserAlertSettingsController
 
-| Nombre: | NotificationConsumer |
+| Nombre: | UserAlertSettingsController |
 | :--- | :--- |
-| **Categoría:** | Consumer |
-| **Propósito:** | Gestionar el despacho de notificaciones push hacia el servicio externo de mensajería cuando el sistema genera una alerta crítica. |
+| **Categoría:** | Controller |
+| **Propósito:** | Exponer endpoints para gestionar la configuración de notificaciones por tipo de sensor para cada usuario. |
 
 **Métodos**
 
 | Nombre | Tipo de retorno | Visibilidad | Descripción |
 | :--- | :--- | :--- | :--- |
-| DispatchPushNotification | Task | public | Enviar notificación push |
-| ProcessAlertEvent | Task | public | Escuchar eventos de alertas internas para disparar el flujo de notificación |
+| GetAll | Task<IActionResult> | public | GET /api/v1/users/{userId}/alert-settings — Lista configuraciones del usuario |
+| GetBySensorType | Task<IActionResult> | public | GET /api/v1/users/{userId}/alert-settings/{sensorType} — Obtiene configuración por sensor |
+| Update | Task<IActionResult> | public | PUT /api/v1/users/{userId}/alert-settings/{sensorType} — Crea o actualiza mute/unmute |
 
 #### 4.2.3.3. Application Layer.
 
-La capa de aplicación es responsable de orquestar los flujos de procesos del negocio, coordinando las interacciones entre la capa de interfaz (Interface Layer) y el núcleo del dominio. Aquí se implementan los casos de uso a través de **Command Handlers**, que procesan las intenciones de los usuarios, y **Event Handlers**, que reaccionan a los eventos del dominio para disparar procesos secundarios (como notificaciones o actualizaciones de estado).
+La capa de aplicación es responsable de orquestar los flujos de procesos del negocio, coordinando las interacciones entre la capa de interfaz (Interface Layer) y el núcleo del dominio. Aquí se implementan los casos de uso a través de **Command Services** y **Query Services**, que procesan las intenciones de los usuarios, y **Event Handlers**, que reaccionan a los eventos del dominio para disparar procesos secundarios (como notificaciones).
 
-#### Command Handlers
+#### Command Services
 
-| Nombre: | AcknowledgeAlertCommandHandler |
+| Nombre: | AlertCommandService |
 | :--- | :--- |
-| **Categoría:** | Command Handler |
-| **Propósito:** | Procesar la intención del usuario de reconocer una alerta crítica recibida. |
+| **Categoría:** | Command Service |
+| **Propósito:** | Procesar comandos relacionados con alertas (reconocimiento). |
 
 **Métodos**
 
 | Nombre | Tipo de retorno | Visibilidad | Descripción |
 | :--- | :--- | :--- | :--- |
-| Handle | Task | public | Ejecuta la lógica de reconocimiento de una alerta específica |
+| Handle | Task<Alert> | public | Ejecuta la lógica de reconocimiento de una alerta a partir de un AcknowledgeAlertCommand |
 
 ---
 
-| Nombre: | SuppressAlertCommandHandler |
+| Nombre: | UserAlertSettingCommandService |
 | :--- | :--- |
-| **Categoría:** | Command Handler |
-| **Propósito:** | Procesar la petición de suprimir una alerta para evitar notificaciones duplicadas en el cultivo. |
+| **Categoría:** | Command Service |
+| **Propósito:** | Procesar comandos para actualizar la configuración de alertas por usuario y tipo de sensor. |
 
 **Métodos**
 
 | Nombre | Tipo de retorno | Visibilidad | Descripción |
 | :--- | :--- | :--- | :--- |
-| Handle | Task | public | Valida y marca la alerta como suprimida en el repositorio |
+| Handle | Task<UserAlertSetting> | public | Crea o actualiza el estado IsMuted para un usuario y sensor específicos |
+
+---
+
+#### Query Services
+
+| Nombre: | AlertQueryService |
+| :--- | :--- |
+| **Categoría:** | Query Service |
+| **Propósito:** | Ejecutar consultas relacionadas con alertas. |
+
+**Métodos**
+
+| Nombre | Tipo de retorno | Visibilidad | Descripción |
+| :--- | :--- | :--- | :--- |
+| Handle (GetAlertsByUserIdQuery) | Task<IEnumerable<Alert>> | public | Retorna las alertas asociadas a un usuario |
+| Handle (GetAlertByIdQuery) | Task<Alert?> | public | Retorna una alerta por su identificador |
+
+---
+
+| Nombre: | UserAlertSettingQueryService |
+| :--- | :--- |
+| **Categoría:** | Query Service |
+| **Propósito:** | Ejecutar consultas sobre configuraciones de alertas de usuario. |
+
+**Métodos**
+
+| Nombre | Tipo de retorno | Visibilidad | Descripción |
+| :--- | :--- | :--- | :--- |
+| Handle (userId) | Task<IEnumerable<UserAlertSetting>> | public | Retorna todas las configuraciones de un usuario |
+| Handle (userId, sensorType) | Task<UserAlertSetting?> | public | Retorna la configuración para un usuario y sensor específicos |
 
 ---
 
 #### Event Handlers
 
-| Nombre: | AlertGeneratedEventHandler |
+| Nombre: | ThresholdExceededEventHandler |
 | :--- | :--- |
-| **Categoría:** | Event Handler |
-| **Propósito:** | Reaccionar ante la creación de una nueva alerta para disparar el proceso de notificación inmediata. |
+| **Categoría:** | Event Handler (MediatR) |
+| **Propósito:** | Reaccionar ante un ThresholdExceededEvent del Shared Kernel, creando una alerta, verificando la configuración de mute del usuario y enviando notificación push vía Firebase. |
 
 **Métodos**
 
 | Nombre | Tipo de retorno | Visibilidad | Descripción |
 | :--- | :--- | :--- | :--- |
-| Handle | Task | public | Invoca al NotificationConsumer para enviar la notificación push al usuario |
+| Handle | Task | public | Clasifica severidad con AlertClassificationService, crea y persiste la alerta, chequea UserAlertSetting.IsMuted y envía notificación push |
 
 ---
 
-| Nombre: | AlertSuppressedEventHandler |
+| Nombre: | AlertGeneratedEventHandler |
 | :--- | :--- |
-| **Categoría:** | Event Handler |
-| **Propósito:** | Actualizar el estado del dashboard cuando una alerta ha sido suprimida por el sistema o usuario. |
+| **Categoría:** | Event Handler (application service) |
+| **Propósito:** | Enviar notificación push cuando se genera una alerta de forma programática. |
 
 **Métodos**
 
 | Nombre | Tipo de retorno | Visibilidad | Descripción |
 | :--- | :--- | :--- | :--- |
-| Handle | Task | public | Notifica al dashboard sobre el cambio de estado de la alerta |
+| Handle | Task | public | Envía la notificación push al servicio Firebase para una alerta dada |
 
 #### 4.2.3.4. Infrastructure Layer.
 
@@ -229,15 +275,34 @@ Esta capa contiene la implementación técnica necesaria para que el sistema int
 | Nombre: | AlertRepository |
 | :--- | :--- |
 | **Categoría:** | Repository Implementation |
-| **Propósito:** | Implementación de la interfaz `IAlertRepository` para persistir y recuperar alertas desde la base de datos. |
+| **Propósito:** | Implementación de `IAlertRepository` usando Entity Framework Core con la tabla `alerts`. |
 
 **Métodos**
 
 | Nombre | Tipo de retorno | Visibilidad | Descripción |
 | :--- | :--- | :--- | :--- |
-| AddAsync | Task | public | Inserta una nueva entidad Alert en la base de datos |
-| GetByIdAsync | Task<Alert> | public | Consulta una alerta específica usando Entity Framework |
-| GetHistoryBySensorAsync | Task<IEnumerable<Alert>> | public | Ejecuta una query para obtener alertas históricas filtradas por sensor |
+| AddAsync | Task | public | Inserta una nueva alerta en la tabla `alerts` |
+| FindByGuidAsync | Task<Alert?> | public | Busca una alerta por su Id |
+| FindByUserIdAsync | Task<IEnumerable<Alert>> | public | Obtiene alertas de un usuario ordenadas por fecha descendente |
+| FindBySensorTypeAsync | Task<IEnumerable<Alert>> | public | Obtiene alertas filtradas por tipo de sensor |
+
+---
+
+#### Clase: UserAlertSettingRepository (Implementación)
+
+| Nombre: | UserAlertSettingRepository |
+| :--- | :--- |
+| **Categoría:** | Repository Implementation |
+| **Propósito:** | Implementación de `IUserAlertSettingRepository` usando Entity Framework Core con la tabla `user_alert_settings`. |
+
+**Métodos**
+
+| Nombre | Tipo de retorno | Visibilidad | Descripción |
+| :--- | :--- | :--- | :--- |
+| AddAsync | Task | public | Inserta una nueva configuración en la tabla `user_alert_settings` |
+| Update | void | public | Actualiza una configuración existente |
+| FindByUserIdAndSensorTypeAsync | Task<UserAlertSetting?> | public | Busca configuración por usuario y tipo de sensor |
+| FindByUserIdAsync | Task<IEnumerable<UserAlertSetting>> | public | Lista configuraciones de un usuario |
 
 ---
 
@@ -246,43 +311,15 @@ Esta capa contiene la implementación técnica necesaria para que el sistema int
 | Nombre: | FirebaseNotificationService |
 | :--- | :--- |
 | **Categoría:** | External Service |
-| **Propósito:** | Implementar la lógica para el envío de notificaciones push utilizando la API externa. |
+| **Propósito:** | Enviar notificaciones push vía Firebase Cloud Messaging (FCM) al tópico "alerts". |
 
 **Métodos**
 
 | Nombre | Tipo de retorno | Visibilidad | Descripción |
 | :--- | :--- | :--- | :--- |
-| SendNotificationAsync | Task | public | Envía el payload de la alerta al servicio externo. |
+| SendNotificationAsync | Task | public | Envía notificación push al tópico "alerts" con título = severidad y cuerpo = mensaje |
 
----
-
-#### Clase: AlertMessageBroker
-
-| Nombre: | AlertMessageBroker |
-| :--- | :--- |
-| **Categoría:** | Messaging System |
-| **Propósito:** | Gestionar el envío de alertas a una cola de mensajes (Message Broker) para desacoplar el procesamiento del sistema de notificaciones. |
-
-**Métodos**
-
-| Nombre | Tipo de retorno | Visibilidad | Descripción |
-| :--- | :--- | :--- | :--- |
-| PublishAlertEvent | Task | public | Publica un evento de alerta en el bus de mensajes para consumo asíncrono |
-
----
-
-#### Clase: AppDbContext
-
-| Nombre: | AppDbContext |
-| :--- | :--- |
-| **Categoría:** | Database Access |
-| **Propósito:** | Clase de contexto de Entity Framework encargada de mapear las entidades del dominio al esquema relacional de la base de datos. |
-
-**Atributos**
-
-| Nombre | Tipo de dato | Visibilidad | Descripción |
-| :--- | :--- | :--- | :--- |
-| Alerts | DbSet<Alert> | private | Colección mapeada a la tabla de alertas en la base de datos. |
+Nota: Si no se encuentra la variable de entorno `FIREBASE_CREDENTIALS_JSON` ni el archivo `firebase-credentials.json`, el servicio se inicializa sin credenciales y omite silenciosamente el envío de notificaciones sin lanzar error.
 
 #### 4.2.3.5. Bounded Context Software Architecture Component Level Diagrams.
 
@@ -311,4 +348,3 @@ Este diagrama muestra la arquitectura de componentes de la aplicación móvil pa
 ##### 4.2.3.6.2. Bounded Context Database Design Diagram.
 
 ![BC-03 Database Diagram](../assets/img/chapter-4/bc-03-database-diagram.png)
-
