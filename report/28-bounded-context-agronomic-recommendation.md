@@ -16,82 +16,55 @@ Esta capa contiene las entidades y reglas de negocio necesarias para gestionar l
 
 | Nombre | Tipo de dato | Visibilidad | Descripción |
 | :--- | :--- | :--- | :--- |
-| RecommendationId | Guid | private | Identificador único de la recomendación |
-| PlantationId | Guid | private | Identificador de la plantación objetivo |
-| AgronomistId | Guid | private | Identificador del agrónomo responsable |
+| Id | int | private | Identificador único de la recomendación |
+| PlantationId | int | private | Identificador de la plantación objetivo |
+| AgronomistId | int | private | Identificador del agrónomo responsable |
 | Content | string | private | Detalle de la recomendación técnica |
 | Type | RecommendationType | private | Origen (AI o Manual) |
 | Status | RecommendationStatus | private | Estado del ciclo de vida |
 | CreatedAt | DateTime | private | Fecha de generación |
+| ApprovedAt | DateTime? | private | Fecha de aprobación |
+| PublishedAt | DateTime? | private | Fecha de publicación |
 
 **Métodos**
 
 | Nombre | Tipo de retorno | Visibilidad | Descripción |
 | :--- | :--- | :--- | :--- |
-| Approve | void | public | Cambia el estado a Aprobado |
-| Publish | void | public | Cambia el estado a Publicado y notifica |
+| Approve | void | public | Cambia el estado a Aprobado y registra ApprovedAt |
+| Publish | void | public | Cambia el estado a Publicado y registra PublishedAt |
 | UpdateContent | void | public | Permite edición manual del contenido |
 
 ---
 
-#### Clase: RecommendationStatus (Value Object)
+#### Clase: RecommendationStatus (Enumeration)
 
 | Nombre: | RecommendationStatus |
 | :--- | :--- |
-| **Categoría:** | Value Object |
-| **Propósito:** | Definir los estados del flujo de la recomendación (Pending, Approved, Published). |
+| **Categoría:** | Enumeration |
+| **Propósito:** | Definir los estados del flujo de la recomendación. |
 
-**Atributos**
+**Valores**
 
-| Nombre | Tipo de dato | Visibilidad | Descripción |
-| :--- | :--- | :--- | :--- |
-| Value | string | private | Nombre del estado |
+| Nombre | Valor | Descripción |
+| :--- | :--- | :--- |
+| Pending | 0 | Recomendación pendiente de aprobación |
+| Approved | 1 | Recomendación aprobada por el agrónomo |
+| Published | 2 | Recomendación publicada y visible para el Palm Grower |
 
 ---
 
-#### Clase: RecommendationType (Value Object)
+#### Clase: RecommendationType (Enumeration)
 
 | Nombre: | RecommendationType |
 | :--- | :--- |
-| **Categoría:** | Value Object |
+| **Categoría:** | Enumeration |
 | **Propósito:** | Diferenciar si la recomendación fue generada por el AI Engine o un Agrónomo. |
 
-**Atributos**
+**Valores**
 
-| Nombre | Tipo de dato | Visibilidad | Descripción |
-| :--- | :--- | :--- | :--- |
-| TypeName | string | private | Identificador del tipo (AI o Manual) |
-
----
-
-#### Clase: AIRecommendationService (Domain Service)
-
-| Nombre: | AIRecommendationService |
-| :--- | :--- |
-| **Categoría:** | Domain Service |
-| **Propósito:** | Lógica de negocio para invocar el motor de IA y generar recomendaciones basadas en datos de sensores. |
-
-**Métodos**
-
-| Nombre | Tipo de retorno | Visibilidad | Descripción |
-| :--- | :--- | :--- | :--- |
-| GenerateAIRecommendation | Recommendation | public | Procesa inputs y genera la recomendación automática |
-
----
-
-#### Clase: RecommendationFactory (Factory)
-
-| Nombre: | RecommendationFactory |
-| :--- | :--- |
-| **Categoría:** | Factory |
-| **Propósito:** | Encapsular la lógica de instanciación de recomendaciones según su origen. |
-
-**Métodos**
-
-| Nombre | Tipo de retorno | Visibilidad | Descripción |
-| :--- | :--- | :--- | :--- |
-| CreateAI | Recommendation | public | Crea recomendación basada en el motor de IA |
-| CreateManual | Recommendation | public | Crea recomendación basada en entrada del Agrónomo |
+| Nombre | Valor | Descripción |
+| :--- | :--- | :--- |
+| Manual | 0 | Recomendación creada manualmente por un agrónomo |
 
 ---
 
@@ -106,15 +79,12 @@ Esta capa contiene las entidades y reglas de negocio necesarias para gestionar l
 
 | Nombre | Tipo de dato | Visibilidad | Descripción |
 | :--- | :--- | :--- | :--- |
-| InterventionId | Guid | private | Identificador único |
-| RecommendationId | Guid | private | Referencia a la recomendación base |
+| Id | int | private | Identificador único |
+| RecommendationId | int | private | Referencia a la recomendación base |
+| Description | string | private | Descripción de la intervención realizada |
+| PerformedBy | string | private | Nombre de quien realizó la intervención |
 | ExecutionDate | DateTime | private | Fecha real de ejecución |
-
-**Métodos**
-
-| Nombre | Tipo de retorno | Visibilidad | Descripción |
-| :--- | :--- | :--- | :--- |
-| RegisterIntervention | void | public | Guarda el registro de la actividad realizada en campo |
+| CreatedAt | DateTime | private | Fecha de registro del sistema |
 
 ---
 
@@ -130,124 +100,72 @@ Esta capa contiene las entidades y reglas de negocio necesarias para gestionar l
 | Nombre | Tipo de retorno | Visibilidad | Descripción |
 | :--- | :--- | :--- | :--- |
 | AddAsync | Task | public | Guarda una recomendación en persistencia |
-| GetByIdAsync | Task<Recommendation> | public | Recupera recomendación por ID |
-| GetPendingByAgronomist | Task<IEnumerable<Recommendation>> | public | Lista las pendientes de aprobación |
+| FindByIdAsync | Task<Recommendation?> | public | Recupera recomendación por ID |
+| FindPendingAsync | Task<IEnumerable<Recommendation>> | public | Lista las pendientes de aprobación |
+| FindByPlantationIdAsync | Task<IEnumerable<Recommendation>> | public | Lista recomendaciones por plantación |
+| FindByAgronomistIdAsync | Task<IEnumerable<Recommendation>> | public | Lista recomendaciones por agrónomo |
+| FindByPlantationIdAndStatusAsync | Task<IEnumerable<Recommendation>> | public | Lista recomendaciones por plantación y estado |
+| FindByPlantationIdAndAgronomistIdAsync | Task<IEnumerable<Recommendation>> | public | Lista recomendaciones por plantación y agrónomo |
+| FindByPlantationIdAgronomistIdAndStatusAsync | Task<IEnumerable<Recommendation>> | public | Lista recomendaciones por plantación, agrónomo y estado |
+| AddInterventionAsync | Task | public | Guarda una intervención agronómica |
+| FindInterventionsByRecommendationIdAsync | Task<IEnumerable<AgronomicIntervention>> | public | Recupera intervenciones por ID de recomendación |
 
 #### 4.2.4.2. Interface Layer.
 
-#### Controller: RecommendationController
+#### Controller: RecommendationsController
 
-| Nombre: | RecommendationController |
+| Nombre: | RecommendationsController |
 | :--- | :--- |
 | **Categoría:** | Controller |
-| **Propósito:** | Servir como interfaz para que los Agrónomos gestionen el flujo de aprobación y para que los Palm Growers consulten sus recomendaciones. |
+| **Propósito:** | Servir como interfaz para que los Agrónomos gestionen el ciclo de vida de las recomendaciones y los Palm Growers consulten y registren intervenciones. |
 
 **Métodos**
 
 | Nombre | Tipo de retorno | Visibilidad | Descripción |
 | :--- | :--- | :--- | :--- |
-| GetPendingRecommendations | Task<IEnumerable<RecommendationResponse>> | public | Lista todas las recomendaciones pendientes de validación por el agrónomo |
-| ApproveRecommendation | Task<IActionResult> | public | Registra la aprobación de una recomendación específica |
-| UpdateRecommendation | Task<IActionResult> | public | Modifica el contenido de una recomendación (manual o IA) |
-| GetPlantationHistory | Task<IEnumerable<RecommendationResponse>> | public | Obtiene el historial de recomendaciones de una plantación |
-
----
-
-#### Consumer: AIRecommendationConsumer
-
-| Nombre: | AIRecommendationConsumer |
-| :--- | :--- |
-| **Categoría:** | Consumer |
-| **Propósito:** | Escuchar eventos de entrada provenientes del Motor de IA y disparar el proceso de creación de una nueva recomendación en el sistema. |
-
-**Métodos**
-
-| Nombre | Tipo de retorno | Visibilidad | Descripción |
-| :--- | :--- | :--- | :--- |
-| ProcessAIEvent | Task | public | Consume el evento de "Predicción generada" y llama a la lógica de aplicación para registrar la recomendación |
+| GetRecommendationById | Task<IActionResult> | public | Obtiene una recomendación por ID |
+| GetRecommendations | Task<IActionResult> | public | Lista recomendaciones de una plantación, filtrable por status y/o agronomistId |
+| CreateRecommendation | Task<IActionResult> | public | Crea una nueva recomendación |
+| UpdateRecommendationContent | Task<IActionResult> | public | Actualiza el contenido de una recomendación |
+| ApproveRecommendation | Task<IActionResult> | public | Aprueba una recomendación (Pending -> Approved) |
+| PublishRecommendation | Task<IActionResult> | public | Publica una recomendación (Approved -> Published) |
+| RegisterIntervention | Task<IActionResult> | public | Registra una intervención agronómica |
+| GetInterventionsByRecommendationId | Task<IActionResult> | public | Lista las intervenciones de una recomendación |
 
 #### 4.2.4.3. Application Layer.
 
-#### Command Handlers
+#### Application Services
 Estos componentes gestionan las solicitudes de los usuarios (Agrónomos o Palm Growers) y ejecutan las acciones en el modelo de dominio.
 
-| Nombre: | ApproveRecommendationCommandHandler |
+| Nombre: | RecommendationCommandService |
 | :--- | :--- |
-| **Categoría:** | Command Handler |
-| **Propósito:** | Procesar la aprobación de una recomendación generada por IA o manual. |
-
----
+| **Categoría:** | Command Service |
+| **Propósito:** | Procesar comandos de escritura sobre recomendaciones e intervenciones. |
 
 **Métodos**
 
 | Nombre | Tipo de retorno | Visibilidad | Descripción |
 | :--- | :--- | :--- | :--- |
-| Handle | Task | public | Cambia el estado de la recomendación a "Approved" tras la validación técnica |
+| Handle(CreateRecommendationCommand) | Task<Recommendation> | public | Crea una nueva recomendación |
+| Handle(UpdateRecommendationContentCommand) | Task<Recommendation> | public | Actualiza el contenido de una recomendación |
+| Handle(ApproveRecommendationCommand) | Task<Recommendation> | public | Cambia el estado a "Approved" |
+| Handle(PublishRecommendationCommand) | Task<Recommendation> | public | Cambia el estado a "Published" |
+| Handle(RegisterAgronomicInterventionCommand) | Task<AgronomicIntervention> | public | Registra una intervención en campo |
 
 ---
 
-| Nombre: | PublishRecommendationCommandHandler |
+| Nombre: | RecommendationQueryService |
 | :--- | :--- |
-| **Categoría:** | Command Handler |
-| **Propósito:** | Ejecutar la publicación de la recomendación para que sea visible al Palm Grower. |
-
----
+| **Categoría:** | Query Service |
+| **Propósito:** | Ejecutar consultas sobre recomendaciones e intervenciones. |
 
 **Métodos**
 
 | Nombre | Tipo de retorno | Visibilidad | Descripción |
 | :--- | :--- | :--- | :--- |
-| Handle | Task | public | Cambia el estado a "Published" y activa las notificaciones |
-
----
-
-| Nombre: | RegisterAgronomicInterventionCommandHandler |
-| :--- | :--- |
-| **Categoría:** | Command Handler |
-| **Propósito:** | Registrar la intervención realizada en campo por el Palm Grower. |
-
----
-
-**Métodos**
-
-| Nombre | Tipo de retorno | Visibilidad | Descripción |
-| :--- | :--- | :--- | :--- |
-| Handle | Task | public | Crea un registro de intervención asociado a una recomendación previa |
-
----
-
-#### Event Handlers
-Estos componentes reaccionan a los eventos del sistema para disparar procesos secundarios de forma asíncrona.
-
-| Nombre: | AlertTriggeredEventHandler |
-| :--- | :--- |
-| **Categoría:** | Event Handler |
-| **Propósito:** | Reaccionar a alertas disparadas para iniciar automáticamente la generación de recomendaciones IA. |
-
----
-
-**Métodos**
-
-| Nombre | Tipo de retorno | Visibilidad | Descripción |
-| :--- | :--- | :--- | :--- |
-| Handle | Task | public | Invoca al servicio de IA para procesar la alerta entrante |
-
----
-
-| Nombre: | RecommendationPublishedEventHandler |
-| :--- | :--- |
-| **Categoría:** | Event Handler |
-| **Propósito:** | Disparar notificaciones al Palm Grower inmediatamente después de la publicación. |
-
----
-
-**Métodos**
-
-| Nombre | Tipo de retorno | Visibilidad | Descripción |
-| :--- | :--- | :--- | :--- |
-| Handle | Task | public | Envía notificación push al usuario final con la recomendación |
-
----
+| Handle(GetPlantationRecommendationsQuery) | Task<IEnumerable<Recommendation>> | public | Lista recomendaciones por plantación con filtros opcionales |
+| Handle(GetRecommendationByIdQuery) | Task<Recommendation?> | public | Obtiene una recomendación por ID |
+| Handle(GetInterventionsByRecommendationIdQuery) | Task<IEnumerable<AgronomicIntervention>> | public | Lista intervenciones de una recomendación |
 
 #### 4.2.4.4. Infrastructure Layer.
 
@@ -256,61 +174,39 @@ Estos componentes reaccionan a los eventos del sistema para disparar procesos se
 | Nombre: | RecommendationRepository |
 | :--- | :--- |
 | **Categoría:** | Repository Implementation |
-| **Propósito:** | Implementar la interfaz `IRecommendationRepository` para gestionar la persistencia de recomendaciones en la base de datos SQL. |
+| **Propósito:** | Implementar la interfaz `IRecommendationRepository` para gestionar la persistencia de recomendaciones en la base de datos SQL. Extiende `BaseRepository<Recommendation>` y utiliza `AppDbContext`. |
 
 **Métodos**
 
 | Nombre | Tipo de retorno | Visibilidad | Descripción |
 | :--- | :--- | :--- | :--- |
-| AddAsync | Task | public | Persiste la nueva recomendación en la tabla `Recommendations` |
-| GetPendingByAgronomistAsync | Task<IEnumerable<Recommendation>> | public | Consulta recomendaciones con estado 'Pending' usando LINQ/EF |
-| UpdateAsync | Task | public | Actualiza el estado o contenido de una recomendación |
+| AddAsync | Task | public | Persiste la nueva recomendación en la tabla `recommendations` |
+| FindPendingAsync | Task<IEnumerable<Recommendation>> | public | Consulta recomendaciones con estado 'Pending' |
+| FindByPlantationIdAsync | Task<IEnumerable<Recommendation>> | public | Consulta recomendaciones por plantación |
+| FindByAgronomistIdAsync | Task<IEnumerable<Recommendation>> | public | Consulta recomendaciones por agrónomo |
+| FindByPlantationIdAndStatusAsync | Task<IEnumerable<Recommendation>> | public | Consulta recomendaciones por plantación y estado |
+| FindByPlantationIdAndAgronomistIdAsync | Task<IEnumerable<Recommendation>> | public | Consulta recomendaciones por plantación y agrónomo |
+| FindByPlantationIdAgronomistIdAndStatusAsync | Task<IEnumerable<Recommendation>> | public | Consulta recomendaciones por plantación, agrónomo y estado |
+| AddInterventionAsync | Task | public | Persiste una intervención en la tabla `agronomic_interventions` |
+| FindInterventionsByRecommendationIdAsync | Task<IEnumerable<AgronomicIntervention>> | public | Consulta intervenciones por ID de recomendación |
 
 ---
 
-#### Clase: AIEngineClient (External Service)
+#### Clase: AppDbContext (Shared Database Context)
 
-| Nombre: | AIEngineClient |
-| :--- | :--- |
-| **Categoría:** | External Service |
-| **Propósito:** | Actuar como cliente para comunicarse con el "AI Engine" externo y obtener las sugerencias agronómicas basadas en parámetros INIA. |
-
-**Métodos**
-
-| Nombre | Tipo de retorno | Visibilidad | Descripción |
-| :--- | :--- | :--- | :--- |
-| GetSuggestionAsync | Task<string> | public | Realiza llamada HTTP/gRPC al servicio de IA externo para obtener sugerencias |
-
----
-
-#### Clase: RecommendationMessageBroker (Messaging System)
-
-| Nombre: | RecommendationMessageBroker |
-| :--- | :--- |
-| **Categoría:** | Messaging System |
-| **Propósito:** | Implementar la infraestructura de mensajería para publicar el evento `RecommendationPublished`, permitiendo que otros contextos (como Notificaciones) reaccionen. |
-
-**Métodos**
-
-| Nombre | Tipo de retorno | Visibilidad | Descripción |
-| :--- | :--- | :--- | :--- |
-| PublishRecommendationEventAsync | Task | public | Publica el evento de recomendación publicada en el Message Bus |
-
----
-
-#### Clase: RecommendationDbContext
-
-| Nombre: | RecommendationDbContext |
+| Nombre: | AppDbContext |
 | :--- | :--- |
 | **Categoría:** | Database Access |
-| **Propósito:** | Contexto de persistencia que mapea las entidades del dominio de recomendaciones a tablas de la base de datos. |
+| **Propósito:** | Contexto de persistencia compartido que mapea las entidades del dominio de recomendaciones a tablas de la base de datos. |
 
-**Atributos**
+**Tablas configuradas**
 
-| Nombre | Tipo de dato | Visibilidad | Descripción |
-| :--- | :--- | :--- | :--- |
-| Recommendations | DbSet<Recommendation> | private | Tabla que almacena el historial de recomendaciones |
-| Interventions | DbSet<AgronomicIntervention> | private | Tabla que almacena las intervenciones registradas en campo |
+| Tabla | Entidad | Descripción |
+| :--- | :--- | :--- |
+| `recommendations` | Recommendation | Almacena el historial de recomendaciones |
+| `agronomic_interventions` | AgronomicIntervention | Almacena las intervenciones registradas en campo |
+
+AppDbContext es el DbContext compartido de toda la aplicación, configurado en `Shared/Infrastructure/Persistence/EFC/Configuration/AppDbContext`. Las entidades de este BC se configuran dentro del método `OnModelCreating` con `ToTable()`, `HasConversion<string>()` para enums, y `UseSnakeCaseNamingConvention()`.
 
 #### 4.2.4.5. Bounded Context Software Architecture Component Level Diagrams.
 
@@ -340,4 +236,5 @@ Este diagrama muestra la arquitectura de componentes de la aplicación móvil pa
 ![BC-04 Database Diagram](../assets/img/chapter-4/bc-04-database-diagram.png)
 
 ---
+
 

@@ -1,4 +1,4 @@
-### 6.2.2.3. Sprint Backlog 2
+#### 6.2.2.3. Sprint Backlog 2
 
 El Sprint 2 concentra el mayor volumen de trabajo del proyecto: la integración completa del stack IoT de Smart Palm. El objetivo del equipo fue conectar el firmware del Prototipo 1 (ESP32 NodeMCU-32S) con el nodo edge (Prototipo 2, ESP32-DevKitC-32U), el Flask Edge API y el backend RESTful en la nube, haciendo que las interfaces digitales —plataforma web del agrónomo y aplicación móvil del productor— presenten datos reales de plantaciones, zonas y alertas. Para organizar el trabajo colaborativo, el equipo utilizó un tablero en Trello dividido en columnas To-do, In-Process, To-Review y Done, donde cada integrante gestionó sus tareas según la asignación de la matriz de Aspect Leaders and Collaborators.
 
