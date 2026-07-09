@@ -21,7 +21,7 @@
 | Producto | Plataforma | URL |
 | :--- | :--- | :--- |
 | Landing Page | Netlify | https://smart-palm.netlify.app/ |
-| Web Application | Cloudflare Pages | https://webapp-9sf.pages.dev |
+| Web Application | Cloudflare Pages | https://webapp-f.pages.dev/auth/login |
 | RESTful Web Service | Render | https://smart-palm-platform.onrender.com/ |
 | Mock API (Sprint 1) | Render | https://smartpalm-mock-api.onrender.com |
 
