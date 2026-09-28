@@ -93,7 +93,23 @@ Las sesiones de validación tienen por objetivo que usuarios representativos de 
 ---
 
 ### 6.3.2. Registro de Entrevistas
+---
 
+**Entrevista 1**
+
+| Campo | Detalle |
+|-------|---------|
+| Nombres y Apellidos | Cesar Santivañez Solis |
+| Edad | 43 |
+| Distrito / Zona | Ucayali, Perú |
+| Screenshot del video | - |
+| URL del video | https://acortar.link/Jo8xjp |
+| Timing de inicio en el video compilado | 00:02 |
+| Duración de la entrevista | 04:00 |
+
+**Resumen:** El Ingeniero agroindustrial César Santivañez Solis, quien utilizo la plataforma SmartPalm y comparte su experiencia y feedback, evaluo la claridad de la plataforma, su propuesta de valor, la usabilidad de sus funcionalidades y su potencial de recomendación. El ingeniero comprendió rápidamente que la plataforma tiene un rol específico para los agrónomos, con un dashboard dedicado a la supervisión de múltiples plantaciones, lo cual soluciona en gran parte los desafíos que enfrentaba, ademas de destacar positivamente el panel principal con estados de plantación (óptimo, en riesgo, crítico) y el historial de inspecciones con filtros.
+
+No obstante, propone mejoras puntuales como la inclusión de la fecha de última visita física, la vinculación de visitas a alertas activas, la configuración de notificaciones y la calibración de las recomendaciones de IA. En general, para el ingeniero la plataforma se percibe intuitiva y fácil de usar, aunque identificó una leve confusión inicial sobre el tipo de registro (independiente o cooperativa), pero nada que impactara críticamente su uso cotidiano en un contexto real.
 
 ---
 
