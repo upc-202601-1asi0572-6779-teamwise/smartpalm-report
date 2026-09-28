@@ -19,9 +19,20 @@ Se realizaron corercciones con respecto a la entrega anterior, se mejoró el dis
 ![Commits del equipo TB1](../../assets/img/tb1-commits.png "Historial de Commits en develop")
 
 ### AV2 
+Para esta entrega el equipo pudo desarrolar mejoras en los productos de software y hardware, así como en la documentación del proyecto. Se realizaron reuniones periódicas para discutir avances, resolver dudas y coordinar la integración de los cambios.<br>
 
 ![alt text](../../assets/img/collaboration-insights/av2-1.png)
 
 <br>
 
 ![alt text](../../assets/img/collaboration-insights/av2-2.png)
+
+### TB2
+
+En este sprint, el equipo continuó utilizando el flujo de trabajo "Docs-as-Code" con GitFlow para la redacción colaborativa del informe. Se realizaron reuniones periódicas para discutir avances, resolver dudas y coordinar la integración de los cambios. Cada miembro del equipo contribuyó con el avance de los respectivos productos que abarcan la solución. <br>
+
+![evidencia tb2 1](../../assets/img/tb2-1.png)
+
+<br>
+
+![evidencia tb2 2](../../assets/img/tb2-2.png)

@@ -36,7 +36,7 @@ La unidad de procesamiento central seleccionada es el microcontrolador **ESP32-W
 
 El esquemático fue implementado en Wokwi usando el ESP32 DevKit V1 como microcontrolador central. Los sensores analógicos (humedad de suelo, pH y EC) se conectan exclusivamente a los canales ADC1 del ESP32, garantizando compatibilidad con el módulo WiFi activo. El DHT22 usa un pin digital con resistencia pull-up de 10 kΩ a 3.3V. El módulo LoRa SX1276 se comunica mediante el bus SPI completo. El LCD 1602 usa comunicación I2C con dirección 0x27.
 
-![Circuit Design - SmartPalm IoT Edge Node](https://github.com/upc-202601-1asi0572-6779-teamwise/smartpalm-report/blob/d8b14dffca8e88d238c5bc001bfc8cf111b5459d/assets/img/smartpalm_pinout_diagram.svg)
+![alt text](../assets/img/iot/io2.jpeg)
 
 ### Tabla de pin mapping
 
@@ -173,19 +173,19 @@ El despliegue en la Amazonia peruana impone restricciones climáticas severas (h
 
 ### Diagrama del dispositivo físico
 
-![Physical Device Design - SmartPalm IoT](https://raw.githubusercontent.com/upc-202601-1asi0572-6779-teamwise/smartpalm-report/feature/37-iot-device-design/assets/img/smartpalm_physical_device_1.png)
+![alt text](../assets/img/iot/smartpalm_physical_device_1.png)
 
 ## Réplica del prototipo físico en Wokwi
 
 > Prototipo Nodo Sensor (Replica del modelo fisico)
 
-![Physical Sensor Node Prototype WW - SmartPalm IoT](https://github.com/upc-202601-1asi0572-6779-teamwise/smartpalm-report/blob/d8b14dffca8e88d238c5bc001bfc8cf111b5459d/assets/img/Node%20Prototype%20Wokwi.png)
+![alt text](../assets/img/iot/iot4.png)
 
 ---
 
 > Prototipo Nodo Gateway (Replica del modelo Fisico)
 
-![Physical Gateway Node Prototype WW - SmartPalm IoT](https://github.com/upc-202601-1asi0572-6779-teamwise/smartpalm-report/blob/c782b3961e4104c08b6fb236a19068d39c4fe530/assets/img/node_gateway_prototype.png)
+![alt text](../assets/img/iot/iot5.png)
 
 ---
 
@@ -201,7 +201,7 @@ El sistema cuenta con un módulo de edge computing que evalúa cada lectura cont
 
 El firmware opera bajo una máquina de estados optimizada para entornos de baja potencia. En lugar de transmitir datos crudos continuamente, el microcontrolador actúa como unidad de decisión en el borde de la red:
 
-![Logic Architecture](https://github.com/upc-202601-1asi0572-6779-teamwise/smartpalm-report/blob/1d20ba760d2b4bd64a3c3e322a9257019774cf00/assets/img/logic_architecture.svg)
+![alt text](../assets/img/iot/io3.jpeg)
 
 Cada vez que el microcontrolador completa un ciclo de lectura, evalúa los datos contra la matriz de umbrales agronómicos del INIA:
 
@@ -335,7 +335,7 @@ El Prototipo 1 representa la unidad encargada del monitoreo ambiental directo. S
 
 ### Esquema de conexiones físicas
 
-![Scheme Physical Sensor SmartPalm](https://github.com/upc-202601-1asi0572-6779-teamwise/smartpalm-report/blob/1d20ba760d2b4bd64a3c3e322a9257019774cf00/assets/img/scheme_physical_sensor.svg)
+![alt text](../assets/img/iot/io1.jpeg)
 
 > **Nota técnica:** GPIO 32 y GPIO 33 pertenecen al canal ADC1, el único operable con WiFi activo en el ESP32. GPIO 27, aunque pertenece a ADC2, se usa exclusivamente como pin digital para el DHT11, sin generar conflicto.
 
@@ -371,7 +371,7 @@ El Prototipo 2 actúa como el núcleo de enrutamiento y gestión local de la red
 
 ### Esquema de conexiones físicas
 
-![Scheme Physical Gateway SmartPalm](https://github.com/upc-202601-1asi0572-6779-teamwise/smartpalm-report/blob/1d20ba760d2b4bd64a3c3e322a9257019774cf00/assets/img/scheme_physical_gateway.svg)
+![alt text](../assets/img/iot/iot3.jpeg)
 
 > **⚠ Advertencia crítica de hardware:** El módulo PCF8574 con el LCD 1602A requiere alimentación a **5V DC**. A 3.3V el contraste se degrada completamente impidiendo la visualización. El VCC del display se vincula al riel de 5V del Shield, mientras que las líneas I2C (GPIO 21/22) operan seguros a 3.3V gracias a la configuración open-drain del bus.
 
