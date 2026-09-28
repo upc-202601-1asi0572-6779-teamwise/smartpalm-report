@@ -1,4 +1,4 @@
-### 6.2.2.5. Testing Suite Evidence for Sprint Review
+#### 6.2.2.5. Testing Suite Evidence for Sprint Review
 
 Esta sección documenta el conjunto de Acceptance Tests automatizados elaborados para los Web Services implementados durante el Sprint 2. Las pruebas siguen el enfoque BDD (Behavior-Driven Development): los escenarios están definidos en lenguaje Gherkin (archivos `.feature`) y los pasos correspondientes en C#. Los tests cubren cuatro Technical Stories priorizadas en este Sprint: registro de dispositivos IoT, ingesta de lecturas de sensores, consulta de lecturas por dispositivo edge y creación de recomendaciones agronómicas.
 

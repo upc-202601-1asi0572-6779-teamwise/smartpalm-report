@@ -7,17 +7,17 @@ El bounded context **Subscription & User Management** se encarga de gestionar el
 
 La **Domain Layer** del bounded context **Subscription & User Management** representa el núcleo del dominio encargado de gestionar la identidad del usuario, su autenticación y el ciclo de vida de la suscripción dentro de SmartPalm IoT. En esta capa se ubican las clases que modelan el registro del usuario, la validación de credenciales, la selección de planes, el procesamiento lógico de la suscripción y las reglas relacionadas con su activación, renovación y cancelación.
 
-Para este bounded context, el dominio puede organizarse alrededor de una entidad principal que representa la cuenta del usuario, complementada por entidades asociadas a la suscripción, objetos de valor para credenciales, una *factory*, repositorios y un servicio de dominio encargado de aplicar las reglas de transición del ciclo de suscripción.
+Para este bounded context, el dominio puede organizarse alrededor de una entidad principal que representa la cuenta del usuario (*aggregate root*), complementada por entidades asociadas a la suscripción, objetos de valor para planes, *enums*, una *factory*, repositorios y servicios de dominio encargados de aplicar las reglas de negocio del ciclo de suscripción.
 
 ---
 
-##### 1. UserAccount
+##### 1. User
 
 | Campo | Detalle |
 |---|---|
-| **Nombre** | UserAccount |
-| **Categoría** | Entity / Aggregate Root |
-| **Propósito** | Representar la cuenta del usuario dentro de la plataforma y gestionar su identidad y acceso. |
+| **Nombre** | User |
+| **Categoría** | Aggregate Root (partial class con UserAudit) |
+| **Propósito** | Representar la cuenta del usuario dentro de la plataforma y gestionar su identidad, autenticación y acceso. |
 
 <br>
 
@@ -25,45 +25,16 @@ Para este bounded context, el dominio puede organizarse alrededor de una entidad
 
 | Nombre | Tipo de dato | Visibilidad | Descripción |
 |---|---|---|---|
-| UserId | UUID | private | Identificador único del usuario. |
-| FullName | string | private | Nombre completo del usuario registrado. |
-| Email | string | private | Correo electrónico utilizado como identificador de acceso. |
-| Role | string | private | Rol asignado al usuario dentro de la plataforma. |
-| Status | string | private | Estado actual de la cuenta del usuario. |
-| Credentials | UserCredentials | private | Credenciales asociadas a la cuenta del usuario. |
-| CreatedAt | datetime | private | Fecha y hora de creación de la cuenta. |
-
-<br>
-
-**Métodos**
-
-| Nombre | Tipo de retorno | Visibilidad | Descripción |
-|---|---|---|---|
-| RegisterUser | void | public | Registrar una nueva cuenta de usuario en la plataforma. |
-| Authenticate | bool | public | Validar las credenciales de acceso del usuario. |
-| ActivateAccess | void | public | Habilitar el acceso del usuario a la plataforma. |
-| RevokeAccess | void | public | Revocar el acceso del usuario según el estado de la suscripción. |
-
----
-
-<br>
-
-##### 2. UserCredentials
-
-| Campo | Detalle |
-|---|---|
-| **Nombre** | UserCredentials |
-| **Categoría** | Value Object |
-| **Propósito** | Representar las credenciales de autenticación asociadas a la cuenta del usuario. |
-
-<br>
-
-**Atributos**
-
-| Nombre | Tipo de dato | Visibilidad | Descripción |
-|---|---|---|---|
+| Id | int | private | Identificador único del usuario. |
+| Username | string | private | Nombre de usuario utilizado para el inicio de sesión. |
+| PasswordHash | string | private | Hash de la contraseña del usuario (ignorado en serialización JSON). |
 | Email | string | private | Correo electrónico del usuario. |
-| PasswordHash | string | private | Contraseña cifrada o hasheada para autenticación. |
+| FullName | string | private | Nombre completo del usuario registrado. |
+| Role | UserRole | private | Rol asignado al usuario dentro de la plataforma. |
+| Status | UserStatus | private | Estado actual de la cuenta del usuario. |
+| SubscriptionId | int? | private | Identificador de la suscripción asociada (nullable). |
+| CreatedDate | DateTimeOffset? | private | Fecha y hora de creación de la cuenta (auditoría). |
+| UpdatedDate | DateTimeOffset? | private | Fecha y hora de la última actualización (auditoría). |
 
 <br>
 
@@ -71,7 +42,36 @@ Para este bounded context, el dominio puede organizarse alrededor de una entidad
 
 | Nombre | Tipo de retorno | Visibilidad | Descripción |
 |---|---|---|---|
-| ValidateCredentials | bool | public | Validar que las credenciales proporcionadas sean correctas. |
+| UpdateUsername | User | public | Actualizar el nombre de usuario. |
+| UpdatePasswordHash | User | public | Actualizar el hash de la contraseña. |
+| UpdateProfile | User | public | Actualizar el nombre completo y correo electrónico. |
+| UpdateSubscription | User | public | Asignar o desvincular una suscripción al usuario. |
+| ActivateAccess | void | public | Habilitar el acceso del usuario a la plataforma. |
+| RevokeAccess | void | public | Revocar el acceso del usuario. |
+
+<br>
+
+La clase `UserAudit` (partial class) implementa `IEntityWithCreatedUpdatedDate` de `EntityFrameworkCore.CreatedUpdatedDate` y agrega las propiedades de auditoría `CreatedDate` y `UpdatedDate` mapeadas a las columnas `CreatedAt` y `UpdatedAt`.
+
+---
+
+<br>
+
+##### 2. UserRole (Enum)
+
+| Campo | Detalle |
+|---|---|
+| **Nombre** | UserRole |
+| **Categoría** | Enum |
+| **Propósito** | Definir los roles de usuario dentro de la plataforma. |
+
+<br>
+
+| Valor | Descripción |
+|---|---|
+| Administrator = 0 | Acceso total a la plataforma. |
+| Agronomist = 1 | Acceso a funcionalidades agronómicas. |
+| PalmGrower = 2 | Acceso limitado para productores de palma. |
 
 ---
 
@@ -91,13 +91,18 @@ Para este bounded context, el dominio puede organizarse alrededor de una entidad
 
 | Nombre | Tipo de dato | Visibilidad | Descripción |
 |---|---|---|---|
-| SubscriptionId | UUID | private | Identificador único de la suscripción. |
-| UserId | UUID | private | Identificador del usuario propietario de la suscripción. |
-| PlanId | UUID | private | Identificador del plan contratado. |
-| Status | string | private | Estado actual de la suscripción. |
-| StartDate | datetime | private | Fecha de inicio de la suscripción. |
-| EndDate | datetime | private | Fecha de fin del ciclo de facturación o vigencia. |
-| BillingCycle | string | private | Tipo de ciclo de facturación de la suscripción. |
+| Id | int | private | Identificador único de la suscripción. |
+| UserId | int | private | Identificador del usuario propietario de la suscripción. |
+| PlanType | PlanType | private | Tipo de plan contratado (Seed, Harvest). |
+| PlanName | string | private | Nombre del plan de suscripción. |
+| Price | decimal | private | Precio asociado al plan. |
+| MaxHectares | int? | private | Máximo de hectáreas permitidas (nullable). |
+| MaxSensors | int? | private | Máximo de sensores permitidos (nullable). |
+| Status | SubscriptionStatus | private | Estado actual de la suscripción. |
+| StartDate | DateTime | private | Fecha de inicio de la suscripción. |
+| EndDate | DateTime | private | Fecha de fin del ciclo de facturación. |
+| BillingCycle | BillingCycle | private | Ciclo de facturación (Monthly, Yearly). |
+| CreatedAt | DateTime | private | Fecha y hora de creación del registro. |
 
 <br>
 
@@ -105,21 +110,37 @@ Para este bounded context, el dominio puede organizarse alrededor de una entidad
 
 | Nombre | Tipo de retorno | Visibilidad | Descripción |
 |---|---|---|---|
-| Activate | void | public | Activar la suscripción después de confirmar el pago. |
-| Renew | void | public | Renovar la suscripción para un nuevo ciclo de facturación. |
-| Cancel | void | public | Cancelar la suscripción manteniendo acceso hasta el cierre del ciclo vigente. |
+| Activate | Subscription | public | Activar la suscripción (solo desde estado Pending). |
+| Cancel | Subscription | public | Cancelar la suscripción (solo desde estado Active). |
+| Renew | Subscription | public | Renovar la suscripción para un nuevo ciclo. |
+| IsExpired | bool | public | Verificar si la suscripción ha expirado. |
+| MarkExpired | Subscription | public | Marcar la suscripción como expirada. |
 
 ---
 
 <br>
 
-##### 4. SubscriptionPlan
+##### 4. PlanType, BillingCycle, SubscriptionStatus, UserStatus, PaymentStatus (Enums)
+
+| Nombre | Categoría | Propósito |
+|---|---|---|
+| PlanType | Enum | Definir los tipos de plan: Seed = 0, Harvest = 1. |
+| BillingCycle | Enum | Definir el ciclo de facturación: Monthly = 0, Yearly = 1. |
+| SubscriptionStatus | Enum | Definir los estados de suscripción: Pending = 0, Active = 1, Cancelled = 2, Expired = 3. |
+| UserStatus | Enum | Definir los estados de usuario: Active = 0, Inactive = 1, Suspended = 2. |
+| PaymentStatus | Enum | Definir los estados de pago: Pending = 0, Completed = 1, Failed = 2, Refunded = 3. |
+
+---
+
+<br>
+
+##### 5. SubscriptionPlan (Value Object)
 
 | Campo | Detalle |
 |---|---|
 | **Nombre** | SubscriptionPlan |
-| **Categoría** | Entity |
-| **Propósito** | Representar un plan de suscripción disponible para contratación en la plataforma. |
+| **Categoría** | Value Object (record) |
+| **Propósito** | Representar un plan de suscripción disponible para contratación en la plataforma con sus características y precio. |
 
 <br>
 
@@ -127,25 +148,32 @@ Para este bounded context, el dominio puede organizarse alrededor de una entidad
 
 | Nombre | Tipo de dato | Visibilidad | Descripción |
 |---|---|---|---|
-| PlanId | UUID | private | Identificador único del plan. |
-| Name | string | private | Nombre del plan de suscripción. |
-| Price | decimal | private | Precio asociado al plan. |
-| BillingCycle | string | private | Periodicidad de cobro del plan. |
-| Features | string | private | Conjunto de funcionalidades habilitadas por el plan. |
+| Type | PlanType | public | Tipo de plan (Seed, Harvest). |
+| Name | string | public | Nombre del plan. |
+| Description | string | public | Descripción del plan. |
+| Price | decimal | public | Precio mensual del plan. |
+| Cycle | BillingCycle | public | Ciclo de facturación. |
+| MaxHectares | int? | public | Máximo de hectáreas incluidas. |
+| MaxSensors | int? | public | Máximo de sensores incluidos. |
 
 <br>
 
-**Métodos**
+**Planes disponibles**
 
-| Nombre | Tipo de retorno | Visibilidad | Descripción |
+| Plan | Precio | Usuarios | Características |
 |---|---|---|---|
-| SelectPlan | void | public | Asociar el plan seleccionado al proceso de suscripción del usuario. |
+| Seed | $149/mes | 1 usuario | Monitoreo de hasta 50 hectáreas con 20 sensores, reportes básicos. |
+| Harvest | $349/mes | 5 usuarios | Hectáreas y sensores ilimitados, reportes avanzados y soporte prioritario. |
+
+<br>
+
+La clase estática `SubscriptionPlanProvider` expone los métodos `GetPlan(PlanType)` y `GetAll()` para obtener los planes disponibles.
 
 ---
 
 <br>
 
-##### 5. PaymentTransaction
+##### 6. PaymentTransaction
 
 | Campo | Detalle |
 |---|---|
@@ -159,11 +187,15 @@ Para este bounded context, el dominio puede organizarse alrededor de una entidad
 
 | Nombre | Tipo de dato | Visibilidad | Descripción |
 |---|---|---|---|
-| PaymentId | UUID | private | Identificador único de la transacción. |
-| SubscriptionId | UUID | private | Identificador de la suscripción asociada. |
+| Id | int | private | Identificador único de la transacción. |
+| UserId | int | private | Identificador del usuario asociado. |
+| PlanName | string | private | Nombre del plan asociado al pago. |
+| PeriodStart | DateTime | private | Inicio del período facturado. |
+| PeriodEnd | DateTime | private | Fin del período facturado. |
 | Amount | decimal | private | Monto procesado en la transacción. |
-| Status | string | private | Estado del pago procesado. |
-| ProcessedAt | datetime | private | Fecha y hora en que se procesó la transacción. |
+| TransactionId | string? | private | Identificador de la transacción externa (nullable). |
+| Status | PaymentStatus | private | Estado del pago procesado. |
+| ProcessedAt | DateTime | private | Fecha y hora en que se procesó la transacción. |
 
 <br>
 
@@ -171,38 +203,41 @@ Para este bounded context, el dominio puede organizarse alrededor de una entidad
 
 | Nombre | Tipo de retorno | Visibilidad | Descripción |
 |---|---|---|---|
-| MarkAsProcessed | void | public | Marcar la transacción como procesada exitosamente. |
-| MarkAsFailed | void | public | Marcar la transacción como fallida. |
+| Complete | PaymentTransaction | public | Marcar la transacción como completada con un identificador externo. |
+| Fail | PaymentTransaction | public | Marcar la transacción como fallida. |
+| Refund | PaymentTransaction | public | Marcar la transacción como reembolsada (solo desde Completed). |
 
 ---
 
 <br>
 
-##### 6. UserAccountFactory
+##### 7. SubscriptionFactory
 
 | Campo | Detalle |
 |---|---|
-| **Nombre** | UserAccountFactory |
-| **Categoría** | Factory |
-| **Propósito** | Crear nuevas instancias válidas de cuentas de usuario con sus credenciales iniciales. |
+| **Nombre** | SubscriptionFactory |
+| **Categoría** | Factory (static) |
+| **Propósito** | Crear nuevas instancias válidas de suscripciones a partir de un usuario y un tipo de plan. |
+
+<br>
 
 **Métodos**
 
 | Nombre | Tipo de retorno | Visibilidad | Descripción |
 |---|---|---|---|
-| Create | UserAccount | public | Crear una nueva cuenta de usuario con los datos requeridos. |
+| CreateSubscription | Subscription | public | Crear una nueva suscripción para un usuario con el plan especificado. |
 
 ---
 
 <br>
 
-##### 7. SubscriptionLifecycleService
+##### 8. IUserRepository
 
 | Campo | Detalle |
 |---|---|
-| **Nombre** | SubscriptionLifecycleService |
-| **Categoría** | Domain Service |
-| **Propósito** | Aplicar las reglas de negocio asociadas a la activación, renovación y cancelación de suscripciones. |
+| **Nombre** | IUserRepository |
+| **Categoría** | Repository Interface (extends IBaseRepository<User>) |
+| **Propósito** | Persistir y consultar usuarios dentro del bounded context. |
 
 <br>
 
@@ -210,32 +245,15 @@ Para este bounded context, el dominio puede organizarse alrededor de una entidad
 
 | Nombre | Tipo de retorno | Visibilidad | Descripción |
 |---|---|---|---|
-| ActivateSubscription | void | public | Aplicar la lógica de activación de una suscripción. |
-| RenewSubscription | void | public | Aplicar la lógica de renovación de una suscripción. |
-| CancelSubscription | void | public | Aplicar la lógica de cancelación de una suscripción. |
-
----
-
-<br>
-
-##### 8. IUserAccountRepository
-
-| Campo | Detalle |
-|---|---|
-| **Nombre** | IUserAccountRepository |
-| **Categoría** | Repository |
-| **Propósito** | Persistir y consultar cuentas de usuario dentro del bounded context. |
-
-<br>
-
-**Métodos**
-
-| Nombre | Tipo de retorno | Visibilidad | Descripción |
-|---|---|---|---|
-| Add | void | public | Persistir una nueva cuenta de usuario. |
-| FindById | UserAccount | public | Buscar una cuenta por su identificador. |
-| FindByEmail | UserAccount | public | Buscar una cuenta por su correo electrónico. |
-| Update | void | public | Actualizar la información de una cuenta existente. |
+| AddAsync | Task | public | Persistir un nuevo usuario. |
+| FindByIdAsync | Task\<User?\> | public | Buscar un usuario por su identificador. |
+| FindByUsernameAsync | Task\<User?\> | public | Buscar un usuario por su nombre de usuario. |
+| FindByEmailAsync | Task\<User?\> | public | Buscar un usuario por su correo electrónico. |
+| ExistsByUsername | bool | public | Verificar si existe un usuario con el nombre de usuario dado. |
+| ExistsByEmail | bool | public | Verificar si existe un usuario con el correo electrónico dado. |
+| ListAsync | Task\<IEnumerable\<User\>\> | public | Obtener todos los usuarios. |
+| Update | void | public | Actualizar la información de un usuario existente. |
+| Remove | void | public | Eliminar un usuario. |
 
 ---
 
@@ -246,7 +264,7 @@ Para este bounded context, el dominio puede organizarse alrededor de una entidad
 | Campo | Detalle |
 |---|---|
 | **Nombre** | ISubscriptionRepository |
-| **Categoría** | Repository |
+| **Categoría** | Repository Interface (extends IBaseRepository<Subscription>) |
 | **Propósito** | Persistir y consultar suscripciones asociadas a los usuarios. |
 
 <br>
@@ -255,451 +273,23 @@ Para este bounded context, el dominio puede organizarse alrededor de una entidad
 
 | Nombre | Tipo de retorno | Visibilidad | Descripción |
 |---|---|---|---|
-| Add | void | public | Persistir una nueva suscripción. |
-| FindById | Subscription | public | Buscar una suscripción por su identificador. |
-| FindByUserId | Subscription | public | Obtener la suscripción asociada a un usuario. |
+| AddAsync | Task | public | Persistir una nueva suscripción. |
+| FindByIdAsync | Task\<Subscription?\> | public | Buscar una suscripción por su identificador. |
+| FindByUserIdAsync | Task\<Subscription?\> | public | Obtener la suscripción asociada a un usuario. |
+| ListAsync | Task\<IEnumerable\<Subscription\>\> | public | Obtener todas las suscripciones. |
 | Update | void | public | Actualizar el estado o vigencia de una suscripción existente. |
-
-<br>
-
-#### 4.2.7.2. Interface Layer
-
-La **Interface Layer** del bounded context **Subscription & User Management** agrupa las clases encargadas de recibir solicitudes relacionadas con el registro, autenticación y gestión de suscripciones. Su función principal es actuar como punto de entrada del bounded context, derivando las solicitudes hacia la capa de aplicación para su procesamiento.
-
-En este bounded context, la capa de interfaz se encuentra compuesta principalmente por clases del tipo **Controller**, ya que las interacciones del usuario se realizan desde la plataforma web y requieren exponer operaciones relacionadas con acceso y suscripción.
+| Remove | void | public | Eliminar una suscripción. |
 
 ---
 
 <br>
 
-##### 1. UserRegistrationController
+##### 10. IPaymentTransactionRepository
 
 | Campo | Detalle |
 |---|---|
-| **Nombre** | UserRegistrationController |
-| **Categoría** | Controller |
-| **Propósito** | Gestionar las solicitudes relacionadas con el registro de nuevos usuarios. |
-
-<br>
-
-**Atributos**
-
-| Nombre | Tipo de dato | Visibilidad | Descripción |
-|---|---|---|---|
-| SubscriptionUserManagementService | SubscriptionUserManagementService | private | Servicio de aplicación encargado de coordinar el registro del usuario. |
-
-<br>
-
-**Métodos**
-
-| Nombre | Tipo de retorno | Visibilidad | Descripción |
-|---|---|---|---|
-| RegisterUser | HttpResponse | public | Recibir la solicitud de registro de un nuevo usuario. |
-
----
-
-<br>
-
-##### 2. AuthenticationController
-
-| Campo | Detalle |
-|---|---|
-| **Nombre** | AuthenticationController |
-| **Categoría** | Controller |
-| **Propósito** | Gestionar las solicitudes de autenticación de usuarios en la plataforma. |
-
-<br>
-
-**Atributos**
-
-| Nombre | Tipo de dato | Visibilidad | Descripción |
-|---|---|---|---|
-| SubscriptionUserManagementService | SubscriptionUserManagementService | private | Servicio de aplicación encargado de coordinar la autenticación del usuario. |
-
-<br>
-
-**Métodos**
-
-| Nombre | Tipo de retorno | Visibilidad | Descripción |
-|---|---|---|---|
-| AuthenticateUser | HttpResponse | public | Recibir las credenciales del usuario y derivar la autenticación. |
-
----
-
-<br>
-
-##### 3. SubscriptionController
-
-| Campo | Detalle |
-|---|---|
-| **Nombre** | SubscriptionController |
-| **Categoría** | Controller |
-| **Propósito** | Gestionar las solicitudes relacionadas con selección de plan, activación, renovación y cancelación de suscripciones. |
-
-<br>
-
-**Atributos**
-
-| Nombre | Tipo de dato | Visibilidad | Descripción |
-|---|---|---|---|
-| SubscriptionUserManagementService | SubscriptionUserManagementService | private | Servicio de aplicación encargado de coordinar los procesos de suscripción. |
-
-<br>
-
-**Métodos**
-
-| Nombre | Tipo de retorno | Visibilidad | Descripción |
-|---|---|---|---|
-| SelectSubscriptionPlan | HttpResponse | public | Recibir la selección de un plan de suscripción. |
-| ProcessPayment | HttpResponse | public | Recibir la solicitud de procesamiento de pago. |
-| RenewSubscription | HttpResponse | public | Recibir la solicitud de renovación de suscripción. |
-| CancelSubscription | HttpResponse | public | Recibir la solicitud de cancelación de suscripción. |
-
-<br>
-
-#### 4.2.7.3. Application Layer
-
-La **Application Layer** del bounded context **Subscription & User Management** se encarga de coordinar los flujos de negocio relacionados con el registro, autenticación y gestión de suscripciones. Su responsabilidad principal es recibir las solicitudes provenientes de la Interface Layer, transformarlas en flujos de aplicación y orquestar la ejecución de los casos de uso del contexto.
-
-En esta capa se ubican las clases que representan los *capabilities* del bounded context, permitiendo gestionar de manera organizada la creación de usuarios, la validación de acceso, la selección de planes, el procesamiento de pagos y la actualización del estado de la suscripción.
-
----
-
-<br>
-
-##### 1. SubscriptionUserManagementService
-
-| Campo | Detalle |
-|---|---|
-| **Nombre** | SubscriptionUserManagementService |
-| **Categoría** | Application Service |
-| **Propósito** | Coordinar los principales casos de uso del bounded context Subscription & User Management y servir como punto de orquestación entre la Interface Layer y los servicios de aplicación especializados. |
-
-<br>
-
-**Atributos**
-
-| Nombre | Tipo de dato | Visibilidad | Descripción |
-|---|---|---|---|
-| RegisterUserService | RegisterUserService | private | Servicio encargado de gestionar el registro de usuarios. |
-| AuthenticateUserService | AuthenticateUserService | private | Servicio encargado de validar las credenciales de acceso. |
-| SelectSubscriptionPlanService | SelectSubscriptionPlanService | private | Servicio encargado de gestionar la selección de planes. |
-| ProcessPaymentService | ProcessPaymentService | private | Servicio encargado de coordinar el procesamiento de pagos. |
-| ActivateSubscriptionService | ActivateSubscriptionService | private | Servicio encargado de activar la suscripción luego del pago. |
-| RenewSubscriptionService | RenewSubscriptionService | private | Servicio encargado de renovar suscripciones. |
-| CancelSubscriptionService | CancelSubscriptionService | private | Servicio encargado de cancelar suscripciones. |
-
-<br>
-
-**Métodos**
-
-| Nombre | Tipo de retorno | Visibilidad | Descripción |
-|---|---|---|---|
-| RegisterUser | void | public | Coordinar el flujo completo de registro de un nuevo usuario. |
-| AuthenticateUser | bool | public | Coordinar el flujo de autenticación del usuario. |
-| SelectPlan | void | public | Coordinar la selección del plan de suscripción. |
-| ProcessSubscriptionPayment | void | public | Coordinar el procesamiento del pago asociado a la suscripción. |
-| RenewUserSubscription | void | public | Coordinar la renovación de la suscripción del usuario. |
-| CancelUserSubscription | void | public | Coordinar la cancelación de la suscripción del usuario. |
-
----
-
-<br>
-
-##### 2. RegisterUserService
-
-| Campo | Detalle |
-|---|---|
-| **Nombre** | RegisterUserService |
-| **Categoría** | Application Service |
-| **Propósito** | Gestionar el flujo de creación de una nueva cuenta de usuario en la plataforma. |
-
-<br>
-
-**Atributos**
-
-| Nombre | Tipo de dato | Visibilidad | Descripción |
-|---|---|---|---|
-| IUserAccountRepository | IUserAccountRepository | private | Repositorio encargado de persistir la cuenta del usuario. |
-| UserAccountFactory | UserAccountFactory | private | Factory encargada de construir una cuenta válida de usuario. |
-
-<br>
-
-**Métodos**
-
-| Nombre | Tipo de retorno | Visibilidad | Descripción |
-|---|---|---|---|
-| Handle | void | public | Procesar la creación y persistencia de una nueva cuenta de usuario. |
-
----
-
-<br>
-
-##### 3. AuthenticateUserService
-
-| Campo | Detalle |
-|---|---|
-| **Nombre** | AuthenticateUserService |
-| **Categoría** | Application Service |
-| **Propósito** | Validar las credenciales del usuario y determinar si el acceso a la plataforma es permitido. |
-
-<br>
-
-**Atributos**
-
-| Nombre | Tipo de dato | Visibilidad | Descripción |
-|---|---|---|---|
-| IUserAccountRepository | IUserAccountRepository | private | Repositorio utilizado para recuperar la cuenta del usuario. |
-
-<br>
-
-**Métodos**
-
-| Nombre | Tipo de retorno | Visibilidad | Descripción |
-|---|---|---|---|
-| Handle | bool | public | Procesar la autenticación de un usuario a partir de sus credenciales. |
-
----
-
-<br>
-
-##### 4. SelectSubscriptionPlanService
-
-| Campo | Detalle |
-|---|---|
-| **Nombre** | SelectSubscriptionPlanService |
-| **Categoría** | Application Service |
-| **Propósito** | Gestionar la asociación de un plan de suscripción a un usuario. |
-
-<br>
-
-**Atributos**
-
-| Nombre | Tipo de dato | Visibilidad | Descripción |
-|---|---|---|---|
-| ISubscriptionRepository | ISubscriptionRepository | private | Repositorio utilizado para persistir la selección del plan. |
-
-<br>
-
-**Métodos**
-
-| Nombre | Tipo de retorno | Visibilidad | Descripción |
-|---|---|---|---|
-| Handle | void | public | Procesar la selección de un plan de suscripción. |
-
----
-
-<br>
-
-##### 5. ProcessPaymentService
-
-| Campo | Detalle |
-|---|---|
-| **Nombre** | ProcessPaymentService |
-| **Categoría** | Application Service |
-| **Propósito** | Coordinar el procesamiento del pago asociado a la contratación o renovación de una suscripción. |
-
-<br>
-
-**Métodos**
-
-| Nombre | Tipo de retorno | Visibilidad | Descripción |
-|---|---|---|---|
-| Handle | void | public | Procesar la transacción de pago asociada a una suscripción. |
-
----
-
-<br>
-
-##### 6. ActivateSubscriptionService
-
-| Campo | Detalle |
-|---|---|
-| **Nombre** | ActivateSubscriptionService |
-| **Categoría** | Application Service |
-| **Propósito** | Activar la suscripción del usuario luego de confirmar el pago correspondiente. |
-
-<br>
-
-**Atributos**
-
-| Nombre | Tipo de dato | Visibilidad | Descripción |
-|---|---|---|---|
-| ISubscriptionRepository | ISubscriptionRepository | private | Repositorio utilizado para actualizar el estado de la suscripción. |
-| SubscriptionLifecycleService | SubscriptionLifecycleService | private | Servicio de dominio encargado de aplicar la lógica de activación. |
-
-<br>
-
-**Métodos**
-
-| Nombre | Tipo de retorno | Visibilidad | Descripción |
-|---|---|---|---|
-| Handle | void | public | Procesar la activación de la suscripción del usuario. |
-
----
-
-<br>
-
-##### 7. RenewSubscriptionService
-
-| Campo | Detalle |
-|---|---|
-| **Nombre** | RenewSubscriptionService |
-| **Categoría** | Application Service |
-| **Propósito** | Gestionar la renovación de una suscripción activa para un nuevo ciclo de facturación. |
-
-<br>
-
-**Atributos**
-
-| Nombre | Tipo de dato | Visibilidad | Descripción |
-|---|---|---|---|
-| ISubscriptionRepository | ISubscriptionRepository | private | Repositorio utilizado para actualizar la vigencia de la suscripción. |
-| SubscriptionLifecycleService | SubscriptionLifecycleService | private | Servicio de dominio encargado de aplicar la lógica de renovación. |
-
-<br>
-
-**Métodos**
-
-| Nombre | Tipo de retorno | Visibilidad | Descripción |
-|---|---|---|---|
-| Handle | void | public | Procesar la renovación de la suscripción del usuario. |
-
----
-
-<br>
-
-##### 8. CancelSubscriptionService
-
-| Campo | Detalle |
-|---|---|
-| **Nombre** | CancelSubscriptionService |
-| **Categoría** | Application Service |
-| **Propósito** | Gestionar la cancelación de una suscripción activa respetando el ciclo de facturación vigente. |
-
-<br>
-
-**Atributos**
-
-| Nombre | Tipo de dato | Visibilidad | Descripción |
-|---|---|---|---|
-| ISubscriptionRepository | ISubscriptionRepository | private | Repositorio utilizado para actualizar el estado de la suscripción. |
-| SubscriptionLifecycleService | SubscriptionLifecycleService | private | Servicio de dominio encargado de aplicar la lógica de cancelación. |
-
-<br>
-
-**Métodos**
-
-| Nombre | Tipo de retorno | Visibilidad | Descripción |
-|---|---|---|---|
-| Handle | void | public | Procesar la cancelación de la suscripción del usuario. |
-
-<br>
-
-#### 4.2.7.4. Infrastructure Layer
-
-La **Infrastructure Layer** del bounded context **Subscription & User Management** agrupa las clases responsables de la persistencia, integración y comunicación con servicios externos necesarios para soportar la gestión de usuarios, autenticación y suscripciones. En esta capa se implementan las abstracciones de repositorios definidas en el dominio y se gestionan mecanismos de integración con servicios de pago y control de acceso.
-
-A diferencia de las capas de dominio y aplicación, esta capa no define reglas de negocio, sino que implementa detalles técnicos concretos para almacenar cuentas de usuario, suscripciones, transacciones de pago y eventos relacionados con la habilitación o revocación del acceso a la plataforma.
-
----
-
-<br>
-
-##### 1. UserAccountRepositoryImpl
-
-| Campo | Detalle |
-|---|---|
-| **Nombre** | UserAccountRepositoryImpl |
-| **Categoría** | Repository Implementation |
-| **Propósito** | Implementar la persistencia de cuentas de usuario dentro del sistema. |
-
-<br>
-
-**Métodos**
-
-| Nombre | Tipo de retorno | Visibilidad | Descripción |
-|---|---|---|---|
-| Add | void | public | Persistir una nueva cuenta de usuario. |
-| FindById | UserAccount | public | Recuperar una cuenta de usuario por su identificador. |
-| FindByEmail | UserAccount | public | Recuperar una cuenta de usuario por su correo electrónico. |
-| Update | void | public | Actualizar la información o el estado de una cuenta existente. |
-
----
-
-<br>
-
-##### 2. SubscriptionRepositoryImpl
-
-| Campo | Detalle |
-|---|---|
-| **Nombre** | SubscriptionRepositoryImpl |
-| **Categoría** | Repository Implementation |
-| **Propósito** | Implementar la persistencia de suscripciones asociadas a los usuarios. |
-
-<br>
-
-**Métodos**
-
-| Nombre | Tipo de retorno | Visibilidad | Descripción |
-|---|---|---|---|
-| Add | void | public | Persistir una nueva suscripción. |
-| FindById | Subscription | public | Recuperar una suscripción por su identificador. |
-| FindByUserId | Subscription | public | Obtener la suscripción asociada a un usuario. |
-| Update | void | public | Actualizar la vigencia o el estado de una suscripción. |
-
----
-
-<br>
-
-##### 3. SubscriptionPlanRepositoryImpl
-
-| Campo | Detalle |
-|---|---|
-| **Nombre** | SubscriptionPlanRepositoryImpl |
-| **Categoría** | Repository Implementation |
-| **Propósito** | Consultar los planes de suscripción disponibles en la plataforma. |
-
-<br>
-
-**Métodos**
-
-| Nombre | Tipo de retorno | Visibilidad | Descripción |
-|---|---|---|---|
-| FindById | SubscriptionPlan | public | Recuperar un plan de suscripción por su identificador. |
-| FindAll | List<SubscriptionPlan> | public | Obtener la lista de planes disponibles para contratación. |
-
----
-
-<br>
-
-##### 4. PaymentGatewayClient
-
-| Campo | Detalle |
-|---|---|
-| **Nombre** | PaymentGatewayClient |
-| **Categoría** | External Service Client |
-| **Propósito** | Integrarse con el Payment Gateway para procesar pagos asociados a la activación o renovación de suscripciones. |
-
-<br>
-
-**Métodos**
-
-| Nombre | Tipo de retorno | Visibilidad | Descripción |
-|---|---|---|---|
-| ProcessPayment | bool | public | Enviar la solicitud de cobro al servicio externo de pagos. |
-| ValidatePaymentStatus | string | public | Consultar el estado de una transacción procesada. |
-
----
-
-<br>
-
-##### 5. PaymentTransactionRepositoryImpl
-
-| Campo | Detalle |
-|---|---|
-| **Nombre** | PaymentTransactionRepositoryImpl |
-| **Categoría** | Repository Implementation |
+| **Nombre** | IPaymentTransactionRepository |
+| **Categoría** | Repository Interface (extends IBaseRepository<PaymentTransaction>) |
 | **Propósito** | Persistir y consultar transacciones de pago asociadas a las suscripciones. |
 
 <br>
@@ -708,21 +298,24 @@ A diferencia de las capas de dominio y aplicación, esta capa no define reglas d
 
 | Nombre | Tipo de retorno | Visibilidad | Descripción |
 |---|---|---|---|
-| Add | void | public | Persistir una nueva transacción de pago. |
-| FindById | PaymentTransaction | public | Recuperar una transacción de pago por su identificador. |
+| AddAsync | Task | public | Persistir una nueva transacción de pago. |
+| FindByIdAsync | Task\<PaymentTransaction?\> | public | Buscar una transacción por su identificador. |
+| FindByUserIdAsync | Task\<IEnumerable\<PaymentTransaction\>\> | public | Obtener las transacciones de pago de un usuario. |
+| ListAsync | Task\<IEnumerable\<PaymentTransaction\>\> | public | Obtener todas las transacciones. |
 | Update | void | public | Actualizar el estado de una transacción existente. |
+| Remove | void | public | Eliminar una transacción. |
 
 ---
 
 <br>
 
-##### 6. AccessEventPublisher
+##### 11. IUserCommandService
 
 | Campo | Detalle |
 |---|---|
-| **Nombre** | AccessEventPublisher |
-| **Categoría** | Message Publisher |
-| **Propósito** | Publicar eventos relacionados con la activación o revocación de acceso para que otros bounded contexts puedan reaccionar según el estado de la suscripción. |
+| **Nombre** | IUserCommandService |
+| **Categoría** | Domain Service Interface |
+| **Propósito** | Definir el contrato para gestionar los comandos de registro e inicio de sesión de usuarios. |
 
 <br>
 
@@ -730,21 +323,20 @@ A diferencia de las capas de dominio y aplicación, esta capa no define reglas d
 
 | Nombre | Tipo de retorno | Visibilidad | Descripción |
 |---|---|---|---|
-| PublishSubscriptionActivated | void | public | Publicar el evento de activación de suscripción. |
-| PublishSubscriptionRenewed | void | public | Publicar el evento de renovación de suscripción. |
-| PublishSubscriptionCancelled | void | public | Publicar el evento de cancelación de suscripción. |
+| Handle(SignInCommand) | Task\<(User user, string token)\> | public | Autenticar un usuario y generar un token JWT. |
+| Handle(SignUpCommand) | Task | public | Registrar un nuevo usuario en la plataforma. |
 
 ---
 
 <br>
 
-##### 7. AuthenticationTokenProvider
+##### 12. IUserQueryService
 
 | Campo | Detalle |
 |---|---|
-| **Nombre** | AuthenticationTokenProvider |
-| **Categoría** | Security Service |
-| **Propósito** | Generar y validar tokens de autenticación para el acceso seguro de los usuarios a la plataforma. |
+| **Nombre** | IUserQueryService |
+| **Categoría** | Domain Service Interface |
+| **Propósito** | Definir el contrato para las consultas de usuarios. |
 
 <br>
 
@@ -752,8 +344,562 @@ A diferencia de las capas de dominio y aplicación, esta capa no define reglas d
 
 | Nombre | Tipo de retorno | Visibilidad | Descripción |
 |---|---|---|---|
-| GenerateToken | string | public | Generar un token de autenticación para un usuario autenticado. |
-| ValidateToken | bool | public | Validar la vigencia y autenticidad de un token de acceso. |
+| Handle(GetUserByIdQuery) | Task\<User?\> | public | Obtener un usuario por su identificador. |
+| Handle(GetAllUsersQuery) | Task\<IEnumerable\<User\>\> | public | Obtener todos los usuarios. |
+| Handle(GetUserByUsernameQuery) | Task\<User?\> | public | Obtener un usuario por su nombre de usuario. |
+
+---
+
+<br>
+
+##### 13. ISubscriptionCommandService / ISubscriptionQueryService
+
+| Nombre | Categoría | Propósito |
+|---|---|---|
+| ISubscriptionCommandService | Domain Service Interface | Definir el contrato para comandos de suscripción (crear, cancelar). |
+| ISubscriptionQueryService | Domain Service Interface | Definir el contrato para consultas de suscripción (por usuario, por ID). |
+
+---
+
+<br>
+
+##### 14. IPaymentCommandService / IPaymentQueryService
+
+| Nombre | Categoría | Propósito |
+|---|---|---|
+| IPaymentCommandService | Domain Service Interface | Definir el contrato para procesar pagos. |
+| IPaymentQueryService | Domain Service Interface | Definir el contrato para consultar transacciones de pago por usuario. |
+
+---
+
+<br>
+
+##### 15. ISubscriptionLifecycleDomainService / IPaymentStrategy
+
+| Nombre | Categoría | Propósito |
+|---|---|---|
+| ISubscriptionLifecycleDomainService | Domain Service Interface | Aplicar reglas de negocio para renovación y cancelación de suscripciones. |
+| IPaymentStrategy | Domain Service Interface (Strategy Pattern) | Definir el contrato para procesar pagos a través de diferentes proveedores. |
+
+<br>
+
+**Comandos del dominio**
+
+| Nombre | Propiedades |
+|---|---|
+| SignUpCommand | Username, Password, Email, FullName, Role |
+| SignInCommand | Username, Password |
+| CreateSubscriptionCommand | UserId, PlanType |
+| CancelSubscriptionCommand | UserId |
+| ProcessPaymentCommand | UserId, Amount |
+
+<br>
+
+**Consultas del dominio**
+
+| Nombre | Propiedades |
+|---|---|
+| GetAllUsersQuery | — |
+| GetUserByIdQuery | Id |
+| GetUserByUsernameQuery | Username |
+| GetSubscriptionByUserIdQuery | UserId |
+| GetSubscriptionByIdQuery | SubscriptionId |
+| GetPaymentsByUserIdQuery | UserId |
+
+<br>
+
+#### 4.2.7.2. Interface Layer
+
+La **Interface Layer** del bounded context **Subscription & User Management** agrupa las clases encargadas de recibir solicitudes relacionadas con el registro, autenticación y gestión de suscripciones. Su función principal es actuar como punto de entrada del bounded context, derivando las solicitudes hacia la capa de aplicación para su procesamiento.
+
+En este bounded context, la capa de interfaz se encuentra compuesta por clases del tipo **Controller**, ya que las interacciones del usuario se realizan desde la plataforma web y requieren exponer operaciones relacionadas con acceso y suscripción.
+
+---
+
+<br>
+
+##### 1. AuthenticationController
+
+| Campo | Detalle |
+|---|---|
+| **Nombre** | AuthenticationController |
+| **Categoría** | Controller |
+| **Propósito** | Gestionar las solicitudes de registro e inicio de sesión de usuarios en la plataforma. |
+
+<br>
+
+**Atributos**
+
+| Nombre | Tipo de dato | Visibilidad | Descripción |
+|---|---|---|---|
+| UserCommandService | IUserCommandService | private | Servicio de aplicación encargado de manejar los comandos de usuario (sign-in, sign-up). |
+
+<br>
+
+**Endpoints**
+
+| Método | Ruta | Atributos | Request Body | Response | Descripción |
+|---|---|---|---|---|---|
+| SignIn | POST /api/v1/authentication/sign-in | [AllowAnonymous] | SignInResource | AuthenticatedUserResource (200) | Iniciar sesión con credenciales. |
+| SignUp | POST /api/v1/authentication/sign-up | [AllowAnonymous] | SignUpResource | mensaje (200) | Registrar un nuevo usuario. |
+
+---
+
+<br>
+
+##### 2. UsersController
+
+| Campo | Detalle |
+|---|---|
+| **Nombre** | UsersController |
+| **Categoría** | Controller |
+| **Propósito** | Gestionar las solicitudes de consulta de usuarios (solo administradores). |
+
+<br>
+
+**Atributos**
+
+| Nombre | Tipo de dato | Visibilidad | Descripción |
+|---|---|---|---|
+| UserQueryService | IUserQueryService | private | Servicio de aplicación encargado de las consultas de usuarios. |
+
+<br>
+
+**Endpoints**
+
+| Método | Ruta | Atributos | Response | Descripción |
+|---|---|---|---|---|
+| GetAllUsers | GET /api/v1/users | [Authorize(Roles = "Administrator")] | IEnumerable\<UserResource\> (200) | Listar todos los usuarios. |
+| GetUserById | GET /api/v1/users/{id} | [Authorize(Roles = "Administrator")] | UserResource (200) | Obtener un usuario por su ID. |
+
+---
+
+<br>
+
+##### 3. SubscriptionPlansController
+
+| Campo | Detalle |
+|---|---|
+| **Nombre** | SubscriptionPlansController |
+| **Categoría** | Controller |
+| **Propósito** | Exponer los planes de suscripción disponibles para contratación. |
+
+<br>
+
+**Endpoints**
+
+| Método | Ruta | Atributos | Response | Descripción |
+|---|---|---|---|---|
+| ListPlans | GET /api/v1/subscriptions/plans | [AllowAnonymous] | IEnumerable\<PlanResource\> (200) | Obtener la lista de planes disponibles. |
+
+---
+
+<br>
+
+##### 4. UserSubscriptionController
+
+| Campo | Detalle |
+|---|---|
+| **Nombre** | UserSubscriptionController |
+| **Categoría** | Controller |
+| **Propósito** | Gestionar las solicitudes relacionadas con suscripciones y pagos de un usuario específico. |
+
+<br>
+
+**Atributos**
+
+| Nombre | Tipo de dato | Visibilidad | Descripción |
+|---|---|---|---|
+| SubscriptionCommandService | ISubscriptionCommandService | private | Servicio de comandos de suscripción. |
+| SubscriptionQueryService | ISubscriptionQueryService | private | Servicio de consultas de suscripción. |
+| PaymentCommandService | IPaymentCommandService | private | Servicio de comandos de pago. |
+| PaymentQueryService | IPaymentQueryService | private | Servicio de consultas de pago. |
+
+<br>
+
+**Endpoints**
+
+| Método | Ruta | Request Body | Response | Descripción |
+|---|---|---|---|---|
+| CreateSubscription | POST /api/v1/users/{userId}/subscription | CreateSubscriptionResource | SubscriptionResource (201) | Crear una suscripción para un usuario. |
+| GetSubscription | GET /api/v1/users/{userId}/subscription | — | SubscriptionResource (200) | Obtener la suscripción del usuario. |
+| CancelSubscription | DELETE /api/v1/users/{userId}/subscription | — | mensaje (200) | Cancelar la suscripción del usuario. |
+| ListPayments | GET /api/v1/users/{userId}/subscription/payments | — | IEnumerable\<PaymentTransactionResource\> (200) | Listar pagos del usuario. |
+| ProcessPayment | POST /api/v1/users/{userId}/subscription/payments | ProcessPaymentResource | PaymentTransactionResource (201) | Procesar un pago. |
+
+---
+
+<br>
+
+**Resources**
+
+| Nombre | Propiedades |
+|---|---|
+| SignUpResource | username, password, email, fullName, role |
+| SignInResource | Username, Password |
+| AuthenticatedUserResource | Username, Token |
+| UserResource | username, email, fullName, role, status |
+| CreateSubscriptionResource | planType |
+| SubscriptionResource | planType, planName, price, maxHectares, maxSensors, status, startDate, endDate, billingCycle, createdAt |
+| PlanResource | type, name, description, price, billingCycle, maxHectares, maxSensors |
+| ProcessPaymentResource | amount |
+| PaymentTransactionResource | planName, periodStart, periodEnd, amount, status, processedAt |
+
+<br>
+
+#### 4.2.7.3. Application Layer
+
+La **Application Layer** del bounded context **Subscription & User Management** se encarga de coordinar los flujos de negocio relacionados con el registro, autenticación y gestión de suscripciones. Su responsabilidad principal es recibir las solicitudes provenientes de la Interface Layer, transformarlas en flujos de aplicación y orquestar la ejecución de los casos de uso del contexto.
+
+En esta capa se ubican los servicios de aplicación que implementan los interfaces definidos en el dominio, organizados en *command services*, *query services*, *domain services* y *outbound services*.
+
+---
+
+<br>
+
+##### 1. UserCommandService
+
+| Campo | Detalle |
+|---|---|
+| **Nombre** | UserCommandService |
+| **Categoría** | Application Command Service |
+| **Propósito** | Implementar el flujo de registro e inicio de sesión de usuarios, incluyendo validación de credenciales y generación de tokens JWT. |
+
+<br>
+
+**Atributos**
+
+| Nombre | Tipo de dato | Visibilidad | Descripción |
+|---|---|---|---|
+| UserRepository | IUserRepository | private | Repositorio para persistir y consultar usuarios. |
+| TokenService | ITokenService | private | Servicio para generar y validar tokens JWT. |
+| HashingService | IHashingService | private | Servicio para hashear y verificar contraseñas. |
+| UnitOfWork | IUnitOfWork | private | Unidad de trabajo para transacciones. |
+
+<br>
+
+**Métodos**
+
+| Nombre | Tipo de retorno | Visibilidad | Descripción |
+|---|---|---|---|
+| Handle(SignInCommand) | Task\<(User, string)\> | public | Autenticar al usuario y retornar un token JWT. |
+| Handle(SignUpCommand) | Task | public | Crear un nuevo usuario con contraseña hasheada y rol validado. |
+
+---
+
+<br>
+
+##### 2. UserQueryService
+
+| Campo | Detalle |
+|---|---|
+| **Nombre** | UserQueryService |
+| **Categoría** | Application Query Service |
+| **Propósito** | Implementar las consultas de usuarios delegando en el repositorio correspondiente. |
+
+<br>
+
+**Atributos**
+
+| Nombre | Tipo de dato | Visibilidad | Descripción |
+|---|---|---|---|
+| UserRepository | IUserRepository | private | Repositorio para consultar usuarios. |
+
+<br>
+
+**Métodos**
+
+| Nombre | Tipo de retorno | Visibilidad | Descripción |
+|---|---|---|---|
+| Handle(GetUserByIdQuery) | Task\<User?\> | public | Obtener un usuario por su ID. |
+| Handle(GetAllUsersQuery) | Task\<IEnumerable\<User\>\> | public | Obtener todos los usuarios. |
+| Handle(GetUserByUsernameQuery) | Task\<User?\> | public | Obtener un usuario por su nombre de usuario. |
+
+---
+
+<br>
+
+##### 3. SubscriptionCommandService
+
+| Campo | Detalle |
+|---|---|
+| **Nombre** | SubscriptionCommandService |
+| **Categoría** | Application Command Service |
+| **Propósito** | Implementar la creación y cancelación de suscripciones, validando reglas de negocio a través del servicio de dominio. |
+
+<br>
+
+**Atributos**
+
+| Nombre | Tipo de dato | Visibilidad | Descripción |
+|---|---|---|---|
+| SubscriptionRepository | ISubscriptionRepository | private | Repositorio para persistir suscripciones. |
+| UserRepository | IUserRepository | private | Repositorio para validar la existencia del usuario. |
+| LifecycleDomainService | ISubscriptionLifecycleDomainService | private | Servicio de dominio para reglas de ciclo de vida. |
+| UnitOfWork | IUnitOfWork | private | Unidad de trabajo para transacciones. |
+
+<br>
+
+**Métodos**
+
+| Nombre | Tipo de retorno | Visibilidad | Descripción |
+|---|---|---|---|
+| Handle(CreateSubscriptionCommand) | Task\<Subscription\> | public | Crear una nueva suscripción usando SubscriptionFactory. |
+| Handle(CancelSubscriptionCommand) | Task\<Subscription\> | public | Cancelar una suscripción activa. |
+
+---
+
+<br>
+
+##### 4. SubscriptionQueryService
+
+| Campo | Detalle |
+|---|---|
+| **Nombre** | SubscriptionQueryService |
+| **Categoría** | Application Query Service |
+| **Propósito** | Implementar las consultas de suscripciones delegando en el repositorio correspondiente. |
+
+<br>
+
+**Métodos**
+
+| Nombre | Tipo de retorno | Visibilidad | Descripción |
+|---|---|---|---|
+| Handle(GetSubscriptionByUserIdQuery) | Task\<Subscription?\> | public | Obtener la suscripción de un usuario. |
+| Handle(GetSubscriptionByIdQuery) | Task\<Subscription?\> | public | Obtener una suscripción por su ID. |
+
+---
+
+<br>
+
+##### 5. PaymentCommandService
+
+| Campo | Detalle |
+|---|---|
+| **Nombre** | PaymentCommandService |
+| **Categoría** | Application Command Service |
+| **Propósito** | Implementar el procesamiento de pagos, integrando la estrategia de pago y actualizando el estado de la transacción y suscripción. |
+
+<br>
+
+**Atributos**
+
+| Nombre | Tipo de dato | Visibilidad | Descripción |
+|---|---|---|---|
+| PaymentTransactionRepository | IPaymentTransactionRepository | private | Repositorio para persistir transacciones de pago. |
+| SubscriptionRepository | ISubscriptionRepository | private | Repositorio para actualizar la suscripción. |
+| PaymentStrategy | IPaymentStrategy | private | Estrategia de procesamiento de pago (Strategy Pattern). |
+| UnitOfWork | IUnitOfWork | private | Unidad de trabajo para transacciones. |
+
+<br>
+
+**Métodos**
+
+| Nombre | Tipo de retorno | Visibilidad | Descripción |
+|---|---|---|---|
+| Handle(ProcessPaymentCommand) | Task\<PaymentTransaction\> | public | Procesar un pago y activar la suscripción si es exitoso. |
+
+---
+
+<br>
+
+##### 6. PaymentQueryService
+
+| Campo | Detalle |
+|---|---|
+| **Nombre** | PaymentQueryService |
+| **Categoría** | Application Query Service |
+| **Propósito** | Implementar las consultas de transacciones de pago por usuario. |
+
+<br>
+
+**Métodos**
+
+| Nombre | Tipo de retorno | Visibilidad | Descripción |
+|---|---|---|---|
+| Handle(GetPaymentsByUserIdQuery) | Task\<IEnumerable\<PaymentTransaction\>\> | public | Obtener todas las transacciones de pago de un usuario. |
+
+---
+
+<br>
+
+##### 7. Application Domain Services
+
+| Nombre | Categoría | Propósito |
+|---|---|---|
+| SubscriptionLifecycleDomainService | Application Domain Service | Implementar ISubscriptionLifecycleDomainService con reglas de renovación y cancelación. |
+| LocalPaymentStrategy | Application Domain Service | Implementar IPaymentStrategy para procesar pagos localmente (simulado). |
+| StripePaymentStrategy | Application Domain Service | Implementar IPaymentStrategy para procesar pagos a través de Stripe. |
+
+---
+
+<br>
+
+##### 8. Outbound Services
+
+| Nombre | Categoría | Propósito | Tecnología |
+|---|---|---|---|
+| IHashingService | Application Outbound Service | Definir contrato para hashear y verificar contraseñas. | BCrypt.Net-Next |
+| ITokenService | Application Outbound Service | Definir contrato para generar y validar tokens JWT. | Microsoft.IdentityModel.JsonWebTokens |
+
+<br>
+
+#### 4.2.7.4. Infrastructure Layer
+
+La **Infrastructure Layer** del bounded context **Subscription & User Management** agrupa las clases responsables de la persistencia, integración y comunicación con servicios externos necesarios para soportar la gestión de usuarios, autenticación y suscripciones. En esta capa se implementan las abstracciones definidas en el dominio y la aplicación.
+
+A diferencia de las capas de dominio y aplicación, esta capa no define reglas de negocio, sino que implementa detalles técnicos concretos para almacenar cuentas de usuario, suscripciones, transacciones de pago y mecanismos de seguridad como hashing de contraseñas, generación de tokens JWT y middleware de autorización.
+
+---
+
+<br>
+
+##### 1. UserRepository
+
+| Campo | Detalle |
+|---|---|
+| **Nombre** | UserRepository |
+| **Categoría** | Repository Implementation |
+| **Propósito** | Implementar la persistencia de usuarios extendiendo BaseRepository\<User\> e implementando IUserRepository. |
+
+<br>
+
+**Métodos**
+
+| Nombre | Tipo de retorno | Visibilidad | Descripción |
+|---|---|---|---|
+| FindByUsernameAsync | Task\<User?\> | public | Buscar un usuario por su nombre de usuario. |
+| FindByEmailAsync | Task\<User?\> | public | Buscar un usuario por su correo electrónico. |
+| ExistsByUsername | bool | public | Verificar si existe un usuario con el username dado. |
+| ExistsByEmail | bool | public | Verificar si existe un usuario con el email dado. |
+
+<br>*(Hereda métodos CRUD de BaseRepository\<User\>)*
+
+---
+
+<br>
+
+##### 2. SubscriptionRepository
+
+| Campo | Detalle |
+|---|---|
+| **Nombre** | SubscriptionRepository |
+| **Categoría** | Repository Implementation |
+| **Propósito** | Implementar la persistencia de suscripciones extendiendo BaseRepository\<Subscription\> e implementando ISubscriptionRepository. |
+
+<br>
+
+**Métodos**
+
+| Nombre | Tipo de retorno | Visibilidad | Descripción |
+|---|---|---|---|
+| FindByUserIdAsync | Task\<Subscription?\> | public | Obtener la suscripción asociada a un usuario. |
+
+<br>*(Hereda métodos CRUD de BaseRepository\<Subscription\>)*
+
+---
+
+<br>
+
+##### 3. PaymentTransactionRepository
+
+| Campo | Detalle |
+|---|---|
+| **Nombre** | PaymentTransactionRepository |
+| **Categoría** | Repository Implementation |
+| **Propósito** | Implementar la persistencia de transacciones de pago extendiendo BaseRepository\<PaymentTransaction\> e implementando IPaymentTransactionRepository. |
+
+<br>
+
+**Métodos**
+
+| Nombre | Tipo de retorno | Visibilidad | Descripción |
+|---|---|---|---|
+| FindByUserIdAsync | Task\<IEnumerable\<PaymentTransaction\>\> | public | Obtener las transacciones de pago de un usuario. |
+
+<br>*(Hereda métodos CRUD de BaseRepository\<PaymentTransaction\>)*
+
+---
+
+<br>
+
+##### 4. HashingService
+
+| Campo | Detalle |
+|---|---|
+| **Nombre** | HashingService |
+| **Categoría** | Security Service (BCrypt) |
+| **Propósito** | Implementar IHashingService utilizando BCrypt.Net-Next para hashear y verificar contraseñas. |
+
+<br>
+
+**Métodos**
+
+| Nombre | Tipo de retorno | Visibilidad | Descripción |
+|---|---|---|---|
+| HashPassword | string | public | Generar el hash BCrypt de una contraseña. |
+| VerifyPassword | bool | public | Verificar una contraseña contra su hash. |
+
+---
+
+<br>
+
+##### 5. TokenService
+
+| Campo | Detalle |
+|---|---|
+| **Nombre** | TokenService |
+| **Categoría** | Security Service (JWT) |
+| **Propósito** | Implementar ITokenService utilizando Microsoft.IdentityModel.JsonWebTokens para generar y validar tokens JWT con expiración de 7 días y claims Sid (UserId) y Name (Username). |
+
+<br>
+
+**Atributos**
+
+| Nombre | Tipo de dato | Visibilidad | Descripción |
+|---|---|---|---|
+| TokenSettings | TokenSettings | private | Configuración obtenida mediante Options Pattern que contiene la clave secreta. |
+
+<br>
+
+**Métodos**
+
+| Nombre | Tipo de retorno | Visibilidad | Descripción |
+|---|---|---|---|
+| GenerateToken | string | public | Generar un token JWT con claims Sid y Name, expiración a 7 días. |
+| ValidateToken | Task\<int?\> | public | Validar un token JWT y retornar el ID del usuario si es válido. |
+
+---
+
+<br>
+
+##### 6. TokenSettings
+
+| Campo | Detalle |
+|---|---|
+| **Nombre** | TokenSettings |
+| **Categoría** | Configuration (Options Pattern) |
+| **Propósito** | Almacenar la configuración del JWT (clave secreta) desde appsettings.json. |
+
+<br>
+
+**Atributos**
+
+| Nombre | Tipo de dato | Visibilidad | Descripción |
+|---|---|---|---|
+| Secret | string | public |Clave secreta utilizada para firmar los tokens JWT. |
+
+---
+
+<br>
+
+##### 7. Middleware de Autorización
+
+| Nombre | Categoría | Propósito |
+|---|---|---|
+| RequestAuthorizationMiddleware | Middleware Component | Middleware personalizado que extrae el token JWT del header Authorization, lo valida mediante TokenService y establece el usuario en HttpContext.Items["User"] para su uso posterior. |
+| AuthorizeAttribute | Custom Attribute | Filtro de autorización personalizado que verifica la presencia del usuario en el contexto y opcionalmente valida roles específicos. Retorna 401 si no hay usuario y 403 si el rol no coincide. |
+| AllowAnonymousAttribute | Custom Attribute | Marcador para omitir la autorización en acciones o controladores específicos. |
 
 <br>
 

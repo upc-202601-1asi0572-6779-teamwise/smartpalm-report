@@ -1,0 +1,3 @@
+# 6.4. Video About-the-Product
+
+En este video, se presenta una demostración del producto desarrollado, destacando sus características principales y su funcionalidad en un entorno real. El objetivo del video es proporcionar una visión clara y concisa de cómo el producto puede ser utilizado por los usuarios finales, así como resaltar los beneficios que ofrece en comparación con soluciones existentes.

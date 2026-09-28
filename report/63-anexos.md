@@ -1,5 +1,7 @@
 ## Anexos
 
+\newpage
+
 ### Repositorios de Código Fuente
 
 | Producto | Repositorio | URL |
@@ -14,7 +16,7 @@
 | Mobile Application | mobileapp | https://github.com/upc-202601-1asi0572-6779-teamwise/mobileapp |
 | Mock API (Sprint 1) | mock-api | https://github.com/upc-202601-1asi0572-6779-teamwise/mock-api |
 
----
+\newpage
 
 ### Aplicaciones Desplegadas
 
@@ -25,7 +27,7 @@
 | RESTful Web Service | Render | https://smart-palm-platform.onrender.com/ |
 | Mock API (Sprint 1) | Render | https://smartpalm-mock-api.onrender.com |
 
----
+\newpage
 
 ### Diseños y Prototipos en Figma
 
@@ -35,7 +37,7 @@
 | Web Application — Prototipo interactivo (agrónomo) | https://www.figma.com/proto/bFDv7p60jPElSFuoSRZF1H/WebApp?node-id=2072-1742&scaling=scale-down&page-id=0%3A1&starting-point-node-id=2072%3A75 |
 | Mobile Application — Prototipo interactivo (dueño del cultivo) | https://www.figma.com/proto/bFDv7p60jPElSFuoSRZF1H/WebApp?node-id=2130-1315&scaling=scale-down&page-id=1%3A2 |
 
----
+\newpage
 
 ### Tableros de Gestión del Proyecto
 
@@ -43,7 +45,7 @@
 | :--- | :--- | :--- |
 | Trello | Sprint Backlog y Task Board | https://trello.com/b/HSjBsXFx/grupo-2-fundamentos-de-arquitectura-de-software |
 
----
+\newpage
 
 ### Diagramas en Miro
 
@@ -52,7 +54,7 @@
 | Big Picture EventStorming | https://miro.com/app/board/uXjVK2R7nV4=/ |
 | Design-Level EventStorming | https://miro.com/app/board/uXjVHdJ_3Wo=/?share_link_id=547546845690 |
 
----
+\newpage
 
 ### Videos de Entrevistas de Needfinding
 
