@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 650 400" width="100%" height="100%">
+  <defs>
+    <style>
+      .mcu-text { font-family: 'Courier New', Courier, monospace; font-size: 13px; fill: #ffffff; font-weight: bold; }
+      .label-text { font-family: 'Courier New', Courier, monospace; font-size: 11px; fill: #7f8c8d; font-weight: bold; }
+      .comp-text { font-family: 'Courier New', Courier, monospace; font-size: 12px; fill: #2c3e50; font-weight: bold; text-anchor: middle; }
+      .title-comp { font-family: 'Courier New', Courier, monospace; font-size: 11px; fill: #7f8c8d; text-anchor: middle; }
+      .info-title { font-family: 'Courier New', Courier, monospace; font-size: 11px; fill: #d35400; font-weight: bold; }
+      .info-text { font-family: 'Courier New', Courier, monospace; font-size: 11px; fill: #2c3e50; }
+      
+      .mcu-block { fill: #2c3e50; stroke: #34495e; stroke-width: 2; }
+      .shield-block { fill: #27ae60; stroke: #2196f3; stroke-width: 1.5; stroke-dasharray: 4,4; }
+      .comp-block { fill: #ecf0f1; stroke: #bdc3c7; stroke-width: 2; }
+      .info-block { fill: #fdf2e9; stroke: #e67e22; stroke-width: 1; }
+      
+      /* Líneas de cables según la leyenda real */
+      .wire-black { fill: none; stroke: #000000; stroke-width: 2; }
+      .wire-red { fill: none; stroke: #e74c3c; stroke-width: 2; }
+      .wire-orange { fill: none; stroke: #e67e22; stroke-width: 2; }
+      .wire-purple { fill: none; stroke: #9b59b6; stroke-width: 2; }
+    </style>
+  </defs>
+
+  <rect width="100%" height="100%" fill="#ffffff"/>
+
+  <rect x="20" y="30" width="260" height="340" rx="8" class="shield-block" fill="#f8f9fa"/>
+  <text x="30" y="50" class="label-text" fill="#2196f3">SHIELD DE 38 PINES</text>
+
+  <rect x="40" y="70" width="220" height="280" rx="6" class="mcu-block" />
+  <rect x="50" y="80" width="200" height="30" rx="3" fill="#34495e" />
+  <text x="150" y="100" class="mcu-text" text-anchor="middle">ESP32-DEVKITC-32U</text>
+  <text x="150" y="220" class="mcu-text" text-anchor="middle" font-size="20" fill="#7f8c8d" opacity="0.25">EDGE NODE</text>
+
+  <text x="60" y="155" class="mcu-text" fill="#e74c3c">GND</text>
+  <path d="M 100 150 L 380 150" class="wire-black" />
+  
+  <text x="60" y="195" class="mcu-text" fill="#2ecc71">VIN (5V)</text>
+  <path d="M 135 190 L 380 190" class="wire-red" />
+
+  <text x="150" y="255" class="mcu-text">GPIO 21 <tspan font-size="9" fill="#bdc3c7">SDA</tspan></text>
+  <path d="M 235 250 L 350 250 L 350 240 L 380 240" class="wire-orange" />
+  
+  <text x="150" y="295" class="mcu-text">GPIO 22 <tspan font-size="9" fill="#bdc3c7">SCL</tspan></text>
+  <path d="M 235 290 L 350 290 L 350 280 L 380 280" class="wire-purple" />
+  
+  <rect x="380" y="125" width="220" height="190" rx="6" class="comp-block" />
+  <rect x="395" y="135" width="190" height="35" rx="2" fill="#2c3e50" />
+  <text x="490" y="157" class="mcu-text" text-anchor="middle" fill="#00ff00" font-family="'Courier New'">LCD 16x2 / 20x4</text>
+  
+  <text x="395" y="195" class="label-text" fill="#000">GND</text>
+  <text x="395" y="215" class="label-text" fill="#000">VCC (+5V)</text>
+  <text x="395" y="245" class="label-text" fill="#000">SDA</text>
+  <text x="395" y="285" class="label-text" fill="#000">SCL</text>
+  
+  <text x="490" y="302" class="comp-text" font-size="11">Interfaz I2C</text>
+
+  <rect x="290" y="30" width="310" height="70" rx="4" class="info-block" />
+  <text x="305" y="48" class="info-title">Configuración Access Point Local:</text>
+  <text x="305" y="68" class="info-text">SSID: <tspan font-weight="bold">"SmartPalm-EdgeNode"</tspan></text>
+  <text x="305" y="86" class="info-text">Server IP: <tspan font-weight="bold" fill="#e67e22">192.168.4.1</tspan></text>
+
+</svg>

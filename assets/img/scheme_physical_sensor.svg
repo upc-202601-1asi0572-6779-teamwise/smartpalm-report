@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 650 480" width="100%" height="100%">
+  <defs>
+    <style>
+      .mcu-text { font-family: 'Courier New', Courier, monospace; font-size: 13px; fill: #ffffff; font-weight: bold; }
+      .label-text { font-family: 'Courier New', Courier, monospace; font-size: 11px; fill: #34495e; font-weight: bold; }
+      .comp-text { font-family: 'Courier New', Courier, monospace; font-size: 12px; fill: #2c3e50; font-weight: bold; text-anchor: middle; }
+      .title-comp { font-family: 'Courier New', Courier, monospace; font-size: 11px; fill: #7f8c8d; text-anchor: middle; }
+      
+      .mcu-block { fill: #2c3e50; stroke: #34495e; stroke-width: 2; }
+      .comp-block { fill: #ecf0f1; stroke: #bdc3c7; stroke-width: 2; }
+      .bus-block { fill: #e74c3c; stroke: #c0392b; stroke-width: 1.5; }
+      
+      /* Líneas de cables con sus respectivos colores reales */
+      .wire-black { fill: none; stroke: #000000; stroke-width: 2; }
+      .wire-red { fill: none; stroke: #e74c3c; stroke-width: 2; }
+      .wire-green { fill: none; stroke: #2ecc71; stroke-width: 2; }
+      .wire-blue { fill: none; stroke: #3498db; stroke-width: 2; }
+      .wire-yellow { fill: none; stroke: #f1c40f; stroke-width: 2; }
+      .wire-orange { fill: none; stroke: #e67e22; stroke-width: 2; }
+      .wire-purple { fill: none; stroke: #9b59b6; stroke-width: 2; }
+    </style>
+  </defs>
+
+  <rect width="100%" height="100%" fill="#ffffff"/>
+
+  <rect x="30" y="40" width="220" height="400" rx="6" class="mcu-block" />
+  <rect x="40" y="50" width="200" height="30" rx="3" fill="#34495e" />
+  <text x="130" y="70" class="mcu-text" text-anchor="middle">NODEMCU-32S</text>
+  <text x="130" y="240" class="mcu-text" text-anchor="middle" font-size="24" fill="#7f8c8d" opacity="0.3">ESP32</text>
+
+  <text x="50" y="115" class="mcu-text" fill="#e74c3c">GND</text>
+  <path d="M 90 110 L 290 110" class="wire-black" />
+  
+  <text x="50" y="155" class="mcu-text" fill="#2ecc71">3.3V</text>
+  <path d="M 95 150 L 290 150" class="wire-red" />
+
+  <text x="50" y="415" class="mcu-text" fill="#f1c40f">GPIO 2</text>
+  <path d="M 110 410 L 320 410" class="wire-blue" />
+  <rect x="320" y="395" width="140" height="30" rx="4" class="comp-block" />
+  <text x="390" y="414" class="comp-text">LED Onboard</text>
+
+  <rect x="290" y="95" width="20" height="30" rx="2" class="bus-block" fill="#000" stroke="#333"/>
+  <text x="300" y="85" class="label-text" text-anchor="middle">GND</text>
+  
+  <rect x="290" y="135" width="20" height="30" rx="2" class="bus-block" />
+  <text x="300" y="180" class="label-text" text-anchor="middle">VCC</text>
+
+  <path d="M 300 125 L 300 320 L 510 320 L 510 300" fill="none" stroke="#000000" stroke-width="1" stroke-dasharray="3,3" />
+  <path d="M 300 150 L 300 330 L 530 330 L 530 300" fill="none" stroke="#e74c3c" stroke-width="1" stroke-dasharray="3,3" />
+
+  <text x="175" y="205" class="mcu-text">GPIO 27</text>
+  <path d="M 235 200 L 400 200" class="wire-green" />
+  <rect x="400" y="175" width="180" height="40" rx="4" class="comp-block" />
+  <text x="490" y="193" class="comp-text">DHT11</text>
+  <text x="490" y="207" class="title-comp">Clima (Data)</text>
+
+  <text x="140" y="255" class="mcu-text">GPIO 32 <tspan font-size="9" fill="#bdc3c7">ADC1_4</tspan></text>
+  <path d="M 235 250 L 400 250" class="wire-blue" />
+  <rect x="400" y="230" width="180" height="40" rx="4" class="comp-block" />
+  <text x="490" y="248" class="comp-text">HW-390</text>
+  <text x="490" y="262" class="title-comp">Humedad Suelo (AOUT)</text>
+
+  <text x="140" y="305" class="mcu-text">GPIO 33 <tspan font-size="9" fill="#bdc3c7">ADC1_5</tspan></text>
+  <path d="M 235 300 L 400 300" class="wire-yellow" />
+  <rect x="400" y="280" width="180" height="40" rx="4" class="comp-block" />
+  <text x="490" y="298" class="comp-text">ARD-LDR</text>
+  <text x="490" y="312" class="title-comp">Luz (Analog OUT)</text>
+
+  <text x="148" y="355" class="mcu-text">GPIO 21 <tspan font-size="9" fill="#bdc3c7">SDA</tspan></text>
+  <path d="M 235 350 L 370 350 L 370 365 L 400 365" class="wire-orange" />
+  
+  <text x="148" y="375" class="mcu-text">GPIO 22 <tspan font-size="9" fill="#bdc3c7">SCL</tspan></text>
+  <path d="M 235 370 L 360 370 L 360 385 L 400 385" class="wire-purple" />
+  
+  <rect x="400" y="345" width="180" height="50" rx="4" class="comp-block" />
+  <text x="490" y="368" class="comp-text">OLED SSD1315</text>
+  <text x="490" y="385" class="title-comp">Display local (I2C)</text>
+
+</svg>

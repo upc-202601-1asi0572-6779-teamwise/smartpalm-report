@@ -159,8 +159,8 @@ Resumen:  La profesional identifica tres ausencias críticas en la agricultura p
   | Nombres y Apellidos | Cesar Santivañez Solis |
 | Edad | 43 |
 | Distrito / Zona | Ucayali, Perú  |
-| Screenshot del video | - |
-| URL del video | - |
+| Screenshot del video | ![entrevista5](../assets/img/interviews/entrevista5.jpg) |
+| URL del video | https://acortar.link/rmjftt |
 | Timing de inicio en el video compilado | 0:02 |
 | Duración de la entrevista | 10:10 |
 
